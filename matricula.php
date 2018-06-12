@@ -210,17 +210,14 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
 
 
-                                <?php
-                                require_once 'gold/enlace.php';
-
-                                $queryPromocionActiva= mysqli_query($enlace, "select num_promocion from promociones WHERE `status`=1");
-
-                                while ($fila = mysqli_fetch_array($queryPromocionActiva,MYSQLI_ASSOC)) {
-                                    echo'<div class="col-lg-4">';
-                                    echo '<input type="text" id="promoAc" class="form-control" readonly="readonly" value="Promocion '.$fila['num_promocion'].'">';
-                                    echo'</div>';
-                                }
-                                ?>
+                             <div class="col-lg-4 col-md-4" id="divDocumentosSelect">
+                                 <select  id="selectDocumentos" class="form-control">
+                                     <option value="">DOCUMENTOS PENDIENTES</option>
+                                     <option value="1">Si</option>
+                                     <option value="2">No</option>
+                                 </select>
+                                 <div id="alertDocumentos" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Repuesta Invalida</div>
+                             </div>
 
                                 <div class="col-lg-4" id="divNinosPregunta">
                                     <select  id="selectNinos" class="form-control">
@@ -233,22 +230,37 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             </div>
 
-                            <div class="form-group  " id="rangoNinosDiv">
-                                <div class="col-lg-12">
-                                    <select  id="selectRangoNinos"  >
-                                        <option value="">Edades</option>
-                                        <?php
-                                        include 'gold/enlace.php';
-                                        $queryRangos = mysqli_query($enlace,"SELECT * from rangos WHERE estado =1
-GROUP BY rango ASC");
-                                        while ($datosRangos = mysqli_fetch_array($queryRangos,MYSQLI_ASSOC)){
-                                            echo '<option value="'.$datosRangos["idRango"].'">'.utf8_encode($datosRangos["rango"]).'</option>';
-                                        }
-                                        ?>
-                                    </select>
+                            <div class="form-group collapse " id="DivdocumentosInput">
+                             <div class="col-lg-12 col-md-12">
+                                 <input type="text" class="form-control" id="inputDocumentos" placeholder="DOCUMENTOS PENDIENTES">
+                             </div>
+                            </div>
 
-
+                            <div class="form-group collapse " id="rangoNinosDiv">
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="0-2 AÑOS">
                                 </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="2-3 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="4-5 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="6-7 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="8-11 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" placeholder="OTROS">
+                                </div>
+
                             </div>
 
                             <div class="form-group" >
@@ -494,7 +506,6 @@ GROUP BY rango ASC");
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/plugins/waypoints/waypoints.min.js"></script>
 <script src="assets/js/application.js"></script>
-<script src="multiselect/bootstrap-select.js"></script>
 <script>
 
 

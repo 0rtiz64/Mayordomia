@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 
 
-    $('#selectRangoNinos').selectpicker();
+
 
 
 
@@ -52,6 +52,16 @@ $(document).ready(function () {
         }
     });
 
+    $('#selectDocumentos').change(function documentos(){
+        var docRespuesta = document.getElementById("selectDocumentos").value;
+        if (docRespuesta == 1) {
+            $('#DivdocumentosInput').show('1000');
+
+        }else{
+            $('#DivdocumentosInput').hide('1000');
+        }
+    });
+
 });
 
 
@@ -72,7 +82,7 @@ function guardarPersona(){
     var direccion1 = $('#direccionRegistrar').val();
 
     var respuestaNinos = document.getElementById('selectNinos').value;
-    var rango = document.getElementById('selectRangoNinos').value;
+    var rangoRespuesta = document.getElementById('selectRangoNinos').value;
     var id = $('#numeroExpedienteRegistrar').val();
     var idNum = parseInt(id);
     var newId = idNum+1;
@@ -150,45 +160,8 @@ var correlativoVisible = $('#correlativo').val();
                                 $('#divCorderito').removeClass('has-error');
                                 $('#divCorderito').addClass('has-success');
 
-                                if(respuestaNinos.trim().length==""){
-                                    $('#divNinosPregunta').addClass('has-error');
-                                    $("#alertNinos").slideDown('1000');
-                                    return false;
-                                }else {
-                                    $("#alertNinos").hide('1000');
-                                    $('#divNinosPregunta').removeClass('has-error');
-                                    $('#divNinosPregunta').addClass('has-success');
+                                //AÑADIR VALIDACIONES
 
-                                    if (tel1.trim().length == "") {
-                                        $('#divTelefono1').addClass('has-error');
-                                        $("#alertTelefono1").slideDown('1000');
-                                        return false;
-                                    }else{
-                                        $("#alertTelefono1").hide('1000');
-                                        $('#divTelefono1').removeClass('has-error');
-                                        $('#divTelefono1').addClass('has-success');
-
-                                        if (integradoRes.trim().length == "") {
-                                            $('#divIntegrado').addClass('has-error');
-                                            $("#alertIntegrado").slideDown('1000');
-                                            return false;
-                                        }else {
-                                            $("#alertIntegrado").hide('1000');
-                                            $('#divIntegrado').removeClass('has-error');
-                                            $('#divIntegrado').addClass('has-success');
-
-                                            if (direccion.trim().length == "") {
-                                                $('#divDireccion').addClass('has-error');
-                                                $("#alertDireccion").slideDown('1000');
-                                                return false;
-                                            }else{
-                                                $("#alertDireccion").hide('1000');
-                                                $('#divDireccion').removeClass('has-error');
-                                                $('#divDireccion').addClass('has-success');
-                                            }//FIN DIRECCION
-                                        }//FIN INTEGRADO
-                                    }//FIN TEL 1
-                                }// FIN NINOS
                             }//FIN CORDERITOS
                         }//FIN TRANSPORTE
                     }// FIN GENERO
