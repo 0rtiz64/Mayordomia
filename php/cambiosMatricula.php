@@ -20,8 +20,13 @@ if (empty($_POST['nombre'])){
 
 }
 else{
+    $queryConsultarCorrelativoActivo = mysqli_query($enlace,"SELECT * from correlativos WHERE correlativos.estado = 1");
+    $arrayCorrelativoActivo = mysqli_fetch_array($queryConsultarCorrelativoActivo,MYSQLI_ASSOC);
+    $correlativoActivo = $arrayCorrelativoActivo["correlativo"];
+
+
     $query = mysqli_query($enlace,"SELECT * from integrantes 
-where correlativo > '18010000' AND nombre_integrante like '%".$namePerson."%'");
+where correlativo > '".$correlativoActivo."' AND nombre_integrante like '%".$namePerson."%'");
 
 
     echo '<div class="table-responsive">';

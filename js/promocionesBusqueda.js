@@ -15,9 +15,7 @@ $(document).ready(function () {
        // alert("BOTON PARA LIMPIAR");
     })
 
-    $('#fechaPromEdit').datepicker({
-        format: "yyyy-mm-dd"
-    });
+
 
 
 });
@@ -40,11 +38,13 @@ $('#buscarPromociones').on('keyup',function(){
 //Fin Busca las promociones para hacer cambios
 
 
+
 //Registrar Promocion
 function guardarPromocion() {
     var numeroPromocion = $('#numeroPromocion').val();
     var nombrePromocion = $('#nombrePromocion').val();
     var estadoPromocion = document.getElementById("estadoPromocion").value;
+var correlativoPromocion = $('#correlativoPromocion').val();
 
 
 //Validar Numero Promocion
@@ -76,6 +76,16 @@ function guardarPromocion() {
                 $("#alertEstadoPromocion").hide('1000');
                 $('#estadoPromocionDiv').removeClass('has-error');
                 $('#estadoPromocionDiv').addClass('has-success');
+
+                if(correlativoPromocion.trim().length==""){
+                    $('#divCorrelativo').addClass('has-error');
+                    $("#alertCorrelativo").slideDown('1000');
+                    return false;
+                }else{
+                    $("#alertCorrelativo").hide('1000');
+                    $('#divCorrelativo').removeClass('has-error');
+                    $('#divCorrelativo').addClass('has-success');
+                }
             }
         }
     }
@@ -91,7 +101,8 @@ function guardarPromocion() {
         data:{
             phpNumeroPromocion: numeroPromocion,
             phpNombrePromocion: nombrePromocion,
-            phpEstadoPromocion:estadoPromocion
+            phpEstadoPromocion:estadoPromocion,
+            phpCorrelativoPromocion:correlativoPromocion
         },
 
         success: function(datos){
@@ -99,6 +110,7 @@ function guardarPromocion() {
             $('#numeroPromocion').val("");
             $('#nombrePromocion').val("");
             $('#estadoPromocion').val("");
+            $('#correlativoPromocion').val("");
             $('#guardado').html(datos).show('1000').delay('2500').hide('200');
             $('#numeroPromocion').focus();
 
