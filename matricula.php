@@ -232,40 +232,40 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group collapse " id="DivdocumentosInput">
                              <div class="col-lg-12 col-md-12">
-                                 <input type="text" class="form-control" id="inputDocumentos" placeholder="DOCUMENTOS PENDIENTES">
+                                 <input type="text" class="form-control" id="inputDocumentos" placeholder="DOCUMENTOS PENDIENTES" style="text-transform: uppercase">
                              </div>
                             </div>
 
                             <div class="form-group collapse " id="rangoNinosDiv">
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="0-2 AÑOS">
+                                    <input type="number" id="inputRango1"  class="form-control" placeholder="0-2 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="2-3 AÑOS">
+                                    <input type="number" class="form-control" id="inputRango2" placeholder="2-3 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="4-5 AÑOS">
+                                    <input type="number" class="form-control" id="inputRango3" placeholder="4-5 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="6-7 AÑOS">
+                                    <input type="number" class="form-control" id="inputRango4" placeholder="6-7 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="8-11 AÑOS">
+                                    <input type="number" class="form-control" id="inputRango5" placeholder="8-11 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" placeholder="OTROS">
+                                    <input type="number" class="form-control" id="inputRango6" placeholder="OTROS">
                                 </div>
 
                             </div>
 
                             <div class="form-group" >
                                 <div class="col-lg-4" id="divTelefono1">
-                                    <input type="number" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
+                                    <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1" style="text-transform: uppercase">
                                     <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                 </div>
 

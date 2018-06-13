@@ -14,8 +14,19 @@ $Tel2=$_POST["phpTel2"];
 $IntegradoRes=$_POST["phpIntegradoRes"];
 $Areas=$_POST["phpAreas"];
 $Direccion=$_POST["phpDireccion"];
-$rango=$_POST["phpRango"];
-//$Id= $_POST["phpId"];
+
+
+$rango1=$_POST["phpRango1"];
+$rango2=$_POST["phpRango2"];
+$rango3=$_POST["phpRango3"];
+$rango4=$_POST["phpRango4"];
+$rango5=$_POST["phpRango5"];
+$rango6=$_POST["phpRango6"];
+$documentos=$_POST["phpDocumentos"];
+$RespuestaDocumentos=$_POST["phpRespuestaDocumentos"];
+
+
+
 $fechaentrada = date('Y-m-d  h:i:s');
 $NombreMayus = strtoupper($Nombre);
 
@@ -32,8 +43,8 @@ if($query_ver >0){
  $ultimoCorrelativo = mysqli_query($enlace,"SELECT max(correlativo +1 ) AS numeroNew FROM integrantes ");
  $datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
  $corrNew= $datoUltimoCorrelativo["numeroNew"];
-$query = mysqli_query($enlace,"insert into integrantes (promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada,status,fecha_registro,correlativo,idRango) values 
-	(".$PromCorderitos.",'".$Identidad."','".$NombreMayus."','".$FechaCumpleanos."','".$Tel1."','".$Tel2."','".$EstadoCivil."','".$Genero."','".$Transporte."','".$Direccion."','".$Areas."','".$ApeCasada."','1','".$fechaentrada."',".$corrNew.",".$rango.")");
+$query = mysqli_query($enlace,"insert into integrantes (promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada,status,fecha_registro,correlativo,documentosRespuesta,documentosPendientes) values 
+	(".$PromCorderitos.",'".$Identidad."','".$NombreMayus."','".$FechaCumpleanos."','".$Tel1."','".$Tel2."','".$EstadoCivil."','".$Genero."','".$Transporte."','".$Direccion."','".$Areas."','".$ApeCasada."','1','".$fechaentrada."',".$corrNew.",'".$RespuestaDocumentos."','".$documentos."')");
 
 
 

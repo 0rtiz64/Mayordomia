@@ -81,8 +81,18 @@ function guardarPersona(){
     var areas1= $('#areasRegistroText').val();
     var direccion1 = $('#direccionRegistrar').val();
 
+    var respuestaDocumentos = document.getElementById('selectDocumentos').value;
+    var inputDocumentos1 = $('#inputDocumentos').val();
+
     var respuestaNinos = document.getElementById('selectNinos').value;
-    var rangoRespuesta = document.getElementById('selectRangoNinos').value;
+    var rango1= $('#inputRango1').val();
+    var rango2= $('#inputRango2').val();
+    var rango3= $('#inputRango3').val();
+    var rango4= $('#inputRango4').val();
+    var rango5= $('#inputRango5').val();
+    var rango6= $('#inputRango6').val();
+
+
     var id = $('#numeroExpedienteRegistrar').val();
     var idNum = parseInt(id);
     var newId = idNum+1;
@@ -91,6 +101,7 @@ function guardarPersona(){
 var nombre =nombre1.toUpperCase();
 var ApeCasada =ApeCasada1.toUpperCase();
 var direccion =direccion1.toUpperCase();
+var inputDocumentos =inputDocumentos1.toUpperCase();
 var areas =areas1.toUpperCase();
 var identidad =identidad1.toUpperCase();
 var correlativoVisible = $('#correlativo').val();
@@ -160,8 +171,55 @@ var correlativoVisible = $('#correlativo').val();
                                 $('#divCorderito').removeClass('has-error');
                                 $('#divCorderito').addClass('has-success');
 
-                                //AÑADIR VALIDACIONES
+                               if(respuestaDocumentos.trim().length==""){
+                                   $('#divDocumentosSelect').addClass('has-error');
+                                   $("#alertDocumentos").slideDown('1000');
+                                   return false;
+                               }else{
+                                   $("#alertDocumentos").hide('1000');
+                                   $('#divDocumentosSelect').removeClass('has-error');
+                                   $('#divDocumentosSelect').addClass('has-success');
 
+                                   if(respuestaNinos.trim().length==""){
+                                       $('#divNinosPregunta').addClass('has-error');
+                                       $("#alertNinos").slideDown('1000');
+                                       return false;
+                                   }else{
+                                       $("#alertNinos").hide('1000');
+                                       $('#divNinosPregunta').removeClass('has-error');
+                                       $('#divNinosPregunta').addClass('has-success');
+
+                                       if (tel1.trim().length == "") {
+                                           $('#divTelefono1').addClass('has-error');
+                                           $("#alertTelefono1").slideDown('1000');
+                                           return false;
+                                       }else{
+                                           $("#alertTelefono1").hide('1000');
+                                           $('#divTelefono1').removeClass('has-error');
+                                           $('#divTelefono1').addClass('has-success');
+
+                                           if (integradoRes.trim().length == "") {
+                                               $('#divIntegrado').addClass('has-error');
+                                               $("#alertIntegrado").slideDown('1000');
+                                               return false;
+                                           }else {
+                                               $("#alertIntegrado").hide('1000');
+                                               $('#divIntegrado').removeClass('has-error');
+                                               $('#divIntegrado').addClass('has-success');
+
+                                               if (direccion.trim().length == "") {
+                                                   $('#divDireccion').addClass('has-error');
+                                                   $("#alertDireccion").slideDown('1000');
+                                                   return false;
+                                               }else{
+                                                   $("#alertDireccion").hide('1000');
+                                                   $('#divDireccion').removeClass('has-error');
+                                                   $('#divDireccion').addClass('has-success');
+                                               }//FIN DIRECCION
+                                           }//FIN INTEGRADO
+                                       }//FIN TEL 1
+                                   }//FIN NINOS
+                               }// FIN DOCUMENTOS
                             }//FIN CORDERITOS
                         }//FIN TRANSPORTE
                     }// FIN GENERO
@@ -198,7 +256,14 @@ var correlativoVisible = $('#correlativo').val();
             phpDireccion: direccion,
             phpId:id,
             phpnewId:newId,
-            phpRango : rango
+            phpRango1 :rango1,
+            phpRango2 :rango2,
+            phpRango3 :rango3,
+            phpRango4 :rango4,
+            phpRango5 :rango5,
+            phpRango6 :rango6,
+            phpDocumentos :inputDocumentos,
+            phpRespuestaDocumentos :respuestaDocumentos
 
         },
         success: function(datos){
