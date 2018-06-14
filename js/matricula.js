@@ -6,10 +6,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
     $('#generoRegistrar').change(function focus(){
         var civil = document.getElementById("estadoCivilRegistrar").value;
         var genero = document.getElementById("generoRegistrar").value;
@@ -91,7 +87,7 @@ function guardarPersona(){
     var rango4= $('#inputRango4').val();
     var rango5= $('#inputRango5').val();
     var rango6= $('#inputRango6').val();
--
+
 
     var id = $('#numeroExpedienteRegistrar').val();
     var idNum = parseInt(id);

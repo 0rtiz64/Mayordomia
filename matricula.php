@@ -302,7 +302,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                             </div>
                         </form>
                         <div class="form-inline">
-                        <input id"btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona();">
+                        <input id="btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona()">
                             <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarId()">
                             <input id="btnCarnet" type="button" class="btn btn-info collapse" value="CARNET" style="float: right;margin-right:20px" onclick="consultarIdParaCarnet()">
                           <input id="btnLimpiar" type="button" class="btn btn-primary collapse" style="float: right ;margin-right:20px" value="NUEVO" onclick="limpiarCarnt()">
