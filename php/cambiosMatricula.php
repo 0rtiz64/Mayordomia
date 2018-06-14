@@ -20,7 +20,7 @@ if (empty($_POST['nombre'])){
 
 }
 else{
-    $queryConsultarCorrelativoActivo = mysqli_query($enlace,"SELECT * from correlativos WHERE correlativos.estado = 1");
+    $queryConsultarCorrelativoActivo = mysqli_query($enlace,"SELECT correlativo from promociones WHERE promociones.`status` = 1");
     $arrayCorrelativoActivo = mysqli_fetch_array($queryConsultarCorrelativoActivo,MYSQLI_ASSOC);
     $correlativoActivo = $arrayCorrelativoActivo["correlativo"];
 
