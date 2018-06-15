@@ -58,6 +58,30 @@ $(document).ready(function () {
         }
     });
 
+
+
+
+
+    $('#preguntaNinosModal').change(function ninosModal(){
+        var ninoRespuesta = document.getElementById("preguntaNinosModal").value;
+        if (ninoRespuesta == 1) {
+            $('#rangoNinosDivModal').show('1000');
+
+        }else{
+            $('#rangoNinosDivModal').hide('1000');
+        }
+    });
+
+    $('#preguntaDocumentosModal').change(function documentosModal(){
+        var docRespuesta = document.getElementById("preguntaDocumentosModal").value;
+        if (docRespuesta == 1) {
+            $('#DivdocumentosInputModal').show('1000');
+
+        }else{
+            $('#DivdocumentosInputModal').hide('1000');
+        }
+    });
+
 });
 
 
@@ -347,6 +371,20 @@ $('#identidadRegistrar').on('focusout',function(){
         success: function(valores){
             var datos = eval(valores);
 
+            if(datos[15]=="Si"){
+                $('#areasRegistroModal').show(300);
+            }else{
+                $('#areasRegistroModal').hide(300);
+            }
+
+
+            if(datos[16]==1){
+                $('#DivdocumentosInputModal').show(300);
+            }else{
+                $('#DivdocumentosInputModal').hide(300);
+            }
+
+
 
 
                $('#identidadRegistrarModal').val(datos[1]);
@@ -363,6 +401,11 @@ $('#identidadRegistrar').on('focusout',function(){
                $('#direccionRegistrarModal').val(datos[9]);
                $('#nombrePromocion').html(datos[13]);
                $('#idIntegrante').val(datos[14]);
+               $('#integradoRegistrarModal').val(datos[15]);
+               $('#preguntaDocumentosModal').val(datos[16]);
+               $('#inputDocumentosModal').val(datos[17]);
+
+
 
                 if(datos[0]== 1){
                     $('#ModalRegistrar').modal({
@@ -453,115 +496,148 @@ function actualizarDatos(){
     var areas1= $('#areasRegistroTextModal').val();
     var direccion1 = $('#direccionRegistrarModal').val();
 
+    var respuestaDocumentosModal = document.getElementById('preguntaDocumentosModal').value;
+    var inputDocumentos1Modal = $('#inputDocumentosModal').val();
+
+    var respuestaNinosModal = document.getElementById('preguntaNinosModal').value;
+    var rango1Modal= $('#inputRango1Modal').val();
+    var rango2Modal= $('#inputRango2Modal').val();
+    var rango3Modal= $('#inputRango3Modal').val();
+    var rango4Modal= $('#inputRango4Modal').val();
+    var rango5Modal= $('#inputRango5Modal').val();
+    var rango6Modal= $('#inputRango6Modal').val();
+
     var nombre =nombre1.toUpperCase();
     var ApeCasada =ApeCasada1.toUpperCase();
     var direccion =direccion1.toUpperCase();
     var areas =areas1.toUpperCase();
     var identidad =identidad1.toUpperCase();
+    var inputDocumentosModal =inputDocumentos1Modal.toUpperCase();
 
 
-//Validar Promocion Corderitos
-    if(promCorderitos.trim().length == ""){
-
-        $('#divCorderitoModal').addClass('has-error');
-        $("#alertPromocionModal").slideDown('1000');
+//INICIO VALIDACION
+    if (identidad.trim().length == "") {
+        $('#divIdentidadModal').addClass('has-error');
+        $("#alertIdentidadModal").slideDown('1000');
         return false;
-    }else{
+    }else {
+        $("#alertIdentidadModal").hide('1000');
+        $('#divIdentidadModal').removeClass('has-error');
+        $('#divIdentidadModal').addClass('has-success');
 
-        $("#alertPromocionModal").hide('1000');
-        $('#divCorderitoModal').removeClass('has-error');
-        $('#divCorderitoModal').addClass('has-success');
-
-        //Validar estado Civil
-        if(estadoCivil.trim().length == ""){
-            $('#divCivilModal').addClass('has-error');
-            $("#alertEstadoModal").slideDown('1000');
+        if (nombre.trim().length == "") {
+            $('#divNombreModal').addClass('has-error');
+            $("#alertNombreModal").slideDown('1000');
             return false;
-        }else{
-            $("#alertEstadoModal").hide('1000');
-            $('#divCivilModal').removeClass('has-error');
-            $('#divCivilModal').addClass('has-success');
-            //Validar
-            if (genero.trim().length == "") {
-                $('#divGeneroModal').addClass('has-error');
-                $("#alertGeneroModal").slideDown('1000');
+        }else {
+            $("#alertNombreModal").hide('1000');
+            $('#divNombreModal').removeClass('has-error');
+            $('#divNombreModal').addClass('has-success');
+            if (fechaCumpleaños.trim().length == "") {
+                $('#divFechaModal').addClass('has-error');
+                $("#alertFechaModal").slideDown('1000');
                 return false;
-            }else{
-                $("#alertGeneroModal").hide('1000');
-                $('#divGeneroModal').removeClass('has-error');
-                $('#divGeneroModal').addClass('has-success');
-                if (transporte.trim().length == "") {
-                    $('#divTransporteModal').addClass('has-error');
-                    $("#alertTransporteModal").slideDown('1000');
+            }else {
+                $("#alertFechaModal").hide('1000');
+                $('#divFechaModal').removeClass('has-error');
+                $('#divFechaModal').addClass('has-success');
+
+                if(estadoCivil.trim().length == ""){
+                    $('#divCivilModal').addClass('has-error');
+                    $("#alertEstadoModal").slideDown('1000');
                     return false;
-                }else{
-                    $("#alertTransporteModal").hide('1000');
-                    $('#divTransporteModal').removeClass('has-error');
-                    $('#divTransporteModal').addClass('has-success');
+                }else {
+                    $("#alertEstadoModal").hide('1000');
+                    $('#divCivilModal').removeClass('has-error');
+                    $('#divCivilModal').addClass('has-success');
 
-                    if (identidad.trim().length == "") {
-                        $('#divIdentidadModal').addClass('has-error');
-                        $("#alertIdentidadModal").slideDown('1000');
+                    if (genero.trim().length == "") {
+                        $('#divGeneroModal').addClass('has-error');
+                        $("#alertGeneroModal").slideDown('1000');
                         return false;
-                    }else{
-                        $("#alertIdentidadModal").hide('1000');
-                        $('#divIdentidadModal').removeClass('has-error');
-                        $('#divIdentidadModal').addClass('has-success');
+                    }else {
+                        $("#alertGeneroModal").hide('1000');
+                        $('#divGeneroModal').removeClass('has-error');
+                        $('#divGeneroModal').addClass('has-success');
 
-                        if (nombre.trim().length == "") {
-                            $('#divNombreModal').addClass('has-error');
-                            $("#alertNombreModal").slideDown('1000');
+                        if (transporte.trim().length == "") {
+                            $('#divTransporteModal').addClass('has-error');
+                            $("#alertTransporteModal").slideDown('1000');
                             return false;
-                        }else{
-                            $("#alertNombreModal").hide('1000');
-                            $('#divNombreModal').removeClass('has-error');
-                            $('#divNombreModal').addClass('has-success');
+                        }else {
+                            $("#alertTransporteModal").hide('1000');
+                            $('#divTransporteModal').removeClass('has-error');
+                            $('#divTransporteModal').addClass('has-success');
 
-                            if (fechaCumpleaños.trim().length == "") {
-                                $('#divFechaModal').addClass('has-error');
-                                $("#alertFechaModal").slideDown('1000');
+                            if(promCorderitos.trim().length == ""){
+
+                                $('#divCorderitoModal').addClass('has-error');
+                                $("#alertPromocionModal").slideDown('1000');
                                 return false;
-                            }else{
-                                $("#alertFechaModal").hide('1000');
-                                $('#divFechaModal').removeClass('has-error');
-                                $('#divFechaModal').addClass('has-success');
+                            }else {
 
-                                if (tel1.trim().length == "") {
-                                    $('#divTelefono1Modal').addClass('has-error');
-                                    $("#alertTelefono1Modal").slideDown('1000');
-                                    return false;
-                                }else{
-                                    $("#alertTelefono1Modal").hide('1000');
-                                    $('#divTelefono1Modal').removeClass('has-error');
-                                    $('#divTelefono1Modal').addClass('has-success');
+                                $("#alertPromocionModal").hide('1000');
+                                $('#divCorderitoModal').removeClass('has-error');
+                                $('#divCorderitoModal').addClass('has-success');
 
-                                    if (integradoRes.trim().length == "") {
-                                        $('#divIntegradoModal').addClass('has-error');
-                                        $("#alertIntegradoModal").slideDown('1000');
+                                    if(respuestaDocumentosModal.trim().length==""){
+                                        $('#divdocumentosPreguntaModal').addClass('has-error');
+                                        $("#alertPreguntaDocumentosModal").slideDown('1000');
                                         return false;
                                     }else{
-                                        $("#alertIntegradoModal").hide('1000');
-                                        $('#divIntegradoModal').removeClass('has-error');
-                                        $('#divIntegradoModal').addClass('has-success');
+                                        $("#alertPreguntaDocumentosModal").hide('1000');
+                                        $('#divdocumentosPreguntaModal').removeClass('has-error');
+                                        $('#divdocumentosPreguntaModal').addClass('has-success');
 
-                                        if (direccion.trim().length == "") {
-                                            $('#divDireccionModal').addClass('has-error');
-                                            $("#alertDireccionModal").slideDown('1000');
+                                        if(respuestaNinosModal.trim().length==""){
+                                            $('#divPreguntaNinosModal').addClass('has-error');
+                                            $("#alertNinosModal").slideDown('1000');
                                             return false;
                                         }else{
-                                            $("#alertDireccionModal").hide('1000');
-                                            $('#divDireccionModal').removeClass('has-error');
-                                            $('#divDireccionModal').addClass('has-success');
-                                        }//Fin Direccion
-                                    }//Validar Integrado
-                                }//Fin Telefono1
-                            }//Fin Fecha
-                        }//Fin Nombre
-                    }//Fin Identidadd
-                }//Fin Transporte
-            }//Fin Genero
-        }//Fin Estado Civil
-    };//FIN IF PRINCIPAL
+                                            $("#alertNinosModal").hide('1000');
+                                            $('#divPreguntaNinosModal').removeClass('has-error');
+                                            $('#divPreguntaNinosModal').addClass('has-success');
+
+                                            if (tel1.trim().length == "") {
+                                                $('#divTelefono1Modal').addClass('has-error');
+                                                $("#alertTelefono1Modal").slideDown('1000');
+                                                return false;
+                                            }else {
+                                                $("#alertTelefono1Modal").hide('1000');
+                                                $('#divTelefono1Modal').removeClass('has-error');
+                                                $('#divTelefono1Modal').addClass('has-success');
+
+                                                if (integradoRes.trim().length == "") {
+                                                    $('#divIntegradoModal').addClass('has-error');
+                                                    $("#alertIntegradoModal").slideDown('1000');
+                                                    return false;
+                                                }else{
+                                                    $("#alertIntegradoModal").hide('1000');
+                                                    $('#divIntegradoModal').removeClass('has-error');
+                                                    $('#divIntegradoModal').addClass('has-success');
+
+                                                    if (direccion.trim().length == "") {
+                                                        $('#divDireccionModal').addClass('has-error');
+                                                        $("#alertDireccionModal").slideDown('1000');
+                                                        return false;
+                                                    }else{
+                                                        $("#alertDireccionModal").hide('1000');
+                                                        $('#divDireccionModal').removeClass('has-error');
+                                                        $('#divDireccionModal').addClass('has-success');
+                                                    }//Fin Direccion
+                                                }//FIN INTEGRADO
+                                            }//FIN TELEFONO 1
+                                        }//FIN NINOS
+                                    }// FIN DOCUMENTOS
+                                }// FIN PROMOOCION CORDERITOS
+                            }//FIN TRANSPORTE
+                    }//FIN GENERO
+                }//ESTADO CIVIL
+            }// FECHA NACIMIENTO
+        }// FIN NOMBRE
+    }//FIN IDENTIDAD
+
+   //FIN VALIDACION
 
 
     var url = 'php/editarIntegrante.php';
@@ -583,11 +659,24 @@ function actualizarDatos(){
             phpTel2:tel2,
             phpIntegradoRes: integradoRes,
             phpAreas: areas,
-            phpDireccion: direccion
+            phpDireccion: direccion,
+            phpRango1 :rango1Modal,
+            phpRango2 :rango2Modal,
+            phpRango3 :rango3Modal,
+            phpRango4 :rango4Modal,
+            phpRango5 :rango5Modal,
+            phpRango6 :rango6Modal,
+            phpDocumentos :inputDocumentosModal,
+            phpRespuestaDocumentos :respuestaDocumentosModal
         },
         success: function(datos){
-
-
+            $('#preguntaNinosModal').val("");
+            $('#inputRango1Modal').val("");
+            $('#inputRango2Modal').val("");
+            $('#inputRango3Modal').val("");
+            $('#inputRango4Modal').val("");
+            $('#inputRango5Modal').val("");
+            $('#inputRango6Modal').val("");
 
             $('#nombrePromocion').html(datos).show('1000');
             $('#carnetModal').show(300);

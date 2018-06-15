@@ -20,12 +20,27 @@ if($queryId>0){
     */
 
     $queryDatos = mysqli_query($enlace,"select  idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,
-tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada, promociones.desc_promocion 
+tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada, promociones.desc_promocion,integrantes.documentosRespuesta,integrantes.documentosPendientes 
 from integrantes
 INNER JOIN detalle_integrantes ON integrantes.idintegrante = detalle_integrantes.id_integrante
 INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion
 WHERE num_identidad ='".$identidad."'");
     $rows = mysqli_fetch_array($queryDatos,MYSQLI_ASSOC);
+
+if($rows["areas"] ==""){
+    $respuestaIntegrado = "No";
+}else{
+    $respuestaIntegrado="Si";
+}
+
+
+
+
+
+
+//QUERY CONSULTAR NINOS FIN
+
+
     $datos = array(
         0 => $dato =1,
         1 => $rows['num_identidad'],
@@ -42,6 +57,10 @@ WHERE num_identidad ='".$identidad."'");
         12 => $rows['promo_cordero'],
         13 => '<h4 class="modal-title" id="myModalLabel" style="color: white">IDENTIDAD YA REGISTRADA EN '.$rows["desc_promocion"].' </h4>',
         14 => $rows['idintegrante'],
+        15 => $respuestaIntegrado,
+        16 => $rows["documentosRespuesta"],
+        17 => $rows["documentosPendientes"],
+
 
         );
     echo json_encode($datos);
