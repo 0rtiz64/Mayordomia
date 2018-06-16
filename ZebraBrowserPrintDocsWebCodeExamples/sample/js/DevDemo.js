@@ -284,7 +284,7 @@ function sendData(idIntegrante,correlativo)
 			//var corr =$('#numeroExpedienteRegistrar').val();
 			var nombre = nombre1.toUpperCase();
 			var promocion = $('#promoAc').val();
-			var promocion1 =promocion.toUpperCase()
+			var promocion1 =promocion.toUpperCase();
 			//var corrVisible = $('#correlativo').val();
 
             var contraPleca = String.fromCharCode(92);

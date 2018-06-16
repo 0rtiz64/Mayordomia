@@ -238,27 +238,27 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group collapse " id="rangoNinosDiv">
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" id="inputRango1"  class="form-control" placeholder="0-2 AÑOS">
+                                    <input type="number" id="inputRango1"  min="0"  pattern="^[0-9]+" class="form-control" placeholder="0-2 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango2" placeholder="2-3 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango2" placeholder="2-3 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango3" placeholder="4-5 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango3" placeholder="4-5 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango4" placeholder="6-7 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango4" placeholder="6-7 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango5" placeholder="8-11 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango5" placeholder="8-11 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango6" placeholder="OTROS">
+                                    <input type="number" class="form-control" min="0" id="inputRango6" placeholder="OTROS">
                                 </div>
 
                             </div>
@@ -330,7 +330,15 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <form class="form-horizontal" id="formularioRegistro" role="form">
 
                             <div class="form-group">
-
+                                <?php
+                                require_once 'gold/enlace.php';
+                                $queryPromocionActiva= mysqli_query($enlace, "select num_promocion from promociones WHERE `status`=1");
+                                while ($fila = mysqli_fetch_array($queryPromocionActiva,MYSQLI_ASSOC)) {
+                                    echo'<div >';
+                                    echo '<input type="hidden" id="promoAc" class="form-control" readonly="readonly" value="Promocion '.$fila['num_promocion'].'">';
+                                    echo'</div>';
+                                }
+                                ?>
                                 <div class="col-lg-4" id="divIdentidadModal">
                                     <input type="text" id="identidadRegistrarModal" class="form-control " min="0" placeholder="Identidad">
                                     <div id="alertIdentidadModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
@@ -426,27 +434,27 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group collapse " id="rangoNinosDivModal">
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" id="inputRango1Modal"  class="form-control" placeholder="0-2 AÑOS">
+                                    <input type="number" id="inputRango1Modal"  min="0" class="form-control" placeholder="0-2 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango2Modal" placeholder="2-3 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango2Modal" placeholder="2-3 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango3Modal" placeholder="4-5 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango3Modal" placeholder="4-5 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango4Modal" placeholder="6-7 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango4Modal" placeholder="6-7 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango5Modal" placeholder="8-11 AÑOS">
+                                    <input type="number" class="form-control" min="0" id="inputRango5Modal" placeholder="8-11 AÑOS">
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
-                                    <input type="number" class="form-control" id="inputRango6Modal" placeholder="OTROS">
+                                    <input type="number" class="form-control" min="0" id="inputRango6Modal" placeholder="OTROS">
                                 </div>
 
                             </div>
@@ -485,6 +493,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
                                 </div>
                             </div>
+
+
 
                         </form>
                     </div>
