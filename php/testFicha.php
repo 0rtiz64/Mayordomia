@@ -31,7 +31,7 @@ if(file_exists($rutaImg2)){
 }
 
 if($resultados["documentosPendientes"]==""){
-    $documentosPendientes = "<p style='color: white'>.</p>";
+    $documentosPendientes = "<a style='color: white'>.</a>";
 }else{
     $documentosPendientes = $resultados["documentosPendientes"];
 }
@@ -44,7 +44,7 @@ $resultadosPromocion = mysqli_fetch_array($queryPromocion, MYSQLI_ASSOC);
 $corr =$resultados["correlativo"];
 
 if($resultados["REGISTRO"] ==""){
-    $fCompleta = "<p style='color: white'>.</p>";
+    $fCompleta = "<a style='color: white'>.</a>";
 }else{
     $fecha = $resultados["REGISTRO"];
 
@@ -128,7 +128,7 @@ $identidad = $resultados["num_identidad"];
 
 
 if($resultados["fecha_cumple"] == ""){
-    $fCompletaN = "<p style='color: white'>.</p>";
+    $fCompletaN = "<a style='color: white'>.</a>";
 }else{
     $nacimiento = $resultados["fecha_cumple"];
 
@@ -210,7 +210,7 @@ if($resultados["tel"] ==""){
 }
 
 if($resultados["promo_cordero"]==""){
-    $promoCorederitos = "<p style='color: white'>.</p>";
+    $promoCorederitos = "<a style='color: white'>.</a>";
 }else{
     $promoCorederitos=$resultados["promo_cordero"];
 }
@@ -318,7 +318,7 @@ if($resultados["areas"] ==""){
       </p>
     ';
 
-    $areas =  "<p style='color: white'>.</p>";
+    $areas =  "<a style='color: white'>.</a>";
 }else{
 
     $integrado= '

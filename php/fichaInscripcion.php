@@ -106,7 +106,7 @@ if($resultados["REGISTRO"] ==""){
 $nombre = $resultados["nombre_integrante"];
 
 if($resultados["apellidoCasada"] ==""){
-    $apellido = "<p style='color: white'>.</p>";
+    $apellido = "<a style='color: white'>.</a>";
 }else{
     $apellido = $resultados["apellidoCasada"];
 }
@@ -114,7 +114,7 @@ $identidad = $resultados["num_identidad"];
 
 
 if($resultados["fecha_cumple"] == ""){
-    $fCompletaN ="<p style='color: white'>.</p>";
+    $fCompletaN ="<a style='color: white'>.</a>";
 }else{
     $nacimiento = $resultados["fecha_cumple"];
 
@@ -190,13 +190,13 @@ if ($resultados["sexo"] == 'M'){
 $telefono1 = $resultados["cel"];
 
 if($resultados["tel"] ==""){
-    $telefono2 ="<p style='color: white'>.</p>";
+    $telefono2 ="<a style='color: white'>.</a>";
 }else{
     $telefono2 = $resultados["tel"];
 }
 
 if($resultados["promo_cordero"]==""){
-    $promoCorederitos ="<p style='color: white'>.</p>";
+    $promoCorederitos ="<a style='color: white'>.</a>";
 }else{
     $promoCorederitos=$resultados["promo_cordero"];
 }
@@ -304,7 +304,7 @@ if($resultados["areas"] ==""){
       </p>
     ';
 
-    $areas = "<p style='color: white'>.</p>";
+    $areas = "<a style='color: white'>.</>";
 }else{
 
     $integrado= '
