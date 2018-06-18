@@ -179,7 +179,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
                                                 <div class="col-lg-4" id="divCorderitoModal">
-                                                    <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
+                                                    <input type="text" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
                                                     <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
                                                 </div>
 

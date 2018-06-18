@@ -9,7 +9,7 @@ $ficha =$_GET["numero"];
 
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
-estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
  from integrantes
 WHERE integrantes.idintegrante='".$ficha."'");
 $resultados =  mysqli_fetch_array($queryIntegrante,MYSQLI_ASSOC);
@@ -19,6 +19,15 @@ WHERE `status` = 1");
 $resultadosPromocion = mysqli_fetch_array($queryPromocion, MYSQLI_ASSOC);
 
 $corr =$resultados["correlativo"];
+
+
+if($resultados["documentosPendientes"]==""){
+    $documentosPendientes = "<a style='color: white'>.</a>";
+}else{
+    $documentosPendientes = $resultados["documentosPendientes"];
+}
+
+
 
 if($resultados["REGISTRO"] ==""){
     $fCompleta =".";
@@ -322,7 +331,7 @@ $Contenido = '
     </tr>
     
     <tr>
-        <td colspan="3">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].'          PROMOCION DE CORDERO N'.$promoCorederitos.' </td>
+        <td colspan="3" align="center">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].' </td>
     </tr>
 </table>
 
@@ -331,13 +340,25 @@ $Contenido = '
     <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
 </div>
 <br>
-<!--FECHA INSCRIPCION-->
-<div style="border: 1px solid green; width: 550px;  border-radius: 30px; font-size: 16px; margin-top: -10px">
-    <p align="center" style="margin-bottom: -10px"> '.$fCompleta.'</p>
-    <p align="center" style="margin-top: -25px">  ____________________________________________________________________</p>
-    <p align="center" style="font-size: 14px">Fecha de Inscripcion</p>
-</div>
-<!--FIN FECHA INSCRIPCION-->
+<div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: left;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px;"> '.$fCompleta.'</p>
+    <p align="center" style="margin-top: -10px">  __________________________</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Fecha de Inscripcion</p>
+</div>   
+<!--FIN NUMERO DE INDENTIDAD-->
+
+
+<!--FECHA DE NACIMIENTO-->
+ <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: 210px;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px;"> '.$promoCorederitos.'</p>
+    <p align="center" style="margin-top: -10px">  __________________________</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Promocion Corderitos</p>
+</div>   
+<!--FIN FECHA DE NACIMIENTO-->
+<br>
+<br>
+<br>
+<br>
 <br>
 <!--NOMBRE  COMPLETO APELLIDO CASADA-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; margin-top: -15px; width: 450px; float: left">
@@ -411,11 +432,11 @@ $Contenido = '
     </div>
 <!--TRANSPORTE-->
 
+
 <!--DIRECCION-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px;margin-top: 5px">
-    <p style="margin-left: 10px">Direccion:</p>
-    <p align="left" style="margin-bottom: -15px; margin-right: 0px; font-size: 65%"> <a style="margin-left: 50px;">'.$direccion.'</a></p>
-    <p align="center" style="margin-top: -25px">  ________________________________________________________________________________</p>
+    <p style="margin-left: 10px">Direccion: <a style="font-size: 65%">'.$direccion.'</a></p>
+      <p style="margin-left: 10px">Documentos: <a style="font-size: 65%">'.$documentosPendientes.'</a></p>
     
  </div>
  <!--FIN DIRECCION-->
