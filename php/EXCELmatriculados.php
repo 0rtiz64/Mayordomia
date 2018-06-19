@@ -53,12 +53,23 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('I3', 'FECHA CUMPLEAÑOS')
     ->setCellValue('J3', 'AREAS')
     ->setCellValue('K3', 'CORRELATIVO')
-    ->setCellValue('L3', 'FECHA MATRICULA');
+    ->setCellValue('L3', 'FECHA MATRICULA')
+    ->setCellValue('M3', '0-2 AÑOS')
+    ->setCellValue('N3', '2-3 AÑOS')
+    ->setCellValue('O3', '4-5 AÑOS')
+    ->setCellValue('P3', '6-7 AÑOS')
+    ->setCellValue('Q3', '8-11 AÑOS')
+    ->setCellValue('R3', 'OTROS')
+    ->setCellValue('S3', 'TOTAL');
 
-
+$promoActiva = mysqli_query($enlace,"SELECT  * from promociones WHERE `status`=1");
+$datosPromocionActiva = mysqli_fetch_array($promoActiva,MYSQLI_ASSOC);
+$promoActivaCorrelativo= $datosPromocionActiva["correlativo"];
 $Integrantes = mysqli_query($enlace," SELECT * from integrantes
-where correlativo >18010000
+where correlativo >$promoActivaCorrelativo
 GROUP BY correlativo ASC");
+
+
 $contador=4;
 
 
@@ -200,6 +211,27 @@ while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
         ->setCellValue("L$contador", $fCompletaRegistro);
 
     $contador++;
+
+$idIntegrante = $integrantesDatos["idintegrante"];
+    $queryNinosConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT  * from rangos WHERE rangos.idIntegrante = $idIntegrante"));
+
+if($queryNinosConfirmar >0){
+
+    $queryMostrarNinos = mysqli_query($enlace,"SELECT  rangos.`0-2` AS rango1,rangos.`2-3` AS rango2,rangos.`4-5` AS rango3,
+rangos.`6-7` AS rango4,rangos.`8-11` AS rango5,rangos.otros,rangos.total from rangos WHERE rangos.idIntegrante = $idIntegrante");
+    $datosMostarNinos = mysqli_fetch_array($queryMostrarNinos,MYSQLI_ASSOC);
+    $objPHPExcel->setActiveSheetIndex(0)
+        //->setCellValue("A$contador", $integrantesDatos["identidad"])
+        ->setCellValue("M$contador", $datosMostarNinos["rango1"])
+        ->setCellValue("N$contador", $datosMostarNinos["rango2"])
+        ->setCellValue("O$contador", $datosMostarNinos["rango3"])
+        ->setCellValue("P$contador", $datosMostarNinos["rango4"])
+        ->setCellValue("Q$contador", $datosMostarNinos["rango5"])
+        ->setCellValue("R$contador", $integrantesDatos["otros"])
+        ->setCellValue("S$contador", $integrantesDatos["total"]);
+
+}
+
 }
 
 
