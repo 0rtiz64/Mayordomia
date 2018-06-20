@@ -41,7 +41,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!---/DATA TABLES-->
 
 
-
+    <!--ALERTIFY INICIO-->
+    <link rel="stylesheet" href="alertify/css/alertify.css">
+    <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+    <!--ALERTIFY FIN-->
 
     <!-- Feature detection -->
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -521,7 +524,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 <!--Global JS-->
 <script src="myfiles/js/jquery-3.2.1.min%20(2).js"></script>
 <script src="assets/js/jquery-1.10.2.min.js"></script>
-
+<script src="alertify/alertify.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/BrowserPrint-1.0.4.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/DevDemo.js"></script>

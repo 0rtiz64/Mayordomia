@@ -405,7 +405,10 @@ $('#identidadRegistrar').on('focusout',function(){
                $('#preguntaDocumentosModal').val(datos[16]);
                $('#inputDocumentosModal').val(datos[17]);
 
-
+            if(datos[0]== 1 && datos[18]==1 ){
+                alertify.error("MATRICULADO EN PROMOCION ACTIVA");
+             return false;
+            }
 
                 if(datos[0]== 1){
                     $('#ModalRegistrar').modal({
