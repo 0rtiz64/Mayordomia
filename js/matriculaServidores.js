@@ -53,8 +53,28 @@ if (datos[0]==1){
         show:true,
         backdrop:'static'
     });//FIN ABRIR MODAL
+
+    $('#claseModalColor').removeClass('success-bg');
+    $('#claseModalColor').addClass('danger-bg');
+
+    $('#btnIngresarModal').hide(200);
+    $('#actualizarModal').show(200);
+    $('#pdfActualizarModal').show(200);
 }else {
-    return false;
+    if(datos[0]==2){
+        $('#ModalEditarServidoresDuplicados').modal({
+            show:true,
+            backdrop:'static'
+        });//FIN ABRIR MODAL
+
+        $('#claseModalColor').removeClass('danger-bg');
+        $('#claseModalColor').addClass('success-bg');
+        $('#btnIngresarModal').show(200);
+        $('#actualizarModal').hide(200);
+        $('#pdfActualizarModal').hide(200);
+    }else{
+        return false;
+    }
 }
 
 

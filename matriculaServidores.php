@@ -291,7 +291,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <div class="modal fade" id="ModalEditarServidoresDuplicados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content ">
-                                <div class="modal-header danger-bg">
+                                <div class="modal-header danger-bg" id="claseModalColor">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <!--h4 class="modal-title" id="myModalLabel" style="color: white">IDENTIDAD YA REGISTRADA EN </h4-->
                                     <h4 style="color: #FFFFFF">EDITAR INTEGRANTE</h4>
@@ -447,8 +447,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar" onclick="limpiar()">Cerrar</button>
 
-                                    <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()">
-                                    <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();">
+                                    <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()" id="pdfActualizarModal">
+                                    <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();" id="actualizarModal">
+                                    <input type="button" class="btn btn-primary" value="INGRESAR" onclick="" id="btnIngresarModal">
 
                                 </div>
                             </div>
