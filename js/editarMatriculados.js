@@ -86,6 +86,12 @@ function editarIntegranteMatriculado(idIntegrante) {
                 $('#inputRango6Modal').val(datos[21]);
                 }else{
                     $('#rangoNinosDivModal').hide(200);
+                    $('#inputRango1Modal').val(datos[16]);
+                    $('#inputRango2Modal').val(datos[17]);
+                    $('#inputRango3Modal').val(datos[18]);
+                    $('#inputRango4Modal').val(datos[19]);
+                    $('#inputRango5Modal').val(datos[20]);
+                    $('#inputRango6Modal').val(datos[21]);
                 }
 
             $('#identidadRegistrarModal').val(datos[1]);
