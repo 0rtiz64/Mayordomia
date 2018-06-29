@@ -201,90 +201,94 @@ function verDetalles() {
     }
 }
 
+var tagLeidos  = [];
+function  agregar() {
+    var tag = $('#busIdInterno').val();
+    var url = 'php/buscarTodos.php';
 
-function agregar(){
-    var dato = $('#busIdInterno').val();
-    var url =  'php/buscarTodos.php';
-
-    if(dato.trim().length ==""){
-        $('#divInputCarnet').addClass('has-error');
+    if(tag.trim().length==""){
         alertify.error("CAMPO VACIO");
         return false;
-    }else{
-        $('#divInputCarnet').removeClass('has.error');
-        $('#divInputCarnet').addClass('has.success');
-    }
+    }// FIN VACIO
+
+    if (tagLeidos.includes(tag)== true){
+        alertify.error("TAG DUPLICADO");
+        $('#busIdInterno').val("");
+        return false;
+    }// FIN ESTA EN ARRAY
 
 
     $.ajax({
         type:'POST',
         url:url,
-        data:'nombrePersonaEnlazar='+dato,
+        data:'nombrePersonaEnlazar='+tag,
         success: function(datos){
-            // $('#resultados').html(datos);
-            $('#busIdInterno').val("");
             var valores = eval(datos);
-            if(valores[5] ==0){
-                $('#notificacion').html("Integrante Ya Enlazado").show(300);
-                $('#detalles').show(300);
-                $('#notificacionIntegrante').hide();
-                $('#idVerDetalles').val(valores[0]);
+
+            if(valores[4]==0){
+                alertify.error("INTEGRANTE NO DISPONIBLE");
+                $('#busIdInterno').val("");
+                return false;
             }else{
-                $('#notificacionIntegrante').html(valores[2]).show(300);
-                $('#notificacion').hide();
-                $('#detalles').hide();
+                tagLeidos.push(tag);
                 add(valores[0],valores[1],valores[2],valores[3],valores[4]);
+                $('#agregadoNombre').html(valores[2]).show(200).delay(2500).hide(300);
+                $('#busIdInterno').val("");
             }
 
+            $('#busIdInterno').val("");
         }
     });
     return false;
+
+
 }
+
+
+
 
 var cont = 0;
 
-function add(item,identidad,nombre,cel,id_fila) {
+function add(item,identidad,nombre,cel) {
 
-    //$('#buscarEnlazar').val("");
- /*   if($('#'+id_fila).hasClass('selecionada')){
-        $('#alertaAgregar').show('300').delay('2500').hide('200');
-    }else{
 
-   */     $('#'+id_fila).addClass('selecionada');
         cont++;
 
-        var fila = '<tr id="'+cont+'"> <td>' + cont + ' <input type="hidden" value="'+item+'" name="itemE[]"></td> <td >' + identidad + '</td> <td>' + nombre + '</td> <td>' + cel + '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+')"></td> </tr>';
+        var fila = '<tr id="'+cont+'"> <td>' + cont + ' <input type="hidden" value="'+item+'" name="itemE[]"></td> <td >' + identidad + '</td> <td>' + nombre + '</td> <td>' + cel + '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+','+item+')"></td> </tr>';
            $('#dataTable').append(fila);
            var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
     $('#contadorVisible').html(visile).show(200);
-
-//reordernar();
-
-
-
-        //$('#dataTable').append(fila);
-   // }
         
 }
 
-function remover(id_fila2) {
+function remover(id_fila2, idIntegrante) {
     $('#'+id_fila2).remove();
     cont= cont-1;
     var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
     $('#contadorVisible').html(visile).show(200);
-  //  reordernar()
-    //$('#'+segundoId).removeClass('seleccionada');
+
+    var url = 'php/buscarId.php';
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{phpId:idIntegrante},
+        success: function(datos){
+
+
+            var  indice = tagLeidos.indexOf(datos);
+            if (indice == -1){
+                alertify.error("Se produjo un error, notificar al desarrollador");
+            }else{
+                tagLeidos.splice(indice,1);
+
+            }
+
+        }
+    });
+
 }
 
-function reordernar(){
-    var num=1;
-    $('#dataTable tbody tr').each(function () {
-        $(this).find('td').eq(0).text(num);
-        var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+num+'</span>';
-        $('#contadorVisible').html(visile).show(200);
-        num++;
-    })
-}
+
 
 
 function enlazarVarios() {
