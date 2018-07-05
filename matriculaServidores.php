@@ -447,9 +447,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar" onclick="limpiar()">Cerrar</button>
 
+
                                     <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()" id="pdfActualizarModal">
                                     <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();" id="actualizarModal">
-                                    <input type="button" class="btn btn-primary" value="INGRESAR" onclick="" id="btnIngresarModal">
+                                    <input type="button" class="btn btn-primary" value="INGRESAR" onclick="guardarIntegranteComoServidor()" id="btnIngresarModal">
 
                                 </div>
                             </div>
