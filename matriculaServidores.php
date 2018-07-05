@@ -294,7 +294,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 <div class="modal-header danger-bg" id="claseModalColor">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <!--h4 class="modal-title" id="myModalLabel" style="color: white">IDENTIDAD YA REGISTRADA EN </h4-->
-                                    <h4 style="color: #FFFFFF">EDITAR INTEGRANTE</h4>
+                                    <h4 style="color: #FFFFFF" id="tituloModal"></h4>
 
 
 

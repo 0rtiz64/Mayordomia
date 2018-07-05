@@ -53,25 +53,27 @@ if (datos[0]==1){
         show:true,
         backdrop:'static'
     });//FIN ABRIR MODAL
-
+    var encabezazdo = '<h4>EDITAR SERVIDOR</h4>';
     $('#claseModalColor').removeClass('success-bg');
     $('#claseModalColor').addClass('danger-bg');
 
     $('#btnIngresarModal').hide(200);
     $('#actualizarModal').show(200);
     $('#pdfActualizarModal').show(200);
+    $('#tituloModal').html(encabezazdo);
 }else {
     if(datos[0]==2){
         $('#ModalEditarServidoresDuplicados').modal({
             show:true,
             backdrop:'static'
         });//FIN ABRIR MODAL
-
+var encabezazdo = '<h4>REGISTRAR SERVIDOR</h4>';
         $('#claseModalColor').removeClass('danger-bg');
         $('#claseModalColor').addClass('success-bg');
         $('#btnIngresarModal').show(200);
         $('#actualizarModal').hide(200);
         $('#pdfActualizarModal').hide(200);
+        $('#tituloModal').html(encabezazdo);
     }else{
         return false;
     }
