@@ -144,7 +144,7 @@ var correlativoVisible = $('#correlativo').val();
             $("#alertNombre").hide('1000');
             $('#divNombre').removeClass('has-error');
             $('#divNombre').addClass('has-success');
-            if (fechaCumpleaños.trim().length == "") {
+            if (fechaCumpleaños.trim().length == "" || fechaCumpleaños.trim().length>10) {
                 $('#divFecha').addClass('has-error');
                 $("#alertFecha").slideDown('1000');
                 return false;
@@ -406,6 +406,7 @@ $('#identidadRegistrar').on('focusout',function(){
                $('#inputDocumentosModal').val(datos[17]);
 
             if(datos[0]== 1 && datos[18]==1 ){
+                $('#identidadRegistrar').val("");
                 alertify.error("MATRICULADO EN PROMOCION ACTIVA");
              return false;
             }
@@ -536,7 +537,7 @@ function actualizarDatos(){
             $("#alertNombreModal").hide('1000');
             $('#divNombreModal').removeClass('has-error');
             $('#divNombreModal').addClass('has-success');
-            if (fechaCumpleaños.trim().length == "") {
+            if (fechaCumpleaños.trim().length == "" || fechaCumpleaños.trim().length>10) {
                 $('#divFechaModal').addClass('has-error');
                 $("#alertFechaModal").slideDown('1000');
                 return false;
@@ -696,3 +697,32 @@ function actualizarDatos(){
     return false;
 }
 // Fin Registrar Persona
+
+
+$('#fecha_cumpleRegistro').focusout(function () {
+    var fecha = $('#fecha_cumpleRegistro').val();
+    if(fecha.trim().length>10){
+        $("#alertFecha").show('1000');
+        $('#divFecha').addClass('has-error');
+        return false;
+    }else{
+        $("#alertFecha").hide('1000');
+        $('#divFecha').addClass('has-success');
+        $('#divFecha').removeClass('has-error');
+    }
+});
+
+$('#fecha_cumpleRegistroModal').focusout(function () {
+    var fecha = $('#fecha_cumpleRegistroModal').val();
+    if(fecha.trim().length>10){
+        $("#alertFechaModal").show('1000');
+        $('#divFechaModal').addClass('has-error');
+        return false;
+    }else{
+        $("#alertFechaModal").hide('1000');
+        $('#divFechaModal').addClass('has-success');
+        $('#divFechaModal').removeClass('has-error');
+    }
+});
+
+
