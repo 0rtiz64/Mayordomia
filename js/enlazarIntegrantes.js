@@ -315,12 +315,7 @@ function enlazarVarios() {
         $('#alertSelectEquipoVariosEnlazar').slideUp(300);
 
     }
-    /*
-    var entero = parseInt(idIntegrante);
-var newArr =Array.from(entero);
-    var eliminar = newArr.shift();
-    alert(typeof (idIntegrante));
-*/
+
    $.ajax({
     url:url,
         method :"POST",
@@ -333,18 +328,15 @@ var newArr =Array.from(entero);
             cont=0;
             var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
             $('#contadorVisible').html(visile).show(200);
+            tagLeidos=[];
             return false;
         }
     });
 }
 
-function prueba() {
-    alert("PRUEBA SEGUNDA");
-}
+
 
 //CARNET LIBRERIA
 
-/*function prueba() {
-    alert("LLEGA");
-}*/
+
 
