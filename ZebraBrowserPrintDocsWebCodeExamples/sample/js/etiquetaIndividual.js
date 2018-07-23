@@ -14,7 +14,7 @@ var format_start = "^XA^LL200^FO80,50^A0N36,36^FD";
 var format_end = "^FS^XZ";
 var default_mode = true;
 
-var p1 = "^XA\n" +
+var Mp1 ="^XA\n" +
     "^MMT\n" +
     "^PW812\n" +
     "^LL0609\n" +
@@ -27,23 +27,22 @@ var p1 = "^XA\n" +
     "^FT565,436^A0I,56,60^FH\\^FDMAYORDOMIA^FS\n" +
     "^FT792,348^A0I,45,45^FH\\^FD";
 
-var p2 = "^FS\n" +
-    "^FT555,274^A0I,51,52^FH\\^FD";
+var Mp2 ="^FS\n" +
+"^FT555,274^A0I,51,52^FH\\^FD";
 
-var p3 = ".";
+var Mp3 = ".";
 
-var p4 ="^FS\n" +
-    "^BY4,3,160^FT542,97^BCI,,N,N\n" +
-    "^FD>:";
+var Mp4 ="^FS\n" +
+"^BY4,3,160^FT542,97^BCI,,N,N\n" +
+"^FD>";
 
-var p5 ="^FS\n" +
-    "^FT781,53^A0I,28,28^FH\\^FD#A\\A4oDelReposo^FS\n" +
-    "^FT338,41^A0I,17,14^FH\\^FDVALIDO UNICAMENTE PARA CLASES DE MAYORDOMIA^FS\n" +
-    "^FT212,59^A0I,31,31^FH\\^FD2018^FS\n" +
-    "^PQ1,0,1,Y^XZ";
+var Mp5 ="^FS\n" +
+"^FT781,53^A0I,28,28^FH\\^FD#A\\A4oDelReposo^FS\n" +
+"^FT338,41^A0I,17,14^FH\\^FDVALIDO UNICAMENTE PARA CLASES DE MAYORDOMIA^FS\n" +
+"^FT212,59^A0I,31,31^FH\\^FD2018^FS\n" +
+"^PQ1,0,1,Y^XZ";
 
-
-var miZpl = "^XA\n" +
+var miZpl2 = "^XA\n" +
     "^MMT\n" +
     "^PW812\n" +
     "^LL0609\n" +
@@ -171,13 +170,14 @@ function sendDataEtiqueta(nombre,numEquipo,nombreEquipo,idIntegrante,orden)
         {
 
             if(orden == 1){
+
                 var contraPleca = String.fromCharCode(92);
 
                 var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
                 var nombreEquipoNuevo = nombreEquipo.replace("Ñ",contraPleca+"A5");
                 //  console.log(nombre+"-"+numEquipo+"."+nombreEquipo+"-"+idIntegrante);
-
-                selected_printer.send(p1+nombreNuevo+p2+numEquipo+p3+nombreEquipoNuevo+p4+idIntegrante+p5);
+                selected_printer.send(Mp1+nombreNuevo+Mp2+numEquipo+Mp3+nombreEquipoNuevo+Mp4+idIntegrante+Mp5);
+                alert("IMPRIMIENDO");
             }else{
                     alertify.error("INTEGRANTE NO ENLAZADO EN PROMOCION ACTUAL");
             }
@@ -188,6 +188,7 @@ function sendDataEtiqueta(nombre,numEquipo,nombreEquipo,idIntegrante,orden)
         }
         else
         {
+            alert("IMPRESORA NO LISTA");
             printerError(text);
         }
 })
