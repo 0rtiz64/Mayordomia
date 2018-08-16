@@ -36,7 +36,7 @@ $contador2 = 1;
 while ($arrayPastoreadoresAnterior = mysqli_fetch_array($queryTomarPastoreadoresDePromocionPasada,MYSQLI_ASSOC)){
     $idIntegranteP= $arrayPastoreadoresAnterior["idintegrante"];
     $idCargoP= $arrayPastoreadoresAnterior["idcargo"];
-    $queryInsertarEnNuevoEquipoPastoreadores =mysqli_query($enlace,"INSERT INTO pastoreadores (idIntegrante,estado,fechaInicio) VALUES (".$idIntegranteP.",1,'".$fechaentrada."')");
+    $queryInsertarEnNuevoEquipoPastoreadores =mysqli_query($enlace,"INSERT INTO pastoreadores (idIntegrante,estado,fechaInicio,promocion) VALUES (".$idIntegranteP.",1,'".$fechaentrada."',".$promocionInsertar.")");
     $contador2++;
 }
 
