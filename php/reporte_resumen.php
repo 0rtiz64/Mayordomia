@@ -111,7 +111,7 @@ INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idinte
 INNER JOIN marcacionprovicional ON detalle_integrantes.id_integrante= marcacionprovicional.idIntegrante
 INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
 WHERE detalle_integrantes.id_promocion=$num_promo AND detalle_integrantes.id_cargo =  ".$rows['idcargo']."
-AND CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."'");
+AND CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND detalle_integrantes.`status`=1");
 	$rows_asistente = mysqli_fetch_array($queryInterno,MYSQLI_ASSOC);
 
 	//AUSENTES

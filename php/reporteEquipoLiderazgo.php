@@ -75,7 +75,7 @@ INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_in
 INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
 where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fecha."' 
-and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva
+and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva AND detalle_integrantes.`status`=1
 ORDER BY integrantes.nombre_integrante
 ");
 //$fila = mysqli_fetch_array($queryReporte,MYSQLI_ASSOC);
@@ -132,12 +132,12 @@ WHERE promociones.idpromocion =".$promoActiva." ");
 	INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
 	INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 	where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fecha."' 
-	and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva");
+	and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva AND detalle_integrantes.`status`=1");
     $filaAsistenciaTotal= mysqli_fetch_array($queryTotalAsistencia,MYSQLI_ASSOC);
 
 
     $queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT  COUNT(idetalle_integrantes) as cantidad FROM detalle_integrantes 
-WHERE id_cargo<>9 AND id_cargo<>10 and id_promocion=$promoActiva");
+WHERE id_cargo<>9 AND id_cargo<>10 and id_promocion=$promoActiva AND detalle_integrantes.`status`=1");
     $filaTotalIntegrantesEquipo= mysqli_fetch_array($queryTotalIntegrantesEquipo,MYSQLI_ASSOC);
 
     $promedioparte1 = $filaAsistenciaTotal["CANTIDAD"]*100;
