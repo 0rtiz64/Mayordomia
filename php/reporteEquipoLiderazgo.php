@@ -150,10 +150,9 @@ WHERE id_cargo<>9 AND id_cargo<>10 and id_promocion=$promoActiva");
 
     echo '</div>';
 }elseif ($equipo == 9){
-    $queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel,equipos.num_equipo,equipos.nombre_equipo  from marcacionprovicional 
+    $queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
 INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
 and detalle_integrantes.id_promocion= $promoActiva
 ORDER BY integrantes.nombre_integrante
@@ -182,7 +181,6 @@ WHERE `status`=1");
     echo '<th align="center">Identidad</th>';
     echo '<th align="center">Nombre</th>';
     echo '<th align="center"> Cel</th>';
-    echo '<th align="center">Equipo</th>';
 
     echo '</tr>';
     echo '</thead>';
@@ -196,7 +194,7 @@ WHERE `status`=1");
         echo "<td align='center'>" . $fila["num_identidad"] . "</td>";
         echo "<td align='center'>" . utf8_encode($fila["nombre_integrante"]) . "</td>";
         echo "<td align='center'>" . $fila["cel"] . "</td>";
-        echo "<td align='center'>" . $fila["num_equipo"]."-".$fila["nombre_equipo"]."</td>";
+
 
 
         echo "</tr>";

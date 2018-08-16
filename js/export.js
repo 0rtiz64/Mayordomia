@@ -41,12 +41,19 @@ $.ajax({
             fecha: fechajs
             },
         success:function (datos) {
-            $('#formularioReporteEquipo')[0].reset();
-            $('#TablaReporteResumenEquipo').html(datos);
+            if(datos == 0){
+                alertify.error("AUN NO HAY EQUIPOS EN LA PROMOCION ACTUAL");
+
+            }else{
+                $('#formularioReporteEquipo')[0].reset();
+                $('#TablaReporteResumenEquipo').html(datos);
 
 
-            var data = [equipojs,fechajs];
-            console.log(data);
+                var data = [equipojs,fechajs];
+                console.log(data);
+            }
+
+
             return false;
         }
     });

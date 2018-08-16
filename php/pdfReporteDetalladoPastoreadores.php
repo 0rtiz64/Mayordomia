@@ -67,10 +67,9 @@ switch ($mes){
 $fCompleta = $dia."-".$miMes."-".$aaa;
 
 
-$queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel,equipos.num_equipo,equipos.nombre_equipo  from marcacionprovicional 
+$queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
 INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
 and detalle_integrantes.id_promocion= $promoActiva ORDER BY integrantes.nombre_integrante
 ");

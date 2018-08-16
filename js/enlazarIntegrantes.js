@@ -296,6 +296,11 @@ function enlazarVarios() {
     var equipo = document.getElementById('equipoSelectEnlazarVarios').value;
     var url ='php/enlazarVarios.php';
 
+    if(tagLeidos.length==0){
+        alertify.error("NO HAY INTEGRANTES EN LISTA");
+        return false;
+    }
+
     $("input[name='itemE[]']").each(function () {
         idIntegrante=idIntegrante+","+$(this).val();
         //idIntegrante.push($(this).text());

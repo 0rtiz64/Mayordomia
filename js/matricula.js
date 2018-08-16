@@ -432,6 +432,7 @@ $('#identidadRegistrar').on('focusout',function(){
 $('#ModalRegistrar').on('hidden.bs.modal', function () {
     $('#pdfModal').hide(300);
     $('#carnetModal').hide(300);
+    $('#actualizarDatosBtn').show(300);
 
 });
 
@@ -685,6 +686,7 @@ function actualizarDatos(){
             $('#nombrePromocion').html(datos).show('1000');
             $('#carnetModal').show(300);
             $('#pdfModal').show(300);
+            $('#actualizarDatosBtn').hide(300);
 
 
 

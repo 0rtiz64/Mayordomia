@@ -154,25 +154,7 @@ function enviarEquipo() {
 
         sendData(response);
 
-           /* var jsonData = JSON.parse(response);
-            var contador =0;
-            var contadorB = 0;
 
-            for (var i = 0;i <Object.keys(jsonData).length;i++){
-                for (var b =0; b<((Object.keys(jsonData[b]).length)/2) ;b++){
-                    //sendData([i][b]);
-                    var nombre = String (jsonData[i][0]);
-                    var numEquipo = String (jsonData[i][1]);
-                    var nombreEquipo =String (jsonData[i][2]);
-                    var idIntegrante =String (jsonData[i][3]);
-
-                    //AQUI ENVIA A SEND DATA.
-                    sendData(nombre,numEquipo,nombreEquipo,idIntegrante)
-                    console.log("IMPRIMIENDO");
-
-                }
-                contador++;
-            }*/
             return false;
         }
     });

@@ -508,7 +508,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar">CERRAR</button>
                     <input type="button" class="btn btn-danger collapse" value="PDF" onclick="pdfModal()" id="pdfModal">
                     <input type="button" class="btn btn-primary collapse" value="CARNET" onclick="consultarIdParaCarnetModal();" id="carnetModal">
-                    <input type="button" class="btn btn-success" value="ACTUALIZAR DATOS" onclick="actualizarDatos();">
+                    <input type="button" class="btn btn-success" value="ACTUALIZAR DATOS" onclick="actualizarDatos();" id="actualizarDatosBtn">
 
                 </div>
             </div>

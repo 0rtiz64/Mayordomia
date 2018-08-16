@@ -35,31 +35,5 @@ while ($nn < count($E)) {
 echo "<div class='alert alert-success' > <strong>INTEGRANTES ENLAZADOS</strong>  </div>";
 
 
-/*
-
-$query ="";
-
-    for ($count = 0; $count<count($idIntegrante);$count++)
-    {
-            $idIntegranteContdor = $idIntegrante[$count];
-            $query .= "INSERT INTO  detalle_integrantes(id_integrante,id_promocion,id_equipo,id_cargo,`status`)
-            VALUES (".$idIntegranteContdor.",".$idPromocion.",".$idEquipo.",10,1) ";
-
-    }
-    if($query != '')
-    {
-        if(mysqli_multi_query($enlace,$query))
-        {
-            echo "<div class='alert alert-success' > <strong>INTEGRANTES ENLAZADOS</strong>  </div>";
-        }else{
-            echo $idIntegranteContdor;
-            //echo "<div class='alert alert-warning' > <strong>INTEGRANTES NO ENLAZADOS</strong>  </div>";
-        }
-    }else{
-        //echo $idIntegranteClean;
-        echo "<div class='alert alert-warning' > <strong>TODOS LOS CAMPOS SON REQUERIDOS</strong>  </div>";
-    }
-
-*/
 
 ?>
