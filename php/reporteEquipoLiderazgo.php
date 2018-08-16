@@ -151,12 +151,11 @@ WHERE id_cargo<>9 AND id_cargo<>10 and id_promocion=$promoActiva");
     echo '</div>';
 }elseif ($equipo == 9){
     $queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
-and detalle_integrantes.id_promocion= $promoActiva
-ORDER BY integrantes.nombre_integrante
-");
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."'
+and pastoreadores.promocion  =$promoActiva
+GROUP BY integrantes.nombre_integrante ASC");
 //$fila = mysqli_fetch_array($queryReporte,MYSQLI_ASSOC);
 
 
@@ -209,17 +208,16 @@ WHERE `status`=1");
 
 
     $queryTotalAsistencia= mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
-and detalle_integrantes.id_promocion= $promoActiva");
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."'  
+and pastoreadores.promocion= $promoActiva");
     $filaAsistenciaTotal= mysqli_fetch_array($queryTotalAsistencia,MYSQLI_ASSOC);
 
 
-    $queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT COUNT(detalle_integrantes.idetalle_integrantes)as CANTIDAD FROM detalle_integrantes
-INNER JOIN cargos on detalle_integrantes.id_cargo = cargos.idcargo
-WHERE detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion=$promoActiva");
+    $queryTotalIntegrantesEquipo= mysqli_query($enlace,"
+SELECT COUNT(pastoreadores.idIntegrante)as CANTIDAD FROM pastoreadores
+WHERE pastoreadores.promocion= $promoActiva AND pastoreadores.estado = 1");
     $filaTotalIntegrantesEquipo= mysqli_fetch_array($queryTotalIntegrantesEquipo,MYSQLI_ASSOC);
 
     $promedioparte1 = $filaAsistenciaTotal["CANTIDAD"]*100;
