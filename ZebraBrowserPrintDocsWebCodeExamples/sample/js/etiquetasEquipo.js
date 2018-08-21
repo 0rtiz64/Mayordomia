@@ -31,7 +31,7 @@ var Mp1 = "^XA\n" +
     "^FT502,359^A0I,51,50^FH\\^FD";
 
 var Mp2 = "^FS\n" +
-"^FT782,286^A0I,45,45^FH\\^FD";
+"^FT799,292^A0I,39,38^FH\^FD";
 
 var Mp3  ="^FS\n" +
 "^BY5,3,137^FT546,107^BCI,,N,N\n" +
