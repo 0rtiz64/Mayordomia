@@ -26,8 +26,16 @@ echo $procesado[1];
 
 while ($nn < count($E)) {
 
+$verificarIntegrante= mysqli_num_rows(mysqli_query($enlace,"SELECT * from detalle_integrantes 
+INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE id_integrante = '.$E[$nn].' AND promociones.`status` =1"));
+if($verificarIntegrante>0){
 
-  $sql1 = mysqli_query($enlace,"INSERT INTO detalle_integrantes (id_integrante,id_promocion,id_equipo,id_cargo,`status`,fecha_registro) VALUES (".$E[$nn].",".$idPromocion.", ".$idEquipo.", 10, 1,'".$fechaentrada."')");
+}else{
+    $sql1 = mysqli_query($enlace,"INSERT INTO detalle_integrantes (id_integrante,id_promocion,id_equipo,id_cargo,`status`,fecha_registro) VALUES (".$E[$nn].",".$idPromocion.", ".$idEquipo.", 10, 1,'".$fechaentrada."')");
+
+}
+
 
 
     $nn++;
