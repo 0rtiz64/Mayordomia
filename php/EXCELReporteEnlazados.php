@@ -40,7 +40,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 //DATOS
 $queryTodos = mysqli_query($enlace,"SELECT * from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
-where promociones.`status`=1 AND equipos.num_equipo>0");
+where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY nombre_equipo ASC");
 
 //$datos = mysqli_fetch_array($equipoListadoQuery,MYSQLI_ASSOC);
 

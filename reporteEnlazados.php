@@ -143,7 +143,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 include 'gold/enlace.php';
                                 $queryEquipos = mysqli_query($enlace,"SELECT * from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
-where promociones.`status`=1 AND equipos.num_equipo>0");
+where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY nombre_equipo ASC");
                                 echo'<option value="0">TODOS</option>';
                                 while($datosEquipos=mysqli_fetch_array($queryEquipos,MYSQLI_ASSOC)){
                                     echo'<option value="'.$datosEquipos["id_equipo"].'">'.$datosEquipos["nombre_equipo"].'</option>';
