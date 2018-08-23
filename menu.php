@@ -227,9 +227,21 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             # code...
 
                             if($focusSubMenu == "SM2.8"){
-                                $accesoMenus .='<li class="active"><a href="php/EXCELdocumentos.php.php">Reporte Documentos Pendientes Excel</a></li>';
+                                $accesoMenus .='<li class="active"><a href="php/EXCELdocumentos.php">Reporte Documentos Pendientes Excel</a></li>';
                             }else{
                                 $accesoMenus .= '<li ><a href="php/EXCELdocumentos.php">Reporte Documentos Pendientes Excel</a></li>';
+                            }
+
+
+                            break;
+
+                        case 'SM2.9':
+                            # code...
+
+                            if($focusSubMenu == "SM2.9"){
+                                $accesoMenus .='<li class="active"><a href="reporteEnlazados.php">Reporte Enlazados</a></li>';
+                            }else{
+                                $accesoMenus .= '<li ><a href="reporteEnlazados.php">Reporte Enlazados</a></li>';
                             }
 
 
