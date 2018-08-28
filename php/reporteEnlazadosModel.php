@@ -11,7 +11,7 @@ $equipo = $_POST['equipo'];
 if ($equipo == 0){
  $queryTodos = mysqli_query($enlace,"SELECT * from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
-where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY nombre_equipo ASC");
+where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY num_equipo ASC");
  $tabla = '
 <a style="float:left;color : white" class="btn btn-danger"  href="php/pdfReporteEnlazados.php?equipo='.$equipo.'" target="_blank" style="color:white;"> <span>Exportar A PDF</span> </a>
 <a style="float:right;color : white" class="btn btn-success"  href="php/EXCELReporteEnlazados.php?equipo='.$equipo.'" style="color:white;"> <span>Exportar A EXCEL</span> </a>
@@ -45,7 +45,7 @@ $queryCantidadTodos= mysqli_query($enlace,"SELECT COUNT(*) as cantidadTodos FROM
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '".$idEquipo."' and detalle_integrantes.id_cargo = 10");
 $datosCantidadTodos = mysqli_fetch_array($queryCantidadTodos,MYSQLI_ASSOC);
-$tabla.="<tr align='center'><td colspan='2'>".$datosTodos["nombre_equipo"]."</td> <td>".$datosCantidadTodos["cantidadTodos"]."</td> </tr>";
+$tabla.="<tr align='center'><td colspan='2'> ".$datosTodos["num_equipo"]." - ".$datosTodos["nombre_equipo"]."</td> <td>".$datosCantidadTodos["cantidadTodos"]."</td> </tr>";
  }
 
  $cantidadTodalTodos= mysqli_query($enlace,"SELECT COUNT(*) AS cantidadTotalTodos FROM detalle_integrantes

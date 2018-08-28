@@ -31,7 +31,7 @@ $filas.='
 
 $queryTodos = mysqli_query($enlace,"SELECT * from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
-where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY nombre_equipo ASC");
+where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY num_equipo ASC");
 
 
 
@@ -43,7 +43,7 @@ where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY nombre_equipo ASC
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '".$idEquipo."' and detalle_integrantes.id_cargo = 10");
         $datosCantidadTodos = mysqli_fetch_array($queryCantidadTodos,MYSQLI_ASSOC);
-        $filas.="<tr align='center'><td colspan='2'>".$rows["nombre_equipo"]."</td> <td>".$datosCantidadTodos["cantidadTodos"]."</td> </tr>";
+        $filas.="<tr align='center'><td colspan='2'>".$rows["num_equipo"]." - ".$rows["nombre_equipo"]."</td> <td>".$datosCantidadTodos["cantidadTodos"]."</td> </tr>";
 
     }
 
