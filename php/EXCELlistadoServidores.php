@@ -81,11 +81,73 @@ while ($datosFinal= mysqli_fetch_array($query,MYSQLI_ASSOC)){
 
     $objPHPExcel->getActiveSheet()->getCell("C$contador")->setValueExplicit($datosFinal["num_identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
 
+    //FECHA INICIO
+    $fecha =$datosFinal["fecha_cumple"];
+
+    $dia = substr($fecha,8,2);
+    $mes = substr($fecha,5,2);
+    $aaa = substr($fecha,0,4);
+
+    switch ($mes){
+        case 01:
+            $miMes = "ENERO";
+            break;
+
+        case 02:
+            $miMes = "FEBRERO";
+            break;
+
+        case 03:
+            $miMes = "MARZO";
+            break;
+
+        case 04:
+            $miMes = "ABRIL";
+            break;
+
+        case 05:
+            $miMes = "MAYO";
+            break;
+
+        case 06:
+            $miMes = "JUNIO";
+            break;
+
+        case 07:
+            $miMes = "JULIO";
+            break;
+
+        case "08":
+            $miMes = "AGOSTO";
+            break;
+
+        case "09":
+            $miMes = "SEPTIEMBRE";
+            break;
+
+        case 10:
+            $miMes = "OCTUBRE";
+            break;
+
+        case 11:
+            $miMes = "NOVIEMBRE";
+            break;
+
+        case 12:
+            $miMes = "DICIEMBRE";
+            break;
+    }
+
+
+    $fCompleta = $dia."-".$miMes."-".$aaa;
+    //FECHA FINAL
+
+
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue("A$contador", $contador2)
         ->setCellValue("B$contador", $datosFinal["nombre_integrante"])
         ->setCellValue("D$contador", $datosFinal["correlativo"])
-        ->setCellValue("E$contador",$datosFinal["fecha_cumple"])
+        ->setCellValue("E$contador",$fCompleta)
         ->setCellValue("F$contador",$datosFinal["estado_civil"] )
         ->setCellValue("G$contador",$datosFinal["sexo"] )
         ->setCellValue("H$contador",$datosFinal["cel"] )

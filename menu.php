@@ -247,6 +247,31 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                             break;
 
+
+                        case 'SM2.10':
+                            # code...
+                            if($focusSubMenu == "SM2.10"){
+                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculados.php"> Excel Matriculados</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="php/EXCELmatriculados.php">Excel Matriculados</a></li>';
+                            }
+
+                            break;
+
+                        case 'SM2.11':
+                            # code...
+                            if($focusSubMenu == "SM2.11"){
+                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculadosEquipo.php"> Excel Matriculados Enlazados</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="php/EXCELmatriculadosEquipo.php">Excel Matriculados Enlazados</a></li>';
+                            }
+
+                            break;
+
+
+
+
+
                         case 'SM2.0':
                             # code...
                             $accesoMenus .="</ul>
@@ -337,26 +362,6 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                             break;
 
-
-                        case 'SM3.7':
-                            # code...
-                            if($focusSubMenu == "SM3.7"){
-                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculados.php"> Excel Matriculados</a></li>';
-                            }else{
-                                $accesoMenus .='<li ><a href="php/EXCELmatriculados.php">Excel Matriculados</a></li>';
-                            }
-
-                            break;
-
-                        case 'SM3.8':
-                            # code...
-                            if($focusSubMenu == "SM3.8"){
-                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculadosEquipo.php"> Excel Matriculados Enlazados</a></li>';
-                            }else{
-                                $accesoMenus .='<li ><a href="php/EXCELmatriculadosEquipo.php">Excel Matriculados Enlazados</a></li>';
-                            }
-
-                            break;
 
 
 

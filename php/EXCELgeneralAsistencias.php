@@ -64,8 +64,9 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('P3', 'FECHA 11')
     ->setCellValue('Q3', 'FECHA 12');
 
-$qTomarId = mysqli_query($enlace,"select * from marcacionprovicional
- GROUP BY idIntegrante");
+
+
+$qTomarId = mysqli_query($enlace,"select * from marcacionprovicional GROUP BY idIntegrante");
 
 
 

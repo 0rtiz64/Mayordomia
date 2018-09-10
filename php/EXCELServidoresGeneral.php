@@ -61,12 +61,75 @@ $contador=4;
 while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
     $objPHPExcel->getActiveSheet()->getCell("A$contador")->setValueExplicit($integrantesDatos["num_identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
 
+    //FECHA INICIO
+    $fecha =  $integrantesDatos["fecha_cumple"];
+
+    $dia = substr($fecha,8,2);
+    $mes = substr($fecha,5,2);
+    $aaa = substr($fecha,0,4);
+
+    switch ($mes){
+        case 01:
+            $miMes = "ENERO";
+            break;
+
+        case 02:
+            $miMes = "FEBRERO";
+            break;
+
+        case 03:
+            $miMes = "MARZO";
+            break;
+
+        case 04:
+            $miMes = "ABRIL";
+            break;
+
+        case 05:
+            $miMes = "MAYO";
+            break;
+
+        case 06:
+            $miMes = "JUNIO";
+            break;
+
+        case 07:
+            $miMes = "JULIO";
+            break;
+
+        case "08":
+            $miMes = "AGOSTO";
+            break;
+
+        case "09":
+            $miMes = "SEPTIEMBRE";
+            break;
+
+        case 10:
+            $miMes = "OCTUBRE";
+            break;
+
+        case 11:
+            $miMes = "NOVIEMBRE";
+            break;
+
+        case 12:
+            $miMes = "DICIEMBRE";
+            break;
+    }
+
+
+    $fCompleta = $dia."-".$miMes."-".$aaa;
+    //FECHA FINAL
+
+
+
     $objPHPExcel->setActiveSheetIndex(0)
         //->setCellValue("A$contador", $integrantesDatos["identidad"])
         ->setCellValue("B$contador", $integrantesDatos["nombre_integrante"])
         ->setCellValue("C$contador", $integrantesDatos["cel"])
         ->setCellValue("D$contador", $integrantesDatos["tel"])
-        ->setCellValue("E$contador", $integrantesDatos["fecha_cumple"])
+        ->setCellValue("E$contador",$fCompleta)
         ->setCellValue("F$contador", $integrantesDatos["estado_civil"])
         ->setCellValue("G$contador", $integrantesDatos["sexo"])
         ->setCellValue("H$contador", $integrantesDatos["direccion"])
@@ -86,12 +149,74 @@ WHERE serviciodetalle.idServicioCargo = 1 OR  serviciodetalle.idServicioCargo = 
 while ($integrantesDatos2 = mysqli_fetch_array($querySinEquipo,MYSQLI_ASSOC)) {
     $objPHPExcel->getActiveSheet()->getCell("A$contador")->setValueExplicit($integrantesDatos2["num_identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
 
+    //FECHA INICIO
+    $fecha = $integrantesDatos2["fecha_cumple"];
+
+    $dia = substr($fecha,8,2);
+    $mes = substr($fecha,5,2);
+    $aaa = substr($fecha,0,4);
+
+    switch ($mes){
+        case 01:
+            $miMes = "ENERO";
+            break;
+
+        case 02:
+            $miMes = "FEBRERO";
+            break;
+
+        case 03:
+            $miMes = "MARZO";
+            break;
+
+        case 04:
+            $miMes = "ABRIL";
+            break;
+
+        case 05:
+            $miMes = "MAYO";
+            break;
+
+        case 06:
+            $miMes = "JUNIO";
+            break;
+
+        case 07:
+            $miMes = "JULIO";
+            break;
+
+        case "08":
+            $miMes = "AGOSTO";
+            break;
+
+        case "09":
+            $miMes = "SEPTIEMBRE";
+            break;
+
+        case 10:
+            $miMes = "OCTUBRE";
+            break;
+
+        case 11:
+            $miMes = "NOVIEMBRE";
+            break;
+
+        case 12:
+            $miMes = "DICIEMBRE";
+            break;
+    }
+
+
+    $fCompleta = $dia."-".$miMes."-".$aaa;
+    //FECHA FINAL
+
+
     $objPHPExcel->setActiveSheetIndex(0)
         //->setCellValue("A$contador", $integrantesDatos["identidad"])
         ->setCellValue("B$contador", $integrantesDatos2["nombre_integrante"])
         ->setCellValue("C$contador", $integrantesDatos2["cel"])
         ->setCellValue("D$contador", $integrantesDatos2["tel"])
-        ->setCellValue("E$contador", $integrantesDatos2["fecha_cumple"])
+        ->setCellValue("E$contador", $fCompleta)
         ->setCellValue("F$contador", $integrantesDatos2["estado_civil"])
         ->setCellValue("G$contador", $integrantesDatos2["sexo"])
         ->setCellValue("H$contador", $integrantesDatos2["direccion"])

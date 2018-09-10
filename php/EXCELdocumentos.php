@@ -140,7 +140,7 @@ $fecha = $dTomarId["fecha_cumple"];
             ->setCellValue("A$contador", $contador1)
             ->setCellValue("B$contador", $dTomarId["nombre_integrante"])
             ->setCellValue("C$contador", $dTomarId["promo_cordero"])
-            ->setCellValue("E$contador",$dTomarId["fecha_cumple"] )
+            ->setCellValue("E$contador",$fCompleta )
             ->setCellValue("F$contador",$dTomarId["cel"] )
             ->setCellValue("G$contador",$dTomarId["tel"] )
             ->setCellValue("H$contador",$dTomarId["estado_civil"])
