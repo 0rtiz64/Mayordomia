@@ -129,18 +129,30 @@ if($resultados["REGISTRO"] ==""){
 
 
 }
-$nombre = $resultados["nombre_integrante"];
+if($resultados["nombre_integrante"] == ""){
+    $nombre = "<a style='color: white'>.</a>";
+}else{
+    $nombre = $resultados["nombre_integrante"];
+}
+
+
+
 
 if($resultados["apellidoCasada"] ==""){
-    $apellido = ".";
+    $apellido = "<a style='color: white'>.</a>";
 }else{
     $apellido = $resultados["apellidoCasada"];
 }
-$identidad = $resultados["num_identidad"];
+
+if($resultados["num_identidad"] ==""){
+$identidad="<a style='color: white'>.</a>";
+}else{
+    $identidad = $resultados["num_identidad"];
+}
 
 
 if($resultados["fecha_cumple"] == ""){
-    $fCompletaN =".";
+    $fCompletaN ="<a style='color: white'>.</a>";
 }else{
     $nacimiento = $resultados["fecha_cumple"];
 
@@ -213,23 +225,37 @@ if ($resultados["sexo"] == 'M'){
     <label style="margin-left: 25px;">Masculino <input type="checkbox" ></label>
     <label style="margin-left: 35px;">Femenino <input type="checkbox" checked></label> ';
 }
-$telefono1 = $resultados["cel"];
+
+if($resultados["cel"] ==""){
+    $telefono1 = "<a style='color: white'>.</a>";
+}else{
+    $telefono1 = $resultados["cel"];
+}
+
 
 if($resultados["tel"] ==""){
-    $telefono2 =".";
+    $telefono2 ="<a style='color: white'>.</a>";
 }else{
     $telefono2 = $resultados["tel"];
 }
 
 if($resultados["promo_cordero"]==""){
-    $promoCorederitos = ".";
+    $promoCorederitos = "<a style='color: white'>.</a>";
 }else{
     $promoCorederitos=$resultados["promo_cordero"];
 }
 
 
-$civil1 =$resultados["estado_civil"];
+
+if($resultados["estado_civil"] ==""){
+    $civil1 = "<a style='color: white'>.</a>";
+}else{
+    $civil1 =$resultados["estado_civil"];
+}
+
+
 $civil= strtoupper($civil1);
+
 
 
 
@@ -261,7 +287,11 @@ if($resultados["trasporte"] =="Si"){
 
 
 $direccion= $resultados["direccion"];
-
+if($resultados["direccion"]==""){
+    $direccion=   "<a style='color: white'>.</a><br><a style='color: white'>.</a><br><a style='color: white'>.</a>";
+}else{
+    $direccion= $resultados["direccion"];
+}
 
 if($resultados["areas"] ==""){
     $integrado= '
@@ -271,7 +301,7 @@ if($resultados["areas"] ==""){
       </p>
     ';
 
-    $areas = ".";
+    $areas =  "<a style='color: white'>.</a><br><a style='color: white'>.</a><br><a style='color: white'>.</a>";
 }else{
 
     $integrado= '
@@ -370,8 +400,13 @@ $Contenido = '
 <div style=" border:  1px solid green; border-radius: 30px; float: right; margin-top: 20px; margin-right: 0px">
  <p align="center" style="margin-bottom: -55px;"> '.$areas.'</p>
     <p align="center" style="margin-top: -10px">  ___________________________________________</p>
-    <p style="font-size: 14px;margin-bottom: 10px" align="center">Areas</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Otras Areas Donde Sirve</p>
 </div>
+
+
+
+
+ 
 
  
  
