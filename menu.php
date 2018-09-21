@@ -530,6 +530,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM6.3':
+                        # code...
+                        if($focusSubMenu == "SM6.3"){
+                            $accesoMenus .='<li class="active"><a href="listadoPastoreadoresEquipos.php"> Listado Pastoreadores Por Equipo</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="listadoPastoreadoresEquipos.php"> Listado Pastoreadores Por Equipo</a></li>';
+                        }
+
+                        break;
+
 
                     case 'SM6.0':
                         # code...
