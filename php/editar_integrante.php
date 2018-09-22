@@ -15,10 +15,22 @@ WHERE promociones.`status`=1  AND  integrantes.idintegrante =".$id );
 $rows = mysqli_fetch_array($sql,MYSQLI_ASSOC);
 
 
+if($rows['fecha_cumple'] == ""){
+    $fechaCumple = "";
+}else{
+    $fechaCumple=$rows['fecha_cumple'];
+}
+
+if($rows['estado_civil'] ==""){
+    $civil = "";
+}else{
+    $civil=$rows['estado_civil'];
+}
+
 $datos = array(
 				0 => $rows['num_identidad'], 
-				1 => $rows['Name'],
-				2 => $rows['fecha_cumple'],
+				1 => utf8_encode($rows['Name']),
+				2 => $fechaCumple,
 				3 => $rows['cel'],
 				4 => $rows['tel'], 
 				5 => $rows['Estado'], 
@@ -26,9 +38,10 @@ $datos = array(
 				7 => $rows['Ep'],
 				8 => $rows['idcargo'],
 				9 => $rows['direccion'],
-				10 => $rows['estado_civil'],
+				10 => $civil,
 				11 => $rows['sexo'],
 				12 => $rows['trasporte'],
+				13 => $civil,
 				);
 echo json_encode($datos);
 

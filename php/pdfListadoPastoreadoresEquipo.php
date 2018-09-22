@@ -38,6 +38,10 @@ where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo
         };
         $filas.='</tr>';
     }else{
+        $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo = 9");
+        $datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC);
         $filas.='<tr align="center">
         <td>'.$contador.'</td>
         <td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>

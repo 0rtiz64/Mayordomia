@@ -477,7 +477,7 @@ WHERE promociones.`status`=1");
                      <div class="form-group">
 
                                                 <div class="col-lg-4" id="divCivil1">
-                                                    <select class="form-control" id="ECC">
+                                                    <select class="form-control" id="selectCivil">
                                                         <option value="">Estado Civil</option>
                                                         <option value="Casado">Casado(a)</option>
                                                         <option value="Soltero">Soltero(a)</option>

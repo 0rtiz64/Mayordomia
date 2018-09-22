@@ -175,14 +175,18 @@ where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo
                                         echo '<td>'.$contador.'</td>';
                                         echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
                                         while ($datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC)){
-                                            echo '<td>'.$datosPastoreadores["nombre_integrante"].'</td>';
+                                            echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
                                         };
                                      echo '</tr>';
                                  }else{
+                                     $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo = 9");
+                                     $datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC);
                                      echo  '<tr align="center">';
                                         echo  '<td>'.$contador.'</td>';
                                      echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
-                                     echo '<td>'.$datosPastoreadores["nombre_integrante"].'</td>';
+                                     echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
                                      echo '<td></td>';
                                      echo  '</tr>';
                                  }
