@@ -110,6 +110,9 @@ WHERE `status`=1");
     echo "<th>AUSENTES</th>";
     echo "<th>PORCENTAJE DE ASISTENCIA</th>";
     echo "</tr>";
+    echo "<tr align='center'>";
+        echo "<td style='background-color:#5DADE2 ' colspan='6'><strong>ACTIVOS</strong></td>";
+    echo "</tr>";
     echo "</thead>";
 
     echo '<tbody>';
@@ -162,9 +165,26 @@ detalle_integrantes.id_cargo = 10
     echo "<td style='background-color:#f1c40f;'> ".$cantidadPorcentaje."% </td>";
     echo "</tr>";
 
-    echo "<tr style='background-color:#95a5a6;'>";
+ /*   echo "<tr style='background-color:#95a5a6;'>";
     echo "<td colspan='6'> <h1>RESUMEN</h1> </td>";
     echo "</tr>";
+ */
+
+
+    echo "<tr align='center'>";
+    echo "<td style='background-color:#5DADE2 ' colspan='6'><strong>INACTIVOS/RETIRADOS</strong></td>";
+    echo "</tr>";
+
+    echo "<tr style='background-color:#2ecc71;'>";
+    echo "<th>No.</th>";
+    echo "<th>NOMBRE EQUIPO</th>";
+    echo "<th colspan='3'>NOMBRE INTEGRANTE</th>";
+    echo "<th>ESTADO</th>";
+
+
+
+    echo "</tr>";
+
     echo '</tbody>';
 
     echo "</div>";

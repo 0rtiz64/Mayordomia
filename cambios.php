@@ -477,7 +477,7 @@ WHERE promociones.`status`=1");
                      <div class="form-group">
 
                                                 <div class="col-lg-4" id="divCivil1">
-                                                    <select class="form-control" id="selectCivil">
+                                                    <select class="form-control" id="ECC">
                                                         <option value="">Estado Civil</option>
                                                         <option value="Casado">Casado(a)</option>
                                                         <option value="Soltero">Soltero(a)</option>
@@ -660,11 +660,7 @@ echo '<option value="'.$fila['idcargo'].'">'.$fila["nombre_cargo"].'</option>';
         }
 </script>
 <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
-    <script src="angular/angularScript1.js"></script>
-    <script src="angular/angularScript2.js"></script>
-    <script src="angular/angularScript3.js"></script>
-    <script src="angular/angularScript4.js"></script>
-    <script src="angular/angularScript5Material.js"></script>
+
 
     </body>
 </html>

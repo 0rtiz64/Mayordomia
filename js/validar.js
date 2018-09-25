@@ -506,7 +506,7 @@ function editarIntegrante(id){
         var datos = eval(valores);
         
         $('#id-prod').val(id);
-        document.getElementById('selectCivil').value = datos[13];
+        document.getElementById('ECC').value = datos[13];
         //$('#ECC').val(datos[13]);
         $('#GFM').val(datos[11]);
         $('#OCT').val(datos[12]);
