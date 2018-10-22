@@ -16,12 +16,19 @@ $fechaentrada = date('Y-m-d  h:i:s');
 
 
 $E = explode(",", $idIntegrante);
-$nn = 0;
+$nn = 1;
 
 while ($nn < count($E)) {
+$query = "SELECT * from integracion 
+INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
+WHERE integracion.idIntegrante = $E[$nn] and integracion.idArea = $idArea AND promociones.`status` = 1";
+    $verificar = mysqli_num_rows(mysqli_query($enlace,$query));
 
-    //MODIFICAR QUERY INSERT AREAS
-    $sql1 = mysqli_query($enlace,"INSERT INTO integracion (idIntegrante,idArea,idPromocion,fechaEntrada,integrador) VALUES (".$E[$nn].",".$idArea.", ".$idPromocion.",'".$fechaentrada."',".$integrador.")");
+
+    if($verificar==0){
+        $sql1 = mysqli_query($enlace,"INSERT INTO integracion (idIntegrante,idArea,idPromocion,fechaEntrada,integrador) VALUES (".$E[$nn].",".$idArea.", ".$idPromocion.",'".$fechaentrada."',".$integrador.")");
+    }
+
 
 
     $nn++;

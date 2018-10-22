@@ -66,10 +66,16 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('R3', 'AREA INTEGRADO 5');
 
 
-$confirm = mysqli_num_rows(mysqli_query($enlace,"SELECT idIntegrante from integracion GROUP BY idIntegrante"));
+$confirm = mysqli_num_rows(mysqli_query($enlace,"SELECT idIntegrante from integracion 
+INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1
+GROUP BY idIntegrante"));
 
 if($confirm>0){
-    $qTomarId = mysqli_query($enlace,"SELECT idIntegrante from integracion GROUP BY idIntegrante");
+    $qTomarId = mysqli_query($enlace,"SELECT idIntegrante from integracion 
+INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1
+GROUP BY idIntegrante");
 
 
 
@@ -160,7 +166,7 @@ INNER JOIN detalle_integrantes ON integrantes.idintegrante = detalle_integrantes
 
         $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A$contador", $datos["promo_cordero"])
-            ->setCellValue("C$contador", $datos["nombre_integrante"])
+            ->setCellValue("C$contador",utf8_encode($datos["nombre_integrante"]))
             ->setCellValue("D$contador",$datos["cel"] )
             ->setCellValue("E$contador",$datos["tel"]  )
             ->setCellValue("F$contador",$datos["estado_civil"])

@@ -7,18 +7,25 @@
  */
 include  '../gold/enlace.php';
 
+$c=1;
+$query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,cargos.idcargo,cargos.nombre_cargo, promociones.desc_promocion from detalle_integrantes 
+INNER JOIN integrantes ON detalle_integrantes.id_integrante =  integrantes.idintegrante
+INNER JOIN cargos on detalle_integrantes.id_cargo = cargos.idcargo
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE detalle_integrantes.id_cargo <> 10 and detalle_integrantes.id_cargo <>9 and detalle_integrantes.id_promocion = 3");
 
-$queryNoIntegrados = mysqli_query($enlace,"Select * From integrantes where Not integrantes.idintegrante In 
-(Select detalle_integrantes.id_integrante From detalle_integrantes WHERE detalle_integrantes.id_promocion = 3)	 AND	 integrantes.correlativo LIKE '%1802%'
-GROUP BY integrantes.nombre_integrante ASC");
+while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+    $idIntegrante = $datos["idintegrante"];
+    $idCargo= $datos["idcargo"];
 
-while ($datos = mysqli_fetch_array($queryNoIntegrados,MYSQLI_ASSOC)){
-    $IdIntegrante = $datos["idintegrante"];
-    $verificarMarcacion = mysqli_num_rows(mysqli_query($enlace,"SELECT * FROM marcacionprovicional WHERE  marcacionprovicional.idIntegrante = $IdIntegrante AND  CAST(fechaMarcacion AS DATE) = '2018-08-25' "));
-        if($verificarMarcacion >0){
-            echo  $datos["num_identidad"] ."-". $datos["nombre_integrante"] .'<br>';
-        }else{
+  $queryInsert = mysqli_query($enlace,"insert into liderazgo (idIntegrante,estado,idCargo) values 
+	($idIntegrante,1,$idCargo)");
 
-        }
+  echo $c.' '.$datos["nombre_integrante"].' INSERTADO  CON EL CARGO DE '.$datos["nombre_cargo"].'<br>';
 
-}
+  $c++;
+};
+$c= $c-1;
+echo '<h1>'.$c.'PERSONAS INSERTADAS';
+
+

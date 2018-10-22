@@ -141,61 +141,82 @@ session_start();
           <section class="main-content-wrapper">
               <section id="main-content">
                   <div class="row">
-                      <h1 class="h1">LISTADO PASTOREADORES POR EQUIPO</h1>
-                      <div class="col-md-12">
-                          <a href="php/pdfListadoPastoreadoresEquipo.php" target="_blank" class="btn btn-danger" style="color: #ffffff;">PDF</a>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr align="center">
-                                    <td><strong>#</strong></td>
-                                    <td><strong>EQUIPO</strong></td>
-                                    <td><strong>PASTOREADOR 1</strong></td>
-                                    <td><strong>PASTOREADOR 2</strong></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            include 'gold/enlace.php';
-                            $queryIdEquipos= mysqli_query($enlace,"SELECT id_equipo, num_equipo,nombre_equipo from equipos 
+                      <h1 class="h1" id="listEquipo">LISTADO PASTOREADORES POR EQUIPO</h1>
+                      <h1 class="h1 collapse" id="listPast">LISTADO PASTOREADORES </h1>
+
+
+
+                      <div class="col-md-12" >
+                          <div id="botones" class="form-group" align="center">
+                              <input type="button" class="btn btn-info" value="LISTADO PASTOREADORES POR EQUIPO" id="Equipo">
+                              <input type="button" class="btn btn-primary"value="LISTADO PASTOREADORES" id="listado">
+                          </div>
+
+                         <div id="pastPorEquipo">
+                             <a href="php/pdfListadoPastoreadoresEquipo.php" target="_blank" class="btn btn-danger" style="color: #ffffff;">PDF</a>
+                             <table class="table table-bordered table-striped">
+                                 <thead>
+                                 <tr align="center">
+                                     <td><strong>#</strong></td>
+                                     <td><strong>EQUIPO</strong></td>
+                                     <td><strong>PASTOREADOR 1</strong></td>
+                                     <td><strong>PASTOREADOR 2</strong></td>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 <?php
+                                 include 'gold/enlace.php';
+                                 $queryIdEquipos= mysqli_query($enlace,"SELECT id_equipo, num_equipo,nombre_equipo from equipos 
 INNER JOIN promociones ON equipos.id_promocion = promociones.idpromocion
 where promociones.`status` = 1 and  equipos.num_equipo> 0 GROUP BY num_equipo ASC");
-$contador = 1;
-                            while ($datosId = mysqli_fetch_array($queryIdEquipos,MYSQLI_ASSOC)){
-                                $idEquipo = $datosId["id_equipo"];
-                                 $confirmarPastoreadores = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detalle_integrantes 
+                                 $contador = 1;
+                                 while ($datosId = mysqli_fetch_array($queryIdEquipos,MYSQLI_ASSOC)){
+                                     $idEquipo = $datosId["id_equipo"];
+                                     $confirmarPastoreadores = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detalle_integrantes 
 where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo = 9"));
 
 
 
-                                 if($confirmarPastoreadores>1){
-                                     $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
+                                     if($confirmarPastoreadores>1){
+                                         $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
 where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo = 9");
-                                     echo '<tr align="center">';
-                                        echo '<td>'.$contador.'</td>';
-                                        echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
-                                        while ($datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC)){
-                                            echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
-                                        };
-                                     echo '</tr>';
-                                 }else{
-                                     $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
+                                         echo '<tr align="center">';
+                                         echo '<td>'.$contador.'</td>';
+                                         echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
+                                         while ($datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC)){
+                                             echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
+                                         };
+                                         echo '</tr>';
+                                     }else{
+                                         $queryPastoreadoresPorEquipo= mysqli_query($enlace,"SELECT nombre_integrante from detalle_integrantes 
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
 where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo = 9");
-                                     $datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC);
-                                     echo  '<tr align="center">';
-                                        echo  '<td>'.$contador.'</td>';
-                                     echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
-                                     echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
-                                     echo '<td></td>';
-                                     echo  '</tr>';
+                                         $datosPastoreadores = mysqli_fetch_array($queryPastoreadoresPorEquipo,MYSQLI_ASSOC);
+                                         echo  '<tr align="center">';
+                                         echo  '<td>'.$contador.'</td>';
+                                         echo '<td>'.$datosId["num_equipo"].'- '.$datosId["nombre_equipo"].'</td>';
+                                         echo '<td>'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</td>';
+                                         echo '<td></td>';
+                                         echo  '</tr>';
+                                     }
+                                     $contador++;
                                  }
-                                 $contador++;
-                            }
-                            ?>
-                            </tbody>
+                                 ?>
+                                 </tbody>
 
-                        </table>
+                             </table>
+                         </div>
+
+                          <div id="listadodPast" class="collapse">
+
+                              <div id="tablaListadoPastoreadoresTodos">
+
+
+                              </div>
+
+                          </div>
+
 
                       </div>
 
@@ -227,7 +248,7 @@ where detalle_integrantes.id_equipo = $idEquipo AND detalle_integrantes.id_cargo
       }
   </script>
   <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
-  <script src="myfiles/js/main.js"></script>
+  <script src="js/listadoPastoreadores.js"></script>
   <script src="js/export.js"></script>
 
 

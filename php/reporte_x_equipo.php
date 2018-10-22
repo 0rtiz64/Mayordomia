@@ -81,8 +81,15 @@ if($queryConfirmar>0){
 WHERE `status`=1");
     $nombrePromocion = mysqli_fetch_array($queryNombrePromocion,MYSQLI_ASSOC);
 
+echo'<div class="col-md-6">';
+    echo '<a class="btn btn-danger"  href="php/reporte_x_equipos.php?id_promos='.$num_promo.'&id_fecs='.$num_fecha.'" target="_blank" style="color:white;"> <span>EXPORTAR A PDF</span> </a>';
+echo'</div>';
 
-    echo '<a class="btn btn-danger"  href="php/reporte_x_equipos.php?id_promos='.$num_promo.'&id_fecs='.$num_fecha.'" target="_blank" style="color:white;"> <span>Exportar A PDF</span> </a>';
+echo'<div class="col-md-6" align="right">';
+    echo '<a class="btn btn-success"  href="php/EXCELOvejasResumen.php?id_promos='.$num_promo.'&id_fecs='.$num_fecha.'"style="color:white;"> <span>EXPORTAR A EXCEL</span> </a>';
+
+echo'</div>';
+
     echo '<div class="table-responsive">';
     echo '<table class="table table-bordered display nowrap" id="exampleReporte" width="100%">';
 
@@ -150,7 +157,7 @@ detalle_integrantes.id_cargo = 10
 
         $cantiadIntegrantes += $rows['cantidad_I'];
         $canidadAsistentes += $rows_asistente['Asistentes'];
-        //$cont++;
+        $cont++;
     }
 
 
@@ -161,7 +168,7 @@ detalle_integrantes.id_cargo = 10
     echo "<td colspan='2' style='background-color:#95a5a6;'> TOTALES </td>";
     echo "<td style='background-color:#f1c40f;'> ".$cantiadIntegrantes." </td>";
     echo "<td style='background-color:#f1c40f;'> ".$canidadAsistentes." </td>";
-    echo "<td style='background-color:#f1c40f;'> ".$cantidaAusentes." </td>";
+    echo "<td style='background-color:#f1c40f;'> ".$rows['Equipo']." </td>";
     echo "<td style='background-color:#f1c40f;'> ".$cantidadPorcentaje."% </td>";
     echo "</tr>";
 
@@ -169,8 +176,11 @@ detalle_integrantes.id_cargo = 10
     echo "<td colspan='6'> <h1>RESUMEN</h1> </td>";
     echo "</tr>";
  */
+echo'</tbody>';
+echo'</table>';
 
-
+    echo'<br>';
+echo'<table class="table table-bordered display nowrap" id="exampleReporte" width="100%">';
     echo "<tr align='center'>";
     echo "<td style='background-color:#5DADE2 ' colspan='6'><strong>INACTIVOS/RETIRADOS</strong></td>";
     echo "</tr>";
@@ -180,12 +190,95 @@ detalle_integrantes.id_cargo = 10
     echo "<th>NOMBRE EQUIPO</th>";
     echo "<th colspan='3'>NOMBRE INTEGRANTE</th>";
     echo "<th>ESTADO</th>";
-
-
-
     echo "</tr>";
 
+    //INACTIVOS RETIRADOS
+    $queryPromoActiva = mysqli_query($enlace,"SELECT * FROM promociones WHERE `status` = 1");
+    $datosQueryPromoActiva = mysqli_fetch_array($queryPromoActiva,MYSQLI_ASSOC);
+    $correlativo = $datosQueryPromoActiva["correlativo"];
+
+    $queryTodos = mysqli_query($enlace,"SELECT detalle_integrantes.`status` as estado, integrantes.nombre_integrante,equipos.num_equipo,equipos.nombre_equipo 
+from marcacionprovicional
+INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
+INNER JOIN integrantes on marcacionprovicional.idIntegrante = integrantes.idintegrante
+INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion
+INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
+WHERE CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND promociones.`status` = 1 
+and detalle_integrantes.id_cargo = 10 AND detalle_integrantes.`status` <>1");
+    $cont2 = 1;
+    while ($datosTodos = mysqli_fetch_array($queryTodos,MYSQLI_ASSOC)){
+        $estado = $datosTodos["estado"];
+        if($estado == 3){
+            $nombreEstado = "INCACTIVO";
+        }else{
+            if($estado == 2){
+                $nombreEstado="RETIRADO";
+            }
+        }
+
+
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<th>".$cont2."</th>";
+        echo "<th>".$datosTodos["num_equipo"]."- ".$datosTodos["nombre_equipo"]."</th>";
+        echo "<th colspan='3'>".utf8_encode($datosTodos["nombre_integrante"])."</th>";
+        echo "<th>".$nombreEstado."</th>";
+        echo "</tr>";
+
+    $cont2++;
+    };
+    $cont2= $cont2-1;
+    echo'<tr>';
+    echo'<td colspan="3" style="background-color: #95A5A6">TOTALES</td>';
+    echo'<td colspan="3" style="background-color: #F1C40F">'.$cont2.'</td>';
+    echo'</tr>';
+
+
+echo'</table>';
+
+echo'<br>';
+
+echo '<table class="table table-bordered display nowrap" id="exampleReporte" width="100%">';
+    echo "<tr align='center'>";
+    echo "<td style='background-color:#5DADE2 ' colspan='6'><strong>NO ENLAZADOS</strong></td>";
+    echo "</tr>";
+
+    echo "<tr style='background-color:#2ecc71;'>";
+    echo "<th>No.</th>";
+    echo "<th colspan='3'>NOMBRE INTEGRANTE</th>";
+    echo "<th >TELEFONO</th>";
+    echo "<th >CORRELATIVO</th>";
+    echo "</tr>";
+
+    $queryNoEnlazados = mysqli_query($enlace,"SELECT integrantes.nombre_integrante,integrantes.cel,integrantes.correlativo
+  FROM marcacionprovicional
+INNER JOIN promociones on marcacionprovicional.idPromocion = promociones.idpromocion
+INNER JOIN integrantes on marcacionprovicional.idIntegrante = integrantes.idintegrante
+ WHERE NOT EXISTS (SELECT NULL
+                     FROM detalle_integrantes
+                    WHERE detalle_integrantes.id_integrante= marcacionprovicional.idIntegrante) AND promociones.`status` = 1 and CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."'");
+    $cont3=1;
+    while ($datosNoEnlazados = mysqli_fetch_array($queryNoEnlazados,MYSQLI_ASSOC)){
+        echo'<tr>';
+            echo '<td>'.$cont3.'</td>';
+            echo '<td colspan="3"><strong>'.utf8_encode($datosNoEnlazados["nombre_integrante"]).'</strong></td>';
+            echo '<td ><strong>'.$datosNoEnlazados["cel"].'</strong></td>';
+            echo '<td ><strong>'.$datosNoEnlazados["correlativo"].'</strong></td>';
+        echo'</tr>';
+
+        $cont3++;
+    }
+    $cont3= $cont3-1;
+    echo'<tr>';
+    echo'<td colspan="3" style="background-color: #95A5A6">TOTALES</td>';
+    echo'<td colspan="3" style="background-color: #F1C40F">'.$cont3.'</td>';
+    echo'</tr>';
+
     echo '</tbody>';
+    echo'</table>';
+
+    // NO ENLAZADOS
 
     echo "</div>";
 
