@@ -29,7 +29,7 @@ var p1="\n" +
     "^FT485,314^A0I,42,43^FH\\^FD";
 
 var p2 = "^FS\n" +
-"^FT659,183^A0I,28,28^FH\\^FD";
+"^FT659,216^A0I,28,28^FH\\^FD";
 
 
 var pastP2 = "^FS\n" +
@@ -40,7 +40,7 @@ var p3 ="^FS\n" +
 "^FD>:";
 
 var p4 ="^FS\n" +
-"^FT173,32^A0I,34,33^FH\\^FD";
+"^FT207,32^A0I,34,33^FH\\^FD";
 
 var p5 ="^FS\n" +
 "^FT451,32^A0I,34,33^FH\\^FD";
@@ -53,7 +53,7 @@ var p7="^FS\n" +
 "^FT652,107^A0I,25,24^FH\\^FDEXPEDIENTE:^FS\n" +
 "^PQ";
 
-var p8=",0,1,Y^XZ\n";
+var p8=",0,1,Y^XZ";
 
 var miZpl ="\n" +
     "^XA\n" +
@@ -65,16 +65,16 @@ var miZpl ="\n" +
     "eJztlc9r01AcwL/Jiy/FPbIK/sggrGGrODx1zkOYw24e5sGDF8uubQbzWqagsmnjNiaM4v4BwaEX2cEdvLgpW7Gl9SBz/0FrBfUgayeDRZ19Nj+bxLmBR9kXSvj0k+/7fr8v5AXgMP6/CEeC/8g+4iKcX9MnPjxDv/v4Kt318WNKfRynVPNyhtIND7K1JZrzMEPL9IufaxUPH6Hl+W0PI/qeqft4fSjt4Tb6rqL4uPztto/nNx0+kUgkRsprjTvNawKsjUFL8V3d9jxtxjb9ZVyMoaNG/4v0p1Gfs3+I0h2HoxbXvMzsUOpl0GtrFU8+NDKZnNdnps39w46PW/vr+ghtgDe/3XoerkdU9/Exs3yLQQBfvh0tb4VRPyrdvTVyeZw/lbq5Y3rSm02+7WLlvDhr5uNeMrQxOgXFDmx69hyZ1rqnYE5kTUYxgkB9Ey6KlmcWshi6VJgNmZ5D9V3CV8cjef2e6XEsS6CrHx6ILLZZBLXTzccyiYEqyEVrfaN+OqRiuWT1E0XLq/G5j2g1/3I1ME84ON/e81+EFfgx8ax/um7WZ/KawndKAwKZtNYHTcFYOiqEBZN5yBmMBZm3+oOKIrAS77AASYUHCT0EfsbmHl4jzDqwNqcVVJegAcjxCugEbQKadTxMNtfz+k4iCG5+UuGwJHjrg8nY7W/Y4NhJq38t23MJE15QiPU8SjwtZSW+MaDY8+NFTZ+As08reI/9OpDbKg0hVK0ur/RZzyM8OsOFCuc7uFTRul8lOFQAkUvaPEb4jaLBww6jcIkVcVI16/OfCIrl8zpXH3M8s5CrihzYfJ0wuUJa5Abt/FECuZws4sEpk0OpLOQKMfF4yuqnvfIc7n/Of22/0nbQPP80f4BPJ1pxDYIHrxHMixuPtmoXXqku973+4GO/B8uvBH3ygHzHA9udbXqt1SUjbdVirTeheXTKGiD3BsY4XHjvgauDsOAdk2meL4EvyB8x+HcVfA/3CCbAIT8m9s8O768Pw43flt8XJw==:0CA6\n" +
     "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
     "eJzt1L9rE2EYB/D3cqEp9bgLGOhBDhMKrpqQJWLwkAap6CDSopsRQTqIxkGtU84fDS5VBIcODsXN/0HwTZW0Q6BL3aq+drBL6KXUIUO41/e9K/rmfZ+rnSXPcDSfPrz3fX8dQqMa1aj+z3pXnKkmJmbnM6+uTr0RfOfk47nqpcnk7OKVW5t/WZs6f30WzWwmM80LUxmh/+eDi1+mv84tXPNubP86wnvTaf44+FsY/8kLjIm1np838B1D6G8t4099t1MMjFpHdLrcWXPy7VLTaHQuC96wt9pmba2kG+5SV/Db9rfOGN7Y140zSwPBH9r7zDuPdDNrfRC8Yv9gvl7Ss1nLEdyx99pOjflZ0xTzjNu4zSKWmsWXxrB70313Y29w8/N4UlwIGyEy8XSlvOINL5CN4CogZNHAvH9qp7wl/cuiNPF6O1NNqm6lV8niW8lzlB5Pr6afV+V+f9ckCfJ+XR0HjHSIG5CbNMhhuD81gB25gLP8KAUMxPIjjcTkXIhxJ8YtyAOEdA/u19RA0fqogVj+BkZ1td/fvbeL8tA4DYqVg1EIvadMoB76wJSd3KVBIwjGZG/5vJ+mJNYwPz+UPpPdY48ic2/YE/z3Od9vSa7zh+vSFob8I8WShznc74qHuV2f4hrkVHHjX14H/LTve3nA2ZZ5haO5c+BI8nD/ckEAe1w/jesfgG75XdnDPBbtx3hPduNwJ6CnKI5xD3SdubT+4T7qPkI1wLUB7KivXLA/5xgPe3jeAsC9KI58gfk559MKz7vomC8/UT8EmC8/id4jVo3395B8v/j8uSv3scC9j5RPaDly5b47kZdlNyNXvjOT0Xt7srMJ5Vh+LDubMDsOwHePoGOUKNPin1q2bidUr6AE9SqqW3xflDgsEIuiE9U1tuk5NQ67vZ7WBZjFocAwrBoByKMaFfoNqMMxWQ==:9E2C\n" +
-    "^FT485,314^A0I,42,43^FH\\^FDPROMOCION 32^FS\n" +
+    "^FT485,314^A0I,42,43^FH\\^FDINTEGRACION^FS\n" +
     "^FT659,216^A0I,28,28^FH\\^FDMELVIN DAVID ORTIZ RAMOS^FS\n" +
     "^BY4,3,91^FT481,69^BCI,,N,N\n" +
     "^FD>:553^FS\n" +
-    "^FT173,32^A0I,34,33^FH\\^FD89026282^FS\n" +
+    "^FT207,32^A0I,34,33^FH\\^FD8902-6282^FS\n" +
     "^FT451,32^A0I,34,33^FH\\^FD0501199706845^FS\n" +
     "^FT639,30^A0I,34,31^FH\\^FD18010000^FS\n" +
     "^FT157,103^A0I,25,24^FH\\^FDCELULAR:^FS\n" +
     "^FT652,107^A0I,25,24^FH\\^FDEXPEDIENTE:^FS\n" +
-    "^PQ1,0,1,Y^XZ\n";
+    "^PQ1,0,1,Y^XZ";
 
 
 var encabezado = '^XA\n' +
@@ -188,7 +188,7 @@ $(document).on('click','.column_sort',function () {
     var equipo = $('#selectEquipo').val();
     //fa fa-sort-desc ||hacia Arriba
     //fa fa-sort-asc ||hacia Abajo
-alert(equipo);
+
     if (order =='desc'){
         arrow ='&nbsp;<span class="fa fa-sort-asc"></span>';
     }else{
@@ -211,41 +211,26 @@ alert(equipo);
 $('#selectEquipo').change(function () {
     var equipo = $('#selectEquipo').val();
     var url = 'php/tagsIntegrantes.php';
-    $.ajax({
-        type:'POST',
-        url:url,
-        data: {
-            phpidEquipo: equipo
-        },
-        success: function (datos) {
+    if(equipo.trim().length ==""){
+        $('#tablaIntegrantes').html("");
+        return false
+    }else{
+        $.ajax({
+            type:'POST',
+            url:url,
+            data: {
+                phpidEquipo: equipo
+            },
+            success: function (datos) {
 
-            $('#tablaIntegrantes').html(datos);
-            return false;
-        }
-    });
+                $('#tablaIntegrantes').html(datos);
+                return false;
+            }
+        });
+
+    }
 
 
-
-/*
-$('#tablaRegistrosIntegrantes').DataTable({
-
-    "ajax":{
-        "method":"POST",
-        "url":url,
-        data: {
-            phpidEquipo: equipo
-        },
-    },
-    "columns":[
-        {"data":"nombre_integrante"},
-        {"data":"num_identidad"},
-        {"data":"correlativo"}
-    ]
-
-});
-*/
-
-//$('#tablaRegistrosIntegrantes').DataTable();
     return false;
 });
 

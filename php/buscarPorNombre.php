@@ -12,7 +12,9 @@ $namePerson1 = str_replace("'","",$namePerson);
 
 $busqueda = mysqli_query($enlace,"select integracion.idIntegrante,nombre_integrante from integracion
 INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
-where nombre_integrante LIKE'%".$namePerson1."%' GROUP BY nombre_integrante");
+inner JOIN detalle_integrantes on integrantes.idintegrante = detalle_integrantes.id_integrante
+INNER JOIN promociones on  detalle_integrantes.id_promocion = promociones.idpromocion
+where nombre_integrante LIKE'%".$namePerson1."%' AND promociones.`status` = 1 and detalle_integrantes.`status`=1 GROUP BY nombre_integrante");
 
 
 

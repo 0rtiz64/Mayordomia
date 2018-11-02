@@ -37,18 +37,12 @@ $query_upedate = mysqli_query($enlace,"UPDATE integrantes set promo_cordero = ".
 $upedateNinos = mysqli_query($enlace,"UPDATE rangos set rangos.`0-2` = $rango1, rangos.`2-3` =$rango2, rangos.`4-5` = $rango3, rangos.`6-7` =$rango4,rangos.`8-11` =$rango5,rangos.otros =$otros, rangos.total =$total
  WHERE idintegrante=".$id_integrante);
 
-$filas1= mysqli_affected_rows($enlace);
 
-if ($filas1) {
-    # code...
 
-    //segundo query
-   $respuesta = 1;
-   echo $respuesta;
+        $respuesta = 1;
+        echo $respuesta;
 
-}else{
-    $respuesta = 0;
-    echo $respuesta;
-}
+
+
 mysqli_close($enlace);
 ?>
