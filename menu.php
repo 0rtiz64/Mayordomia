@@ -324,7 +324,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                         case 'SM3.3':
                             # code...
                             if($focusSubMenu == "SM3.3"){
-                                $accesoMenus .='<li class="active"><a href="cambios.php"> Cambios  Enlazados </a></li>';
+                                $accesoMenus .='<li class="active"><a href="cambios.php"> Cambios  Enlazados</a></li>';
                             }else{
                                 $accesoMenus .='<li ><a href="cambios.php"> Cambios  Enlazados</a></li>';
                             }
@@ -566,6 +566,47 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                                     <ul>';
             }
             //FIN M7
+
+        case 'M8':
+
+            if($focusMenu == "M8"){
+                $accesoMenus .='<li class="sub-menu active">
+                                    <a href="javascript:void(0);"><i class="fa fa-dedent"></i><span>Graduación</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }else{
+                $accesoMenus .='<li class="sub-menu">
+                                    <a href="javascript:void(0);"><i class="fa fa-dedent"></i><span>Graduación</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }
+
+            for ($z=0; $z < count($miarraySubmenu); $z++) {
+                # code...
+                switch ($miarraySubmenu[$z]) {
+                    case 'SM8.1':
+                        # code...
+                        if($focusSubMenu == "SM8.1"){
+                            $accesoMenus .='<li class="active"><a href="tagsGraduacion.php">  Tags Graduacion</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="tagsGraduacion.php"> Tags Graduacion</a></li>';
+                        }
+
+                        break;
+
+
+
+
+
+                    case 'SM8.0':
+                        # code...
+                        $accesoMenus .="</ul>
+                                            </li>";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+            break;
 
         }
 

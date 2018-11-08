@@ -65,7 +65,8 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('L3', 'DIRECCION')
     ->setCellValue('M3', 'AREAS');
 
-$query = mysqli_query($enlace,"SELECT * from integracion 
+$query = mysqli_query($enlace,"SELECT integracion.integrador,integrantes.idintegrante,integrantes.nombre_integrante, integrantes.num_identidad,integrantes.fecha_cumple,integrantes.estado_civil,integrantes.sexo,
+ integrantes.cel,integrantes.tel,integrantes.promo_cordero,integrantes.direccion,integrantes.areas,integrantes.correlativo from integracion 
 INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
 INNER JOIN areas on integracion.idArea = areas.idArea
 INNER JOIN promociones ON integracion.idPromocion = promociones.idpromocion

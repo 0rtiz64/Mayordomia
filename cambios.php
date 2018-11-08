@@ -539,15 +539,15 @@ WHERE promociones.`status`=1");
 
 
                     <div class="form-group" >
-                        <div class="col-lg-4" id="celCambios">
+                        <div class="col-lg-3" id="celCambios">
                              <input type="text" style="text-transform: uppercase;" class="form-control" id="num_cel" placeholder="Ejemplo : 94632899">
                             <div id="alertTelCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Numero Invalido</div>
 
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <input type="text" style="text-transform: uppercase;" class="form-control" id="num_tel" placeholder="Ejemplo : 25641119">
                         </div>
-                        <div class="col-lg-4" id="estadoCambios">
+                        <div class="col-lg-3" id="estadoCambios">
                             <select name="estados" class="form-control" id="estados">
                                 <option value="">Estado</option>
                                 <option value="1">Activo</option>
@@ -555,7 +555,14 @@ WHERE promociones.`status`=1");
                                 <option value="2">Retirado</option>
                             </select>
                             <div id="alertEstadoIntCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Invalido</div>
+                        </div>
 
+                        <div class="col-lg-3" id="divEstadoToga">
+                            <select  id="selectToga" class="form-control">
+                                <option value="">GASTOS DE GRADUACION</option>
+                                <option value=1>PAGADO</option>
+                                <option value="2">PENDIENTE</option>
+                            </select>
                         </div>
                     </div>
 

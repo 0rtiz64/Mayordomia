@@ -21,7 +21,7 @@ WHERE detalle_integrantes.`status`=1 AND   integracion.idArea =$idArea  and prom
 
 
 if($confirm>0){
-    $query = mysqli_query($enlace,"select * from integracion  
+    $query = mysqli_query($enlace,"select integrantes.idintegrante,integrantes.nombre_integrante,integrantes.num_identidad,integrantes.correlativo from integracion  
 INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
 INNER JOIN promociones ON integracion.idPromocion = promociones.idpromocion 
 INNER JOIN detalle_integrantes ON integrantes.idintegrante = detalle_integrantes.id_integrante
@@ -36,6 +36,8 @@ WHERE detalle_integrantes.`status`=1 AND  integracion.idArea =$idArea and promoc
     $queryNombreArea = mysqli_query($enlace,"select * from areas WHERE idArea =$idArea");
     $datosNombreArea = mysqli_fetch_array($queryNombreArea,MYSQLI_ASSOC);
     $nombreArea = $datosNombreArea["Nombre"];
+
+
     echo ' <table class="table table-bordered" id="tablaDatos">';
     echo  '<thead>';
     echo '<tr>';

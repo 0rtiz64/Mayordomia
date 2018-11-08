@@ -6,7 +6,7 @@
  * Time: 11:21 AM
  */
 include  '../gold/enlace.php';
-
+/*
 $c=1;
 $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,cargos.idcargo,cargos.nombre_cargo, promociones.desc_promocion from detalle_integrantes 
 INNER JOIN integrantes ON detalle_integrantes.id_integrante =  integrantes.idintegrante
@@ -27,5 +27,18 @@ while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 };
 $c= $c-1;
 echo '<h1>'.$c.'PERSONAS INSERTADAS';
+*/
 
+/*
+$query = mysqli_query($enlace,"SELECT  id_integrante from detalle_integrantes 
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+where promociones.`status` =1 and detalle_integrantes.id_cargo = 10");
 
+while ($d = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+    $id_integrante = $d["id_integrante"];
+    $query_upedate = mysqli_query($enlace,"UPDATE detalle_integrantes set toga=1 WHERE id_integrante=".$id_integrante);
+
+}
+echo ' QUERY SUCCESSFULL';
+*/
+?>

@@ -4,7 +4,7 @@ include '../gold/enlace.php';
 $id = $_POST['id'];
 
 $sql = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante AS Name,integrantes.fecha_cumple,integrantes.cel,integrantes.tel,
-detalle_integrantes.`status` AS Estado,promociones.idpromocion,equipos.id_equipo AS Ep,cargos.idcargo,integrantes.direccion,integrantes.estado_civil,integrantes.sexo,integrantes.trasporte
+detalle_integrantes.`status` AS Estado,promociones.idpromocion,equipos.id_equipo AS Ep,cargos.idcargo,integrantes.direccion,integrantes.estado_civil,integrantes.sexo,integrantes.trasporte,detalle_integrantes.toga
  FROM detalle_integrantes
 INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion
@@ -27,6 +27,7 @@ if($rows['estado_civil'] ==""){
     $civil=$rows['estado_civil'];
 }
 
+$toga = $rows["toga"];
 $datos = array(
 				0 => $rows['num_identidad'], 
 				1 => utf8_encode($rows['Name']),
@@ -42,6 +43,7 @@ $datos = array(
 				11 => $rows['sexo'],
 				12 => $rows['trasporte'],
 				13 => $civil,
+				14 => $toga,
 				);
 echo json_encode($datos);
 

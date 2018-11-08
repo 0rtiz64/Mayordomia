@@ -13,6 +13,7 @@ function cambiosPersona(){
   var cel1 = $('#num_cel').val();
   var tel1 = $('#num_tel').val();
   var est = document.getElementById("estados").value;
+  var grad = document.getElementById("selectToga").value;
 
   var equipo = document.getElementById("CambioE").value;
   var cargos= document.getElementById("Cargos").value;
@@ -95,7 +96,7 @@ function cambiosPersona(){
                                           $('#alertPromocionCambios').slideDown('1000');
                                           $('#CambioP').addClass("has-error");
                                           return false;
-                                      }else {
+                                      }else{
                                           $('#alertPromocionCambios').hide('1000');
                                           $('#CambioP').removeClass('has-error');
                                           $('#CambioP').addClass('has-success');
@@ -135,7 +136,7 @@ function cambiosPersona(){
     $.ajax({
     type:'POST',
     url:url,
-    data:{ECIVIL:civil,EGENERO:genero,ETRANSPORTE:transporte,IDENTIDAD1: num_identidad,INTEGRANTE:num_integrante,NOMBREI:nombreI,CUMPLE:cumplea,CEL1:cel1,TEL1:tel1,ESTADO1:est,DIRECCION:direccion1,EQUIPO:equipo,CARGOS:cargos},
+    data:{ECIVIL:civil,EGENERO:genero,ETRANSPORTE:transporte,IDENTIDAD1: num_identidad,INTEGRANTE:num_integrante,NOMBREI:nombreI,CUMPLE:cumplea,CEL1:cel1,TEL1:tel1,ESTADO1:est,grad:grad,DIRECCION:direccion1,EQUIPO:equipo,CARGOS:cargos},
     success: function(datos){
       $('#formulario')[0].reset();
       $('#num_identidad').focus();

@@ -520,6 +520,7 @@ function editarIntegrante(id){
         $('#CambioE').val(datos[7]);
         $('#Cargos').val(datos[8]);
         $('#commentEditar').val(datos[9]);
+        $('#selectToga').val(datos[14]);
         $('#scrollingModal').modal({
           show:true,
           backdrop:'static'
