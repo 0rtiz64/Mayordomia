@@ -163,7 +163,43 @@ function imprimirTagsTogas(idEquipo) {
 }
 
 
+function togaIndividual(idIntegrante) {
+    var url = "php/togaIndividualDatos.php";
 
+    $.ajax({
+        type:'POST',
+        url:url,
+        data: {
+            phpidIntegrante: idIntegrante
+        },
+        success: function (numEquipo) {
+
+            sendDataTogaIndividual(idIntegrante,numEquipo);
+
+            return false;
+        }
+    });
+
+    return false;
+}
+
+
+function sendDataTogaIndividual(idIntegrante,numEquipo)
+{
+
+    console.log("INICIANDO SEND DATA");
+    showLoading("Printing...");
+    checkPrinterStatus( function (text){
+        if (text == "Ready to Print")
+        {
+                selected_printer.send(p1+idIntegrante+p2+numEquipo+p3);
+        }
+        else
+        {
+            printerError(text);
+        }
+    });
+};
 
 function sendData(response)
 {
