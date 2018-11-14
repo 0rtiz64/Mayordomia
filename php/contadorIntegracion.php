@@ -13,7 +13,19 @@ $c = 1;
 
 
 
+$totalIntegradosQuery = mysqli_query($enlace,"SELECT * from integracion 
+INNER JOIN promociones on integracion.idPromocion =  promociones.idpromocion
+WHERE promociones.`status` = 1 GROUP BY idIntegrante");
+$cIntegrados =0;
+while ($totalIntegradosDatos = mysqli_fetch_array($totalIntegradosQuery,MYSQLI_ASSOC)){
+    $cIntegrados++;
+}
 
+echo'<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
+echo'<div class="progress progress-striped active">';
+echo'<div class="progress-bar progress-bar-primary" style="width: 100%">'.$cIntegrados.' INTEGRADOS</div>';
+echo'</div>';
+echo'</div>';
 
 $totalIntegracionesQuery = mysqli_query($enlace,"SELECT COUNT(*) as integraciones from integracion
 INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
@@ -27,24 +39,11 @@ echo'</div>';
 
 
 
-$totalIntegradosQuery = mysqli_query($enlace,"SELECT * from integracion 
-INNER JOIN promociones on integracion.idPromocion =  promociones.idpromocion
-WHERE promociones.`status` = 1 GROUP BY idIntegrante");
-$cIntegrados =0;
-while ($totalIntegradosDatos = mysqli_fetch_array($totalIntegradosQuery,MYSQLI_ASSOC)){
-    $cIntegrados++;
-}
 
-echo'<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
-    echo'<div class="progress progress-striped active">';
-        echo'<div class="progress-bar progress-bar-primary" style="width: 100%">'.$cIntegrados.' INTEGRADOS</div>';
-    echo'</div>';
-echo'</div>';
 
 echo'<table class="table table-bordered">';
 echo'<thead>';
 echo'<tr>';
-echo'<th>#</th>';
 echo'<th>AREA</th>';
 echo'<th>CANTIDAD</th>';
 echo'</tr>';
@@ -81,7 +80,6 @@ WHERE integracion.idArea = $idArea and promociones.`status` = 1");
 
 
                 echo'<tr>';
-                    echo'<td >'.$c.'</td>';
                     echo'<td>'.$nombreArea.'</td>';
                     echo'<td><span class="'.$clasBadge.'" id="new-messages">'.$cantidad.'</span></td>';
                     echo'</tr>';
