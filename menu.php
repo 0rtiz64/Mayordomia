@@ -482,6 +482,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM5.4':
+                        # code...
+                        if($focusSubMenu == "SM5.4"){
+                            $accesoMenus .='<li class="active"><a href="contadorIntegracion.php">Contador Integracion</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="contadorIntegracion.php">Contador Integracion</a></li>';
+                        }
+
+                        break;
+
                     case 'SM5.0':
                         # code...
                         $accesoMenus .="</ul>
