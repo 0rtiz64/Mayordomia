@@ -29,7 +29,7 @@ $c= $c-1;
 echo '<h1>'.$c.'PERSONAS INSERTADAS';
 */
 
-/*
+
 $query = mysqli_query($enlace,"SELECT  id_integrante from detalle_integrantes 
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 where promociones.`status` =1 and detalle_integrantes.id_cargo = 10");
@@ -40,5 +40,5 @@ while ($d = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 
 }
 echo ' QUERY SUCCESSFULL';
-*/
+
 ?>

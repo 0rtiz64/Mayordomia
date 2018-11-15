@@ -15,7 +15,7 @@ $queryPromoActiva = mysqli_query($enlace,"SELECT * from promociones where `statu
 $datosPromo = mysqli_fetch_array($queryPromoActiva,MYSQLI_ASSOC);
 $correlativo = $datosPromo["correlativo"];
     $query1 = "SELECT num_identidad,nombre_integrante,cel,correlativo FROM integrantes
-where nombre_integrante LIKE '%".$namePerson1."%'  and correlativo >$correlativo";
+where nombre_integrante LIKE '%".$namePerson1."%' ";
 
 $query2 = "SELECT num_identidad,nombre_integrante,cel,correlativo FROM integrantes
 INNER JOIN pastoreadores on integrantes.idintegrante = pastoreadores.idIntegrante
@@ -27,7 +27,7 @@ WHERE integrantes.nombre_integrante LIKE '%".$namePerson1."%' and liderazgo.esta
 
 $num = mysqli_num_rows(mysqli_query($enlace,$query1));
 
-
+$q = mysqli_query($enlace,$query1);
 
 echo '<div class="table-responsive">';
 
@@ -43,62 +43,24 @@ echo '<table class="table table-hover" id="example">';
 								echo "<th>Copiar</th>";
 				      	  echo "</tr>";
 				    echo "</thead>";
+                    $total = 1;
+				    while($rows = mysqli_fetch_array($q,MYSQLI_ASSOC)){
+                        echo "<tr>";
+                        echo "<td>".$total."</td>";
+                        echo "<td>".$rows["num_identidad"]."</td>";
+                        echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
+                        echo "<td>".$rows["cel"]."</td>";
+                        echo "<td>".$rows["correlativo"]."</td>";
+                        echo '<td><a href="javascript:Mostrar(\''.$rows["num_identidad"].'\');" class="glyphicon glyphicon-share-alt"></a></td>';
+                        echo "</tr>";
+                        $total++;
+                    }
 
 				    echo "<tbody>";
 
 $total = 1;
 
 
-        if($num>0){
-
-            $datosIntegrante = mysqli_query($enlace,$query1);
-            while ($rows = mysqli_fetch_array($datosIntegrante,MYSQLI_ASSOC)) {
-                # code...
-                echo "<tr>";
-                echo "<td>".$total."</td>";
-                echo "<td>".$rows["num_identidad"]."</td>";
-                echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
-                echo "<td>".$rows["cel"]."</td>";
-                echo "<td>".$rows["correlativo"]."</td>";
-                echo '<td><a href="javascript:Mostrar(\''.$rows["num_identidad"].'\');" class="glyphicon glyphicon-share-alt"></a></td>';
-                echo "</tr>";
-                $total++;
-            }
-
-        }else{
-
-            $numPast = mysqli_num_rows(mysqli_query($enlace,$query2));
-
-            if($numPast>0){
-                $datosPastoreador = mysqli_query($enlace,$query2);
-                while ($rows = mysqli_fetch_array($datosPastoreador,MYSQLI_ASSOC)) {
-                    # code...
-                    echo "<tr>";
-                    echo "<td>".$total."</td>";
-                    echo "<td>".$rows["num_identidad"]."</td>";
-                    echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
-                    echo "<td>".$rows["cel"]."</td>";
-                    echo "<td>".$rows["correlativo"]."</td>";
-                    echo '<td><a href="javascript:Mostrar(\''.$rows["num_identidad"].'\');" class="glyphicon glyphicon-share-alt"></a></td>';
-                    echo "</tr>";
-                    $total++;
-                }
-            }else{
-                $datosLider = mysqli_query($enlace,$query3);
-                while ($rows=mysqli_fetch_array($datosLider,MYSQLI_ASSOC)){
-                    echo "<tr>";
-                    echo "<td>".$total."</td>";
-                    echo "<td>".$rows["num_identidad"]."</td>";
-                    echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
-                    echo "<td>".$rows["cel"]."</td>";
-                    echo "<td>".$rows["correlativo"]."</td>";
-                    echo '<td><a href="javascript:Mostrar(\''.$rows["num_identidad"].'\');" class="glyphicon glyphicon-share-alt"></a></td>';
-                    echo "</tr>";
-                    $total++;
-                }
-            }
-
-        }
 
 
 		echo "</tbody>";

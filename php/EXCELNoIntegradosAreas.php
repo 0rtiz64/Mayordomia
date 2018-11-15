@@ -47,11 +47,15 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 
 
-$queryNoIntegrados = mysqli_query($enlace,"SELECT integrantes.correlativo,integrantes.nombre_integrante,integrantes.cel,equipos.num_equipo,equipos.nombre_equipo from detalle_integrantes 
-INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+$queryNoIntegrados = mysqli_query($enlace,"SELECT *
+  FROM detalle_integrantes
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
-WHERE promociones.`status` = 1 and detalle_integrantes.id_cargo = 10 ORDER BY equipos.num_equipo ASC");
+ WHERE NOT EXISTS (SELECT NULL
+                     FROM integracion
+                    WHERE detalle_integrantes.id_integrante = integracion.idIntegrante)
+AND promociones.`status` = 1 AND detalle_integrantes.id_cargo = 10 ORDER BY equipos.num_equipo");
 $c =1;
 $celdas= 3;
 while ($datos = mysqli_fetch_array($queryNoIntegrados,MYSQLI_ASSOC)){
