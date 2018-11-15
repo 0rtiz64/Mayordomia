@@ -8,7 +8,7 @@
 include "../gold/enlace.php";
 $dato = $_POST["dato"];
 
-$queryNoIntegrados = mysqli_query($enlace,"SELECT *
+$queryNoIntegrados = mysqli_query($enlace,"SELECT integrantes.correlativo,integrantes.nombre_integrante,integrantes.cel,equipos.num_equipo,equipos.nombre_equipo
   FROM detalle_integrantes
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
