@@ -133,6 +133,11 @@
                         break;
 
 
+                    case 'SM5.4':
+                        # code...
+                        $direccion = "contadorIntegracion.php";
+                        break;
+
 
                 }
                 break;

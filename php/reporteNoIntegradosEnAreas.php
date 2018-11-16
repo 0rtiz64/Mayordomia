@@ -16,7 +16,7 @@ INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
  WHERE NOT EXISTS (SELECT NULL
                      FROM integracion
                     WHERE detalle_integrantes.id_integrante = integracion.idIntegrante)
-AND promociones.`status` = 1 AND detalle_integrantes.id_cargo = 10 ORDER BY equipos.num_equipo" );
+AND promociones.`status` = 1 AND detalle_integrantes.id_cargo = 10 and detalle_integrantes.`status` =1 ORDER BY equipos.num_equipo" );
 $c =1;
 echo'<a href="php/pdfNoIntegradosAreas.php" target="_blank" class="btn btn-danger" style="color: white">PDF </a>';
 echo'<a href="php/EXCELNoIntegradosAreas.php" class="btn btn-success" style="color: white; float: right">EXCEL </a>';

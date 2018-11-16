@@ -72,7 +72,7 @@ WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '".$idEquipo.
 }
 $cantidadTodalTodos= mysqli_query($enlace,"SELECT COUNT(*) AS cantidadTotalTodos FROM detalle_integrantes
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE promociones.`status` = 1 and detalle_integrantes.id_cargo = 10");
+WHERE promociones.`status` = 1 and detalle_integrantes.`status` = 1  and detalle_integrantes.id_cargo = 10");
 $datosCantidadTotalTodos = mysqli_fetch_array($cantidadTodalTodos,MYSQLI_ASSOC);
 $cantidadTotalTodos = $datosCantidadTotalTodos["cantidadTotalTodos"];
   $objPHPExcel->setActiveSheetIndex(0)

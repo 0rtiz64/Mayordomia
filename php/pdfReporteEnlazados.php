@@ -41,7 +41,7 @@ where promociones.`status`=1 AND equipos.num_equipo>0 GROUP BY num_equipo ASC");
         $idEquipo  =$rows["id_equipo"];
         $queryCantidadTodos= mysqli_query($enlace,"SELECT COUNT(*) as cantidadTodos FROM detalle_integrantes
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '".$idEquipo."' and detalle_integrantes.id_cargo = 10");
+WHERE promociones.`status` = 1  AND detalle_integrantes.`status` =1 and detalle_integrantes.id_equipo = '".$idEquipo."' and detalle_integrantes.id_cargo = 10");
         $datosCantidadTodos = mysqli_fetch_array($queryCantidadTodos,MYSQLI_ASSOC);
         $filas.="<tr align='center'><td colspan='2'>".$rows["num_equipo"]." - ".$rows["nombre_equipo"]."</td> <td>".$datosCantidadTodos["cantidadTodos"]."</td> </tr>";
 
@@ -51,7 +51,7 @@ WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '".$idEquipo.
 
 $cantidadTodalTodos= mysqli_query($enlace,"SELECT COUNT(*) AS cantidadTotalTodos FROM detalle_integrantes
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE promociones.`status` = 1 and detalle_integrantes.id_cargo = 10");
+WHERE promociones.`status` = 1 and detalle_integrantes.`status` = 1  and detalle_integrantes.id_cargo = 10");
 $datosCantidadTotalTodos = mysqli_fetch_array($cantidadTodalTodos,MYSQLI_ASSOC);
 $cantidadTotalTodos = $datosCantidadTotalTodos["cantidadTotalTodos"];
 $filas.='

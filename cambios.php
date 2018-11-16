@@ -33,7 +33,6 @@ session_start();
 <!--DatePicker-->
         <link rel="stylesheet" href="myfiles/DatePicker/css/bootstrap-datepicker.css">
 
-        <link rel="stylesheet" href="angular/angularEstilos.css">
 
 
 

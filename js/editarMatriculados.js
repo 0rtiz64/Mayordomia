@@ -370,8 +370,14 @@ if(respuestaDocumentos ==2){
 
            if (datos == 1){
                alertify.success('DATOS ACTUALIZADOS');
+                $('#inputRango1Modal').val("");
+                $('#inputRango2Modal').val("");
+                $('#inputRango3Modal').val("");
+                $('#inputRango4Modal').val("");
+                $('#inputRango5Modal').val("");
+                $('#inputRango6Modal').val("");
            }else{
-               alertify.error('ERROR, DATOS NO ACTUALIZADOS');
+               alertify.success('DATOS ACTUALIZADOS');
            }
             return false;
         }

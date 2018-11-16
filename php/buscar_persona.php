@@ -9,8 +9,7 @@ $namePerson1 = str_replace("'","",$namePerson);
 if (empty($_POST['nombrePersona'])){
 		echo "";
 				
-	}
-	else{
+	}else{
 $queryPromoActiva = mysqli_query($enlace,"SELECT * from promociones where `status` = 1");
 $datosPromo = mysqli_fetch_array($queryPromoActiva,MYSQLI_ASSOC);
 $correlativo = $datosPromo["correlativo"];

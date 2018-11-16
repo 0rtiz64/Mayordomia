@@ -55,7 +55,7 @@ INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
  WHERE NOT EXISTS (SELECT NULL
                      FROM integracion
                     WHERE detalle_integrantes.id_integrante = integracion.idIntegrante)
-AND promociones.`status` = 1 AND detalle_integrantes.id_cargo = 10 ORDER BY equipos.num_equipo");
+AND promociones.`status` = 1 AND detalle_integrantes.id_cargo = 10 and detalle_integrantes.`status` =1 ORDER BY equipos.num_equipo");
 $c =1;
 $celdas= 3;
 while ($datos = mysqli_fetch_array($queryNoIntegrados,MYSQLI_ASSOC)){

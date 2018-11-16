@@ -36,7 +36,7 @@ where promociones.`status` =1 and detalle_integrantes.id_cargo = 10");
 
 while ($d = mysqli_fetch_array($query,MYSQLI_ASSOC)){
     $id_integrante = $d["id_integrante"];
-    $query_upedate = mysqli_query($enlace,"UPDATE detalle_integrantes set toga=1 WHERE id_integrante=".$id_integrante);
+    $query_upedate = mysqli_query($enlace,"UPDATE detalle_integrantes set toga=2 WHERE id_integrante=".$id_integrante);
 
 }
 echo ' QUERY SUCCESSFULL';
