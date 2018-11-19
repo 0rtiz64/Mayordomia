@@ -63,7 +63,7 @@ integrantes.areas,integrantes.correlativo
 INNER JOIN integrantes on integrantes.idintegrante = integracion.idIntegrante
 INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
 INNER JOIN detalle_integrantes on integrantes.idintegrante= detalle_integrantes.id_integrante
-WHERE idArea = $idArea and promociones.`status` = 1 and detalle_integrantes.`status` = 1";
+WHERE idArea = $idArea and promociones.`status` = 1 and detalle_integrantes.`status` = 1 GROUP BY integrantes.nombre_integrante ASC";
 
 
     $confirmarEnlazados = mysqli_num_rows(mysqli_query($enlace,$queryEnlazadosPorArea));
@@ -189,19 +189,29 @@ $pestana->setCellValue('A3', 'No.')
     ->setCellValue('C3', 'CANTIDAD');
 $celdasAreas= 4;
 $contadorAreas = 1;
+$c =0;
 $querySeleccionarTodasAreas = mysqli_query($enlace,"SELECT * from areas GROUP BY Nombre ASC");
 while($areas = mysqli_fetch_array($querySeleccionarTodasAreas,MYSQLI_ASSOC)){
     $idArea = $areas["idArea"];
+$queryNombreArea = mysqli_query($enlace,"SELECT * from areas WHERE idArea = $idArea");
+$datosNombreArea = mysqli_fetch_array($queryNombreArea,MYSQLI_ASSOC);
+$nombreArea = $datosNombreArea["Nombre"];
 
     $cantidadPorArea = mysqli_query($enlace,"SELECT COUNT(*) as cantidad,areas.Nombre from integracion
+INNER JOIN integrantes on integracion.idIntegrante = integrantes.idintegrante
 INNER JOIN  areas on integracion.idArea = areas.idArea
 INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
 INNER JOIN detalle_integrantes on integracion.idIntegrante = detalle_integrantes.id_integrante
-WHERE integracion.idArea  = $idArea and promociones.`status` = 1 and detalle_integrantes.`status` = 1");
-$datosAreas  =mysqli_fetch_array($cantidadPorArea,MYSQLI_ASSOC);
-    $pestana->setCellValue('A'.$celdasAreas, $contadorAreas)
-        ->setCellValue('B'.$celdasAreas, $datosAreas["Nombre"])
-        ->setCellValue('C'.$celdasAreas, $datosAreas["cantidad"]);
+WHERE integracion.idArea  = $idArea and promociones.`status` = 1 and detalle_integrantes.`status` = 1 GROUP BY integrantes.nombre_integrante ASC");
+
+
+while ($datosAreas  =mysqli_fetch_array($cantidadPorArea,MYSQLI_ASSOC)){
+    $c++;
+}
+$pestana->setCellValue('A'.$celdasAreas, $contadorAreas)
+        ->setCellValue('B'.$celdasAreas, $nombreArea)
+        ->setCellValue('C'.$celdasAreas, $c);
+$c =0;
 $celdasAreas++;
 $contadorAreas++;
     $objPHPExcel->setActiveSheetIndex($contadorPestanas);
