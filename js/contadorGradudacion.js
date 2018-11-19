@@ -9,6 +9,11 @@ function contadorGraduacion() {
     var tag = $('#inputTagGraduacion').val();
     var url = 'php/contadorGraduacion.php';
 
+
+    if(tag.trim().length == ""){
+        return false;
+
+    }
     $.ajax({
         type:'POST',
         url:url,
@@ -17,18 +22,24 @@ function contadorGraduacion() {
 
         },
         success: function (datos) {
-                if(datos == 0){
-                    alertify.error("ERROR, VERIFICAR INTEGRANTE EN PROMOCION ACTUAL")
+
+            var data = eval(datos);
+                if(data[0] == 0){
+                    alertify.error("ERROR, VERIFICAR INTEGRANTE EN PROMOCION ACTUAL");
                     $('#inputTagGraduacion').val("");
+                    $('#divResultados').html(data[1]);
                 }else{
-                   if(datos ==4){
+                   if(data[0] ==4){
                        alertify.error("CANTIDAD MAXIMA ALCANZADA");
+                       $('#divResultados').html(data[1]);
+                       $('#inputTagGraduacion').val("");
                    }else{
-                       if(datos==2){
+                       if(data[0]==2){
                            alertify.error("ERROR, TAG YA LEIDO");
+                           $('#divResultados').html(data[1]);
                            $('#inputTagGraduacion').val("");
                        }else{
-                           $('#divResultados').html(datos);
+                           $('#divResultados').html(data[1]);
                            $('#inputTagGraduacion').val("");
                        }
                    }
