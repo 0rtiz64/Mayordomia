@@ -141,7 +141,7 @@ session_start();
           <section class="main-content-wrapper">
               <section id="main-content">
                   <div class="row">
-                      <h1 class="h1">CONTADOR GRADUACION</h1>
+                      <h1 class="h1">ENTREGA DE TOGAS Y BIRRETES</h1>
                       <div class="col-md-12">
 
                           <div class="col-md-12 form-group">

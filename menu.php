@@ -605,9 +605,9 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                     case 'SM8.2':
                         # code...
                         if($focusSubMenu == "SM8.2"){
-                            $accesoMenus .='<li class="active"><a href="contadorGraduacion.php">  Contador Graduacion</a></li>';
+                            $accesoMenus .='<li class="active"><a href="contadorGraduacion.php">  Contador de Togas</a></li>';
                         }else{
-                            $accesoMenus .='<li ><a href="contadorGraduacion.php"> Contador Graduacion</a></li>';
+                            $accesoMenus .='<li ><a href="contadorGraduacion.php"> Contador de Togas</a></li>';
                         }
 
                         break;
