@@ -345,7 +345,7 @@ WHERE integracion.idIntegrante = $idIntegranteInt");
     $contador++;
     $No2++;
     $objPHPExcel->setActiveSheetIndex($contadorPestanas);
-    $objPHPExcel->getActiveSheet()->setTitle("GENERAL");
+    $objPHPExcel->getActiveSheet()->setTitle("LISTADO GENERAL");
 }
 
 //GENERAL FINAL
