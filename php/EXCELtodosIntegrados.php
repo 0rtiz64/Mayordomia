@@ -220,7 +220,135 @@ $contadorAreas++;
 
 
 
+//GENERAL INICIO
+$contadorPestanas = $contadorPestanas+1;
+$pestana2 = $objPHPExcel->createSheet($contadorPestanas); //CREAR PESTANAS;
+$pestana2
+    ->setCellValue('A3', 'No.')
+    ->setCellValue('B3', 'CORDERITOS')
+    ->setCellValue('C3', 'IDENTIDAD')
+    ->setCellValue('D3', 'NOMBRE')
+    ->setCellValue('E3', 'TEL 1')
+    ->setCellValue('F3', 'TEL 2')
+    ->setCellValue('G3', 'ESTADO CIVIL')
+    ->setCellValue('H3', 'GENERO')
+    ->setCellValue('I3', 'TRANSPORTE')
+    ->setCellValue('J3', 'DIRECCION')
+    ->setCellValue('K3', 'FECHA NACIMIENTO')
+    ->setCellValue('L3', 'AREAS DONDE SIRVE ACTUALMENTE')
+    ->setCellValue('M3', 'CORRELATIVO')
+    ->setCellValue('N3', 'AREAS DONDE SE INTEGRO 1')
+    ->setCellValue('O3', 'AREAS DONDE SE INTEGRO 2')
+    ->setCellValue('P3', 'AREAS DONDE SE INTEGRO 3')
+    ->setCellValue('Q3', 'AREAS DONDE SE INTEGRO 4')
+    ->setCellValue('R3', 'AREAS DONDE SE INTEGRO 5');
 
+
+$consultarTodasIntegraciones = mysqli_query($enlace,"SELECT integrantes.promo_cordero,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel,
+integrantes.tel,integrantes.estado_civil,integrantes.sexo,integrantes.trasporte,integrantes.direccion,integrantes.direccion,
+integrantes.fecha_cumple,integrantes.areas,integrantes.correlativo,integrantes.idintegrante from integracion
+INNER JOIN integrantes on integracion.idIntegrante = integrantes.idintegrante
+INNER JOIN promociones on integracion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1 GROUP BY integracion.idIntegrante ORDER BY integrantes.nombre_integrante ASC");
+
+$No2 = 1;
+$contador =4;
+while($datosIntegraciones = mysqli_fetch_array($consultarTodasIntegraciones,MYSQLI_ASSOC)){
+
+$idIntegranteInt = $datosIntegraciones["idintegrante"];
+    //FECHA INICIO
+
+    $fecha =  $datosIntegraciones["fecha_cumple"];
+
+    $dia = substr($fecha,8,2);
+    $mes = substr($fecha,5,2);
+    $aaa = substr($fecha,0,4);
+
+    switch ($mes){
+        case 01:
+            $miMes = "ENERO";
+            break;
+
+        case 02:
+            $miMes = "FEBRERO";
+            break;
+
+        case 03:
+            $miMes = "MARZO";
+            break;
+
+        case 04:
+            $miMes = "ABRIL";
+            break;
+
+        case 05:
+            $miMes = "MAYO";
+            break;
+
+        case 06:
+            $miMes = "JUNIO";
+            break;
+
+        case 07:
+            $miMes = "JULIO";
+            break;
+
+        case "08":
+            $miMes = "AGOSTO";
+            break;
+
+        case "09":
+            $miMes = "SEPTIEMBRE";
+            break;
+
+        case 10:
+            $miMes = "OCTUBRE";
+            break;
+
+        case 11:
+            $miMes = "NOVIEMBRE";
+            break;
+
+        case 12:
+            $miMes = "DICIEMBRE";
+            break;
+    }
+
+
+    $fCompletaIntegraciones = $dia."-".$miMes."-".$aaa;
+    //FECHA FINAL
+
+
+    $pestana2->setCellValue()->getCell("C$contador")->setValueExplicit($datosIntegraciones["num_identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
+
+    $pestana2->setCellValue('A'.$contador, $No2)
+        ->setCellValue('B'.$contador, $datosIntegraciones["promo_cordero"])
+        ->setCellValue('D'.$contador, $datosIntegraciones["nombre_integrante"])
+        ->setCellValue('E'.$contador, $datosIntegraciones["cel"])
+        ->setCellValue('F'.$contador, $datosIntegraciones["tel"])
+        ->setCellValue('G'.$contador, $datosIntegraciones["estado_civil"])
+        ->setCellValue('H'.$contador, $datosIntegraciones["sexo"])
+        ->setCellValue('I'.$contador, $datosIntegraciones["trasporte"])
+        ->setCellValue('J'.$contador, $datosIntegraciones["direccion"])
+        ->setCellValue('K'.$contador, $fCompletaIntegraciones)
+        ->setCellValue('L'.$contador, $datosIntegraciones["areas"])
+        ->setCellValue('M'.$contador, $datosIntegraciones["correlativo"]);
+
+    $areasIntegrante = mysqli_query($enlace,"SELECT areas.Nombre from integracion 
+INNER JOIN areas on integracion.idArea = areas.idArea
+WHERE integracion.idIntegrante = $idIntegranteInt");
+    $cCeldas= 13;
+    while ($areasIntegranteDatos = mysqli_fetch_array($areasIntegrante,MYSQLI_ASSOC)){
+        $pestana2->setCellValueByColumnAndRow($cCeldas,$contador,$areasIntegranteDatos["Nombre"]);
+        $cCeldas++;
+    }
+    $contador++;
+    $No2++;
+    $objPHPExcel->setActiveSheetIndex($contadorPestanas);
+    $objPHPExcel->getActiveSheet()->setTitle("GENERAL");
+}
+
+//GENERAL FINAL
 
 $objPHPExcel->setActiveSheetIndex(0);
 

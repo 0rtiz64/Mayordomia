@@ -141,7 +141,11 @@ session_start();
           <section class="main-content-wrapper">
               <section id="main-content">
                   <div class="row">
-                      <h1 class="h1">ENTREGA DE TOGAS Y BIRRETES</h1>
+                      <div class="col-md-12 form-group">
+                          <h1 class="h1" >ENTREGA DE TOGAS Y BIRRETES </h1>
+                          <!--span class="label label-danger pull-right inbox-notification">83</span-->
+                      </div>
+
                       <div class="col-md-12">
 
                           <div class="col-md-12 form-group">
