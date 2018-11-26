@@ -10,7 +10,7 @@ $idEquipo = $_POST["phpidEquipo"];
 $rawdata = array();
 $i=0;
 
-$query = mysqli_query($enlace, "SELECT integrantes.idintegrante,equipos.num_equipo from equipos
+$query = mysqli_query($enlace, "SELECT integrantes.idintegrante,equipos.num_equipo,promociones.desc_promocion from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
 INNER JOIN detalle_integrantes on equipos.id_equipo = detalle_integrantes.id_equipo
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante

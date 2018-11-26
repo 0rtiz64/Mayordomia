@@ -8,7 +8,7 @@
 include '../gold/enlace.php';
 $idIntegrante = $_POST["phpidIntegrante"];
 
-$query = mysqli_query($enlace ,"SELECT equipos.num_equipo from detalle_integrantes
+$query = mysqli_query($enlace ,"SELECT equipos.num_equipo,promociones.desc_promocion from detalle_integrantes
 INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 WHERE detalle_integrantes.id_integrante = $idIntegrante and promociones.`status` = 1");
