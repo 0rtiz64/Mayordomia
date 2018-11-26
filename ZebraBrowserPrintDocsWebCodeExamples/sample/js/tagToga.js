@@ -248,6 +248,7 @@ function sendData(response)
 {
 
     console.log("INICIANDO SEND DATA");
+   // console.log(response);
     showLoading("Printing...");
     checkPrinterStatus( function (text){
         if (text == "Ready to Print")
@@ -275,6 +276,7 @@ function sendData(response)
 
 
                selected_printer.send(ip1+promocion+ip2+idInterno+ip3+numEquipo+ip4);
+               console.log(ip1+promocion+ip2+idInterno+ip3+numEquipo+ip4);
 
             }
 

@@ -219,3 +219,5 @@ function removerPast2() {
 function removerPast1() {
     $('#pastoreador1').val("");
 }
+
+

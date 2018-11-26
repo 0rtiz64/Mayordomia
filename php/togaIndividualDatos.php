@@ -14,5 +14,12 @@ INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromo
 WHERE detalle_integrantes.id_integrante = $idIntegrante and promociones.`status` = 1");
 $datos =mysqli_fetch_array($query,MYSQLI_ASSOC);
 $numEquipo = $datos["num_equipo"];
-echo $numEquipo;
+$promocion= $datos["desc_promocion"];
+
+
+$datos = array(
+    0 => $numEquipo,
+    1 => $promocion,
+);
+echo json_encode($datos);
 ?>

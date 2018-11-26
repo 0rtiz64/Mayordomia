@@ -181,6 +181,8 @@ WHERE promociones.`status` = 1 and num_equipo>0 GROUP BY num_equipo ASC");
                             </div>
                           <div class="col-md-12 form-group" id="tablaRegistrosIntegrantesGraduacion"></div>
 
+
+
                       </div>
 
               </section>

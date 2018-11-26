@@ -28,3 +28,4 @@ $('#equiposGraduacion').on('change',function () {
     });
    return false;
 });
+
