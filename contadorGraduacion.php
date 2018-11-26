@@ -145,17 +145,18 @@ session_start();
                           <div class="col-md-7">
                               <h1 class="h1" >ENTREGA DE TOGAS Y BIRRETES </h1>
                           </div>
-                          <div class="col-md-5" id="contadorVisible">
 
-                          </div>
                           <!--span class="label label-danger pull-right inbox-notification">83</span-->
                       </div>
 
                       <div class="col-md-12">
 
-                          <div class="col-md-12 form-group">
+                          <div class="col-md-10 col-sm-10 col-xs-10 form-group">
                               <input type="password" class="form-control" placeholder="LEER TAG" id="inputTagGraduacion">
                               <input type="submit" class="btn btn-success collapse" onclick="contadorGraduacion(); ">
+                          </div>
+                          <div class="col-md-2 col-sm-2 col-xs-2" id="contadorVisible">
+
                           </div>
 
 
