@@ -65,9 +65,27 @@ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status`
 
         }
 
+        //CONSULTAR PROMOCION ACTIVA INICIO
+        $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+        $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+        $idPromocion = $datosPromocion["idpromocion"];
+        //CONSULTAR PROMOCION ACTIVA FINAL
+
+        //CONTADOR GENERAL INICIO
+        $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1");
+        $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+        $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+        $divContadorGeneral = ' <h3 style="margin-top: -2%">
+                                  <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
+                              </h3>';
+        //CONTADOR GENERAL FINAL
+
         $datos = array(
             0 => 2,
             1 => $cont,
+            2 => $divContadorGeneral,
 
 
         );
@@ -134,9 +152,27 @@ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status`
 
     }
 
+    //CONSULTAR PROMOCION ACTIVA INICIO
+    $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+    $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+    $idPromocion = $datosPromocion["idpromocion"];
+    //CONSULTAR PROMOCION ACTIVA FINAL
+
+
+    //CONTADOR GENERAL INICIO
+    $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1");
+    $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+    $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+                                  <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
+                              </h3>';
+    //CONTADOR GENERAL FINAL
     $datos = array(
         0 => 4,
         1 => $cont,
+        2 => $divContadorGeneral,
 
 
     );
@@ -145,9 +181,26 @@ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status`
     //FINAL CONTADORES
 }else{
 
+    //CONSULTAR PROMOCION ACTIVA INICIO
+    $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+    $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+    $idPromocion = $datosPromocion["idpromocion"];
+    //CONSULTAR PROMOCION ACTIVA FINAL
     //INSERTAR
-    $insertar = mysqli_query($enlace,"insert into graduacion (idIntegrante,idDetalleIntegrante) values 
-	($tag,$detalleIntegrante)");
+    $insertar = mysqli_query($enlace,"insert into graduacion (idIntegrante,idDetalleIntegrante,idPromocion) values 
+	($tag,$detalleIntegrante,$idPromocion)");
+
+
+    //CONTADOR GENERAL INICIO
+    $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1");
+    $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+    $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+                                  <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
+                              </h3>';
+    //CONTADOR GENERAL FINAL
 
     //INICIO CONTADORES
     $queryEquipos  =mysqli_query($enlace,"SELECT * from equipos
@@ -187,9 +240,27 @@ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status`
 
     }
 
+    //CONSULTAR PROMOCION ACTIVA INICIO
+    $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+    $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+    $idPromocion = $datosPromocion["idpromocion"];
+    //CONSULTAR PROMOCION ACTIVA FINAL
+
+    //CONTADOR GENERAL INICIO
+    $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1");
+    $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+    $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+                                  <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
+                              </h3>';
+    //CONTADOR GENERAL FINAL
+
     $datos = array(
         0 => 5,
         1 => $cont,
+        2 => $divContadorGeneral,
 
 
     );
@@ -256,10 +327,28 @@ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status`
     }
     //FINAL CONTADORES
     //TEST FINAL
+    //CONSULTAR PROMOCION ACTIVA INICIO
+    $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+    $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+    $idPromocion = $datosPromocion["idpromocion"];
+    //CONSULTAR PROMOCION ACTIVA FINAL
 
+
+
+    //CONTADOR GENERAL INICIO
+    $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1");
+    $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+    $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+                                  <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
+                              </h3>';
+    //CONTADOR GENERAL FINAL
     $datos = array(
         0 => 0,
         1 => $cont,
+        2 => $divContadorGeneral,
 
 
     );

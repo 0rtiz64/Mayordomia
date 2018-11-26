@@ -142,7 +142,12 @@ session_start();
               <section id="main-content">
                   <div class="row">
                       <div class="col-md-12 form-group">
-                          <h1 class="h1" >ENTREGA DE TOGAS Y BIRRETES </h1>
+                          <div class="col-md-7">
+                              <h1 class="h1" >ENTREGA DE TOGAS Y BIRRETES </h1>
+                          </div>
+                          <div class="col-md-5" id="contadorVisible">
+
+                          </div>
                           <!--span class="label label-danger pull-right inbox-notification">83</span-->
                       </div>
 

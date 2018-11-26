@@ -44,6 +44,13 @@ function contadorGraduacion() {
                        }
                    }
                 }
+
+
+                if(data[2] == 0){
+                    return false;
+                }else {
+                    $('#contadorVisible').html(data[2]);
+                }
             return false;
         }
     });
