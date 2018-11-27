@@ -77,9 +77,9 @@ INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
         $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
         $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-        $divContadorGeneral = ' <h3 style="margin-top: -2%">
+        $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                   <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
-                              </h3>';
+                              </h1>';
         //CONTADOR GENERAL FINAL
 
         $datos = array(
@@ -165,9 +165,9 @@ INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
     $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
     $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+    $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                   <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
-                              </h3>';
+                              </h1>';
     //CONTADOR GENERAL FINAL
     $datos = array(
         0 => 4,
@@ -197,9 +197,9 @@ INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
     $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
     $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+    $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                   <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
-                              </h3>';
+                              </h1>';
     //CONTADOR GENERAL FINAL
 
     //INICIO CONTADORES
@@ -252,9 +252,9 @@ INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
     $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
     $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+    $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                   <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
-                              </h3>';
+                              </h1>';
     //CONTADOR GENERAL FINAL
 
     $datos = array(
@@ -341,9 +341,9 @@ INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
     $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
     $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-    $divContadorGeneral = ' <h3 style="margin-top: -2%">
+    $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                   <span class="label label-info pull-left inbox-notification">'.$contadorGeneral.'</span>
-                              </h3>';
+                              </h1>';
     //CONTADOR GENERAL FINAL
     $datos = array(
         0 => 0,
