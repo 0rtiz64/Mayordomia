@@ -2,21 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: David Ortiz
- * Date: 14/11/2018
- * Time: 9:37 AM
+ * Date: 27/11/2018
+ * Time: 2:17 PM
  */
-
-include  '../gold/enlace.php';
-$tag = $_POST["phpTag"];
+include '../gold/enlace.php';
+$idEquipo = $_POST["phpIdEquipo"];
 $cont ="";
+$query = mysqli_query($enlace,"SELECT * FROM graduacion
+INNER JOIN detalle_integrantes on graduacion.idDetalleIntegrante = detalle_integrantes.idetalle_integrantes
+WHERE detalle_integrantes.id_equipo = $idEquipo");
+
+while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+    $idDetalle = $datos["idetalle_integrantes"];
+    $update = mysqli_query($enlace,"UPDATE graduacion SET graduacion.devuelta =1
+ WHERE graduacion.idDetalleIntegrante=$idDetalle");
+}
 
 
 function FcontadorGeneral ($enlace){
-   //CONSULTAR PROMOCION ACTIVA INICIO
-        $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
-        $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
-        $idPromocion = $datosPromocion["idpromocion"];
-        //CONSULTAR PROMOCION ACTIVA FINAL
+    //CONSULTAR PROMOCION ACTIVA INICIO
+    $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+    $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+    $idPromocion = $datosPromocion["idpromocion"];
+    //CONSULTAR PROMOCION ACTIVA FINAL
 
     //DEVUELTA INICIO
     $queryDevuelta = mysqli_query($enlace,"SELECT COUNT(*) CANTIDADDEVUELTA from graduacion WHERE devuelta = 1");
@@ -24,26 +32,23 @@ function FcontadorGeneral ($enlace){
     $cantidadDevuelta = $datosDevuelta["CANTIDADDEVUELTA"];
     //DEVUELTA FINAL
 
-        //CONTADOR GENERAL INICIO
-        $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
+    //CONTADOR GENERAL INICIO
+    $queryContadorGeneral = mysqli_query($enlace,"SELECT COUNT(*) as CANTIDADGENERAL  from graduacion 
 INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
 WHERE promociones.`status` = 1");
-        $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
-        $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
-        $divContadorGeneral = ' <h1 style="margin-top: -2%">
+    $datosContadorGeneral = mysqli_fetch_array($queryContadorGeneral,MYSQLI_ASSOC);
+    $contadorGeneral = $datosContadorGeneral["CANTIDADGENERAL"];
+    $divContadorGeneral = ' <h1 style="margin-top: -2%">
                                     <div class="form-group col-md-12">
                                         <div class="col-md-6" title="ENTREGADAS"> <span class="label pull-left inbox-notification" style="background: #F0AD4E">E: '.$contadorGeneral.'</span></div>
                                         <div class="col-md-6" title="DEVUELTAS"> <span class="label pull-left inbox-notification" style="background: #416aa6">D: '.$cantidadDevuelta.'</span></div>
                                     </div>
                                  
                               </h1>';
-        //CONTADOR GENERAL FINAL
+    //CONTADOR GENERAL FINAL
 
-            return $divContadorGeneral;
+    return $divContadorGeneral;
 }
-
-
-
 
 function FcontadoresEquipos ($enlace,$cont){
     //INICIO CONTADORES
@@ -80,38 +85,38 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
 
 
 
-if($cantidad == 0){
-    $class ='class="dashboard-tile detail tile-red"';
-}else{
-    if($cantidad>0 && $cantidad <$maximoDetalleCantidad){
-        $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
-    }else{
-        if($cantidad>=$maximoDetalleCantidad && $cantidad ==$cantidadDevueltaEquipo){
-            $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
+        if($cantidad == 0){
+            $class ='class="dashboard-tile detail tile-red"';
         }else{
-            if($cantidad>= $maximoDetalleCantidad){
-                $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
-            }
-        }
-    }
-}
-
-/*
-        if($cantidad >= $maximoDetalleCantidad){
-            $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
-        }else{
-            if($cantidad>0){
+            if($cantidad>0 && $cantidad <$maximoDetalleCantidad){
                 $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
             }else{
-                if($cantidad== 0){
-                    $class ='class="dashboard-tile detail tile-red"';
+                if($cantidad>=$maximoDetalleCantidad && $cantidad ==$cantidadDevueltaEquipo){
+                    $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
                 }else{
-                    if($cantidad >= $cantidadDevueltaEquipo){
-                        $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
+                    if($cantidad>= $maximoDetalleCantidad){
+                        $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
                     }
                 }
             }
-        }*/
+        }
+
+        /*
+                if($cantidad >= $maximoDetalleCantidad){
+                    $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
+                }else{
+                    if($cantidad>0){
+                        $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
+                    }else{
+                        if($cantidad== 0){
+                            $class ='class="dashboard-tile detail tile-red"';
+                        }else{
+                            if($cantidad >= $cantidadDevueltaEquipo){
+                                $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
+                            }
+                        }
+                    }
+                }*/
 
 
         if($cantidad >= $maximoDetalleCantidad){
@@ -157,49 +162,9 @@ if($cantidad == 0){
     return $cont;
 }
 
-
-$queryDetalleIntegrante ="SELECT * from detalle_integrantes 
-INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $tag and detalle_integrantes.`status` = 1 and detalle_integrantes.id_cargo = 10";
-
-$confirmar= mysqli_num_rows(mysqli_query($enlace,$queryDetalleIntegrante));
-
-if($confirmar>0){
-    $query = mysqli_query($enlace,$queryDetalleIntegrante);
-    $datosQuery=mysqli_fetch_array($query,MYSQLI_ASSOC);
-    $detalleIntegrante = $datosQuery["idetalle_integrantes"];
-    $idEquipoInsert = $datosQuery["id_equipo"];
-    $queryGraduacion = "SELECT * from graduacion WHERE idIntegrante = $tag";
-    $confirmarLeido = mysqli_num_rows(mysqli_query($enlace,$queryGraduacion));
-
-    if($confirmarLeido>0){
-        $datos = array(
-            0 => 2,
-            1 => FcontadoresEquipos($enlace,$cont),
-            2 => FcontadorGeneral($enlace),
-        );
-        echo json_encode($datos);
-    }else{
-        $queryPromocion = mysqli_query($enlace,"SELECT * from promociones where `status` = 1");
-        $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
-        $idPromocion = $datosPromocion["idpromocion"];
-        //INSERTAR
-        $insertar = mysqli_query($enlace,"insert into graduacion (idIntegrante,idDetalleIntegrante,idPromocion,devuelta,idEquipo) values 
-	($tag,$detalleIntegrante,$idPromocion,2,$idEquipoInsert)");
-    $datos = array(
-        0 => 4,
-        1 => FcontadoresEquipos($enlace,$cont),
-        2 => FcontadorGeneral($enlace),
-    );
-    echo json_encode($datos);
-    }
-}else{
-    $datos = array(
-        0 => 0,
-        1 => FcontadoresEquipos($enlace,$cont),
-        2 => FcontadorGeneral($enlace),
-    );
-    echo json_encode($datos);
-}
-
+$datos = array(
+    0 => FcontadoresEquipos($enlace,$cont),
+    1 => FcontadorGeneral($enlace),
+);
+echo json_encode($datos);
 ?>
