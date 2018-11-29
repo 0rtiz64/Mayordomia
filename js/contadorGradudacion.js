@@ -112,7 +112,7 @@ $('#togasDevolver').on('keyup',function () {
 
             if(parseInt(datos)<parseInt(cantidad)){
 
-                alertify.error("NO SE PUEDEN DEVOLVER MAS DE LAS ENTREGADAS");
+                alertify.error("NO SE PUEDEN DEVOLVER MAS TOGAS DE LAS ENTREGADAS");
                 $('#togasDevolver').val("");
 
                  $('#modalConfirm').modal('toggle');
