@@ -90,11 +90,11 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
         if($cantidad == 0){
             $class ='class="dashboard-tile detail tile-red"';
         }else{
-            if($cantidad>0 && $cantidad <$maximoDetalleCantidad){
-                $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
+            if( $cantidad == $cantidadDevueltaEquipo ){
+                $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
             }else{
-                if($cantidad>=$maximoDetalleCantidad && $cantidad ==$cantidadDevueltaEquipo){
-                    $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
+                if( $cantidad>0 && $cantidad <$maximoDetalleCantidad){
+                    $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
                 }else{
                     if($cantidad>= $maximoDetalleCantidad){
                         $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
@@ -105,7 +105,7 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
 
 
 
-        if($cantidad > 0 && $cantidadDevueltaEquipo < $maximoDetalleCantidad) {
+        if($cantidad > 0 && $cantidadDevueltaEquipo < $cantidad) {
 
             $cont.=' 
             <div class="col-md-3 col-sm-6">
