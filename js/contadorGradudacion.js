@@ -68,13 +68,20 @@ function checkBox(idEquipo) {
 
 function devolver() {
     var idEquipo = $('#inpDev').val();
+    var cantidad = $('#togasDevolver').val();
     var url = 'php/devolverTogas.php';
+
+    if(cantidad.trim().length ==""){
+        alertify.error("CANTIDAD VACIA");
+        return false;
+    }
 
     $.ajax({
         type:'POST',
         url:url,
         data: {
-            phpIdEquipo: idEquipo
+            phpIdEquipo: idEquipo,
+            phpCantidad: cantidad
 
         },
         success: function (datos) {
@@ -82,8 +89,37 @@ function devolver() {
             $('#modalConfirm').modal('toggle');
             $('#divResultados').html(data[0]);
             $('#contadorVisible').html(data[1]);
+            $('#togasDevolver').val("");
             return false;
         }
     });
     return false;
 }
+
+$('#togasDevolver').on('keyup',function () {
+    var idEquipo = $('#inpDev').val();
+    var cantidad  = $('#togasDevolver').val();
+    var url = 'php/validarCantidadEntregaTogas.php';
+    $.ajax({
+        type:'POST',
+        url:url,
+        data: {
+            phpIdEquipo: idEquipo,
+            phpCantidad: cantidad
+
+        },
+        success: function (datos) {
+
+            if(parseInt(datos)<parseInt(cantidad)){
+
+                alertify.error("NO SE PUEDEN DEVOLVER MAS DE LAS ENTREGADAS");
+                $('#togasDevolver').val("");
+
+                 $('#modalConfirm').modal('toggle');
+                return false;
+            }
+            return false;
+        }
+    });
+    return false;
+});

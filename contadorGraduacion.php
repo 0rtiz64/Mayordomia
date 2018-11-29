@@ -266,16 +266,16 @@ session_start();
                       <div class="icon-box">
                           <i class="fa fa-info-circle"></i>
                       </div>
-                      <h4 class="modal-title">¿ESTA SEGURO DE DEVOLVER EL TOTAL DE LAS TOGAS?</h4>
+                      <h4 class="modal-title">¿CUANTAS TOGAS SERAN DEVUELTAS?</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                   </div>
                   <div class="modal-body">
-                      <p>LA CANTIDAD TOTAL DE TOGAS ENTREGADAS PASARAN A SUMAR A LA CANTIDAD TOTAL DE TOGAS DEVUELTAS.</p>
+                      <input type="number" min="0" class="form-control" placeholder="CANTIDAD DE TOGAS A DEVOLVER" id="togasDevolver">
                   </div>
                   <div class="modal-footer">
                       <input type="hidden" id="inpDev">
                       <button type="button" class="btn btn-info" data-dismiss="modal">CANCELAR</button>
-                      <button type="button" class="btn" style="background: #416AA6" onclick="devolver();" >DEVOLVER</button>
+                      <button type="button" class="btn" style="background: #416AA6" onclick="devolver();" id="btnDevTg" >DEVOLVER</button>
                   </div>
               </div>
           </div>

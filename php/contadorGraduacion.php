@@ -96,39 +96,20 @@ if($cantidad == 0){
     }
 }
 
-/*
-        if($cantidad >= $maximoDetalleCantidad){
-            $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
-        }else{
-            if($cantidad>0){
-                $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
-            }else{
-                if($cantidad== 0){
-                    $class ='class="dashboard-tile detail tile-red"';
-                }else{
-                    if($cantidad >= $cantidadDevueltaEquipo){
-                        $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
-                    }
-                }
-            }
-        }*/
 
 
-        if($cantidad >= $maximoDetalleCantidad){
+        if($cantidad > 0 && $cantidadDevueltaEquipo < $maximoDetalleCantidad) {
+
             $cont.=' 
             <div class="col-md-3 col-sm-6">
                  <div '.$class.'>
                      <div class="content col-md-12">
                           <div class="col-md-10" style="float: left">
-                            <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">'.$cantidad.'</h1>
-                        </div>';
-
-            if($cantidad >$cantidadDevueltaEquipo){
-                $cont.='<div class="col-md-2" style="float: right;">
+                            <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
+                        </div>
+                <div class="col-md-2" style="float: right;">
                           <input onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
-                        </div>';
-            }
-            $cont.='
+                        </div> 
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   
                       </div>
@@ -141,7 +122,7 @@ if($cantidad == 0){
             <div class="col-md-3 col-sm-6">
                  <div '.$class.'>
                      <div class="content">
-                         <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">'.$cantidad.'</h1>
+                         <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   
                       </div>

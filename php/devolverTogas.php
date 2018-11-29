@@ -7,10 +7,12 @@
  */
 include '../gold/enlace.php';
 $idEquipo = $_POST["phpIdEquipo"];
+$cantidadFront= $_POST["phpCantidad"];
 $cont ="";
+
 $query = mysqli_query($enlace,"SELECT * FROM graduacion
 INNER JOIN detalle_integrantes on graduacion.idDetalleIntegrante = detalle_integrantes.idetalle_integrantes
-WHERE detalle_integrantes.id_equipo = $idEquipo");
+WHERE detalle_integrantes.id_equipo = $idEquipo AND graduacion.devuelta = 2 LIMIT $cantidadFront");
 
 while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
     $idDetalle = $datos["idetalle_integrantes"];
@@ -101,39 +103,20 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
             }
         }
 
-        /*
-                if($cantidad >= $maximoDetalleCantidad){
-                    $class ='class="dashboard-tile detail"  style ="background:#5CB85C;color:#ffff"';
-                }else{
-                    if($cantidad>0){
-                        $class ='class="dashboard-tile detail" style ="background:#FAB429;color:#ffff"';
-                    }else{
-                        if($cantidad== 0){
-                            $class ='class="dashboard-tile detail tile-red"';
-                        }else{
-                            if($cantidad >= $cantidadDevueltaEquipo){
-                                $class ='class="dashboard-tile detail" style ="background:#416aa6;color:#ffff"';
-                            }
-                        }
-                    }
-                }*/
 
 
-        if($cantidad >= $maximoDetalleCantidad){
+        if($cantidad > 0 && $cantidadDevueltaEquipo < $maximoDetalleCantidad) {
+
             $cont.=' 
             <div class="col-md-3 col-sm-6">
                  <div '.$class.'>
                      <div class="content col-md-12">
                           <div class="col-md-10" style="float: left">
-                            <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">'.$cantidad.'</h1>
-                        </div>';
-
-            if($cantidad >$cantidadDevueltaEquipo){
-                $cont.='<div class="col-md-2" style="float: right;">
+                            <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
+                        </div>
+                <div class="col-md-2" style="float: right;">
                           <input onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
-                        </div>';
-            }
-            $cont.='
+                        </div> 
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   
                       </div>
@@ -146,7 +129,7 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
             <div class="col-md-3 col-sm-6">
                  <div '.$class.'>
                      <div class="content">
-                         <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">'.$cantidad.'</h1>
+                         <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   
                       </div>
