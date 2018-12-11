@@ -248,6 +248,7 @@ function sendData(response)
 {
 
     console.log("INICIANDO SEND DATA");
+    console.log(response);
    // console.log(response);
     showLoading("Printing...");
     checkPrinterStatus( function (text){

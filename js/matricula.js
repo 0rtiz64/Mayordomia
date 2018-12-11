@@ -105,6 +105,7 @@ function guardarPersona(){
     var inputDocumentos1 = $('#inputDocumentos').val();
 
     var respuestaNinos = document.getElementById('selectNinos').value;
+    var bautizado = document.getElementById('selectBautizado').value;
     var rango1= $('#inputRango1').val();
     var rango2= $('#inputRango2').val();
     var rango3= $('#inputRango3').val();
@@ -283,7 +284,8 @@ var correlativoVisible = $('#correlativo').val();
             phpRango5 :rango5,
             phpRango6 :rango6,
             phpDocumentos :inputDocumentos,
-            phpRespuestaDocumentos :respuestaDocumentos
+            phpRespuestaDocumentos :respuestaDocumentos,
+            phpBautizado :bautizado
 
         },
         success: function(datos){
@@ -297,7 +299,24 @@ var correlativoVisible = $('#correlativo').val();
             $('#btnCarnet').show();
              $('#btnLimpiar').show();
              $('#btnpdf').show();
-            
+
+
+            if(tel1.length >8){
+                var extencion = "504";
+                var p1 = tel1.substring(0, 4);
+                var p2 = tel1.substring(5, 9);
+
+                var nuevoNumero = extencion+p1+p2;
+                mensajeWhatsapp(nuevoNumero,nombre);
+
+            }else{
+                var extencion = "504";
+                var nuevoNumero = extencion+tel1;
+                mensajeWhatsapp(nuevoNumero,nombre);
+            }
+
+
+
             return false;
 
 
@@ -404,12 +423,16 @@ $('#identidadRegistrar').on('focusout',function(){
                $('#integradoRegistrarModal').val(datos[15]);
                $('#preguntaDocumentosModal').val(datos[16]);
                $('#inputDocumentosModal').val(datos[17]);
+               $('#selectBautizadoModal').val(datos[19]);
 
             if(datos[0]== 1 && datos[18]==1 ){
                 $('#identidadRegistrar').val("");
                 alertify.error("MATRICULADO EN PROMOCION ACTIVA");
              return false;
             }
+
+
+
 
                 if(datos[0]== 1){
                     $('#ModalRegistrar').modal({
@@ -419,6 +442,18 @@ $('#identidadRegistrar').on('focusout',function(){
                     $('#pdfModal').empty();
                     $('#carnetModal').empty();
                 }else {
+                    if(datos[0]== 2){
+
+                        $('#divNombre').addClass('has-success');
+                        $('#divCorderito').addClass('has-success');
+                        $('#divBautizado').addClass('has-success');
+                        $('#NombreRegistro').val(datos[1]);
+                        $('#corderitosPromocionRegistrar').val(datos[2]);
+                        $('#selectBautizado').val(datos[3]);
+                    }else{
+                        return false;
+                    }
+
                     return false;
                 }
              //FIN DEL IF
@@ -427,6 +462,39 @@ $('#identidadRegistrar').on('focusout',function(){
     });// FIN AJAX
     return false;
 });//FIN EVENTO FOCUS OUT
+
+
+$('#NombreRegistro').on('focusout',function(){
+    var nombre = $('#NombreRegistro').val();
+    var url = 'php/verificarIntegranteNombreCorderitos.php';
+
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+
+            phpNombre:nombre
+
+        },
+        success: function(valores){
+            var datos = eval(valores);
+
+            $('#divIdentidad').addClass('has-success');
+            $('#divNombre').addClass('has-success');
+            $('#divCorderito').addClass('has-success');
+            $('#divBautizado').addClass('has-success');
+            $('#identidadRegistrar').val(datos[0]);
+            $('#NombreRegistro').val(datos[1]);
+            $('#corderitosPromocionRegistrar').val(datos[2]);
+            $('#selectBautizado').val(datos[3]);
+            return false;
+        }//FIN SUCCESS
+    });// FIN AJAX
+    return false;
+});//FIN EVENTO FOCUS OUT
+
+
 
 //INICIO CERRAR MODAL
 $('#ModalRegistrar').on('hidden.bs.modal', function () {
@@ -498,6 +566,7 @@ function actualizarDatos(){
     var tel1= $('#telefono1RegistrarModal').val();
     var tel2 = $('#telefono2RegistrarModal').val();
     var integradoRes = document.getElementById("integradoRegistrarModal").value;
+    var bautizadoModal = document.getElementById("selectBautizadoModal").value;
     var areas1= $('#areasRegistroTextModal').val();
     var direccion1 = $('#direccionRegistrarModal').val();
 
@@ -672,7 +741,8 @@ function actualizarDatos(){
             phpRango5 :rango5Modal,
             phpRango6 :rango6Modal,
             phpDocumentos :inputDocumentosModal,
-            phpRespuestaDocumentos :respuestaDocumentosModal
+            phpRespuestaDocumentos :respuestaDocumentosModal,
+            phpBautizado:bautizadoModal
         },
         success: function(datos){
             $('#preguntaNinosModal').val("");
@@ -728,3 +798,73 @@ $('#fecha_cumpleRegistroModal').focusout(function () {
 });
 
 
+function test() {
+
+    var image = $('#imgDiploma').val();
+    var extension = $('#imgDiploma').val().split('.').pop().toLowerCase();
+    var url = 'php/testGuardarImagen.php';
+
+    if(jQuery.inArray(extension,['jpeg','jpg'])==-1){
+            alertify.error("FORMATO INVALIDO");
+            $('#imgDiploma').val('');
+            return false;
+    }else{
+        $.ajax({
+            type:'POST',
+            url: 'php/testGuardarImagen.php',
+            data:new FormData(this),
+            success: function(datos){
+
+                $('#divTEST').html(datos);
+
+                return false;
+
+
+            }
+        });
+    }
+
+
+
+
+    return false;
+
+}
+
+
+
+function mensajeWhatsapp(cel,nombre) {
+
+var m1 = "*BENDICIONES HERMANO(a) ";
+var m2 = "*\"\n" +
+    "\n" +
+    " " +
+    "Gracias por inscribirte en las Clases de Escuela de Mayordomía\n" +
+    "\n" +
+    " " +
+    "Puedes hacer consultas o mantenerte informado:\n" +
+    "\n" +
+    " " +
+    "Whatsapp o Mensajito al 9430-8658  en Horario de:\n" +
+    "Lunes a Viernes 10AM-12M y de 1:00-3:00PM\n" +
+    "\n" +
+    " " +
+    "También puedes escribirnos al correo: info@mayordomia.hn\n" +
+    "  \n" +
+    " " +
+    "Síguenos en Facebook: ESCUELA DE MAYORDOMIA\n" +
+    "\n" +
+    "                   " +
+    "         *MATEO 23:11*\n" +
+    " " +
+    "El mas grande entre Ustedes deber servir a los demás.";
+
+
+    var mensaje = m1+nombre+m2;
+    var url = "https://wa.me/"+cel+"?text="+mensaje;
+
+    var a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.click();
+}

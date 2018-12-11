@@ -207,13 +207,22 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                 <div  id="divIdIntegrante"></div>
 
-                                <div class="col-lg-4" id="divCorderito">
+                                <div class="col-lg-3" id="divCorderito">
                                     <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrar" min="0" placeholder="Promocion de Corderitos">
                                     <div id="alertPromocion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
                                 </div>
 
+                                <div class="col-lg-3" id="divBautizado">
+                                    <select  id="selectBautizado" class="form-control">
+                                        <option value="">BAUTIZADO</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                    <div id="alertBautizado" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
+                                </div>
 
-                             <div class="col-lg-4 col-md-4" id="divDocumentosSelect">
+
+                             <div class="col-lg-3 col-md-4" id="divDocumentosSelect">
                                  <select  id="selectDocumentos" class="form-control">
                                      <option value="">DOCUMENTOS PENDIENTES</option>
                                      <option value="1">Si</option>
@@ -222,7 +231,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                  <div id="alertDocumentos" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Repuesta Invalida</div>
                              </div>
 
-                                <div class="col-lg-4" id="divNinosPregunta">
+                                <div class="col-lg-3" id="divNinosPregunta">
                                     <select  id="selectNinos" class="form-control">
                                         <option value="">¿Traera Niños?</option>
                                         <option value="1">Si</option>
@@ -297,6 +306,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
 
+
                             <div class="form-group">
                                 <div class="col-md-12" id="divDireccion">
                                     <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Direccion" style="text-transform: uppercase"></textarea>
@@ -304,7 +314,12 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
                             </div>
                         </form>
+
+                        <div id="divTEST"></div>
+
                         <div class="form-inline">
+
+
                         <input id="btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona()">
                             <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarId()">
                             <input id="btnCarnet" type="button" class="btn btn-info collapse" value="CARNET" style="float: right;margin-right:20px" onclick="consultarIdParaCarnet()">
@@ -402,12 +417,22 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <input type="hidden" id="idIntegrante">
                                 </div>
 
-                                <div class="col-lg-4" id="divCorderitoModal">
+                                <div class="col-lg-3" id="divCorderitoModal">
                                     <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
                                     <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
                                 </div>
 
-                                <div id="divdocumentosPreguntaModal" class="col-lg-4 col-md-4">
+                                <div class="col-lg-3" id="divBautizadoModal">
+                                    <select  id="selectBautizadoModal" class="form-control">
+                                        <option value="">BAUTIZADO</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                    <div id="alertSelectBautizadoModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
+                                </div>
+
+
+                                <div id="divdocumentosPreguntaModal" class="col-lg-3 col-md-3">
                                     <select class="form-control" id="preguntaDocumentosModal">
                                         <option value="">DOCUMENTOS PENDIENTES</option>
                                         <option value="1">Si</option>
@@ -416,7 +441,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div id="alertPreguntaDocumentosModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
                                 </div>
 
-                                <div id="divPreguntaNinosModal" class="col-lg-4 col-md-4">
+                                <div id="divPreguntaNinosModal" class="col-lg-3 col-md-3">
                                     <select class="form-control" id="preguntaNinosModal">
                                         <option value="">¿Traera Niños?</option>
                                         <option value="1">Si</option>

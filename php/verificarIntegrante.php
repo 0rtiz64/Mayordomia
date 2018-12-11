@@ -10,7 +10,7 @@ include '../gold/enlace.php';
 
 $identidad=$_POST["phpIdentidad"];
 
-$queryId=mysqli_num_rows(mysqli_query($enlace,"select  idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada from integrantes
+$queryId=mysqli_num_rows(mysqli_query($enlace,"select  idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada,bautizado from integrantes
 WHERE num_identidad = '".$identidad."'"));
 
 if($queryId>0){
@@ -70,6 +70,7 @@ if($rows["areas"] ==""){
         16 => $rows["documentosRespuesta"],
         17 => $rows["documentosPendientes"],
         18 => $validacionPromocion,
+        19 => $rows["bautizado"],
 
 
         );
@@ -78,10 +79,22 @@ if($rows["areas"] ==""){
 
 }else{
 
-    $datos = array(
-        0 => $dato =0,
-    );
-    echo json_encode($datos);
+    $confirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from corderitos where identidad = $identidad"));
+    if($confirmar>0){
+        $queryCorderitos = mysqli_query($enlace,"SELECT * from corderitos where identidad = $identidad");
+        $datosCorderitos = mysqli_fetch_array($queryCorderitos,MYSQLI_ASSOC);
+        $nombre = $datosCorderitos["nombre"];
+        $promocion= $datosCorderitos["promocion"];
+        $bautizado= $datosCorderitos["bautizado"];
+        $datos = array(
+            0 => $dato =2,
+            1 => $dato =$nombre,
+            2 => $dato =$promocion,
+            3 => $dato =$bautizado,
+        );
+        echo json_encode($datos);
+    }
+
 
 }
 

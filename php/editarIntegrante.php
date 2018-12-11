@@ -21,6 +21,7 @@ include '../gold/enlace.php';
 	$tel = $_POST['phpTel2'];
 	$areas = $_POST['phpAreas'];
 	$direccion = $_POST['phpDireccion'];
+	$bautizado = $_POST['phpBautizado'];
 $fechaentrada = date('Y-m-d  h:i:s');
 
 $rango1=$_POST["phpRango1"];
@@ -73,7 +74,7 @@ if($correlativoActual ==""){
     $datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
     $corrNew= $datoUltimoCorrelativo["numeroNew"];
 
-    $query_upedate = mysqli_query($enlace,"UPDATE integrantes set num_identidad='".$identidad."',nombre_integrante='".$nombre."',fecha_cumple='".$cumple."',cel='".$cel."',tel='".$tel."',estado_civil='".$estadoCivil."',sexo='".$genero."',trasporte='".$transporte."',direccion='".$direccion."',`status`='1',correlativo='".$corrNew."', promo_cordero =".$promoCorderitos.", fecha_registro = '".$fechaentrada."',documentosRespuesta = '".$RespuestaDocumentos."',documentosPendientes = '".$documentos."' WHERE idintegrante=".$id_integrante);
+    $query_upedate = mysqli_query($enlace,"UPDATE integrantes set num_identidad='".$identidad."',nombre_integrante='".$nombre."',fecha_cumple='".$cumple."',cel='".$cel."',tel='".$tel."',estado_civil='".$estadoCivil."',sexo='".$genero."',trasporte='".$transporte."',direccion='".$direccion."',`status`='1',correlativo='".$corrNew."', promo_cordero =".$promoCorderitos.", fecha_registro = '".$fechaentrada."',documentosRespuesta = '".$RespuestaDocumentos."',documentosPendientes = '".$documentos."',bautizado = '".$bautizado."' WHERE idintegrante=".$id_integrante);
 
     $verificarEnRangos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from rangos WHERE idIntegrante = $id_integrante"));
     if($verificarEnRangos>0){
@@ -91,7 +92,7 @@ values
     $datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
     $corrNew= $datoUltimoCorrelativo["numeroNew"];
 
-    $query_upedate = mysqli_query($enlace,"UPDATE integrantes set num_identidad='".$identidad."',nombre_integrante='".$nombre."',fecha_cumple='".$cumple."',cel='".$cel."',tel='".$tel."',estado_civil='".$estadoCivil."',sexo='".$genero."',trasporte='".$transporte."',direccion='".$direccion."',`status`='1' , promo_cordero =".$promoCorderitos.", fecha_registro = '".$fechaentrada."',documentosRespuesta = '".$RespuestaDocumentos."',documentosPendientes = '".$documentos."',correlativo='".$corrNew."' WHERE idintegrante=".$id_integrante);
+    $query_upedate = mysqli_query($enlace,"UPDATE integrantes set num_identidad='".$identidad."',nombre_integrante='".$nombre."',fecha_cumple='".$cumple."',cel='".$cel."',tel='".$tel."',estado_civil='".$estadoCivil."',sexo='".$genero."',trasporte='".$transporte."',direccion='".$direccion."',`status`='1' , promo_cordero =".$promoCorderitos.", fecha_registro = '".$fechaentrada."',documentosRespuesta = '".$RespuestaDocumentos."',documentosPendientes = '".$documentos."',correlativo='".$corrNew."', bautizado ='".$bautizado."' WHERE idintegrante=".$id_integrante);
     $verificarEnRangos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from rangos WHERE idIntegrante = $id_integrante"));
     if($verificarEnRangos>0){
         $upedateRangos = mysqli_query($enlace,"UPDATE rangos set  rangos.`0-2`=$rango1,rangos.`2-3`=$rango2,rangos.`4-5`=$rango3,rangos.`6-7`=$rango4,rangos.`8-11`=$rango5,rangos.otros=$rango6,rangos.total=$totalCantidad

@@ -9,11 +9,13 @@ $ficha =$_GET["numero"];
 
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
-estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes,integrantes.bautizado
  from integrantes
 WHERE integrantes.idintegrante='".$ficha."'");
 $resultados =  mysqli_fetch_array($queryIntegrante,MYSQLI_ASSOC);
 
+
+$bautizado = $resultados["bautizado"];
 $queryPromocion = mysqli_query($enlace, "Select num_promocion from promociones
 WHERE `status` = 1");
 $resultadosPromocion = mysqli_fetch_array($queryPromocion, MYSQLI_ASSOC);
@@ -304,7 +306,7 @@ if($resultados["areas"] ==""){
       </p>
     ';
 
-    $areas = "<a style='color: white'>.</>";
+    $areas = "<a style='color: white'>.</a>";
 }else{
 
     $integrado= '
@@ -350,9 +352,16 @@ $Contenido = '
 
 <!--FECHA DE NACIMIENTO-->
  <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: 210px;margin-top: -13px">
-    <p align="center" style="margin-bottom: -55px;"> '.$promoCorederitos.'</p>
-    <p align="center" style="margin-top: -10px">  __________________________</p>
-    <p style="font-size: 14px;margin-bottom: 10px" align="center">Promocion Corderitos</p>
+    <p align="center" style="margin-bottom: -55px; margin-left: -5%"> '.$promoCorederitos.'  <a style="color: white">----------------------</a> '.$bautizado.' </p>
+    <p align="center" style="margin-top: -10px;margin-left: -2%">  ____________ <a style="color: white">-------</a> ____________</p>
+    <p style="font-size: 14px;margin-bottom: 10px;margin-left: -12%" align="center">Promocion Corderitos. <a style="color: white">----</a> Bautizado </p>
+    
+    
+      
+   
+    
+  
+   
 </div>   
 <!--FIN FECHA DE NACIMIENTO-->
 <br>
@@ -476,7 +485,88 @@ $Contenido = '
 
  ';
 
- 	$dompdf = new DOMPDF();
+
+//INICIO RUTA IMAGEN
+$queryIdentidad= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
+$dIdentidad = mysqli_fetch_array($queryIdentidad,MYSQLI_ASSOC);
+$identidadD = $dIdentidad["num_identidad"];
+$rutaImg1D="../documentos/identidades/";
+$finRutaD1=".jpg";
+$finRutaD2=".jpeg";
+
+//$diploma=$rutaImg1D.$identidadD.$finRutaD;
+$diploma=$rutaImg1D.$identidadD.$finRutaD1;
+$diploma2=$rutaImg1D.$identidadD.$finRutaD2;
+//FIN RUTA IMAGEN
+
+
+
+
+if(file_exists($diploma)){
+    $Contenido.='
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+   <div>
+    <img src="'.$diploma.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+}else{
+    if(file_exists($diploma2)){
+        $Contenido.='
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <div>
+    <img src="'.$diploma2.'" style="width: 750px; height: 900px">
+    </div>  ';
+
+    }else{
+        $Contenido.='<p></p>';
+    }
+}
+
+
+
+
+
+$queryIdentidad2= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
+$dIdentidad2 = mysqli_fetch_array($queryIdentidad2,MYSQLI_ASSOC);
+$identidadD2 = $dIdentidad2["num_identidad"];
+$rutaImg1I="../documentos/diplomas/";
+$finRutaDI1=".jpg";
+$finRutaDI2=".jpeg";
+
+
+$identidades1=$rutaImg1I.$identidadD2.$finRutaDI1;
+$identidades2=$rutaImg1I.$identidadD2.$finRutaDI2;
+//FIN RUTA IMAGEN
+
+
+if(file_exists($identidades1)){
+    $Contenido.='
+   <div>
+    <img src="'.$identidades1.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+}else{
+    if(file_exists($identidades2)){
+        $Contenido.='
+  <div>
+    <img src="'.$identidades2.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+    }else{
+        $Contenido.='<p></p>';
+    }
+}
+
+
+
+//IDENTIDADES FINAL
+
+
+
+
+$dompdf = new DOMPDF();
 	$dompdf->load_html($Contenido);
 	$dompdf->render();
 	//$dompdf->stream("mi_archivo.pdf");3
