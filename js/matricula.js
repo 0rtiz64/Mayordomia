@@ -100,7 +100,8 @@ function guardarPersona(){
     var integradoRes = document.getElementById("integradoRegistrar").value;
     var areas1= $('#areasRegistroText').val();
     var direccion1 = $('#direccionRegistrar').val();
-
+    var registrado1 = $('#registradoPor').val();
+var registrado =registrado1.toUpperCase();
     var respuestaDocumentos = document.getElementById('selectDocumentos').value;
     var inputDocumentos1 = $('#inputDocumentos').val();
 
@@ -285,7 +286,8 @@ var correlativoVisible = $('#correlativo').val();
             phpRango6 :rango6,
             phpDocumentos :inputDocumentos,
             phpRespuestaDocumentos :respuestaDocumentos,
-            phpBautizado :bautizado
+            phpBautizado :bautizado,
+            phpRegistrado:registrado
 
         },
         success: function(datos){
@@ -307,7 +309,7 @@ var correlativoVisible = $('#correlativo').val();
                 var p2 = tel1.substring(5, 9);
 
                 var nuevoNumero = extencion+p1+p2;
-                mensajeWhatsapp(nuevoNumero,nombre);
+               // mensajeWhatsapp(nuevoNumero,nombre);
 
             }else{
                 var extencion = "504";
@@ -373,6 +375,7 @@ function limpiarCarnt(){
 
 
 $('#identidadRegistrar').on('focusout',function(){
+    console.log("FOCUSOUT");
     var identidad = $('#identidadRegistrar').val();
     var url = 'php/verificarIntegrante.php';
 
@@ -567,7 +570,8 @@ function actualizarDatos(){
     var bautizadoModal = document.getElementById("selectBautizadoModal").value;
     var areas1= $('#areasRegistroTextModal').val();
     var direccion1 = $('#direccionRegistrarModal').val();
-
+    var registrado1 = $('#registradoPorModal').val();
+    var registrado = registrado1.toUpperCase();
     var respuestaDocumentosModal = document.getElementById('preguntaDocumentosModal').value;
     var inputDocumentos1Modal = $('#inputDocumentosModal').val();
 
@@ -740,7 +744,8 @@ function actualizarDatos(){
             phpRango6 :rango6Modal,
             phpDocumentos :inputDocumentosModal,
             phpRespuestaDocumentos :respuestaDocumentosModal,
-            phpBautizado:bautizadoModal
+            phpBautizado:bautizadoModal,
+            phpRegistradoPor: registrado
         },
         success: function(datos){
             $('#preguntaNinosModal').val("");

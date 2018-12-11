@@ -118,7 +118,7 @@ var contraPleca = String.fromCharCode(92);
     var datoNuevo = nombre.replace("Ñ",contraPleca+"A5");
     alert(datoNuevo);
 }
-function sendData(promocion,nombre,id,corrVisible,corr)
+function sendDataTag(promocion,nombre,id,corrVisible,corr)
 {
 
 	showLoading("Printing...");
@@ -170,6 +170,7 @@ function sendData(promocion,nombre,id,corrVisible,corr)
             //alert(nombreNuevo);
 
             selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+corrVisible+p5+corr+p6, printComplete, printerError);
+            console.log(promocion+" "+ nombreNuevo+" "+id+3+" "+corrVisible+" "+corr);
             //$('#formularioRegistro')[0].reset();
 		}
 		else

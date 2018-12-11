@@ -33,12 +33,12 @@ if(file_exists($rutaImg2F)){
 
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
-estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes,integrantes.bautizado
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes,integrantes.bautizado,integrantes.registradoPor
  from integrantes
 WHERE integrantes.idintegrante='".$ficha."'");
 $resultados =  mysqli_fetch_array($queryIntegrante,MYSQLI_ASSOC);
 
-
+$nombreRegistrado = $resultados["registradoPor"];
 $bautizado = $resultados["bautizado"];
 $queryPromocion = mysqli_query($enlace, "Select num_promocion from promociones
 WHERE `status` = 1");
@@ -328,6 +328,7 @@ if($resultados["areas"] ==""){
         <label style="font-size: 16px; margin-left: 20px">Si<input type="checkbox" ></label>
         <label style=" float: right; font-size: 16px; margin-left: 175px; margin-top:-22px;">No <input type="checkbox"checked ></label>
       </p>
+      
     ';
 
     $areas = "<a style='color: white'>.</a>";
@@ -483,28 +484,10 @@ $Contenido = '
    '.$integrado.'
 </div>
 
+ <div style="font-size: 5px; float: left; margin-top: 150px; width: 200px;">
 
-
-
-<!--FIRMA-->
-   <div  style="  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: -320px; margin-top: 123px">
-    
-    <p align="center" style="margin-top: -10px; margin-top: 25px">  __________________________</p>
-    <p style="font-size: 14px;margin-top: 15px" align="center">Nombre del Equipo de Mayordomia</p>
-</div>  
-<!--FIN FIRMA-->
-<!--FIRMA-->
- <div  style="  border-radius: 30px;font-size: 16px; width:250px; float: left; margin-left: -285px; margin-top: 120px">
-    
-    <p align="center" style="margin-top: -10px; margin-top: 25px">  __________________________</p>
-    <p style="font-size: 14px;margin-top: 15px" align="center">Nombre del Hno(a) de Mayordomia</p>
-</div>   
-
-
-
-
-
-<!--FIN FIRMA-->
+ <p style="font-size: 65%;">REGISTRADO POR: '.$nombreRegistrado.'</p>
+</div>
 
  ';
 
@@ -513,13 +496,13 @@ $Contenido = '
 $queryIdentidad= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
 $dIdentidad = mysqli_fetch_array($queryIdentidad,MYSQLI_ASSOC);
 $identidadD = $dIdentidad["num_identidad"];
-$rutaImg1D="../documentos/identidades/";
+$rutaImg1D="../documentos/";
 $finRutaD1=".jpg";
 $finRutaD2=".jpeg";
 
 //$diploma=$rutaImg1D.$identidadD.$finRutaD;
-$diploma=$rutaImg1D.$identidadD.$finRutaD1;
-$diploma2=$rutaImg1D.$identidadD.$finRutaD2;
+$diploma=$rutaImg1D.$identidadD."I".$finRutaD1;
+$diploma2=$rutaImg1D.$identidadD."I".$finRutaD2;
 //FIN RUTA IMAGEN
 
 
@@ -554,13 +537,13 @@ if(file_exists($diploma)){
 $queryIdentidad2= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
 $dIdentidad2 = mysqli_fetch_array($queryIdentidad2,MYSQLI_ASSOC);
 $identidadD2 = $dIdentidad2["num_identidad"];
-$rutaImg1I="../documentos/diplomas/";
+$rutaImg1I="../documentos/";
 $finRutaDI1=".jpg";
 $finRutaDI2=".jpeg";
 
 
-$identidades1=$rutaImg1I.$identidadD2.$finRutaDI1;
-$identidades2=$rutaImg1I.$identidadD2.$finRutaDI2;
+$identidades1=$rutaImg1I.$identidadD2."D".$finRutaDI1;
+$identidades2=$rutaImg1I.$identidadD2."D".$finRutaDI2;
 //FIN RUTA IMAGEN
 
 

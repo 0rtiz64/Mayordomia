@@ -319,7 +319,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                         <div class="form-inline">
 
-
+                            <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPor" style="text-transform: uppercase">
                         <input id="btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona()">
                             <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarId()">
                             <input id="btnCarnet" type="button" class="btn btn-info collapse" value="CARNET" style="float: right;margin-right:20px" onclick="consultarIdParaCarnet()">
@@ -529,6 +529,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 </div>
 
                 <div class="modal-footer">
+                    <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPorModal">
                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar">CERRAR</button>
                     <input type="button" class="btn btn-danger collapse" value="PDF" onclick="pdfModal()" id="pdfModal">
