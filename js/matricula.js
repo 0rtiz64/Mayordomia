@@ -312,10 +312,8 @@ var correlativoVisible = $('#correlativo').val();
             }else{
                 var extencion = "504";
                 var nuevoNumero = extencion+tel1;
-                mensajeWhatsapp(nuevoNumero,nombre);
+               // mensajeWhatsapp(nuevoNumero,nombre);
             }
-
-
 
             return false;
 

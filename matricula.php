@@ -309,8 +309,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group">
                                 <div class="col-md-12" id="divDireccion">
-                                    <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                    <div id="alertDireccion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
+                                    <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Informacion Adicional" style="text-transform: uppercase"></textarea>
+                                    <div id="alertDireccion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Informacion Adicional Invalida</div>
                                 </div>
                             </div>
                         </form>
@@ -517,8 +517,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group">
                                 <div class="col-md-12" id="divDireccionModal">
-                                    <textarea class="form-control" rows="3" id="direccionRegistrarModal" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                    <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
+                                    <textarea class="form-control" rows="3" id="direccionRegistrarModal" placeholder="Informacion Adicional" style="text-transform: uppercase"></textarea>
+                                    <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Informacion Adicional Invalida</div>
                                 </div>
                             </div>
 

@@ -7,6 +7,30 @@ include '../gold/enlace.php';
 $ficha =$_GET["numero"];
 
 
+$queryIntegranteF = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
+ from integrantes
+WHERE integrantes.idintegrante='".$ficha."'");
+$resultadosF=  mysqli_fetch_array($queryIntegranteF,MYSQLI_ASSOC);
+
+//INICIO RUTA IMAGEN
+$rutaImg1F="../Fotos/";
+$finRutaF=".jpg";
+$identidadF =$resultadosF["num_identidad"];
+$rutaImg2F=$rutaImg1F.$identidadF.$finRutaF;
+//FIN RUTA IMAGEN
+
+if(file_exists($rutaImg2F)){
+    $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
+    <img src="'.$rutaImg2F.'" style="width: 110px; height: 135px">
+    </p>';
+}else{
+    $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
+     <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
+    </p>';
+}
+
+
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
 estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes,integrantes.bautizado
@@ -338,8 +362,7 @@ $Contenido = '
 </table>
 
 <div>
-    
-    <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
+    '.$foto.'    
 </div>
 <br>
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: left;margin-top: -13px">
@@ -444,7 +467,7 @@ $Contenido = '
 
 <!--DIRECCION-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px;margin-top: 5px">
-    <p style="margin-left: 10px">Direccion: <a style="font-size: 65%">'.$direccion.'</a></p>
+    <p style="margin-left: 10px">Informacion Adicional: <a style="font-size: 65%">'.$direccion.'</a></p>
       <p style="margin-left: 10px">Documentos: <a style="font-size: 65%">'.$documentosPendientes.'</a></p>
     
  </div>
