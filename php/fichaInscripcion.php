@@ -501,8 +501,8 @@ $finRutaD1=".jpg";
 $finRutaD2=".jpeg";
 
 //$diploma=$rutaImg1D.$identidadD.$finRutaD;
-$diploma=$rutaImg1D.$identidadD."I".$finRutaD1;
-$diploma2=$rutaImg1D.$identidadD."I".$finRutaD2;
+$diploma=$rutaImg1D.$identidadD.$finRutaD1;
+$diploma2=$rutaImg1D.$identidadD.$finRutaD2;
 //FIN RUTA IMAGEN
 
 

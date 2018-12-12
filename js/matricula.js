@@ -237,6 +237,11 @@ var correlativoVisible = $('#correlativo').val();
                                                    $("#alertDireccion").hide('1000');
                                                    $('#divDireccion').removeClass('has-error');
                                                    $('#divDireccion').addClass('has-success');
+
+                                                   if(registrado1.trim().length == ""){
+                                                       alertify.error("NOMBRE REGISTRADO ES INVALIDO");
+                                                       return false;
+                                                   }
                                                }//FIN DIRECCION
                                            }//FIN INTEGRADO
                                        }//FIN TEL 1
@@ -700,6 +705,11 @@ function actualizarDatos(){
                                                         $("#alertDireccionModal").hide('1000');
                                                         $('#divDireccionModal').removeClass('has-error');
                                                         $('#divDireccionModal').addClass('has-success');
+
+                                                        if(registrado.trim().length== ""){
+                                                            alertify.error("NOMBRE REGISTRADO ES INVALIDO");
+                                                            return false;
+                                                        } // FIN REGISTRADO POR
                                                     }//Fin Direccion
                                                 }//FIN INTEGRADO
                                             }//FIN TELEFONO 1
