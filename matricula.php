@@ -282,7 +282,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
 
                                 <div class="col-lg-4" id="divTelefono2">
-                                    <input type="number" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
+                                    <input type="text" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
                                 </div>
 
                                 <div class="col-lg-4" id="divIntegrado">
@@ -318,8 +318,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                         <div id="divTEST"></div>
 
                         <div class="form-inline">
-
-                            <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPor" style="text-transform: uppercase">
+                            <div id="divResgistradoPor">
+                                <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPor" style="text-transform: uppercase">
+                            </div>
                         <input id="btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona()">
                             <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarId()">
                             <input id="btnCarnet" type="button" class="btn btn-info collapse" value="CARNET" style="float: right;margin-right:20px" onclick="consultarIdParaCarnet()">

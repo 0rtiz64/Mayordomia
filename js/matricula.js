@@ -239,7 +239,9 @@ var correlativoVisible = $('#correlativo').val();
                                                    $('#divDireccion').addClass('has-success');
 
                                                    if(registrado1.trim().length == ""){
-                                                       alertify.error("NOMBRE REGISTRADO ES INVALIDO");
+                                                       alertify.error("CAMPO VACIO");
+                                                       $('#registradoPor').focus();
+                                                       $('#divResgistradoPor').addClass('has-error');
                                                        return false;
                                                    }
                                                }//FIN DIRECCION
@@ -374,6 +376,8 @@ function abrirEnPestana(url) {
 
 function limpiarCarnt(){
     $('#formularioRegistro')[0].reset();
+    $('#divResgistradoPor').removeClass('has-error');
+    $('#registradoPor').val("");
     $('#btnCarnet').hide(300);
     $('#btnpdf').hide(300);
 }
