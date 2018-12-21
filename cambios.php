@@ -317,7 +317,7 @@ table td {
 
                                                 <div class="form-group" >
                                                     <div class="col-lg-4" id="divTelefono1">
-                                                        <input type="number" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
+                                                        <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
                                                         <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                                     </div>
 
