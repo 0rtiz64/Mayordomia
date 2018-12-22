@@ -104,6 +104,7 @@ $datos = array(
     21 => $otros,
     22 => $total,
     23 => $respuestaNinos,
+    24 => $rows["bautizado"],
 );
 echo json_encode($datos);
 

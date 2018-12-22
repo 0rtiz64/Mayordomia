@@ -109,6 +109,7 @@ function editarIntegranteMatriculado(idIntegrante) {
             $('#selectDocumentosModal').val(datos[14]);
             $('#inputDocumentosModal').val(datos[15]);
             $('#selectNinosModal').val(datos[23]);
+            $('#selectBautizado').val(datos[24]);
 
             $('#idIntegrante').val(datos[12]);
             $('#ModalEditarMatriculado').modal({
@@ -139,6 +140,8 @@ function actualizarDatosMatriculado() {
     var idIntegrante = $('#idIntegrante').val();
     var promCorderitos = $('#corderitosPromocionRegistrarModal').val();
     var estadoCivil =document.getElementById("estadoCivilRegistrarModal").value;
+    var bautizado  =document.getElementById("selectBautizado").value;
+
     var genero = document.getElementById("generoRegistrarModal").value;
     var transporte = document.getElementById("tranporteRegistrarModal").value;
     var identidad = $('#identidadRegistrarModal').val();
@@ -364,7 +367,8 @@ if(respuestaDocumentos ==2){
             phpRango3: rango3,
             phpRango4: rango4,
             phpRango5: rango5,
-            phpOtros: otros
+            phpOtros: otros,
+            phpBautizado:bautizado
         },
         success: function(datos){
 
