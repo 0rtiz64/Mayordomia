@@ -243,7 +243,19 @@ var correlativoVisible = $('#correlativo').val();
                                                        $('#registradoPor').focus();
                                                        $('#divResgistradoPor').addClass('has-error');
                                                        return false;
-                                                   }
+                                                   }else{
+
+                                                       $('#divResgistradoPor').removeClass('has-error');
+                                                       $('#divResgistradoPor').addClass('has-success');
+                                                       if(bautizado.trim().length == ""){
+                                                           $('#divBautizado').addClass('has-error');
+                                                           alertify.error("RESPUESTA INVALIDA");
+                                                           return false;
+                                                       }else{
+                                                           $('#divBautizado').removeClass('has-error');
+                                                           $('#divBautizado').addClass('has-success');
+                                                       }// FIN BAUTIZADO
+                                                   }// FIN REGISTRADO POR
                                                }//FIN DIRECCION
                                            }//FIN INTEGRADO
                                        }//FIN TEL 1
