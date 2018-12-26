@@ -725,7 +725,12 @@ function actualizarDatos(){
                                                         if(registrado.trim().length== ""){
                                                             alertify.error("NOMBRE REGISTRADO ES INVALIDO");
                                                             return false;
-                                                        } // FIN REGISTRADO POR
+                                                        }else{
+                                                            if(bautizadoModal.trim().length == ""){
+                                                                alertify.error("RESPUESTA BAUTIZADO ES INVALIDA");
+                                                                return false;
+                                                            }
+                                                        }// FIN REGISTRADO POR
                                                     }//Fin Direccion
                                                 }//FIN INTEGRADO
                                             }//FIN TELEFONO 1
