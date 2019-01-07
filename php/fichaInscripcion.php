@@ -396,7 +396,7 @@ $Contenido = '
 <!--NOMBRE  COMPLETO APELLIDO CASADA-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; margin-top: -15px; width: 450px; float: left">
     
-    <p align="center" style="margin-bottom: -15px; margin-right: 45px;"> '.$nombre.'</p>
+    <p align="center" style="margin-bottom: -15px; margin-right: 45px;"> '.utf8_encode($nombre).'</p>
     <p align="center" style="margin-top: -35px">  _________________________________________________</p>
     <p style="font-size: 14px;margin-top: -70%" align="center">Nombre Completo</p>
  </div>

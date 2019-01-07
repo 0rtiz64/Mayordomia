@@ -351,7 +351,7 @@ var correlativoVisible = $('#correlativo').val();
 
 function consultarId() {
     var identidad = $('#identidadRegistrar').val();
-    var url = 'php/buscarUltId.php';
+    var url = 'php/buscarUltIdInt.php';
     $.ajax({
         type:'POST',
         url:url,

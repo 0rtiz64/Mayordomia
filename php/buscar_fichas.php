@@ -58,7 +58,7 @@ WHERE detalle_integrantes.id_integrante = $idIntegrante and promociones.`status`
         echo "<tr>";
         echo "<td>".$total."</td>";
         echo "<td>".$rows["num_identidad"]."</td>";
-        echo "<td>".$rows["nombre_integrante"]."</td>";
+        echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
         echo "<td>".$rows["correlativo"]."</td>";
         echo '<td><a href="php/fichaInscripcion.php?numero='.$rows["idintegrante"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
         echo '<td> <a href="javascript:sendDataTag(\''.$datoPromocion["desc_promocion"].'\',\''.$rows["nombre_integrante"].'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:tomarDatosDetalleIntegrante('.$rows["idintegrante"].')" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
