@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 
 $('#generoRegistrar').change(function focus(){
-    var civil = document.getElementById("estadoCivilRegistrar").value;
+    var civil = document.getElement;ById("estadoCivilRegistrar").value;
     var genero = document.getElementById("generoRegistrar").value;
 
     if (civil == "Casado" && genero == "F") {

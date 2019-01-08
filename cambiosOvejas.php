@@ -36,12 +36,18 @@ session_start();
       <link href='css/itallic.css' rel='stylesheet' type='text/css'>
       <link href='css/opensans.css' rel='stylesheet' type='text/css'>
       <!-- Feature detection -->
-
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/solid.css" integrity="sha384-aj0h5DVQ8jfwc8DA7JiM+Dysv7z+qYrFYZR+Qd/TwnmpDI6UaB3GJRRTdY8jYGS4" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/fontawesome.css" integrity="sha384-WK8BzK0mpgOdhCxq86nInFqSWLzR5UAsNg0MGX9aDaIIrFWQ38dGdhwnNCAoXFxL" crossorigin="anonymous">
       <!--DatePicker-->
       <link rel="stylesheet" href="myfiles/DatePicker/css/bootstrap-datepicker.css">
 
 
+      <!--ALERTIFY INICIO-->
+      <link rel="stylesheet" href="alertify/css/alertify.css">
+      <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+      <!--ALERTIFY FIN-->
 
+      <link rel="stylesheet" href="css/modal.css">
 
       <script src="assets/js/modernizr-2.6.2.min.js"></script>
       <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -84,7 +90,7 @@ session_start();
           </div>
           <!--logo end-->
           <div class="toggle-navigation toggle-left">
-              <button type="button" class="btn btn-default" id="toggle-left" data-toggle="tooltip" data-placement="right" title="Desplazar Menu">
+              <button type="button" class="btn btn-default" id="toggle-left"  title="Desplazar Menu">
                   <i class="fa fa-bars"></i>
               </button>
           </div>
@@ -119,8 +125,8 @@ session_start();
                   <?php
                   include 'menu.php';
                   $permisos = $_SESSION['area'];
-                  $focusMenu = "";//M3
-                  $focusSubMenu = "";//SM3.3
+                  $focusMenu = "M3";
+                  $focusSubMenu = "SM3.3";
                   menuSubmenu($permisos,$focusMenu,$focusSubMenu);
                   ?>
               </ul>
@@ -178,175 +184,77 @@ session_start();
 
 
   <!-- Scrolling Modal -->
-  <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="modalEditarOvejaSinEnlazar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
           <div class="modal-content ">
-              <div class="modal-header">
+              <div class="modal-header" style="background: #007BFF">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title" id="myModalLabel">CAMBIOS</h4>
+                  <h4 class="modal-title" id="myModalLabel" style="color: white">CAMBIOS</h4>
               </div>
               <div class="modal-body">
-                  <form class="form-horizontal" id="formulario" role="form">
 
-                      <div class="form-group">
-
-                          <div class="col-lg-4" id="divCivil1">
-                              <select class="form-control" id="ECC">
-                                  <option value="">Estado Civil</option>
-                                  <option value="Casado">Casado(a)</option>
-                                  <option value="Soltero">Soltero(a)</option>
-                                  <option value="Divorciado">Divorciado(a)</option>
-                                  <option value="Union">Union Libre</option>
-                              </select>
-                              <div id="alertEstadoCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Civil Invalido</div>
-
-                          </div>
-
-                          <div class="col-lg-4" id="divGenero1">
-                              <select id="GFM" class="form-control">
-                                  <option value="">Genero</option>
-                                  <option value="M">Masulino</option>
-                                  <option value="F">Femenino</option>
-                              </select>
-                              <div id="alertGeneroCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Genero Invalido</div>
-                          </div>
-
-                          <div class="col-lg-4" id="divTransporte1">
-                              <select class="form-control" id="OCT">
-                                  <option value="">Necesita Transporte</option>
-                                  <option value="Si">Si</option>
-                                  <option value="No">No</option>
-                              </select>
-                              <div id="alertTransporteCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-
-                          <div class="col-lg-4" id="identidadCambios">
-                              <input type="text" style="text-transform: uppercase;" class="form-control" id="numero_I" placeholder="Ejemplo : 1708199200377">
-                              <input type="hidden" id="id-prod">
-                              <div id="alertIdentidadCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
-
-                          </div>
-
-                          <div class="col-lg-4" id="nombreCambio">
-                              <input type="text" style="text-transform: uppercase;" class="form-control" id="nombreI" placeholder="Ejemplo : Denny Molina">
-                              <div id="alertNombreCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Nombre Invalido</div>
-
-                          </div>
-
-                          <div class="col-lg-4">
-
-
-
-                              <div class="input-group" id="fechaCambios">
-                                  <input type="text" id="fecha_cumple" name="daterange" class="datepicker form-control" placeholder="Ejemplo : 2017-09-25">
-                                  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-
-
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-5 col-md-12 col-sm-8 col-xs-9 bhoechie-tab-container">
+                              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                                  <ul class="list-group">
+                                      <a href="#" class="list-group-item active">
+                                          <br/><br/><i class="glyphicon glyphicon-home"></i> Home<br/><br/>
+                                      </a>
+                                      <a href="#dos" class="list-group-item ">
+                                          <br/><br/><i class="glyphicon glyphicon-tasks"></i> Schedule<br/><br/>
+                                      </a>
+                                      <a href="#" class="list-group-item ">
+                                          <br/><br/><i class="glyphicon glyphicon-transfer"></i> My trips<br/><br/>
+                                      </a>
+                                      <a href="#" class="list-group-item">
+                                          <br/><br/><h4 class="glyphicon glyphicon-wrench"></h4> Edit My Information<br/><br/>
+                                      </a>
+                                  </ul>
                               </div>
-                              <div id="alertFechaCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Fecha Invalida</div>
-                          </div>
+                              <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                                  <!-- flight section -->
+                                  <div class="bhoechie-tab-content active">
+                                      <center>
+                                          <h1 class="glyphicon glyphicon-user" style="font-size:14em;color:#00001a"></h1>
+                                          <h2 style="margin-top: 0;color:#00001a">Welcome</h2>
+                                          <h3 style="margin-top: 0;color:#00001a">User HomePage</h3>
+                                      </center>
+                                  </div>
 
-                      </div>
+
+                                  <div class="bhoechie-tab-content">
+                                      <center>
+                                          <h1 class="glyphicon glyphicon-tasks" style="font-size:12em;color:#00001a"></h1>
+                                          <h2 style="margin-top: 0;color:#00001a"><a href="" class="btn btn-sm btn-primary btn-block" role="button">Schedule</a></h2>
+                                          <h3 style="margin-top: 0;color:#00001a">My Schedule</h3>
+                                      </center>
+                                  </div>
 
 
-                      <div class="form-group" >
-                          <div class="col-lg-4" id="celCambios">
-                              <input type="text" style="text-transform: uppercase;" class="form-control" id="num_cel" placeholder="Ejemplo : 94632899">
-                              <div id="alertTelCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Numero Invalido</div>
+                                  <div class="bhoechie-tab-content" id="#dos">
+                                      <center>
+                                          <h1 class="glyphicon glyphicon-transfer" style="font-size:12em;color:#00001a"></h1>
+                                          <h2 style="margin-top: 0;color:#00001a"><a href="" class="btn btn-sm btn-primary btn-block" role="button">Trips</a></h2>
+                                          <h3 style="margin-top: 0;color:#00001a">MY Trips </h3>
+                                      </center>
+                                  </div>
 
-                          </div>
-                          <div class="col-lg-4">
-                              <input type="text" style="text-transform: uppercase;" class="form-control" id="num_tel" placeholder="Ejemplo : 25641119">
-                          </div>
-                          <div class="col-lg-4" id="estadoCambios">
-                              <select name="estados" class="form-control" id="estados">
-                                  <option value="">Estado</option>
-                                  <option value="1">Activo</option>
-                                  <option value="3">Inactivo</option>
-                                  <option value="2">Retirado</option>
-                              </select>
-                              <div id="alertEstadoIntCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Invalido</div>
-
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-
-                          <div class="col-lg-4">
-                              <select class="form-control" id="CambioP">
-                                  <option value="">NUMERO DE PROMOCION</option>
-                                  <?php
-                                  require_once 'gold/enlace.php';
-
-                                  $querySelect= mysqli_query($enlace, "SELECT idpromocion,desc_promocion from promociones WHERE `status` = 1");
-
-                                  while ($fila = mysqli_fetch_array($querySelect,MYSQLI_ASSOC)) {
-
-                                      echo '<option value="'.$fila['idpromocion'].'" >'.$fila["desc_promocion"].'</option>';
-                                  }
-                                  ?>
-                              </select>
-                              <div id="alertPromocionCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
-
-                          </div>
-                          <div class="col-lg-4">
-                              <select class="form-control" id="CambioE">
-                                  <option value="">NUMERO DE EQUIPO</option>
-                                  <?php
-                                  require_once 'gold/enlace.php';
-
-                                  $querySelect= mysqli_query($enlace, "SELECT id_equipo,num_equipo,nombre_equipo FROM equipos
-INNER JOIN promociones ON equipos.id_promocion = promociones.idpromocion
-where promociones.`status`=1");
-
-                                  while ($fila = mysqli_fetch_array($querySelect,MYSQLI_ASSOC)) {
-
-                                      echo '<option  value="'.$fila['id_equipo'].'">'.$fila["num_equipo"].' - '.$fila["nombre_equipo"].'</option>';
-                                  }
-                                  ?>
-                              </select>
-                              <div id="alertEquipoCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Equipo Invalida</div>
-
-                          </div>
-                          <div class="col-lg-4">
-                              <select class="form-control" id="Cargos">
-                                  <option value="">CARGOS</option>
-                                  <?php
-                                  require_once 'gold/enlace.php';
-
-                                  $querySelect= mysqli_query($enlace, "SELECT idcargo,nombre_cargo FROM cargos");
-
-                                  while ($fila = mysqli_fetch_array($querySelect,MYSQLI_ASSOC)) {
-
-                                      echo '<option value="'.$fila['idcargo'].'">'.$fila["nombre_cargo"].'</option>';
-                                  }
-                                  ?>
-                              </select>
-                              <div id="alertCargoCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Cargo Invalida</div>
+                                  <div class="bhoechie-tab-content">
+                                      <center>
+                                          <h1 class="glyphicon glyphicon-edit" style="font-size:12em;color:#00001a"></h1>
+                                          <h2 style="margin-top: 0;color:#00001a"><a href="" class="btn btn-sm btn-primary btn-block" role="button">Edit</a></h2>
+                                          <h3 style="margin-top: 0;color:#00001a">information Settings</h3>
+                                      </center>
+                                  </div>
+                              </div>
                           </div>
                       </div>
-
-                      <div class="form-group">
-                          <div class="col-lg-12">
-                              <textarea class="form-control" rows="3" id="commentEditar" placeholder="Direccion de residencia"></textarea>
-                          </div>
-                      </div>
-
-                  </form>
-
-
-                  <div class="form-group" id="Mensaje">
-
                   </div>
-
               </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                  <input type="submit" class="btn btn-info" onclick="cambiosPersona()" value="Guardar Cambios">
 
+              <div class="modal-footer">
+                  <input type="button" class="btn btn-danger" value="CANCELAR">
               </div>
           </div>
       </div>
@@ -355,13 +263,15 @@ where promociones.`status`=1");
 
 
 
-  <!--Global JS-->
-
+  <script src="myfiles/js/jquery-3.2.1.min%20(2).js"></script>
   <script src="assets/js/jquery-1.10.2.min.js"></script>
+  <script src="alertify/alertify.min.js"></script>
   <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/plugins/waypoints/waypoints.min.js"></script>
   <script src="assets/js/application.js"></script>
   <script>
+
+
       function cerrar()
       {
           $.ajax({
@@ -374,12 +284,14 @@ where promociones.`status`=1");
       }
   </script>
   <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.js"></script>
+  <script src="myfiles/js/main.js"></script>
+  <script src="js/export.js"></script>
   <script src="js/cambiosOvejas.js"></script>
+  <script src="js/modal.js"></script>
+
 
   </body>
   </html>
-
       <?php
 
   }
@@ -389,4 +301,4 @@ where promociones.`status`=1");
       session_start();
       session_destroy();
   }
- ?>
+?>

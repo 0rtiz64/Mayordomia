@@ -324,9 +324,9 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                         case 'SM3.3':
                             # code...
                             if($focusSubMenu == "SM3.3"){
-                                $accesoMenus .='<li class="active"><a href="cambios.php"> Cambios  Enlazados</a></li>';
+                                $accesoMenus .='<li class="active"><a href="cambiosOvejas.php"> Cambios  Enlazados</a></li>';
                             }else{
-                                $accesoMenus .='<li ><a href="cambios.php"> Cambios  Enlazados</a></li>';
+                                $accesoMenus .='<li ><a href="cambiosOvejas.php"> Cambios  Enlazados</a></li>';
                             }
                             
                             break;

@@ -41,5 +41,16 @@ while ($d = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 }
 echo ' QUERY SUCCESSFULL';
 */
+/*
+$c  =1;
+$qC  = mysqli_query($enlace,"SELECT * from corderitos WHERE LENGTH(identidad) <13");
+while ($datos = mysqli_fetch_array($qC,MYSQLI_ASSOC)){
+$id = $datos["idCorderitos"];
+    $update = mysqli_query($enlace,"update corderitos set identidad='' WHERE  idCorderitos = $id");
+$c++;
+}
 
+echo $c.' REGISTROS ACTUALIZADOS';
+
+*/
 ?>

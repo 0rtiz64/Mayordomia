@@ -124,6 +124,9 @@ WHERE serviciodetalle.idServidor = $idServidor
         );
         echo json_encode($datos);
     }else{
+
+
+
         $datos = array(
             0 => $datos = 0,
             1 => 0,

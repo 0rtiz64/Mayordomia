@@ -113,9 +113,9 @@ table td {
         
          <?php 
             include 'menu.php';
-            $permisos = $_SESSION['area'];
-            $focusMenu = "M3";
-            $focusSubMenu = "SM3.3";
+            $permisos = $_SESSION[''];
+            $focusMenu = "";
+            $focusSubMenu = "";
             menuSubmenu($permisos,$focusMenu,$focusSubMenu);
          ?> 
     </ul>

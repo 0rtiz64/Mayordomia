@@ -257,6 +257,7 @@ function sendDataModal(idIntegrante,correlativo)
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
             selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+            ticketInfo();
             //$('#formularioRegistro')[0].reset();
         }
         else
