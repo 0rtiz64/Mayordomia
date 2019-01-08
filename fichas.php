@@ -166,6 +166,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/carnetBusqueda.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/etiquetaIndividual.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/integracionIndividual.js"></script>
+<script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/tagToga.js"></script>
 <script type="text/javascript">
     var OSName="Unknown OS";
     if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";

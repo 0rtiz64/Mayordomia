@@ -126,6 +126,9 @@ session_start();
                                 <div id="notificacion" align="center" class="alert alert-danger collapse"></div>
 
                                 <div id="notificacionIntegrante"  align="center" class="alert alert-success collapse"></div>
+
+        <div class="col-md-12 form-group alert alert-success collapse"id="agregadoNombre" align="center"></div>
+
         <div id="detalles" style="float: right" class="collapse col-md-12">
             <a onclick="verDetalles()">Ver detalles</a>
             <input type="hidden" id="idVerDetalles">

@@ -74,27 +74,77 @@ WHERE serviciodetalle.idServidor = $idServidor
 
 
 }else{
+//VALIDAR SI EXISTE EN TABLA INTEGRANTES
+
+    $queryValidarEnIntegrantes= mysqli_num_rows(mysqli_query($enlace,"SELECT * from integrantes WHERE  num_identidad ='".$identidad."' "));
 
 
-    $datos = array(
-        0 => $datos = 0,
-        1 => 0,
-        2 => 0,
-        3 => 0,
-        4 => 0,
-        5 => 0,
-        6 => 0,
-        7 => 0,
-        8 => 0,
-        9 => 0,
-        10 => 0,
-        11 => 0,
-        12 => 0,
+    if($queryValidarEnIntegrantes>0){
+        //TOMAR DATOS INTEGRANTE
+        $queryEnIntegrantes = mysqli_query($enlace,"SELECT * from integrantes WHERE  num_identidad ='".$identidad."' ");
+        $datosIntegrantes = mysqli_fetch_array($queryEnIntegrantes,MYSQLI_ASSOC);
+
+            $identidad = $datosIntegrantes["num_identidad"];
+            $nombre= $datosIntegrantes["nombre_integrante"];
+            $fechaNacimiento= $datosIntegrantes["fecha_cumple"];
+            $civil= $datosIntegrantes["estado_civil"];
+            $genero= $datosIntegrantes["sexo"];
+            $transporte= $datosIntegrantes["trasporte"];
+            $tel1= $datosIntegrantes["cel"];
+            $tel2= $datosIntegrantes["tel"];
+
+            if($datosIntegrantes["areas"] ==""){
+                $respuestaIntegrado= 0;
+            }else{
+                $respuestaIntegrado= 1;
+            }
+            $areas = $datosIntegrantes["areas"];
+            $corderitos = $datosIntegrantes["promo_cordero"];
+            $direccion = $datosIntegrantes["direccion"];
+            $casada = $datosIntegrantes["apellidoCasada"];
 
 
-    );
-    echo json_encode($datos);
-}
+        $datos = array(
+            0 => $datos = 2,
+            1 => $identidad,
+            2 => $nombre,
+            3 => $fechaNacimiento,
+            4 => $tel1,
+            5 => $tel2,
+            6 => $civil,
+            7 => $genero,
+            8 => $transporte,
+            9 => $direccion,
+            10 => $areas,
+            11 => $casada,
+            12 => $corderitos,
+            13 => $respuestaIntegrado,
+
+
+        );
+        echo json_encode($datos);
+    }else{
+        $datos = array(
+            0 => $datos = 0,
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0,
+            6 => 0,
+            7 => 0,
+            8 => 0,
+            9 => 0,
+            10 => 0,
+            11 => 0,
+            12 => 0,
+
+
+        );
+        echo json_encode($datos);
+    } //FIN IF VALIDAR SI EXISTE EN INTEGRANTES
+
+} // FIN IF PRINCIPAL
 
 
 

@@ -14,6 +14,9 @@ $datoIdIntegrante= mysqli_fetch_array($queryIdIntegrante,MYSQLI_ASSOC);
 $idIntegrante= $datoIdIntegrante["idintegrante"];
 
 
+
+
+
 $queryVerificarExisteIdentidad = mysqli_num_rows(mysqli_query($enlace,"SELECT num_identidad,idintegrante FROM integrantes WHERE idintegrante='".$idIntegrante."'"));
 //INICIA IF VALIDAR SI EXISTE IDENTIDAD
 if($queryVerificarExisteIdentidad>0){
@@ -51,35 +54,34 @@ WHERE idIntegrante=$idIntegrante and CAST(fechaMarcacion AS DATE) = '".$fechaSis
         </div>';
 
 
-//CANTIDAD TOTAL
+//INICIO CONTADORES
         $queryCantidadAsistencia = mysqli_query($enlace,"SELECT COUNT(idIntegrante)AS CANTIDAD from marcacionprovicional WHERE CAST(fechaMarcacion AS DATE) = '".$fechaSistemaVerifica."'");
         $datoCantidad = mysqli_fetch_array($queryCantidadAsistencia,MYSQLI_ASSOC);
         $cantidadAsistieron = $datoCantidad["CANTIDAD"];
-        // $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieron.'</span>';
-
-        //CANTIDAD PASTOREADORES
 
         $queryCantidadAsistenciaPastoreadores = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion= $promocionActiva");
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and pastoreadores.estado= 1");
         $datoCantidadPastoreadores = mysqli_fetch_array($queryCantidadAsistenciaPastoreadores,MYSQLI_ASSOC);
         $cantidadAsistieronPastoreadores = $datoCantidadPastoreadores["CANTIDAD"];
         $cantidadDivPast = 'Asistencia Pastoreadores:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronPastoreadores.'</span>';
 
 
-        //CANTIDAD LIDERAZGO
+//CANTIDAD LIDERAZGO
         $queryCantidadAsistenciaLiderazgo = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promocionActiva");
+INNER JOIN liderazgo on marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."'
+and liderazgo.estado = 1");
         $datoCantidadLiderazgo = mysqli_fetch_array($queryCantidadAsistenciaLiderazgo,MYSQLI_ASSOC);
         $cantidadAsistieronLiderazgo = $datoCantidadLiderazgo["CANTIDAD"];
         $cantidadDivLid = 'Asistencia Liderazgo:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronLiderazgo.'</span>';
 
 
-        //CANTIDAD OVEJAS
+//CANTIDAD OVEJAS
         $totalLid = $cantidadAsistieronPastoreadores+$cantidadAsistieronLiderazgo;
         $totalOvejas =$cantidadAsistieron-$totalLid;
         $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$totalOvejas .'</span>';
+//FIN CONTADORES
 
 
         $datos = array(
@@ -87,7 +89,6 @@ where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerific
             1 => $cantidadDiv,
             2 => $cantidadDivPast,
             3 => $cantidadDivLid,
-
         );
         echo json_encode($datos);
 
@@ -154,35 +155,34 @@ WHERE idintegrante = $idIntegrante and  detalle_integrantes.id_promocion=$promoc
 
           ';
 
-//CANTIDAD TOTAL
+//INICIO CONTADORES
             $queryCantidadAsistencia = mysqli_query($enlace,"SELECT COUNT(idIntegrante)AS CANTIDAD from marcacionprovicional WHERE CAST(fechaMarcacion AS DATE) = '".$fechaSistemaVerifica."'");
             $datoCantidad = mysqli_fetch_array($queryCantidadAsistencia,MYSQLI_ASSOC);
             $cantidadAsistieron = $datoCantidad["CANTIDAD"];
-            // $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieron.'</span>';
-
-            //CANTIDAD PASTOREADORES
 
             $queryCantidadAsistenciaPastoreadores = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion= $promocionActiva");
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and pastoreadores.estado= 1");
             $datoCantidadPastoreadores = mysqli_fetch_array($queryCantidadAsistenciaPastoreadores,MYSQLI_ASSOC);
             $cantidadAsistieronPastoreadores = $datoCantidadPastoreadores["CANTIDAD"];
             $cantidadDivPast = 'Asistencia Pastoreadores:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronPastoreadores.'</span>';
 
 
-            //CANTIDAD LIDERAZGO
+//CANTIDAD LIDERAZGO
             $queryCantidadAsistenciaLiderazgo = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promocionActiva");
+INNER JOIN liderazgo on marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."'
+and liderazgo.estado = 1");
             $datoCantidadLiderazgo = mysqli_fetch_array($queryCantidadAsistenciaLiderazgo,MYSQLI_ASSOC);
             $cantidadAsistieronLiderazgo = $datoCantidadLiderazgo["CANTIDAD"];
             $cantidadDivLid = 'Asistencia Liderazgo:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronLiderazgo.'</span>';
 
 
-            //CANTIDAD OVEJAS
+//CANTIDAD OVEJAS
             $totalLid = $cantidadAsistieronPastoreadores+$cantidadAsistieronLiderazgo;
             $totalOvejas =$cantidadAsistieron-$totalLid;
             $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$totalOvejas .'</span>';
+//FIN CONTADORES
 
 
             $datos = array(
@@ -226,35 +226,34 @@ where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerific
         ';
 
 
-//CANTIDAD TOTAL
+            //INICIO CONTADORES
             $queryCantidadAsistencia = mysqli_query($enlace,"SELECT COUNT(idIntegrante)AS CANTIDAD from marcacionprovicional WHERE CAST(fechaMarcacion AS DATE) = '".$fechaSistemaVerifica."'");
             $datoCantidad = mysqli_fetch_array($queryCantidadAsistencia,MYSQLI_ASSOC);
             $cantidadAsistieron = $datoCantidad["CANTIDAD"];
-            // $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieron.'</span>';
-
-            //CANTIDAD PASTOREADORES
 
             $queryCantidadAsistenciaPastoreadores = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)= '".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion= $promocionActiva");
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and pastoreadores.estado= 1");
             $datoCantidadPastoreadores = mysqli_fetch_array($queryCantidadAsistenciaPastoreadores,MYSQLI_ASSOC);
             $cantidadAsistieronPastoreadores = $datoCantidadPastoreadores["CANTIDAD"];
             $cantidadDivPast = 'Asistencia Pastoreadores:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronPastoreadores.'</span>';
 
 
-            //CANTIDAD LIDERAZGO
+//CANTIDAD LIDERAZGO
             $queryCantidadAsistenciaLiderazgo = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promocionActiva");
+INNER JOIN liderazgo on marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."'
+and liderazgo.estado = 1");
             $datoCantidadLiderazgo = mysqli_fetch_array($queryCantidadAsistenciaLiderazgo,MYSQLI_ASSOC);
             $cantidadAsistieronLiderazgo = $datoCantidadLiderazgo["CANTIDAD"];
             $cantidadDivLid = 'Asistencia Liderazgo:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronLiderazgo.'</span>';
 
 
-            //CANTIDAD OVEJAS
+//CANTIDAD OVEJAS
             $totalLid = $cantidadAsistieronPastoreadores+$cantidadAsistieronLiderazgo;
             $totalOvejas =$cantidadAsistieron-$totalLid;
             $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$totalOvejas .'</span>';
+//FIN CONTADORES
 
 
             $datos = array(
@@ -274,38 +273,38 @@ where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerific
 
 
 }else{
-    //CANTIDAD TOTAL
+
+
+    $alerta =' <div class="alert alert-danger" > <strong> Integrante no encontrado</strong>  </div>';
+
+    //INICIO CONTADORES
     $queryCantidadAsistencia = mysqli_query($enlace,"SELECT COUNT(idIntegrante)AS CANTIDAD from marcacionprovicional WHERE CAST(fechaMarcacion AS DATE) = '".$fechaSistemaVerifica."'");
     $datoCantidad = mysqli_fetch_array($queryCantidadAsistencia,MYSQLI_ASSOC);
     $cantidadAsistieron = $datoCantidad["CANTIDAD"];
-    // $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieron.'</span>';
-
-    //CANTIDAD PASTOREADORES
 
     $queryCantidadAsistenciaPastoreadores = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion= $promocionActiva");
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fechaSistemaVerifica."' and pastoreadores.estado= 1");
     $datoCantidadPastoreadores = mysqli_fetch_array($queryCantidadAsistenciaPastoreadores,MYSQLI_ASSOC);
     $cantidadAsistieronPastoreadores = $datoCantidadPastoreadores["CANTIDAD"];
     $cantidadDivPast = 'Asistencia Pastoreadores:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronPastoreadores.'</span>';
 
 
-    //CANTIDAD LIDERAZGO
+//CANTIDAD LIDERAZGO
     $queryCantidadAsistenciaLiderazgo = mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."' and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promocionActiva");
+INNER JOIN liderazgo on marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerifica."'
+and liderazgo.estado = 1");
     $datoCantidadLiderazgo = mysqli_fetch_array($queryCantidadAsistenciaLiderazgo,MYSQLI_ASSOC);
     $cantidadAsistieronLiderazgo = $datoCantidadLiderazgo["CANTIDAD"];
     $cantidadDivLid = 'Asistencia Liderazgo:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$cantidadAsistieronLiderazgo.'</span>';
 
 
-    //CANTIDAD OVEJAS
+//CANTIDAD OVEJAS
     $totalLid = $cantidadAsistieronPastoreadores+$cantidadAsistieronLiderazgo;
     $totalOvejas =$cantidadAsistieron-$totalLid;
     $cantidadDiv = 'Asistencia Ovejas:<span class="badge badge-danager animated bounceIn" id="new-messages">'.$totalOvejas .'</span>';
-
-
-    $alerta =' <div class="alert alert-danger" > <strong> Integrante no encontrado</strong>  </div>';
+//FIN CONTADORES
 
 
     $datos = array(
@@ -313,8 +312,8 @@ where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fechaSistemaVerific
         1 => $cantidadDiv,
         2 => $cantidadDivPast,
         3 => $cantidadDivLid,
-
     );
+
     echo json_encode($datos);
 
 }//FIN IF VALIDAR SI EXISTE IDENTIDAD

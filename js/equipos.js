@@ -78,6 +78,10 @@ $('#alertNumeroEquipo').slideDown(200);
            // $('#formularioEquipo')[0].reset();
             $('#numEquipoInput').val("");
             $('#nombreEquipoInput').val("");
+            $('#pastoreador1').val("");
+            $('#pastoreador2').val("");
+            $('#idPast1').val("");
+            $('#idPast2').val("");
             $('#guardado').html(datos).show(200).delay(2500).hide(200);
             return false;
         }
@@ -215,3 +219,5 @@ function removerPast2() {
 function removerPast1() {
     $('#pastoreador1').val("");
 }
+
+

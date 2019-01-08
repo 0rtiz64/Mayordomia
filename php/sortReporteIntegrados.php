@@ -21,10 +21,11 @@ if($order == 'desc'){
 
 
 
-$query = mysqli_query($enlace,"select * from integracion  
+$query = mysqli_query($enlace,"select integrantes.nombre_integrante,integrantes.num_identidad,integrantes.correlativo from integracion  
 INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
 INNER JOIN promociones ON integracion.idPromocion = promociones.idpromocion
-WHERE integracion.idArea  = $idArea  ORDER BY $column_name $order ");
+INNER JOIN detalle_integrantes ON integrantes.idintegrante = detalle_integrantes.id_integrante
+WHERE detalle_integrantes.`status`=1 AND   integracion.idArea =1 and promociones.`status` = 1 ORDER BY $column_name $order ");
 
 $queryNombreArea = mysqli_query($enlace,"select * from areas WHERE idArea =$idArea");
 $datosNombreArea = mysqli_fetch_array($queryNombreArea,MYSQLI_ASSOC);

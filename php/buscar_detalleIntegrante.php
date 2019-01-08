@@ -11,6 +11,7 @@ $idIntegrante= $_POST['nombrePersona'];
 $queryPromocionActiva = mysqli_query($enlace,"SELECT * from promociones where promociones.`status`=1");
 $datosPromocionActiva = mysqli_fetch_array($queryPromocionActiva,MYSQLI_ASSOC);
 $promoActiva = $datosPromocionActiva["idpromocion"];
+$promoActiva2 = $datosPromocionActiva["desc_promocion"];
 
 
 
@@ -34,6 +35,7 @@ where detalle_integrantes.id_integrante = $idIntegrante  and detalle_integrantes
         2 => $rows['nombre_equipo'],
         3 => $rows['idintegrante'],
         4 => 1,
+        5 => $promoActiva2,
     );
     echo json_encode($datos);
 }else{
@@ -43,6 +45,7 @@ where detalle_integrantes.id_integrante = $idIntegrante  and detalle_integrantes
         2 => 2,
         3 => 3,
         4 => 0,
+        5 => $promoActiva2,
     );
     echo json_encode($datos);
 }

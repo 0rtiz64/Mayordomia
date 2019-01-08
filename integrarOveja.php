@@ -166,8 +166,6 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
                         
-
-                        
                         <div class="col-sm-12">
                             <div id="RegistroExitoso"></div>
                         </div>

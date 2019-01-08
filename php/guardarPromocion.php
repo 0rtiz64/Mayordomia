@@ -4,6 +4,7 @@ include '../gold/enlace.php';
 $numPromocion=$_POST["phpNumeroPromocion"];
 $nombrePromocion=$_POST["phpNombrePromocion"];
 $estadoPromocion=$_POST["phpEstadoPromocion"];
+$correlativoPromocion=$_POST["phpCorrelativoPromocion"];
 
 $fechaSistema = "".date('Y-m-d H:i:s')."";
 
@@ -23,13 +24,13 @@ where  `status`=1 "));
         echo "<div class='alert alert-danger' > <strong>ACTUALMENTE HAY UNA PROMOCION ACTIVA</strong>  </div>";
     } else {
 
-        $query = mysqli_query($enlace, "insert into promociones (num_promocion,desc_promocion,status,fecha_registro) 
-values($numPromocion,'$nombrePromocion',$estadoPromocion,'$fechaSistema ')");
+        $query = mysqli_query($enlace, "insert into promociones (num_promocion,desc_promocion,status,fecha_registro,correlativo) 
+values($numPromocion,'$nombrePromocion',$estadoPromocion,'$fechaSistema ',$correlativoPromocion)");
 
 
         if (mysqli_affected_rows($enlace) > 0) {
 
-            echo "<div class='alert alert-success' > <strong>Promocion Guardada</strong>  </div>";
+            echo "<div class='alert alert-success' > <strong>PROMOCION GUARDADA</strong>  </div>";
             /*
             echo "<script>";
            echo "recargarNumeroExpediente(".$Id.");";

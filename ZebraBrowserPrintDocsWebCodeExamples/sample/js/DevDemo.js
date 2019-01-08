@@ -257,6 +257,7 @@ function sendDataModal(idIntegrante,correlativo)
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
             selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+            ticketInfo();
             //$('#formularioRegistro')[0].reset();
         }
         else
@@ -284,7 +285,7 @@ function sendData(idIntegrante,correlativo)
 			//var corr =$('#numeroExpedienteRegistrar').val();
 			var nombre = nombre1.toUpperCase();
 			var promocion = $('#promoAc').val();
-			var promocion1 =promocion.toUpperCase()
+			var promocion1 =promocion.toUpperCase();
 			//var corrVisible = $('#correlativo').val();
 
             var contraPleca = String.fromCharCode(92);
@@ -292,6 +293,7 @@ function sendData(idIntegrante,correlativo)
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
 			selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+            ticketInfo();
             //$('#formularioRegistro')[0].reset();
 		}
 		else
@@ -299,6 +301,43 @@ function sendData(idIntegrante,correlativo)
 			printerError(text);
 		}
 	});
+};
+
+
+function ticketInfo(idIntegrante,correlativo)
+{
+
+
+    showLoading("Printing...");
+    checkPrinterStatus( function (text){
+        if (text == "Ready to Print")
+        {
+          var ticketInfo = "^XA\n" +
+              "^MMT\n" +
+              "^PW691\n" +
+              "^LL0386\n" +
+              "^LS0\n" +
+              "^FO0,224^GFA,02560,02560,00016,:Z64:\n" +
+              "eJztlM9L21AcwL8vqSaMR6wDIQ5Hqw7ZqUvm2AqCaWFHDx53GMyqeK5sMBmDphVcDyI77rCBp1HEg7DDvJmKqEjRXWSXObOLHlZshUEF074lfUmbV53uD/Bb+uPzPu/73vd9mwTgJm7iYggtrLOIQhvswFqZ9cRiMvpJjfEvCGF8qIW1Q/KN4RIx/ZxqYa30e9HPpJL+w/AxKAwfJf3MnR+fRpnyv5MZzy0tLeVKe7U3znd9b0JIJVWzP4lzaM4Zy2nVVWZ9UvUawlE+d1h0fsfs92tSYfzMWok9X+rQ9HttgRiec/JDlQbXfUdL/wRCwO95YoF/fyBnjAfNZLkZFzguPNnfP2j7lD/4WWeU6f0woKTDmyqm8zfj7yfVfLiguHyE9G3FgMJDTPefQrqhJoINP9yZzihqMKNkKU91zfLT3Xe3kj/c9dAcp4jBTWW+zjGbQW2DDWWE+nWUvacIMKeIbn7vx0mVD26pAcqRyM7n2vrOYvGkef4rzgchQ9OrWlkTTMpRU0LvpB5JPKP7J5MS4rGER2XqF6MSj2wO0/MgQ3ZYwDGPscTpmJ+HdrHeP6NHssdQAdqp17EEZQxFj20PFuYtv4/Y67ns5EMH7sANL0vA41s4LNF6jG6pk2/WA6YidXIOi2790wvqHBbmo1Hq7+TJqRVJnz9wz4vsGyBo/0KX94f2r9FFDi0PzWb6B1eXx93+4wRqHw924zjdn8P5tN4XkLGRrZ8/ZrM1ATKOF9z5aT3bn5ZFY5tyNQ/biV9nuOz5vD46psoYqLfz9eR4UB5B9HoAMaGP9d2WMaLXD7I0Pfxy8BmewI36w84DTASxWf8V//813JqfWiPea+Wy+bkcZLOg23tnc3TokbU3Uxn64i3EDZzsOjzmse2Tfv+4uMvMf0X900Z+cSH61ecDzx2/EvBKMKE9egRw3+O2+rPnra9GE2C4iQiEcgoCzQEdJB2uC98M58oJ/GueE8ELt2FLdF2tr0u/if+Mv0k2DfU=:9475\n" +
+              "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
+              "eJzt1c1rE0EUAPDZbJoNZZtUVBpl22pA0FtiqPRgm+BJPAlaxFuqNxFMS2kLPWRDoAlx/TiKFAuSgwf/AWnBiYXmErHiJbdsQNRDYROrUiTsOJNtYTIfoniTPJJd8uPt7ONt5i0A/ehHP/qB4yTKvNqMT5wZ/Xgje57yQd+xknk59WIgWhy+Qnno6+LGWnChORpdnbtD5/uP43zl3MBp5cgg5WNoYWNz6btrNEfm5v+hzuAJS59W9/SkGrvgo3zo5pq1FG5b2fzEYoDycLtYq1ixWjM//ukW5YH4g11Yj3XglrH9g3Lf7P27Zj2OXd/+Sbk6uz5l1hMGrBYKzyhXKg8NWE/o8G21EOpxy6hYCb1Zq2p0PSBX1Fce7b1ceXI7QNev5B77k1q7k4yk/X/UCBVfMzOTwkeQol3BH4Rgebm085y5BHulfPXptVXWHQeWY6VLUT4flk+VrgvWgaKSZA6Q+0aSv9WSuCtZf9wUOK5ftSX17Ev8osTDElf5G3ddgWIHfEHYdwDI8O4470xwVpTfQMAQu62zrHW9E2A9hPvfcF2NdX2I5KM868ZU13Mm45E4Qh8Qeg8Zn8Rf/z3HZj1GalpHYneQnWac/NYQagn9M7JjjNsH+axDz7l84iMS1xzHDvaycrhOhHHz9w6F7kpclo+QydZz4ECUrzoOEOWryBXnS70j8X3OITnwDjxv/ZUDBwLRcwFZk/M0OSSB2A1+g6WZ82GQ65NQ7K9tfgNHvPK9uqgIkvZ/4QeB4bWz2z86QuQxdviBEiDuksHeG6rn3L7GCxAPsa54zs+NVve+k5xncP27XDsBWO7Wb3MeIX8HwdwLkf4I5mTABMgWzFUV4v6P8Q7IS0Ewt8H0MDjKl4Nf8nhs87cl7W90BIwfOxItg1v3Tcj9+B/jF4ObRco=:CA05\n" +
+              "^FT488,300^A0I,51,50^FH\\^FDPROMOCION 6^FS\n" +
+              "^FT645,222^A0I,20,19^FB595,1,0,C^FH\\^FDCONSULTAS EN HORARIO DE LUNES A VIERNES 10AM-12MD/ 1PM-3PM^FS\n" +
+              "^FT652,50^A0I,25,24^FB623,1,0,C^FH\\^FDMATEO 23:11^FS\n" +
+              "^FT652,19^A0I,25,24^FB623,1,0,C^FH\\^FDEL MAS GRANDE  ENTRE USTEDES DEBE SERVIR A LOS DEMAS^FS\n" +
+              "^FT612,93^A0I,25,24^FB530,1,0,C^FH\\^FDSIGUENOS EN FACEBOOK: ESCUELA DE MAYORDOMIA^FS\n" +
+              "^FT497,144^A0I,25,24^FB304,1,0,C^FH\\^FDCORREO: info@mayordomia.hn^FS\n" +
+              "^FT530,177^A0I,25,24^FB373,1,0,C^FH\\^FDMENSAJE O WHATSAPP: 9430-8658.^FS\n" +
+              "^PQ1,0,1,Y^XZ\n";
+
+            selected_printer.send(ticketInfo, printComplete, printerError);
+            //$('#formularioRegistro')[0].reset();
+        }
+        else
+        {
+            printerError(text);
+        }
+    });
 };
 
 function checkPrinterStatus(finishedFunction)

@@ -157,7 +157,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         <div id="alertNombrePromocion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">NOMBRE INVALIDO</div>
                                     </div>
 
-                                    <div class="input-group col-md-12" id="estadoPromocionDiv">
+                                    <div class="col-md-12 input-group " id="estadoPromocionDiv">
                                         <select id="estadoPromocion" class="form-control">
                                             <option value="">SELECCIONE ESTADO</option>
                                             <option value="1">ACTIVA</option>
@@ -165,6 +165,15 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         </select>
                                         <div id="alertEstadoPromocion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">ESTADO INVALIDO</div>
                                     </div>
+
+
+                                    <div class="col-md-12 input-group " id="divCorrelativo">
+                                        <input type="number" class="form-control" placeholder="CORRELATIVO DE PROMOCION" id="correlativoPromocion">
+                                        <div id="alertCorrelativo" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">CORRELATIVO INVALIDO</div>
+
+                                    </div>
+
+
                                     <input type="button" class="btn btn-default" id="limpiarNuevaPromocion"  value="LIMPIAR">
                                     <input type="button" class="btn btn-primary" id="gurdarNuevaPromocion" onclick="guardarPromocion()" value="GUARDAR">
                                 </form>
@@ -218,12 +227,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
                         <div class="col-lg-6" id="divFECHA">
-                            <div class="input-group">
-                                <input type="text" id="fechaPromEdit" name="daterange" class="datepicker form-control" placeholder="Ejemplo : 2017-09-25">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <div class="input-group col-md-12">
+                                <input type="text" id="fechaPromEdit"  class=" form-control" placeholder="CORRELATIVO PROMOCION" autocomplete="off">
                             </div>
-                            <div id="alertFechaEditCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">FECHA INVALIDA</div>
-
+                            <div id="alertFechaEditCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">CORRELATIVO INVALIDO</div>
                         </div>
                         <input type="hidden" id="idPromEdit">
                     </div>

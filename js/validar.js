@@ -506,7 +506,8 @@ function editarIntegrante(id){
         var datos = eval(valores);
         
         $('#id-prod').val(id);
-        $('#ECC').val(datos[10]);
+        document.getElementById('ECC').value = datos[13];
+        //$('#ECC').val(datos[13]);
         $('#GFM').val(datos[11]);
         $('#OCT').val(datos[12]);
         $('#numero_I').val(datos[0]);
@@ -519,6 +520,7 @@ function editarIntegrante(id){
         $('#CambioE').val(datos[7]);
         $('#Cargos').val(datos[8]);
         $('#commentEditar').val(datos[9]);
+        $('#selectToga').val(datos[14]);
         $('#scrollingModal').modal({
           show:true,
           backdrop:'static'

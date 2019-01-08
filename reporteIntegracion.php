@@ -142,13 +142,16 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <div class="col-md-12 "> <!--ABRE DIV CONTENEDOR-->
 
                         <div class="col-md-12 form-group" align="center">
+                            <input type="button" class="btn" style="background-color: #f85b11;color: #ffffff" value="REPORTE NO INTEGRADOS" id="btnParaNoIntegrados">
                             <input type="button" class="btn btn-primary" value="REPORTE POR AREAS" id="btnParaAreas">
                             <input type="button" class="btn " style="background: #0062c4; color: white" value="REPORTE POR INTEGRANTE" id="btnParaIntegrantes">
                             <a href="php/EXCELtodosIntegrados.php" class="btn btn-success" style="color: #ffffff;">REPORTE GENERAL EXCEL</a>
 
                         </div>
 
-
+                        <div class="col-md-12 collapse" id="divNoIntegrados">
+                            <div id="resultadosNoIntegrados"></div>
+                        </div>
                         <div class="col-md-12 collapse" id="divPorArea">
     <div class="col-md-12 form-group">
         <select  id="selectAreas" class="form-control">

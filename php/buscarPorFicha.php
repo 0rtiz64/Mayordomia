@@ -11,9 +11,11 @@ include "../gold/enlace.php";
 $namePerson = strtoupper($_POST['nombre']);
 $namePerson1 = str_replace("'","",$namePerson);
 
-$busqueda = mysqli_query($enlace,"select integracion.idIntegrante,nombre_integrante from integracion
+$busqueda = mysqli_query($enlace,"select integracion.idIntegrante,nombre_integrante,integrantes.correlativo from integracion
 INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
-where correlativo LIKE'%".$namePerson1."%' GROUP BY correlativo");
+inner JOIN detalle_integrantes on integrantes.idintegrante = detalle_integrantes.id_integrante
+INNER JOIN promociones on  detalle_integrantes.id_promocion = promociones.idpromocion
+where integrantes.correlativo LIKE'%".$namePerson1."%' AND promociones.`status` = 1 and detalle_integrantes.`status`=1  GROUP BY integrantes.correlativo");
 
 
 

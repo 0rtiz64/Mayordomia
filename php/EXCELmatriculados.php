@@ -36,7 +36,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 $queryIntegrantes = mysqli_query($enlace," Select * from integrantes where not exists
  (select 1 from detalle_integrantes where detalle_integrantes.id_integrante = integrantes.idintegrante  )");
-$contador = 1;
+
 $datos = mysqli_fetch_array($queryIntegrantes,MYSQLI_ASSOC);
 
 
@@ -53,18 +53,29 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('I3', 'FECHA CUMPLEAÑOS')
     ->setCellValue('J3', 'AREAS')
     ->setCellValue('K3', 'CORRELATIVO')
-    ->setCellValue('L3', 'FECHA MATRICULA');
+    ->setCellValue('L3', 'FECHA MATRICULA')
+    ->setCellValue('M3', '0-2 AÑOS')
+    ->setCellValue('N3', '2-3 AÑOS')
+    ->setCellValue('O3', '4-5 AÑOS')
+    ->setCellValue('P3', '6-7 AÑOS')
+    ->setCellValue('Q3', '8-11 AÑOS')
+    ->setCellValue('R3', 'OTROS')
+    ->setCellValue('S3', 'TOTAL');
 
-
+$promoActiva = mysqli_query($enlace,"SELECT  * from promociones WHERE `status`=1");
+$datosPromocionActiva = mysqli_fetch_array($promoActiva,MYSQLI_ASSOC);
+$promoActivaCorrelativo= $datosPromocionActiva["correlativo"];
 $Integrantes = mysqli_query($enlace," SELECT * from integrantes
-where correlativo >18010000
+where correlativo >$promoActivaCorrelativo
 GROUP BY correlativo ASC");
+
+
 $contador=4;
 
 
 
 while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
-
+    $idIntegrante = $integrantesDatos["idintegrante"];
 
     $dia = substr($integrantesDatos["fecha_cumple"],8,2);
     $mes = substr($integrantesDatos["fecha_cumple"],5,2);
@@ -198,6 +209,30 @@ while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
         ->setCellValue("J$contador", $integrantesDatos["areas"])
         ->setCellValue("K$contador", $integrantesDatos["correlativo"])
         ->setCellValue("L$contador", $fCompletaRegistro);
+
+
+
+
+    $queryNinosConfirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT  * from rangos WHERE rangos.idIntegrante = $idIntegrante"));
+
+if($queryNinosConfirmar >0){
+
+    $queryMostrarNinos = mysqli_query($enlace,"SELECT  rangos.`0-2` AS rango1,rangos.`2-3` AS rango2, rangos.`4-5` as rango3,rangos.`6-7` as rango4,
+rangos.`8-11` as rango5, rangos.otros,rangos.total,rangos.idIntegrante
+ from rangos WHERE rangos.idIntegrante = $idIntegrante");
+    $datosMostarNinos = mysqli_fetch_array($queryMostrarNinos,MYSQLI_ASSOC);
+    $objPHPExcel->setActiveSheetIndex(0)
+        //->setCellValue("A$contador", $integrantesDatos["identidad"])
+        ->setCellValue("M$contador", $datosMostarNinos["rango1"])
+        ->setCellValue("N$contador", $datosMostarNinos["rango2"])
+        ->setCellValue("O$contador", $datosMostarNinos["rango3"])
+        ->setCellValue("P$contador", $datosMostarNinos["rango4"])
+        ->setCellValue("Q$contador", $datosMostarNinos["rango5"])
+        ->setCellValue("R$contador", $datosMostarNinos["otros"])
+        ->setCellValue("S$contador", $datosMostarNinos["total"]);
+
+}
+
 
     $contador++;
 }

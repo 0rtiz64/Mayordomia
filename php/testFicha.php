@@ -8,7 +8,7 @@ $ficha =$_GET["numero"];
 
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
-estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
  from integrantes
 WHERE integrantes.idintegrante='".$ficha."'");
 $resultados =  mysqli_fetch_array($queryIntegrante,MYSQLI_ASSOC);
@@ -30,7 +30,11 @@ if(file_exists($rutaImg2)){
     </p>';
 }
 
-
+if($resultados["documentosPendientes"]==""){
+    $documentosPendientes = "<a style='color: white'>.</a>";
+}else{
+    $documentosPendientes = $resultados["documentosPendientes"];
+}
 
 
 $queryPromocion = mysqli_query($enlace, "Select num_promocion from promociones
@@ -40,7 +44,7 @@ $resultadosPromocion = mysqli_fetch_array($queryPromocion, MYSQLI_ASSOC);
 $corr =$resultados["correlativo"];
 
 if($resultados["REGISTRO"] ==""){
-    $fCompleta =".";
+    $fCompleta = "<a style='color: white'>.</a>";
 }else{
     $fecha = $resultados["REGISTRO"];
 
@@ -116,7 +120,7 @@ if($resultados["REGISTRO"] ==""){
 $nombre = $resultados["nombre_integrante"];
 
 if($resultados["apellidoCasada"] ==""){
-    $apellido = ".";
+    $apellido =  "<p style='color: white'>.</p>";
 }else{
     $apellido = $resultados["apellidoCasada"];
 }
@@ -124,7 +128,7 @@ $identidad = $resultados["num_identidad"];
 
 
 if($resultados["fecha_cumple"] == ""){
-    $fCompletaN =".";
+    $fCompletaN = "<a style='color: white'>.</a>";
 }else{
     $nacimiento = $resultados["fecha_cumple"];
 
@@ -200,13 +204,13 @@ if ($resultados["sexo"] == 'M'){
 $telefono1 = $resultados["cel"];
 
 if($resultados["tel"] ==""){
-    $telefono2 =".";
+    $telefono2 = "<p style='color: white'>.</p>";
 }else{
     $telefono2 = $resultados["tel"];
 }
 
 if($resultados["promo_cordero"]==""){
-    $promoCorederitos = ".";
+    $promoCorederitos = "<a style='color: white'>.</a>";
 }else{
     $promoCorederitos=$resultados["promo_cordero"];
 }
@@ -314,7 +318,7 @@ if($resultados["areas"] ==""){
       </p>
     ';
 
-    $areas = ".";
+    $areas =  "<a style='color: white'>.</a>";
 }else{
 
     $integrado= '
@@ -341,7 +345,7 @@ $Contenido = '
     </tr>
     
     <tr>
-        <td colspan="3">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].'          PROMOCION DE CORDERO N'.$promoCorederitos.' </td>
+        <td colspan="3" align="center">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].' </td>
     </tr>
 </table>
 
@@ -350,13 +354,25 @@ $Contenido = '
    '.$foto.'
 </div>
 <br>
-<!--FECHA INSCRIPCION-->
-<div style="border: 1px solid green; width: 550px;  border-radius: 30px; font-size: 16px; margin-top: -10px">
-    <p align="center" style="margin-bottom: -10px"> '.$fCompleta.'</p>
-    <p align="center" style="margin-top: -25px">  ____________________________________________________________________</p>
-    <p align="center" style="font-size: 14px">Fecha de Inscripcion</p>
-</div>
-<!--FIN FECHA INSCRIPCION-->
+<div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: left;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px;"> '.$fCompleta.'</p>
+    <p align="center" style="margin-top: -10px">  __________________________</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Fecha de Inscripcion</p>
+</div>   
+<!--FIN NUMERO DE INDENTIDAD-->
+
+
+<!--FECHA DE NACIMIENTO-->
+ <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: 210px;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px;"> '.$promoCorederitos.'</p>
+    <p align="center" style="margin-top: -10px">  __________________________</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Promocion Corderitos</p>
+</div>   
+<!--FIN FECHA DE NACIMIENTO-->
+<br>
+<br>
+<br>
+<br>
 <br>
 <!--NOMBRE  COMPLETO APELLIDO CASADA-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; margin-top: -15px; width: 450px; float: left">
@@ -432,9 +448,8 @@ $Contenido = '
 
 <!--DIRECCION-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px;margin-top: 5px">
-    <p style="margin-left: 10px">Direccion:</p>
-    <p align="left" style="margin-bottom: -15px; margin-right: 0px; font-size: 65%"> <a style="margin-left: 50px;">'.$direccion.'</a></p>
-    <p align="center" style="margin-top: -25px">  ________________________________________________________________________________</p>
+    <p style="margin-left: 10px">Direccion: <a style="font-size: 65%">'.$direccion.'</a></p>
+      <p style="margin-left: 10px">Documentos: <a style="font-size: 65%">'.$documentosPendientes.'</a></p>
     
  </div>
  <!--FIN DIRECCION-->

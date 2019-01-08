@@ -22,7 +22,7 @@ if($order == 'desc'){
 $query = mysqli_query($enlace,"select * from detalle_integrantes 
 INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN equipos ON detalle_integrantes.id_equipo = equipos.id_equipo
-WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.id_cargo=10 ORDER BY $column_name $order ");
+WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.id_cargo=10 and detalle_integrantes.`status` = 1 ORDER BY $column_name $order ");
 
 $equipoNombreQuery = mysqli_query($enlace,"SELECT * from equipos where id_equipo =$idEquipo");
 $datosEquipoNombre = mysqli_fetch_array($equipoNombreQuery,MYSQLI_ASSOC);

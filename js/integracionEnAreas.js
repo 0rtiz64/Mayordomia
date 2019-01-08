@@ -76,7 +76,7 @@ var url = 'php/buscarId.php';
             var  indice = tagLeidos.indexOf(datos);
 
             if (indice == -1){
-               alert(datos)
+           alertify.error("Se produjo un error, notificar al desarrollador");
             }else{
                 tagLeidos.splice(indice,1);
 

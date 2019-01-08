@@ -9,8 +9,32 @@ $(document).ready(function () {
 
 //INICIO BOTONES PARA DIV
 
+$('#btnParaNoIntegrados').click(function () {
+    $('#divPorArea').hide(300);
+    $('#divPorIntegrante').hide(300);
+    $('#divNoIntegrados').show(300);
+    var dato = 0;
+var url = 'php/reporteNoIntegradosEnAreas.php';
+    $.ajax({
+        type:'POST',
+        url:url,
+        data: {
+            dato: dato
+        },
+        success: function (datos) {
+
+            $('#resultadosNoIntegrados').html(datos);
+            return false;
+        }
+    });
+
+    return false;
+
+});
+
 $('#btnParaAreas').click(function () {
     $('#divPorIntegrante').hide(300);
+    $('#divNoIntegrados').hide(300);
     $('#divPorArea').show(300);
 });
 
@@ -18,6 +42,7 @@ $('#btnParaAreas').click(function () {
 
 $('#btnParaIntegrantes').click(function () {
     $('#divPorArea').hide(300);
+    $('#divNoIntegrados').hide(300);
     $('#divPorIntegrante').show(300);
 });
 //FIN BOTONES PARA DIV

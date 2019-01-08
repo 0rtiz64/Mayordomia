@@ -222,6 +222,56 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                             break;
 
+
+                        case 'SM2.8':
+                            # code...
+
+                            if($focusSubMenu == "SM2.8"){
+                                $accesoMenus .='<li class="active"><a href="php/EXCELdocumentos.php">Reporte Documentos Pendientes Excel</a></li>';
+                            }else{
+                                $accesoMenus .= '<li ><a href="php/EXCELdocumentos.php">Reporte Documentos Pendientes Excel</a></li>';
+                            }
+
+
+                            break;
+
+                        case 'SM2.9':
+                            # code...
+
+                            if($focusSubMenu == "SM2.9"){
+                                $accesoMenus .='<li class="active"><a href="reporteEnlazados.php">Reporte Enlazados</a></li>';
+                            }else{
+                                $accesoMenus .= '<li ><a href="reporteEnlazados.php">Reporte Enlazados</a></li>';
+                            }
+
+
+                            break;
+
+
+                        case 'SM2.10':
+                            # code...
+                            if($focusSubMenu == "SM2.10"){
+                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculados.php"> Excel Matriculados</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="php/EXCELmatriculados.php">Excel Matriculados</a></li>';
+                            }
+
+                            break;
+
+                        case 'SM2.11':
+                            # code...
+                            if($focusSubMenu == "SM2.11"){
+                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculadosEquipo.php"> Excel Matriculados Enlazados</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="php/EXCELmatriculadosEquipo.php">Excel Matriculados Enlazados</a></li>';
+                            }
+
+                            break;
+
+
+
+
+
                         case 'SM2.0':
                             # code...
                             $accesoMenus .="</ul>
@@ -274,7 +324,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                         case 'SM3.3':
                             # code...
                             if($focusSubMenu == "SM3.3"){
-                                $accesoMenus .='<li class="active"><a href="cambios.php"> Cambios  Enlazados </a></li>';
+                                $accesoMenus .='<li class="active"><a href="cambios.php"> Cambios  Enlazados</a></li>';
                             }else{
                                 $accesoMenus .='<li ><a href="cambios.php"> Cambios  Enlazados</a></li>';
                             }
@@ -313,26 +363,6 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             break;
 
 
-                        case 'SM3.7':
-                            # code...
-                            if($focusSubMenu == "SM3.7"){
-                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculados.php"> Excel Matriculados</a></li>';
-                            }else{
-                                $accesoMenus .='<li ><a href="php/EXCELmatriculados.php">Excel Matriculados</a></li>';
-                            }
-
-                            break;
-
-                        case 'SM3.8':
-                            # code...
-                            if($focusSubMenu == "SM3.8"){
-                                $accesoMenus .='<li class="active"><a href="php/EXCELmatriculadosEquipo.php"> Excel Matriculados Enlazados</a></li>';
-                            }else{
-                                $accesoMenus .='<li ><a href="php/EXCELmatriculadosEquipo.php">Excel Matriculados Enlazados</a></li>';
-                            }
-
-                            break;
-
 
 
                         case 'SM3.9':
@@ -354,6 +384,8 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             }
 
                             break;
+
+
 
 
                         case 'SM3.0':
@@ -450,6 +482,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM5.4':
+                        # code...
+                        if($focusSubMenu == "SM5.4"){
+                            $accesoMenus .='<li class="active"><a href="contadorIntegracion.php">Contador Integracion</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="contadorIntegracion.php">Contador Integracion</a></li>';
+                        }
+
+                        break;
+
                     case 'SM5.0':
                         # code...
                         $accesoMenus .="</ul>
@@ -498,6 +540,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM6.3':
+                        # code...
+                        if($focusSubMenu == "SM6.3"){
+                            $accesoMenus .='<li class="active"><a href="listadoPastoreadoresEquipos.php"> Listado Pastoreadores Por Equipo</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="listadoPastoreadoresEquipos.php"> Listado Pastoreadores Por Equipo</a></li>';
+                        }
+
+                        break;
+
 
                     case 'SM6.0':
                         # code...
@@ -524,6 +576,57 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                                     <ul>';
             }
             //FIN M7
+
+        case 'M8':
+
+            if($focusMenu == "M8"){
+                $accesoMenus .='<li class="sub-menu active">
+                                    <a href="javascript:void(0);"><i class="fa fa-dedent"></i><span>Graduación</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }else{
+                $accesoMenus .='<li class="sub-menu">
+                                    <a href="javascript:void(0);"><i class="fa fa-dedent"></i><span>Graduación</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }
+
+            for ($z=0; $z < count($miarraySubmenu); $z++) {
+                # code...
+                switch ($miarraySubmenu[$z]) {
+                    case 'SM8.1':
+                        # code...
+                        if($focusSubMenu == "SM8.1"){
+                            $accesoMenus .='<li class="active"><a href="tagsGraduacion.php">  Tags Graduacion</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="tagsGraduacion.php"> Tags Graduacion</a></li>';
+                        }
+
+                        break;
+
+                    case 'SM8.2':
+                        # code...
+                        if($focusSubMenu == "SM8.2"){
+                            $accesoMenus .='<li class="active"><a href="contadorGraduacion.php">  Contador de Togas</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="contadorGraduacion.php"> Contador de Togas</a></li>';
+                        }
+
+                        break;
+
+
+
+
+
+                    case 'SM8.0':
+                        # code...
+                        $accesoMenus .="</ul>
+                                            </li>";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+            break;
 
         }
 

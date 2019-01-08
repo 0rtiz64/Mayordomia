@@ -7,18 +7,53 @@ include '../gold/enlace.php';
 $ficha =$_GET["numero"];
 
 
+$queryIntegranteF = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
+ from integrantes
+WHERE integrantes.idintegrante='".$ficha."'");
+$resultadosF=  mysqli_fetch_array($queryIntegranteF,MYSQLI_ASSOC);
+
+//INICIO RUTA IMAGEN
+$rutaImg1F="../Fotos/";
+$finRutaF=".jpg";
+$identidadF =$resultadosF["num_identidad"];
+$rutaImg2F=$rutaImg1F.$identidadF.$finRutaF;
+//FIN RUTA IMAGEN
+
+if(file_exists($rutaImg2F)){
+    $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
+    <img src="'.$rutaImg2F.'" style="width: 110px; height: 135px">
+    </p>';
+}else{
+    $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
+     <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
+    </p>';
+}
+
+
 
 $queryIntegrante = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
-estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo
+estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes,integrantes.bautizado,integrantes.registradoPor
  from integrantes
 WHERE integrantes.idintegrante='".$ficha."'");
 $resultados =  mysqli_fetch_array($queryIntegrante,MYSQLI_ASSOC);
 
+$nombreRegistrado = $resultados["registradoPor"];
+$bautizado = $resultados["bautizado"];
 $queryPromocion = mysqli_query($enlace, "Select num_promocion from promociones
 WHERE `status` = 1");
 $resultadosPromocion = mysqli_fetch_array($queryPromocion, MYSQLI_ASSOC);
 
 $corr =$resultados["correlativo"];
+
+
+if($resultados["documentosPendientes"]==""){
+    $documentosPendientes = "<a style='color: white'>.</a>";
+}else{
+    $documentosPendientes = $resultados["documentosPendientes"];
+}
+
+
 
 if($resultados["REGISTRO"] ==""){
     $fCompleta =".";
@@ -97,7 +132,7 @@ if($resultados["REGISTRO"] ==""){
 $nombre = $resultados["nombre_integrante"];
 
 if($resultados["apellidoCasada"] ==""){
-    $apellido = ".";
+    $apellido = "<a style='color: white'>.</a>";
 }else{
     $apellido = $resultados["apellidoCasada"];
 }
@@ -105,7 +140,7 @@ $identidad = $resultados["num_identidad"];
 
 
 if($resultados["fecha_cumple"] == ""){
-    $fCompletaN =".";
+    $fCompletaN ="<a style='color: white'>.</a>";
 }else{
     $nacimiento = $resultados["fecha_cumple"];
 
@@ -181,13 +216,13 @@ if ($resultados["sexo"] == 'M'){
 $telefono1 = $resultados["cel"];
 
 if($resultados["tel"] ==""){
-    $telefono2 =".";
+    $telefono2 ="<a style='color: white'>.</a>";
 }else{
     $telefono2 = $resultados["tel"];
 }
 
 if($resultados["promo_cordero"]==""){
-    $promoCorederitos = ".";
+    $promoCorederitos ="<a style='color: white'>.</a>";
 }else{
     $promoCorederitos=$resultados["promo_cordero"];
 }
@@ -293,9 +328,10 @@ if($resultados["areas"] ==""){
         <label style="font-size: 16px; margin-left: 20px">Si<input type="checkbox" ></label>
         <label style=" float: right; font-size: 16px; margin-left: 175px; margin-top:-22px;">No <input type="checkbox"checked ></label>
       </p>
+      
     ';
 
-    $areas = ".";
+    $areas = "<a style='color: white'>.</a>";
 }else{
 
     $integrado= '
@@ -322,27 +358,45 @@ $Contenido = '
     </tr>
     
     <tr>
-        <td colspan="3">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].'          PROMOCION DE CORDERO N'.$promoCorederitos.' </td>
+        <td colspan="3" align="center">PROMOCION DE MAYORDOMIA N'.$resultadosPromocion["num_promocion"].' </td>
     </tr>
 </table>
 
 <div>
-    
-    <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
+    '.$foto.'    
 </div>
 <br>
-<!--FECHA INSCRIPCION-->
-<div style="border: 1px solid green; width: 550px;  border-radius: 30px; font-size: 16px; margin-top: -10px">
-    <p align="center" style="margin-bottom: -10px"> '.$fCompleta.'</p>
-    <p align="center" style="margin-top: -25px">  ____________________________________________________________________</p>
-    <p align="center" style="font-size: 14px">Fecha de Inscripcion</p>
-</div>
-<!--FIN FECHA INSCRIPCION-->
+<div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: left;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px;"> '.$fCompleta.'</p>
+    <p align="center" style="margin-top: -10px">  __________________________</p>
+    <p style="font-size: 14px;margin-bottom: 10px" align="center">Fecha de Inscripcion</p>
+</div>   
+<!--FIN NUMERO DE INDENTIDAD-->
+
+
+<!--FECHA DE NACIMIENTO-->
+ <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: 210px;margin-top: -13px">
+    <p align="center" style="margin-bottom: -55px; margin-left: -5%"> '.$promoCorederitos.'  <a style="color: white">----------------------</a> '.$bautizado.' </p>
+    <p align="center" style="margin-top: -10px;margin-left: -2%">  ____________ <a style="color: white">-------</a> ____________</p>
+    <p style="font-size: 14px;margin-bottom: 10px;margin-left: -12%" align="center">Promocion Corderitos. <a style="color: white">----</a> Bautizado </p>
+    
+    
+      
+   
+    
+  
+   
+</div>   
+<!--FIN FECHA DE NACIMIENTO-->
+<br>
+<br>
+<br>
+<br>
 <br>
 <!--NOMBRE  COMPLETO APELLIDO CASADA-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; margin-top: -15px; width: 450px; float: left">
     
-    <p align="center" style="margin-bottom: -15px; margin-right: 45px;"> '.$nombre.'</p>
+    <p align="center" style="margin-bottom: -15px; margin-right: 45px;"> '.utf8_encode($nombre).'</p>
     <p align="center" style="margin-top: -35px">  _________________________________________________</p>
     <p style="font-size: 14px;margin-top: -70%" align="center">Nombre Completo</p>
  </div>
@@ -411,11 +465,11 @@ $Contenido = '
     </div>
 <!--TRANSPORTE-->
 
+
 <!--DIRECCION-->
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px;margin-top: 5px">
-    <p style="margin-left: 10px">Direccion:</p>
-    <p align="left" style="margin-bottom: -15px; margin-right: 0px; font-size: 65%"> <a style="margin-left: 50px;">'.$direccion.'</a></p>
-    <p align="center" style="margin-top: -25px">  ________________________________________________________________________________</p>
+    <p style="margin-left: 10px">Informacion Adicional: <a style="font-size: 65%">'.$direccion.'</a></p>
+      <p style="margin-left: 10px">Documentos: <a style="font-size: 65%">'.$documentosPendientes.'</a></p>
     
  </div>
  <!--FIN DIRECCION-->
@@ -430,32 +484,95 @@ $Contenido = '
    '.$integrado.'
 </div>
 
+ <div style="font-size: 5px; float: left; margin-top: 150px; width: 200px;">
 
-
-
-<!--FIRMA-->
-   <div  style="  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-right: -320px; margin-top: 123px">
-    
-    <p align="center" style="margin-top: -10px; margin-top: 25px">  __________________________</p>
-    <p style="font-size: 14px;margin-top: 15px" align="center">Nombre del Equipo de Mayordomia</p>
-</div>  
-<!--FIN FIRMA-->
-<!--FIRMA-->
- <div  style="  border-radius: 30px;font-size: 16px; width:250px; float: left; margin-left: -285px; margin-top: 120px">
-    
-    <p align="center" style="margin-top: -10px; margin-top: 25px">  __________________________</p>
-    <p style="font-size: 14px;margin-top: 15px" align="center">Nombre del Hno(a) de Mayordomia</p>
-</div>   
-
-
-
-
-
-<!--FIN FIRMA-->
+ <p style="font-size: 65%;">REGISTRADO POR: '.$nombreRegistrado.'</p>
+</div>
 
  ';
 
- 	$dompdf = new DOMPDF();
+
+//INICIO RUTA IMAGEN
+$queryIdentidad= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
+$dIdentidad = mysqli_fetch_array($queryIdentidad,MYSQLI_ASSOC);
+$identidadD = $dIdentidad["num_identidad"];
+$rutaImg1D="../documentos/";
+$finRutaD1=".jpg";
+$finRutaD2=".jpeg";
+
+//$diploma=$rutaImg1D.$identidadD.$finRutaD;
+$diploma=$rutaImg1D.$identidadD.$finRutaD1;
+$diploma2=$rutaImg1D.$identidadD.$finRutaD2;
+//FIN RUTA IMAGEN
+
+
+
+
+if(file_exists($diploma)){
+    $Contenido.='
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+   <div>
+    <img src="'.$diploma.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+}else{
+    if(file_exists($diploma2)){
+        $Contenido.='
+    <br><br><br><br><br>
+    <br><br><br><br><br>
+    <div>
+    <img src="'.$diploma2.'" style="width: 750px; height: 900px">
+    </div>  ';
+
+    }else{
+        $Contenido.='<p></p>';
+    }
+}
+
+
+
+
+
+$queryIdentidad2= mysqli_query($enlace,"SELECT * from integrantes where  idintegrante =$ficha");
+$dIdentidad2 = mysqli_fetch_array($queryIdentidad2,MYSQLI_ASSOC);
+$identidadD2 = $dIdentidad2["num_identidad"];
+$rutaImg1I="../documentos/";
+$finRutaDI1=".jpg";
+$finRutaDI2=".jpeg";
+
+
+$identidades1=$rutaImg1I.$identidadD2."D".$finRutaDI1;
+$identidades2=$rutaImg1I.$identidadD2."D".$finRutaDI2;
+//FIN RUTA IMAGEN
+
+
+if(file_exists($identidades1)){
+    $Contenido.='
+   <div>
+    <img src="'.$identidades1.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+}else{
+    if(file_exists($identidades2)){
+        $Contenido.='
+  <div>
+    <img src="'.$identidades2.'" style="width: 750px; height: 900px">
+   </div>
+    ';
+    }else{
+        $Contenido.='<p></p>';
+    }
+}
+
+
+
+//IDENTIDADES FINAL
+
+
+
+
+$dompdf = new DOMPDF();
 	$dompdf->load_html($Contenido);
 	$dompdf->render();
 	//$dompdf->stream("mi_archivo.pdf");3

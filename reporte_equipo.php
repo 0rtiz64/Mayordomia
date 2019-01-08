@@ -29,7 +29,10 @@ session_start();
     <link href='css/itallic.css' rel='stylesheet' type='text/css'>
     <link href='css/opensans.css' rel='stylesheet' type='text/css'>
 
-
+        <!--ALERTIFY INICIO-->
+        <link rel="stylesheet" href="alertify/css/alertify.css">
+        <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+        <!--ALERTIFY FIN-->
         <!--DatePicker-->
         <link rel="stylesheet" href="myfiles/DatePicker/css/bootstrap-datepicker.css">
 
@@ -224,7 +227,7 @@ WHERE `status`=1");
     <script src="myfiles/js/main.js"></script>
     <script src="js/export.js"></script>
 
-
+    <script src="alertify/alertify.js"></script>
     <script src="chartJs/chart.js"></script>
     <script src="chartJs/plugIn.js"></script>
     <script src="chartJs/UIJquey.js"></script>

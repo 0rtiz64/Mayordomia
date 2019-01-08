@@ -86,7 +86,7 @@ INNER JOIN integrantes ON integracion.idIntegrante = integrantes.idintegrante
 INNER JOIN areas on integracion.idArea = areas.idArea
 INNER JOIN promociones ON integracion.idPromocion = promociones.idpromocion
 INNER JOIN detalle_integrantes ON integrantes.idintegrante = detalle_integrantes.id_integrante
-WHERE detalle_integrantes.`status`=1 AND integracion.idArea=$idArea GROUP BY integrantes.nombre_integrante ASC");
+WHERE detalle_integrantes.`status`=1 AND integracion.idArea=$idArea AND promociones.`status`=1 GROUP BY integrantes.nombre_integrante ASC");
 while($result = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 
     if($result["integrador"]==1){

@@ -216,9 +216,9 @@ where `status`=1");
                                                     <option value="">LISTADO DE PASTOREADORES (INFORMATIVO)</option>
                                                     <?php
                                                     include_once 'gold/enlace.php';
-                                                    $queryPast= mysqli_query($enlace,"SELECT detalle_integrantes.idetalle_integrantes,integrantes.idintegrante, integrantes.nombre_integrante,detalle_integrantes.id_promocion FROM detalle_integrantes
-INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
-WHERE detalle_integrantes.id_cargo = 9");
+                                                    $queryPast= mysqli_query($enlace,"SELECT integrantes.idintegrante, integrantes.nombre_integrante FROM pastoreadores
+INNER JOIN integrantes ON pastoreadores.idIntegrante= integrantes.idintegrante
+WHERE pastoreadores.estado = 1 ");
                                                     while ($datosPastoreadores= mysqli_fetch_array($queryPast)){
                                                         echo'<option value="'.$datosPastoreadores["idintegrante"].'">'.utf8_encode($datosPastoreadores["nombre_integrante"]).'</option>';
                                                     }
@@ -252,6 +252,9 @@ WHERE detalle_integrantes.id_cargo = 9");
                             </div>
                         </div>
                     </div>
+
+
+
                     <!-- End Scrolling Modal -->
 
 

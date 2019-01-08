@@ -205,12 +205,12 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             <div class="form-group" >
                                 <div class="col-lg-4" id="divTelefono1">
-                                    <input type="number" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
+                                    <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
                                     <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                 </div>
 
                                 <div class="col-lg-4" id="divTelefono2">
-                                    <input type="number" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
+                                    <input type="text" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
                                 </div>
 
                                 <div class="col-lg-4" id="divIntegrado">
@@ -291,10 +291,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <div class="modal fade" id="ModalEditarServidoresDuplicados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content ">
-                                <div class="modal-header danger-bg">
+                                <div class="modal-header danger-bg" id="claseModalColor">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <!--h4 class="modal-title" id="myModalLabel" style="color: white">IDENTIDAD YA REGISTRADA EN </h4-->
-                                    <h4 style="color: #FFFFFF">EDITAR INTEGRANTE</h4>
+                                    <h4 style="color: #FFFFFF" id="tituloModal"></h4>
 
 
 
@@ -368,12 +368,12 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                             <div class="form-group" >
                                                 <div class="col-lg-4" id="divTelefono1Modal">
-                                                    <input type="number" class="form-control" id="telefono1RegistrarModal" min="0" placeholder="Telefono 1">
+                                                    <input type="text" class="form-control" id="telefono1RegistrarModal" min="0" placeholder="Telefono 1">
                                                     <div id="alertTelefono1Modal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                                 </div>
 
                                                 <div class="col-lg-4" id="divTelefono2Modal">
-                                                    <input type="number" class="form-control" id="telefono2RegistrarModal" min="0" placeholder="Telefono 2">
+                                                    <input type="text" class="form-control" id="telefono2RegistrarModal" min="0" placeholder="Telefono 2">
                                                 </div>
 
                                                 <div class="col-lg-4" id="divIntegradoModal">
@@ -447,8 +447,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar" onclick="limpiar()">Cerrar</button>
 
-                                    <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()">
-                                    <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();">
+
+                                    <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()" id="pdfActualizarModal">
+                                    <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();" id="actualizarModal">
+                                    <input type="button" class="btn btn-primary" value="INGRESAR" onclick="guardarIntegranteComoServidor()" id="btnIngresarModal">
 
                                 </div>
                             </div>

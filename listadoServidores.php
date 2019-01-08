@@ -144,7 +144,7 @@ session_start();
                       <h1 class="h1">LISTADO SERVIDORES</h1>
                       <div class="col-md-12">
 
-                          <div class="col-md-12 form-group" id="idSelectEquipoDiv">
+                          <div class="col-md-10 form-group" id="idSelectEquipoDiv">
                               <select  id="idSelectEquipo" class="form-control">
                                   <option value="">SELECCIONE EQUIPO</option>
 
@@ -158,6 +158,9 @@ session_start();
                               </select>
                           </div>
 
+                          <div class="col-md-2 form-group">
+                              <a href="php/EXCELServidoresGeneral.php" class="btn btn-success" style="color: white">EXCEL GENERAL</a>
+                          </div>
                           <div class="col-md-12" id="tablaEquipos"></div>
 
                       </div>

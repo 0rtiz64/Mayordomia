@@ -67,12 +67,12 @@ switch ($mes){
 $fCompleta = $dia."-".$miMes."-".$aaa;
 
 
-$queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel,equipos.num_equipo,equipos.nombre_equipo  from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
+$queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
-and detalle_integrantes.id_promocion= $promoActiva ORDER BY integrantes.nombre_integrante
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."'
+and pastoreadores.promocion  =$promoActiva
+GROUP BY integrantes.nombre_integrante ASC
 ");
 
 $queryPromocion = mysqli_query($enlace,"SELECT num_promocion from promociones
@@ -83,16 +83,15 @@ $promocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
 
 
 $queryTotalAsistencia= mysqli_query($enlace,"SELECT COUNT(marcacionprovicional.idIntegrante) as CANTIDAD from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
+INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
-where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."' and detalle_integrantes.id_cargo = 9 
-and detalle_integrantes.id_promocion= $promoActiva");
+where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."'  
+and pastoreadores.promocion= $promoActiva");
 $filaAsistenciaTotal= mysqli_fetch_array($queryTotalAsistencia,MYSQLI_ASSOC);
 
 
-$queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT COUNT(detalle_integrantes.idetalle_integrantes)as CANTIDAD FROM detalle_integrantes
-INNER JOIN cargos on detalle_integrantes.id_cargo = cargos.idcargo
-WHERE detalle_integrantes.id_cargo = 9 and detalle_integrantes.id_promocion=$promoActiva");
+$queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT COUNT(pastoreadores.idIntegrante)as CANTIDAD FROM pastoreadores
+WHERE pastoreadores.promocion= $promoActiva AND pastoreadores.estado = 1");
 $filaTotalIntegrantesEquipo= mysqli_fetch_array($queryTotalIntegrantesEquipo,MYSQLI_ASSOC);
 
 

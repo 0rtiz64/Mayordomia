@@ -33,7 +33,6 @@ session_start();
 <!--DatePicker-->
         <link rel="stylesheet" href="myfiles/DatePicker/css/bootstrap-datepicker.css">
 
-        <link rel="stylesheet" href="angular/angularEstilos.css">
 
 
 
@@ -318,7 +317,7 @@ table td {
 
                                                 <div class="form-group" >
                                                     <div class="col-lg-4" id="divTelefono1">
-                                                        <input type="number" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
+                                                        <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
                                                         <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                                     </div>
 
@@ -539,15 +538,15 @@ WHERE promociones.`status`=1");
 
 
                     <div class="form-group" >
-                        <div class="col-lg-4" id="celCambios">
+                        <div class="col-lg-3" id="celCambios">
                              <input type="text" style="text-transform: uppercase;" class="form-control" id="num_cel" placeholder="Ejemplo : 94632899">
                             <div id="alertTelCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Numero Invalido</div>
 
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <input type="text" style="text-transform: uppercase;" class="form-control" id="num_tel" placeholder="Ejemplo : 25641119">
                         </div>
-                        <div class="col-lg-4" id="estadoCambios">
+                        <div class="col-lg-3" id="estadoCambios">
                             <select name="estados" class="form-control" id="estados">
                                 <option value="">Estado</option>
                                 <option value="1">Activo</option>
@@ -555,7 +554,14 @@ WHERE promociones.`status`=1");
                                 <option value="2">Retirado</option>
                             </select>
                             <div id="alertEstadoIntCambios" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Invalido</div>
+                        </div>
 
+                        <div class="col-lg-3" id="divEstadoToga">
+                            <select  id="selectToga" class="form-control">
+                                <option value="">GASTOS DE GRADUACION</option>
+                                <option value=1>PAGADO</option>
+                                <option value="2">PENDIENTE</option>
+                            </select>
                         </div>
                     </div>
 
@@ -660,11 +666,7 @@ echo '<option value="'.$fila['idcargo'].'">'.$fila["nombre_cargo"].'</option>';
         }
 </script>
 <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
-    <script src="angular/angularScript1.js"></script>
-    <script src="angular/angularScript2.js"></script>
-    <script src="angular/angularScript3.js"></script>
-    <script src="angular/angularScript4.js"></script>
-    <script src="angular/angularScript5Material.js"></script>
+
 
     </body>
 </html>

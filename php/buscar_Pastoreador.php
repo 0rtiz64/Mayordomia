@@ -11,9 +11,9 @@ if (empty($_POST['nombrePersona'])){
 
 }
 else{
-    $query = mysqli_query($enlace,"SELECT detalle_integrantes.idetalle_integrantes,integrantes.idintegrante, integrantes.nombre_integrante,detalle_integrantes.id_promocion FROM detalle_integrantes
-INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
-WHERE detalle_integrantes.id_cargo = 9 and integrantes.nombre_integrante LIKE '%".$namePerson1."%'");
+    $query = mysqli_query($enlace,"SELECT integrantes.idintegrante, integrantes.nombre_integrante FROM pastoreadores
+INNER JOIN integrantes ON pastoreadores.idIntegrante= integrantes.idintegrante
+WHERE integrantes.nombre_integrante LIKE '%".$namePerson1."%' AND pastoreadores.estado= 1");
 
 $datoEncontrado = mysqli_fetch_array($query,MYSQLI_ASSOC);
 

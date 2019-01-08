@@ -41,7 +41,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!---/DATA TABLES-->
 
 
-
+    <!--ALERTIFY INICIO-->
+    <link rel="stylesheet" href="alertify/css/alertify.css">
+    <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+    <!--ALERTIFY FIN-->
 
     <!-- Feature detection -->
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -204,25 +207,31 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                 <div  id="divIdIntegrante"></div>
 
-                                <div class="col-lg-4" id="divCorderito">
+                                <div class="col-lg-3" id="divCorderito">
                                     <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrar" min="0" placeholder="Promocion de Corderitos">
                                     <div id="alertPromocion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
                                 </div>
 
+                                <div class="col-lg-3" id="divBautizado">
+                                    <select  id="selectBautizado" class="form-control">
+                                        <option value="">BAUTIZADO</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                    <div id="alertBautizado" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
+                                </div>
 
-                                <?php
-                                require_once 'gold/enlace.php';
 
-                                $queryPromocionActiva= mysqli_query($enlace, "select num_promocion from promociones WHERE `status`=1");
+                             <div class="col-lg-3 col-md-4" id="divDocumentosSelect">
+                                 <select  id="selectDocumentos" class="form-control">
+                                     <option value="">DOCUMENTOS PENDIENTES</option>
+                                     <option value="1">Si</option>
+                                     <option value="2">No</option>
+                                 </select>
+                                 <div id="alertDocumentos" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Repuesta Invalida</div>
+                             </div>
 
-                                while ($fila = mysqli_fetch_array($queryPromocionActiva,MYSQLI_ASSOC)) {
-                                    echo'<div class="col-lg-4">';
-                                    echo '<input type="text" id="promoAc" class="form-control" readonly="readonly" value="Promocion '.$fila['num_promocion'].'">';
-                                    echo'</div>';
-                                }
-                                ?>
-
-                                <div class="col-lg-4" id="divNinosPregunta">
+                                <div class="col-lg-3" id="divNinosPregunta">
                                     <select  id="selectNinos" class="form-control">
                                         <option value="">¿Traera Niños?</option>
                                         <option value="1">Si</option>
@@ -233,32 +242,47 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             </div>
 
-                            <div class="form-group  " id="rangoNinosDiv">
-                                <div class="col-lg-12">
-                                    <select  id="selectRangoNinos"  >
-                                        <option value="">Edades</option>
-                                        <?php
-                                        include 'gold/enlace.php';
-                                        $queryRangos = mysqli_query($enlace,"SELECT * from rangos WHERE estado =1
-GROUP BY rango ASC");
-                                        while ($datosRangos = mysqli_fetch_array($queryRangos,MYSQLI_ASSOC)){
-                                            echo '<option value="'.$datosRangos["idRango"].'">'.utf8_encode($datosRangos["rango"]).'</option>';
-                                        }
-                                        ?>
-                                    </select>
+                            <div class="form-group collapse " id="DivdocumentosInput">
+                             <div class="col-lg-12 col-md-12">
+                                 <input type="text" class="form-control" id="inputDocumentos" placeholder="DOCUMENTOS PENDIENTES" style="text-transform: uppercase">
+                             </div>
+                            </div>
 
-
+                            <div class="form-group collapse " id="rangoNinosDiv">
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" id="inputRango1"  min="0"  pattern="^[0-9]+" class="form-control" placeholder="0-2 AÑOS">
                                 </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango2" placeholder="2-3 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango3" placeholder="4-5 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango4" placeholder="6-7 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango5" placeholder="8-11 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango6" placeholder="OTROS">
+                                </div>
+
                             </div>
 
                             <div class="form-group" >
                                 <div class="col-lg-4" id="divTelefono1">
-                                    <input type="number" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
+                                    <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1" style="text-transform: uppercase">
                                     <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                 </div>
 
                                 <div class="col-lg-4" id="divTelefono2">
-                                    <input type="number" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
+                                    <input type="text" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
                                 </div>
 
                                 <div class="col-lg-4" id="divIntegrado">
@@ -282,15 +306,22 @@ GROUP BY rango ASC");
 
 
 
+
                             <div class="form-group">
                                 <div class="col-md-12" id="divDireccion">
-                                    <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                    <div id="alertDireccion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
+                                    <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Informacion Adicional" style="text-transform: uppercase"></textarea>
+                                    <div id="alertDireccion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Informacion Adicional Invalida</div>
                                 </div>
                             </div>
                         </form>
+
+                        <div id="divTEST"></div>
+
                         <div class="form-inline">
-                        <input id"btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona();">
+                            <div id="divResgistradoPor">
+                                <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPor" style="text-transform: uppercase">
+                            </div>
+                        <input id="btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" STYLE="float: right" onclick="guardarPersona()">
                             <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarId()">
                             <input id="btnCarnet" type="button" class="btn btn-info collapse" value="CARNET" style="float: right;margin-right:20px" onclick="consultarIdParaCarnet()">
                           <input id="btnLimpiar" type="button" class="btn btn-primary collapse" style="float: right ;margin-right:20px" value="NUEVO" onclick="limpiarCarnt()">
@@ -318,36 +349,35 @@ GROUP BY rango ASC");
                         <form class="form-horizontal" id="formularioRegistro" role="form">
 
                             <div class="form-group">
-
-
-                                <div class="col-lg-4" id="divIdIntegrante">
-                                    <input type="hidden" id="idIntegrante">
-                                </div>
-
-
-
-
-
-                                <div class="col-lg-4" id="divCorderitoModal">
-                                    <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
-                                    <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
-                                </div>
-
-
-
                                 <?php
                                 require_once 'gold/enlace.php';
-
                                 $queryPromocionActiva= mysqli_query($enlace, "select num_promocion from promociones WHERE `status`=1");
-
                                 while ($fila = mysqli_fetch_array($queryPromocionActiva,MYSQLI_ASSOC)) {
-                                    echo'<div class="col-lg-4">';
-                                    echo '<input type="text" id="promoAc" class="form-control" readonly="readonly" value="Promocion '.$fila['num_promocion'].'">';
+                                    echo'<div >';
+                                    echo '<input type="hidden" id="promoAc" class="form-control" readonly="readonly" value="Promocion '.$fila['num_promocion'].'">';
                                     echo'</div>';
                                 }
                                 ?>
-                            </div>
+                                <div class="col-lg-4" id="divIdentidadModal">
+                                    <input type="text" id="identidadRegistrarModal" class="form-control " min="0" placeholder="Identidad">
+                                    <div id="alertIdentidadModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
+                                </div>
 
+
+                                <div class="col-lg-4" id="divNombreModal">
+                                    <input type="text" id="NombreRegistroModal" class="form-control" placeholder="Nombre Completo" style='text-transform:uppercase'>
+                                    <input type="text" id="ApellidoCasadaModal" class="form-control collapse" placeholder="Apellido de Casada" style="text-transform: uppercase">
+                                    <div id="alertNombreModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Nombre Invalido</div>
+                                </div>
+
+                                <div class="col-lg-4" id="divFechaModal">
+                                    <div class="input-group">
+                                        <input type="date" id="fecha_cumpleRegistroModal" name="datarange" class="datepicker form-control" placeholder="Ejemplo:2017-09-25">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                    <div id="alertFechaModal" style="background-color: #d9534f; color: white; border-radius: 4px" align="center" class="collapse">Fecha Invalida</div>
+                                </div>
+                            </div>
 
                             <div class="form-group">
 
@@ -383,33 +413,84 @@ GROUP BY rango ASC");
                                 </div>
                             </div>
 
-
                             <div class="form-group">
+                                <div  id="divIdIntegrante">
+                                    <input type="hidden" id="idIntegrante">
+                                </div>
 
-                                <div class="col-lg-4" id="divIdentidadModal">
-                                    <input type="text" id="identidadRegistrarModal" class="form-control " min="0" placeholder="Identidad">
-                                    <div id="alertIdentidadModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
+                                <div class="col-lg-3" id="divCorderitoModal">
+                                    <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
+                                    <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
+                                </div>
+
+                                <div class="col-lg-3" id="divBautizadoModal">
+                                    <select  id="selectBautizadoModal" class="form-control">
+                                        <option value="">BAUTIZADO</option>
+                                        <option value="SI">SI</option>
+                                        <option value="NO">NO</option>
+                                    </select>
+                                    <div id="alertSelectBautizadoModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
                                 </div>
 
 
-                                <div class="col-lg-4" id="divNombreModal">
-                                    <input type="text" id="NombreRegistroModal" class="form-control" placeholder="Nombre Completo" style='text-transform:uppercase'>
-                                    <input type="text" id="ApellidoCasadaModal" class="form-control collapse" placeholder="Apellido de Casada" style="text-transform: uppercase">
-                                    <div id="alertNombreModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Nombre Invalido</div>
+                                <div id="divdocumentosPreguntaModal" class="col-lg-3 col-md-3">
+                                    <select class="form-control" id="preguntaDocumentosModal">
+                                        <option value="">DOCUMENTOS PENDIENTES</option>
+                                        <option value="1">Si</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                    <div id="alertPreguntaDocumentosModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
                                 </div>
 
-                                <div class="col-lg-4" id="divFechaModal">
-                                    <div class="input-group">
-                                        <input type="date" id="fecha_cumpleRegistroModal" name="datarange" class="datepicker form-control" placeholder="Ejemplo:2017-09-25">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                    <div id="alertFechaModal" style="background-color: #d9534f; color: white; border-radius: 4px" align="center" class="collapse">Fecha Invalida</div>
+                                <div id="divPreguntaNinosModal" class="col-lg-3 col-md-3">
+                                    <select class="form-control" id="preguntaNinosModal">
+                                        <option value="">¿Traera Niños?</option>
+                                        <option value="1">Si</option>
+                                        <option value="2">No</option>
+                                    </select>
+                                    <div id="alertNinosModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Repuesta Invalida</div>
                                 </div>
+
+
+
+                            </div>
+
+                            <div class="form-group collapse " id="DivdocumentosInputModal">
+                                <div class="col-lg-12 col-md-12">
+                                    <input type="text" class="form-control" id="inputDocumentosModal" placeholder="DOCUMENTOS PENDIENTES" style="text-transform: uppercase">
+                                </div>
+                            </div>
+
+                            <div class="form-group collapse " id="rangoNinosDivModal">
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" id="inputRango1Modal"  min="0" class="form-control" placeholder="0-2 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango2Modal" placeholder="2-3 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango3Modal" placeholder="4-5 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango4Modal" placeholder="6-7 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango5Modal" placeholder="8-11 AÑOS">
+                                </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <input type="number" class="form-control" min="0" id="inputRango6Modal" placeholder="OTROS">
+                                </div>
+
                             </div>
 
                             <div class="form-group" >
                                 <div class="col-lg-4" id="divTelefono1Modal">
-                                    <input type="number" class="form-control" id="telefono1RegistrarModal" min="0" placeholder="Telefono 1">
+                                    <input type="text" class="form-control" id="telefono1RegistrarModal" min="0" placeholder="Telefono 1">
                                     <div id="alertTelefono1Modal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
                                 </div>
 
@@ -427,7 +508,6 @@ GROUP BY rango ASC");
                                 </div>
                             </div>
 
-
                             <div class="form-group collapse" id="areasRegistroModal">
                                 <div class="col-lg-12">
                                     <input type="text" class="form-control" placeholder="Areas de Servicio" id="areasRegistroTextModal" style="text-transform: uppercase">
@@ -436,24 +516,26 @@ GROUP BY rango ASC");
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <div class="col-md-12" id="divDireccionModal">
-                                    <textarea class="form-control" rows="3" id="direccionRegistrarModal" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                    <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
+                                    <textarea class="form-control" rows="3" id="direccionRegistrarModal" placeholder="Informacion Adicional" style="text-transform: uppercase"></textarea>
+                                    <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Informacion Adicional Invalida</div>
                                 </div>
                             </div>
+
+
+
                         </form>
                     </div>
                 </div>
 
                 <div class="modal-footer">
+                    <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPorModal" style="text-transform: uppercase">
                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar">CERRAR</button>
                     <input type="button" class="btn btn-danger collapse" value="PDF" onclick="pdfModal()" id="pdfModal">
                     <input type="button" class="btn btn-primary collapse" value="CARNET" onclick="consultarIdParaCarnetModal();" id="carnetModal">
-                    <input type="button" class="btn btn-success" value="ACTUALIZAR DATOS" onclick="actualizarDatos();">
+                    <input type="button" class="btn btn-success" value="ACTUALIZAR DATOS" onclick="actualizarDatos();" id="actualizarDatosBtn">
 
                 </div>
             </div>
@@ -469,7 +551,7 @@ GROUP BY rango ASC");
 <!--Global JS-->
 <script src="myfiles/js/jquery-3.2.1.min%20(2).js"></script>
 <script src="assets/js/jquery-1.10.2.min.js"></script>
-
+<script src="alertify/alertify.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/BrowserPrint-1.0.4.min.js"></script>
 <script type="text/javascript" src="ZebraBrowserPrintDocsWebCodeExamples/sample/js/DevDemo.js"></script>
@@ -494,7 +576,6 @@ GROUP BY rango ASC");
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/plugins/waypoints/waypoints.min.js"></script>
 <script src="assets/js/application.js"></script>
-<script src="multiselect/bootstrap-select.js"></script>
 <script>
 
 
