@@ -1,20 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: David Ortiz
- * Date: 11/1/2018
- * Time: 11:53 AM
+ * User: Mayor
+ * Date: 7/1/2019
+ * Time: 9:00 AM
  */
+
+
 include '../gold/enlace.php';
 
 $identidad=$_POST["phpIdentidad"];
 
-$queryId=mysqli_query($enlace,"select  idServidor from servidores
+$queryId=mysqli_query($enlace,"select  idintegrante from integrantes
 WHERE num_identidad = '".$identidad."'");
 
 $datoId = mysqli_fetch_array($queryId,MYSQLI_ASSOC);
 
-echo  $datoId["idServidor"];
+echo  $datoId["idintegrante"];
 //echo'<input id="numeroExpedienteRegistrar" type="text" class="form-control" value=" '.$datoId["idintegrante"].'" readonly="readonly">';
 
 ?>

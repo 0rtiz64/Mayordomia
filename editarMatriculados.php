@@ -229,12 +229,18 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 
 
-                                                <div class="col-lg-4" id="divCorderitoModal">
+                                                <div class="col-lg-3" id="divCorderitoModal">
                                                     <input type="text" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
                                                     <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
                                                 </div>
 
-
+                                                <div class="col-md-3" id="divBautizado">
+                                                    <select  id="selectBautizado" class="form-control">
+                                                        <option value="">BAUTIZADO</option>
+                                                        <option value="SI">SI</option>
+                                                        <option value="NO">NO</option>
+                                                    </select>
+                                                </div>
 
                                                 <?php
                                                 require_once 'gold/enlace.php';
@@ -249,7 +255,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                                 ?>
 
 
-                                                <div class="col-lg-4 col-md-4" id="divDocumentosSelectModal">
+                                                <div class="col-lg-3 col-md-3" id="divDocumentosSelectModal">
                                                     <select  id="selectDocumentosModal" class="form-control">
                                                         <option value="">DOCUMENTOS PENDIENTES</option>
                                                         <option value="1">Si</option>
@@ -258,7 +264,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                                     <div id="alertDocumentosModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Repuesta Invalida</div>
                                                 </div>
 
-                                                <div class="col-lg-4" id="divNinosPreguntaModal">
+                                                <div class="col-lg-3" id="divNinosPreguntaModal">
                                                     <select  id="selectNinosModal" class="form-control">
                                                         <option value="">¿Traera Niños?</option>
                                                         <option value="1">Si</option>

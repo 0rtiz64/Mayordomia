@@ -34,7 +34,7 @@ if(file_exists($rutaImg2)){
 $inicioRuta="../Servidores/Identidad/";
 $finalRuta=".jpg";
 $identidad =$resultados["num_identidad"];
-$rutaFinal=$iniciaoRuta.$identidad.$finalRuta;
+$rutaFinal=$inicioRuta.$identidad.$finalRuta;
 //FIN RUTA IMAGEN
 
 if(file_exists($rutaFinal)){
@@ -410,7 +410,7 @@ $Contenido = '
 
  
  
- <div  style="margin-top: 200px;margin-left: -270px">
+ <div  style="margin-top: 250px;margin-left: -270px">
       '.$foto2.'
 </div>
 

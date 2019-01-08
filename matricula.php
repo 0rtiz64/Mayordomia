@@ -530,7 +530,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 </div>
 
                 <div class="modal-footer">
-                    <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPorModal">
+                    <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPorModal" style="text-transform: uppercase">
                     <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar">CERRAR</button>
                     <input type="button" class="btn btn-danger collapse" value="PDF" onclick="pdfModal()" id="pdfModal">

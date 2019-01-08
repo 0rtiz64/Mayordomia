@@ -243,7 +243,19 @@ var correlativoVisible = $('#correlativo').val();
                                                        $('#registradoPor').focus();
                                                        $('#divResgistradoPor').addClass('has-error');
                                                        return false;
-                                                   }
+                                                   }else{
+
+                                                       $('#divResgistradoPor').removeClass('has-error');
+                                                       $('#divResgistradoPor').addClass('has-success');
+                                                       if(bautizado.trim().length == ""){
+                                                           $('#divBautizado').addClass('has-error');
+                                                           alertify.error("RESPUESTA INVALIDA");
+                                                           return false;
+                                                       }else{
+                                                           $('#divBautizado').removeClass('has-error');
+                                                           $('#divBautizado').addClass('has-success');
+                                                       }// FIN BAUTIZADO
+                                                   }// FIN REGISTRADO POR
                                                }//FIN DIRECCION
                                            }//FIN INTEGRADO
                                        }//FIN TEL 1
@@ -339,7 +351,7 @@ var correlativoVisible = $('#correlativo').val();
 
 function consultarId() {
     var identidad = $('#identidadRegistrar').val();
-    var url = 'php/buscarUltId.php';
+    var url = 'php/buscarUltIdInt.php';
     $.ajax({
         type:'POST',
         url:url,
@@ -713,7 +725,12 @@ function actualizarDatos(){
                                                         if(registrado.trim().length== ""){
                                                             alertify.error("NOMBRE REGISTRADO ES INVALIDO");
                                                             return false;
-                                                        } // FIN REGISTRADO POR
+                                                        }else{
+                                                            if(bautizadoModal.trim().length == ""){
+                                                                alertify.error("RESPUESTA BAUTIZADO ES INVALIDA");
+                                                                return false;
+                                                            }
+                                                        }// FIN REGISTRADO POR
                                                     }//Fin Direccion
                                                 }//FIN INTEGRADO
                                             }//FIN TELEFONO 1

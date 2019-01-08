@@ -82,7 +82,7 @@ if($rows["areas"]==""){
 $datos = array(
     0 => $rows['promo_cordero'],
     1 => $rows['num_identidad'],
-    2 => $rows['nombre_integrante'],
+    2 => utf8_encode($rows['nombre_integrante']),
     3 => $rows['fecha_cumple'],
     4 => $rows['cel'],
     5 => $rows['tel'],
@@ -104,6 +104,7 @@ $datos = array(
     21 => $otros,
     22 => $total,
     23 => $respuestaNinos,
+    24 => $rows["bautizado"],
 );
 echo json_encode($datos);
 
