@@ -19,9 +19,7 @@ if (empty($_POST['nombrePersona'])){
 
 }
 else{
-    $query = mysqli_query($enlace,"SELECT integrantes.cel,integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.correlativo
-FROM integrantes
-WHERE integrantes.correlativo = $namePerson ");
+
 
     $promocion= mysqli_query($enlace,"SELECT idpromocion,num_promocion,desc_promocion from promociones 
 where `status` =1");
@@ -48,22 +46,58 @@ where `status` =1");
     echo "<tbody>";
 
     $total = 1;
-    while ($rows = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
-        # code...
-        echo "<tr>";
-        echo "<td>".$total."</td>";
-        echo "<td>".$rows["num_identidad"]."</td>";
-        echo "<td>".$rows["nombre_integrante"]."</td>";
-        echo "<td>".$rows["correlativo"]."</td>";
-        echo '<td><a href="php/fichaInscripcion.php?numero='.$rows["idintegrante"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
-        echo '<td> <a href="javascript:sendDataTag(\''.$datoPromocion["desc_promocion"].'\',\''.$rows["nombre_integrante"].'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:tomarDatosDetalleIntegrante('.$rows["idintegrante"].')" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
-        echo '<td> <a href="javascript:sendDataIntegracionIndividual(\''.$rows["cel"].'\',\''.$rows["nombre_integrante"].'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">INTEGRACION </a></td>';
-        echo '<td> <a href="javascript:togaIndividual('.$rows["idintegrante"].')" class="btn btn-info btn-sm">GRADUACION</a></td>';
 
-        //echo '<td> <a href="javascript:probando(\''.$rows["nombre_integrante"].'\')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:prueba()" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
-        echo "</tr>";
-        $total++;
+    $queryRows =mysqli_num_rows( mysqli_query($enlace,"SELECT integrantes.cel,integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.correlativo
+FROM integrantes
+WHERE integrantes.correlativo = $namePerson "));
+
+    if($queryRows>0){
+        $query = mysqli_query($enlace,"SELECT integrantes.cel,integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.correlativo
+FROM integrantes
+WHERE integrantes.correlativo = $namePerson ");
+
+        while ($rows = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+            # code...
+            echo "<tr>";
+            echo "<td>".$total."</td>";
+            echo "<td>".$rows["num_identidad"]."</td>";
+            echo "<td>".$rows["nombre_integrante"]."</td>";
+            echo "<td>".$rows["correlativo"]."</td>";
+            echo '<td><a href="php/fichaInscripcion.php?numero='.$rows["idintegrante"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
+            echo '<td> <a href="javascript:sendDataTag(\''.$datoPromocion["desc_promocion"].'\',\''.$rows["nombre_integrante"].'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:tomarDatosDetalleIntegrante('.$rows["idintegrante"].')" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
+            echo '<td> <a href="javascript:sendDataIntegracionIndividual(\''.$rows["cel"].'\',\''.$rows["nombre_integrante"].'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">INTEGRACION </a></td>';
+            echo '<td> <a href="javascript:togaIndividual('.$rows["idintegrante"].')" class="btn btn-info btn-sm">GRADUACION</a></td>';
+
+            //echo '<td> <a href="javascript:probando(\''.$rows["nombre_integrante"].'\')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:prueba()" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
+            echo "</tr>";
+            $total++;
+        }
+    }else{
+
+
+        $query = mysqli_query($enlace,"SELECT servidores.cel,servidores.idServidor,servidores.num_identidad,servidores.nombre_integrante,servidores.correlativo
+FROM  servidores
+WHERE servidores.correlativo =  $namePerson ");
+
+        while ($rows = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
+            # code...
+            echo "<tr>";
+            echo "<td>".$total."</td>";
+            echo "<td>".$rows["num_identidad"]."</td>";
+            echo "<td>".$rows["nombre_integrante"]."</td>";
+            echo "<td>".$rows["correlativo"]."</td>";
+            echo '<td><a href="php/fichaServidores.php?numero='.$rows["idServidor"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
+
+            //echo '<td> <a href="javascript:probando(\''.$rows["nombre_integrante"].'\')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:prueba()" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
+            echo "</tr>";
+            $total++;
+        }
+
+
     }
+
+
+
 
     echo "</tbody>";
     echo '</table>';
