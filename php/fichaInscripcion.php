@@ -484,7 +484,7 @@ $Contenido = '
    '.$integrado.'
 </div>
 
- <div style="font-size: 5px; float: left; margin-top: 150px; width: 200px;">
+ <div style="font-size: 5px; float:left; margin-top: 150px; width: 300px;">
 
  <p style="font-size: 65%;">REGISTRADO POR: '.$nombreRegistrado.'</p>
 </div>
