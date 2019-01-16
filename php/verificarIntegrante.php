@@ -53,7 +53,7 @@ if($rows["areas"] ==""){
     $datos = array(
         0 => $dato =1,
         1 => $rows['num_identidad'],
-        2 => $rows['nombre_integrante'],
+        2 => utf8_encode($rows['nombre_integrante']),
         3 => $rows['fecha_cumple'],
         4 => $rows['cel'],
         5 => $rows['tel'],
