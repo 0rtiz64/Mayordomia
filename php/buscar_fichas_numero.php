@@ -84,7 +84,7 @@ WHERE servidores.correlativo =  $namePerson ");
             echo "<tr>";
             echo "<td>".$total."</td>";
             echo "<td>".$rows["num_identidad"]."</td>";
-            echo "<td>".$rows["nombre_integrante"]."</td>";
+            echo "<td>".utf8_encode($rows["nombre_integrante"])."</td>";
             echo "<td>".$rows["correlativo"]."</td>";
             echo '<td><a href="php/fichaServidores.php?numero='.$rows["idServidor"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
 
