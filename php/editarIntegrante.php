@@ -33,6 +33,8 @@ $rango4=$_POST["phpRango4"];
 $rango5=$_POST["phpRango5"];
 $rango6=$_POST["phpRango6"];
 
+
+$corrNew;
 if($rango1 == ""){
     $rango1 = 0;
 }
@@ -106,6 +108,15 @@ values
     }
 
 }
+
+
+//ACTUALIZAR HISTORICO INICIO
+
+
+$actualizarHistorico = mysqli_query($enlace,"insert into historicomatricula (idIntegrante,correlativoAnterior,correlativoNuevo) 
+values 
+($id_integrante,$correlativoActual,$corrNew)");
+//ACTUALIZAR HISTORICO FINAL
 
 	 $filas1= mysqli_affected_rows($enlace);
 

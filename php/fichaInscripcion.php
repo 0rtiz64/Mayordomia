@@ -6,7 +6,14 @@ include '../gold/enlace.php';
 
 $ficha =$_GET["numero"];
 
-
+$queryHistorico = mysqli_query($enlace,"SELECT correlativoAnterior from historicomatricula where idIntegrante =$ficha");
+$datosHistorico = mysqli_fetch_array($queryHistorico,MYSQLI_ASSOC);
+$corrAnterior = $datosHistorico["correlativoAnterior"];
+if($corrAnterior == ""){
+    $corrAnterior ="";
+}else{
+    $corrAnterior = $datosHistorico["correlativoAnterior"];
+}
 $queryIntegranteF = mysqli_query($enlace, "Select idintegrante,promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,
 estado_civil,sexo,trasporte,direccion,areas,CAST(fecha_registro AS DATE) AS REGISTRO,apellidoCasada,correlativo,documentosPendientes
  from integrantes
@@ -23,7 +30,9 @@ $rutaImg2F=$rutaImg1F.$identidadF.$finRutaF;
 if(file_exists($rutaImg2F)){
     $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
     <img src="'.$rutaImg2F.'" style="width: 110px; height: 135px">
-    </p>';
+    </p>
+    ';
+
 }else{
     $foto='<p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">
      <p style="margin-left: 578px;margin-top: -93px;position: absolute;font-size: 16px; width: 120px; height: 140px;border: 1px solid green; border-radius: 50%; text-align: center;">FOTO</p>
@@ -363,8 +372,12 @@ $Contenido = '
 </table>
 
 <div>
-    '.$foto.'    
+    '.$foto.'   
+    
 </div>
+ 
+ 
+ 
 <br>
 <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: left;margin-top: -13px">
     <p align="center" style="margin-bottom: -55px;"> '.$fCompleta.'</p>
@@ -402,7 +415,11 @@ $Contenido = '
  </div>
  <!--FIN NOMBRE  COMPLETO APELLIDO CASADA-->
  
- <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-top: -15px">
+ 
+ 
+ <div style="margin-top: -68px;text-align: right; font-size: 15px;color: black; margin-right:48px;  ">'.$corrAnterior.' </div>
+ 
+ <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; >
     <p align="center" style="margin-bottom: -55px;"> '.$apellido.'</p>
     <p align="center" style="margin-top: -10px">  __________________________</p>
     <p style="font-size: 14px;margin-bottom: 10px" align="center">Apellido Casada</p>
