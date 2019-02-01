@@ -115,7 +115,17 @@
                             $direccion = "matricula.php";
                             break;
 
-					}
+                        case 'SM3.4':
+                            # code ...
+                            $direccion = "editarMatriculados.php";
+                            break;
+
+                        case 'SM3.6':
+                            # code ...
+                            $direccion = "fichas.php";
+                            break;
+
+                    }
 					break;
 
 
