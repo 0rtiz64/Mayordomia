@@ -96,7 +96,7 @@ echo '<th colspan="1"> <h1>ESCUELA DE MAYORDOMIA</h1> <span style="font-size: 14
 		echo "</thead>";
 
 		echo '<tbody>';
-//CUENTA CUANTOS HAY EN CADA CARGO
+//CUENTA CUANTOS HAY EN CADA CARGO  
 		$query = mysqli_query($enlace,"SELECT DISTINCT cargos.idcargo,cargos.nombre_cargo,COUNT(detalle_integrantes.id_cargo) AS Cantidad FROM detalle_integrantes
 INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
 INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion

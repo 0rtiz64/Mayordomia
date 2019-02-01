@@ -110,7 +110,6 @@ function editarIntegranteMatriculado(idIntegrante) {
             $('#inputDocumentosModal').val(datos[15]);
             $('#selectNinosModal').val(datos[23]);
             $('#selectBautizado').val(datos[24]);
-
             $('#idIntegrante').val(datos[12]);
             $('#ModalEditarMatriculado').modal({
                 show:true,

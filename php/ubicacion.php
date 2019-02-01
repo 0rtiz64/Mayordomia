@@ -63,6 +63,11 @@
                             # code...
                             $direccion = "marcaciones.php";
                             break;
+
+                        case 'SM1.5':
+                            # code...
+                            $direccion = "marcacioneAuto.php";
+                            break;
 					}
 					break;
 				

@@ -495,7 +495,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                 </div>
 
                                 <div class="col-lg-4" id="divTelefono2Modal">
-                                    <input type="number" class="form-control" id="telefono2RegistrarModal" min="0" placeholder="Telefono 2">
+                                    <input type="text" class="form-control" id="telefono2RegistrarModal" min="0" placeholder="Telefono 2">
                                 </div>
 
                                 <div class="col-lg-4" id="divIntegradoModal">

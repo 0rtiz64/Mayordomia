@@ -42,4 +42,14 @@ while ($d = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 echo ' QUERY SUCCESSFULL';
 */
 
+
+/*
+//EQUIPO LIDERAZGO INICIO
+    $queryLiderazgo = mysqli_query($enlace,"SELECT * from liderazgo WHERE estado = 1");
+    while($datosLiderazgo = mysqli_fetch_array($queryLiderazgo,MYSQLI_ASSOC)){
+        $queryInsert = mysqli_query($enlace,"insert into detalleintegrantes (idIntegrante,estado,idCargo) values 
+	($idIntegrante,1,$idCargo)");
+    }
+//EQUIPO LIDERAZGO FINAL
+*/
 ?>

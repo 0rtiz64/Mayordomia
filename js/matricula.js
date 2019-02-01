@@ -319,7 +319,7 @@ var correlativoVisible = $('#correlativo').val();
             //abrirEnPestana('php/fichaInscripcion.php?numero='+id);
             $('#btnCarnet').show();
              $('#btnLimpiar').show();
-             $('#btnpdf').show();
+
 
 
             if(tel1.length >8){
@@ -789,7 +789,6 @@ function actualizarDatos(){
 
             $('#nombrePromocion').html(datos).show('1000');
             $('#carnetModal').show(300);
-            $('#pdfModal').show(300);
             $('#actualizarDatosBtn').hide(300);
 
 

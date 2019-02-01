@@ -176,3 +176,39 @@ function porcentajesEquipos() {
     return false;
 }
 
+
+
+function marcacionProvicionalAuto() {
+    var idIntegrante =$('#marcacionProvicionalInput').val();
+    var url  = 'php/marcacionProvicionalAuto.php';
+
+    if(idIntegrante.trim().length==""){
+        $('#divInputProvicional').addClass('has-error');
+        alertify.error('CAMPO VACIO');
+        return false;
+    }else{
+        $('#divInputProvicional').removeClass('has-error');
+        $('#divInputProvicional').addClass('has-success');
+    }
+    $.ajax({
+        type:'POST',
+        url : url,
+        data :
+            {idIntegrantePhp:idIntegrante},
+        success:function (datos) {
+            var valores= eval(datos);
+
+            $('#tablaDatos').html(valores[0]).show(300);
+            $('#ovejasDiv').html(valores[1]);
+            $('#pastDiv').html(valores[2]);
+            $('#lidDiv').html(valores[3]);
+            $('#marcacionProvicionalInput').val("");
+            porcentajesEquipos();
+
+            return false;
+        }
+    });
+    return false;
+
+
+}

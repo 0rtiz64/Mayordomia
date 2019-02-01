@@ -114,6 +114,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                             break;
 
+                        case 'SM1.5':
+                            # code...
+                            if($focusSubMenu == "SM1.4"){
+                                $accesoMenus .='<li class="active"><a href="marcacioneAuto.php">Marcacion Automatica</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="marcacioneAuto.php">Marcacion Automatica</a></li>';
+                            }
+
+                            break;
+
                         case 'SM1.0':
                             # code...
                             $accesoMenus .="</ul>

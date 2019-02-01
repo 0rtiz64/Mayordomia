@@ -417,14 +417,15 @@ $Contenido = '
  
  
  
- <div style="margin-top: -68px;text-align: right; font-size: 15px;color: black; margin-right:48px;  ">'.$corrAnterior.' </div>
+ <div style=" margin-top: -68px;text-align: right; font-size: 15px;color: black; margin-right:48px;  ">'.$corrAnterior.' </div>
  
- <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; >
-    <p align="center" style="margin-bottom: -55px;"> '.$apellido.'</p>
+ <div style="border: 1px solid green;  border-radius: 30px;font-size: 16px; width:250px; float: right; margin-top: -15px" >
+    <p align="center" style="margin-bottom: -55px; margin-left: -4px"> '.$apellido.'</p>
     <p align="center" style="margin-top: -10px">  __________________________</p>
     <p style="font-size: 14px;margin-bottom: 10px" align="center">Apellido Casada</p>
 </div>   
 
+ <br>
  <br>
  <br>
  <br>
