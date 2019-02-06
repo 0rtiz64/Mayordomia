@@ -638,6 +638,50 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
             }
             break;
 
+
+        case 'M9':
+
+            if($focusMenu == "M9"){
+                $accesoMenus .='<li class="sub-menu active">
+                                    <a href="javascript:void(0);"><i class="fa fa-keyboard-o"></i><span>Multimedios</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }else{
+                $accesoMenus .='<li class="sub-menu">
+                                    <a href="javascript:void(0);"><i class="fa fa-keyboard-o"></i><span>Multimedios</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }
+
+            for ($z=0; $z < count($miarraySubmenu); $z++) {
+                # code...
+                switch ($miarraySubmenu[$z]) {
+                    case 'SM9.1':
+                        # code...
+                        if($focusSubMenu == "SM9.1"){
+                            $accesoMenus .='<li class="active"><a href="multimedios.php"> Estados</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="multimedios.php"> Estados</a></li>';
+                        }
+
+                        break;
+
+
+
+
+
+
+
+                    case 'SM9.0':
+                        # code...
+                        $accesoMenus .="</ul>
+                                            </li>";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+            break;
+
         }
 
 }
