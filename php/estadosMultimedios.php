@@ -74,7 +74,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
         }
         $tablaActivos.='<tr align="center">
                                                           <td>'.$cA.'</td>
-                                                          <td>'.$DatosA["nombre_integrante"].'</td>
+                                                          <td>'.utf8_encode($DatosA["nombre_integrante"]).'</td>
                                                           <td>'.$botonA.'</td>
                                                           </tr>';
 
@@ -115,7 +115,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
         }
         $tablaDesactivos.='<tr align="center">
                                                           <td>'.$cD.'</td>
-                                                          <td>'.$DatosD["nombre_integrante"].'</td>
+                                                          <td>'.utf8_encode($DatosD["nombre_integrante"]).'</td>
                                                           <td>'.$botonD.'</td>
                                                           </tr>';
 
@@ -191,7 +191,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
         }
         $tablaActivos.='<tr align="center">
                                                           <td>'.$cA.'</td>
-                                                          <td>'.$DatosA["nombre_integrante"].'</td>
+                                                          <td>'.utf8_encode($DatosA["nombre_integrante"]).'</td>
                                                           <td>'.$botonA.'</td>
                                                           </tr>';
 
@@ -232,7 +232,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
         }
         $tablaDesactivos.='<tr align="center">
                                                           <td>'.$cD.'</td>
-                                                          <td>'.$DatosD["nombre_integrante"].'</td>
+                                                          <td>'.utf8_encode($DatosD["nombre_integrante"]).'</td>
                                                           <td>'.$botonD.'</td>
                                                           </tr>';
 
@@ -288,7 +288,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
                                          $tabla.='
                                          <tr align="center">
                                           <td>'.$c.'</td>
-                                          <td>'.$Datos["nombre_integrante"].'</td>
+                                          <td>'.utf8_encode($Datos["nombre_integrante"]).'</td>
                                           <td>'.$boton.'</td>
                                           </tr>
                                          ';

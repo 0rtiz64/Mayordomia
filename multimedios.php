@@ -216,7 +216,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
 
                                                               echo' <tr align="center">';
                                                               echo'<td>'.$c.'</td>';
-                                                              echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                              echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                               echo'<td>'.$boton.'</td>';
                                                               echo'</tr>';
                                                               $c++;
@@ -257,7 +257,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
 
                                                           echo' <tr align="center">';
                                                           echo'<td>'.$c.'</td>';
-                                                          echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                          echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                           echo'<td>'.$boton.'</td>';
                                                           echo'</tr>';
                                                           $c++;
@@ -299,7 +299,7 @@ WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and 
 
                                                           echo' <tr align="center">';
                                                           echo'<td>'.$c.'</td>';
-                                                          echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                          echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                           echo'<td>'.$boton.'</td>';
                                                           echo'</tr>';
                                                           $c++;
