@@ -11,11 +11,11 @@ require '../gold/enlace.php';
 $queryLid = mysqli_query($enlace,"SELECT integrantes.nombre_integrante,cargos.nombre_cargo,detalle_integrantes.id_integrante,detalle_integrantes.id_cargo from detalle_integrantes 
 INNER JOIN  integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
-where detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10  and detalle_integrantes.id_promocion = 1");
+where detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10  and detalle_integrantes.id_promocion = 3");
 
 while ($rows= mysqli_fetch_array($queryLid,MYSQLI_ASSOC)){
     $queryInsertar = mysqli_query($enlace,"insert into detalle_integrantes (id_integrante,id_promocion,id_equipo,id_cargo,status,fecha_registro) 
-values (".$rows["id_integrante"].",2,39,".$rows["id_cargo"].",1,'2018-02-08 06:00:00')");
+values (".$rows["id_integrante"].",4,89,".$rows["id_cargo"].",1,'2019-02-08 06:00:00')");
 }
 
 

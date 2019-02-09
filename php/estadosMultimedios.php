@@ -15,19 +15,28 @@ $Nombre=$datosQueryNombre["nombre_integrante"];
 
 
 
-
+$queryPromocion =mysqli_query($enlace,"SELECT * from promociones WHERE promociones.`status` = 1");
+$datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
+$idPromocion = $datosPromocion["idpromocion"];
 
 if($accion ==1){
     //ACTIVAR
-    $queryDesactivar = mysqli_query($enlace,"UPDATE liderazgo set  estado=1 WHERE idintegrante=$idIntegrante ");
+    $queryDesactivar = mysqli_query($enlace,"UPDATE detalle_integrantes set  detalle_integrantes.`status`=1 
+WHERE detalle_integrantes.id_integrante=$idIntegrante AND detalle_integrantes.id_promocion= $idPromocion");
 
     //CONTADORES INICIO
-    $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from liderazgo WHERE estado= 1  and (idCargo = 8 or idCargo =5)");
+    $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 1 ");
     $datosCantidadActivos = mysqli_fetch_array($queryCantidadesActivos,MYSQLI_ASSOC);
     $activos = $datosCantidadActivos["activos"];
 
 
-    $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from liderazgo WHERE estado= 2  and (idCargo = 8 or idCargo =5)");
+    $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2 ");
     $datosCantidaddesactivos = mysqli_fetch_array($queryCantidadesDesactivos,MYSQLI_ASSOC);
     $desactivos = $datosCantidaddesactivos["desactivos"];
 
@@ -52,9 +61,10 @@ if($accion ==1){
 
 
     include "../gold/enlace.php";
-    $queryA = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+    $queryA = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 1 GROUP BY integrantes.nombre_integrante ASC ");
     $cA=1;
     while ($DatosA =mysqli_fetch_array($queryA,MYSQLI_ASSOC)){
         if($DatosA["estado"]==1){
@@ -92,9 +102,10 @@ WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
 
     include "../gold/enlace.php";
-    $queryD = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+    $queryD = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2  GROUP BY integrantes.nombre_integrante ASC");
     $cD=1;
     while ($DatosD =mysqli_fetch_array($queryD,MYSQLI_ASSOC)){
         if($DatosD["estado"]==1){
@@ -129,14 +140,21 @@ WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
 }else{
     //DESACTIVAR
-    $queryDesactivar = mysqli_query($enlace,"UPDATE liderazgo set  estado=2 WHERE idintegrante=$idIntegrante ");
+    $queryDesactivar = mysqli_query($enlace,"UPDATE detalle_integrantes set  detalle_integrantes.`status`=2
+WHERE detalle_integrantes.id_integrante=$idIntegrante AND detalle_integrantes.id_promocion= $idPromocion");
     //CONTADORES INICIO
-    $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from liderazgo WHERE estado= 1  and (idCargo = 8 or idCargo =5)");
+    $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 1");
     $datosCantidadActivos = mysqli_fetch_array($queryCantidadesActivos,MYSQLI_ASSOC);
     $activos = $datosCantidadActivos["activos"];
 
 
-    $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from liderazgo WHERE estado= 2  and (idCargo = 8 or idCargo =5)");
+    $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2 ");
     $datosCantidaddesactivos = mysqli_fetch_array($queryCantidadesDesactivos,MYSQLI_ASSOC);
     $desactivos = $datosCantidaddesactivos["desactivos"];
 
@@ -160,9 +178,10 @@ WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
 
     include "../gold/enlace.php";
-    $queryA = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+    $queryA = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1  and detalle_integrantes.`status` = 1 GROUP BY integrantes.nombre_integrante ASC");
     $cA=1;
     while ($DatosA =mysqli_fetch_array($queryA,MYSQLI_ASSOC)){
         if($DatosA["estado"]==1){
@@ -200,9 +219,10 @@ WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
 
     include "../gold/enlace.php";
-    $queryD = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+    $queryD = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2 GROUP BY integrantes.nombre_integrante ASC");
     $cD=1;
     while ($DatosD =mysqli_fetch_array($queryD,MYSQLI_ASSOC)){
         if($DatosD["estado"]==1){
@@ -236,6 +256,7 @@ WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 }
 
 function table(){
+
     $tabla = '';
 
     $tabla.='<table class="table table-hover" >
@@ -250,11 +271,12 @@ function table(){
 ';
 
 
-                                    include "../gold/enlace.php";
+    include "../gold/enlace.php";
 
-                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE idCargo = 8 OR idCargo =5 GROUP BY integrantes.nombre_integrante ASC");
+                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 GROUP BY integrantes.nombre_integrante ASC ");
                                       $c=1;
                                       while ($Datos =mysqli_fetch_array($query,MYSQLI_ASSOC)){
                                          if($Datos["estado"]==1){
