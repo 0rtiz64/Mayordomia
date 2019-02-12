@@ -6,6 +6,24 @@
  * Time: 11:21 AM
  */
 include  '../gold/enlace.php';
+
+
+$queryAgregarLiderazgo = mysqli_query($enlace,"SELECT  integrantes.idintegrante,idcargo from detalle_integrantes 
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN cargos on detalle_integrantes.id_cargo = cargos.idcargo
+WHERE id_equipo = 89 AND integrantes.idintegrante NOT IN (SELECT liderazgo.idIntegrante
+                       FROM liderazgo) GROUP BY integrantes.nombre_integrante ASC");
+$c=1;
+while($datosAgregarLiderazgo = mysqli_fetch_array($queryAgregarLiderazgo,MYSQLI_ASSOC)){
+    $idIntegrante = $datosAgregarLiderazgo["idintegrante"];
+    $idCargo = $datosAgregarLiderazgo["idcargo"];
+    $insertarEnTabla = mysqli_query($enlace,"insert into liderazgo (idIntegrante,estado,idCargo) values 
+	($idIntegrante,1,$idCargo)");
+    $c++;
+
+}
+
+echo $c." REGISTROS INSERTADOS GUEY :V";
 /*
 $c=1;
 $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,cargos.idcargo,cargos.nombre_cargo, promociones.desc_promocion from detalle_integrantes 

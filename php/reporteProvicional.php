@@ -116,7 +116,7 @@ where CAST(fechaMarcacion AS DATE)= '".$fecha."'  AND  integrantes.correlativo >
         echo '<tr>';
         echo '<td>'.$contador.'</td>';
         echo '<td>'.$rows['num_identidad'].'</td>';
-        echo '<td>'.$rows['nombre_integrante'].'</td>';
+        echo '<td>'.utf8_encode($rows['nombre_integrante']).'</td>';
         echo '<td>'.$rows['correlativo'].'</td>';
         echo '<tr>';
         $contador ++;
