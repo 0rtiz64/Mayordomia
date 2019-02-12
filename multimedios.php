@@ -156,11 +156,17 @@ session_start();
 
                                           <?php
                                           include "gold/enlace.php";
-                                          $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from liderazgo WHERE estado= 1  and (idCargo = 8 or idCargo =5)");
+                                          $queryCantidadesActivos = mysqli_query($enlace,"SELECT COUNT(*) as activos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 1 ");
                                           $datosCantidadActivos = mysqli_fetch_array($queryCantidadesActivos,MYSQLI_ASSOC);
                                           $activos = $datosCantidadActivos["activos"];
 
-                                          $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from liderazgo WHERE estado= 2  and (idCargo = 8 or idCargo =5)");
+                                          $queryCantidadesDesactivos = mysqli_query($enlace,"SELECT COUNT(*) as desactivos from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2 ");
                                           $datosCantidaddesactivos = mysqli_fetch_array($queryCantidadesDesactivos,MYSQLI_ASSOC);
                                           $desactivos = $datosCantidaddesactivos["desactivos"];
 
@@ -196,9 +202,10 @@ session_start();
 
                                                           <?php
                                                           include "gold/enlace.php";
-                                                          $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE idCargo = 8 OR idCargo =5 GROUP BY integrantes.nombre_integrante ASC");
+                                                          $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1  GROUP BY integrantes.nombre_integrante ASC");
                                                           $c=1;
                                                           while ($Datos =mysqli_fetch_array($query,MYSQLI_ASSOC)){
                                                               if($Datos["estado"]==1){
@@ -209,7 +216,7 @@ WHERE idCargo = 8 OR idCargo =5 GROUP BY integrantes.nombre_integrante ASC");
 
                                                               echo' <tr align="center">';
                                                               echo'<td>'.$c.'</td>';
-                                                              echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                              echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                               echo'<td>'.$boton.'</td>';
                                                               echo'</tr>';
                                                               $c++;
@@ -236,9 +243,10 @@ WHERE idCargo = 8 OR idCargo =5 GROUP BY integrantes.nombre_integrante ASC");
 
                                                       <?php
                                                       include "gold/enlace.php";
-                                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+                                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 1 group  by integrantes.nombre_integrante ASC ");
                                                       $c=1;
                                                       while ($Datos =mysqli_fetch_array($query,MYSQLI_ASSOC)){
                                                           if($Datos["estado"]==1){
@@ -249,7 +257,7 @@ WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
                                                           echo' <tr align="center">';
                                                           echo'<td>'.$c.'</td>';
-                                                          echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                          echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                           echo'<td>'.$boton.'</td>';
                                                           echo'</tr>';
                                                           $c++;
@@ -277,9 +285,10 @@ WHERE estado= 1  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
                                                       <?php
                                                       include "gold/enlace.php";
-                                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,liderazgo.estado from liderazgo 
-INNER JOIN integrantes on liderazgo.idIntegrante = integrantes.idintegrante
-WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_integrante ASC");
+                                                      $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.nombre_integrante,detalle_integrantes.`status` as estado from detalle_integrantes
+INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE (detalle_integrantes.id_cargo = 8 or detalle_integrantes.id_cargo =5) and promociones.`status`= 1 and detalle_integrantes.`status` = 2");
                                                       $c=1;
                                                       while ($Datos =mysqli_fetch_array($query,MYSQLI_ASSOC)){
                                                           if($Datos["estado"]==1){
@@ -290,7 +299,7 @@ WHERE estado= 2  and (idCargo = 8 or idCargo =5) GROUP BY integrantes.nombre_int
 
                                                           echo' <tr align="center">';
                                                           echo'<td>'.$c.'</td>';
-                                                          echo'<td>'.$Datos["nombre_integrante"].'</td>';
+                                                          echo'<td>'.utf8_encode($Datos["nombre_integrante"]).'</td>';
                                                           echo'<td>'.$boton.'</td>';
                                                           echo'</tr>';
                                                           $c++;
