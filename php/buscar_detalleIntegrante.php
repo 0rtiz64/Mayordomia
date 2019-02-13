@@ -30,7 +30,7 @@ where detalle_integrantes.id_integrante = $idIntegrante  and detalle_integrantes
     $rows=  mysqli_fetch_array($query,MYSQLI_ASSOC);
 
     $datos = array(
-        0 => $rows['nombre_integrante'],
+        0 => utf8_encode($rows['nombre_integrante']),
         1 => $rows['num_equipo'],
         2 => $rows['nombre_equipo'],
         3 => $rows['idintegrante'],

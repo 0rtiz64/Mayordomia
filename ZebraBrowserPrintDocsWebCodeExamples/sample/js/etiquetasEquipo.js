@@ -202,7 +202,7 @@ console.log("INICIANDO SEND DATA");
                     }
 
                   //  console.log(nombre+"-"+numEquipo+"."+nombreEquipo+"-"+idIntegrante);
-                    selected_printer.send(Mp1+promocionNueva+Mp2+nombreNuevo+Mp3+idIntegrante+Mp4);
+                    selected_printer.send(Mp1+promocionNueva+Mp2+nombre+Mp3+idIntegrante+Mp4);
 
                 }
 

@@ -39,7 +39,7 @@ $idPromocion = $datosCorrelativoPromocion["idpromocion"];
             $datos = array(
                 0 => $namePerson,
                 1 => $identidad,
-                2 => $nombre,
+                2 => utf8_encode($nombre),
                 3=> $cel,
                 4 => 1,
             );
