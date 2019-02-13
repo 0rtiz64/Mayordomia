@@ -119,7 +119,7 @@ WHERE detalle_integrantes.id_equipo= $idEquipo AND cargos.idcargo =9");
         echo "<tr>";
         echo "<td>".$contador."</td>";
         echo "<td>".$datosEqupoListado["correlativo"]."</td>";
-        echo "<td>".$datosEqupoListado["nombre_integrante"]."</td>";
+        echo "<td>".utf8_encode($datosEqupoListado["nombre_integrante"])."</td>";
         echo "<td>".$datosEqupoListado["cel"]."</td>";
         echo "<td></td>";
         echo "</tr>";
