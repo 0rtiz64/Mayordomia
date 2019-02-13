@@ -25,11 +25,13 @@ $datosCantidad= mysqli_fetch_array($queryCantidad,MYSQLI_ASSOC);
 $cantidad = $datosCantidad["Cantidad"];
 */
 
-while ($datosQuery = mysqli_fetch_array($query)){
-
+while ($datosQuery = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+ $nombreConvertido = utf8_encode($datosQuery["nombre_integrante"]);
+    array_push($datosQuery,$nombreConvertido);
+    unset($datosQuery["nombre_integrante"]);
+    //array_push($datosQuery,$nombreConvertido);
 $rawdata[$i]= $datosQuery;
 $i++;
-
 }
 echo json_encode($rawdata);
 
