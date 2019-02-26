@@ -126,7 +126,7 @@ while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
 
     $objPHPExcel->setActiveSheetIndex(0)
         //->setCellValue("A$contador", $integrantesDatos["identidad"])
-        ->setCellValue("B$contador", $integrantesDatos["nombre_integrante"])
+        ->setCellValue("B$contador", utf8_encode($integrantesDatos["nombre_integrante"]))
         ->setCellValue("C$contador", $integrantesDatos["cel"])
         ->setCellValue("D$contador", $integrantesDatos["tel"])
         ->setCellValue("E$contador",$fCompleta)
@@ -213,7 +213,7 @@ while ($integrantesDatos2 = mysqli_fetch_array($querySinEquipo,MYSQLI_ASSOC)) {
 
     $objPHPExcel->setActiveSheetIndex(0)
         //->setCellValue("A$contador", $integrantesDatos["identidad"])
-        ->setCellValue("B$contador", $integrantesDatos2["nombre_integrante"])
+        ->setCellValue("B$contador", utf8_encode($integrantesDatos2["nombre_integrante"]))
         ->setCellValue("C$contador", $integrantesDatos2["cel"])
         ->setCellValue("D$contador", $integrantesDatos2["tel"])
         ->setCellValue("E$contador", $fCompleta)

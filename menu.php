@@ -279,6 +279,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             break;
 
 
+                        case 'SM2.12':
+                            # code...
+                            if($focusSubMenu == "SM2.12"){
+                                $accesoMenus .='<li class="active"><a href="reporteFechas.php"> Reporte Fechas</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="reporteFechas.php">Reporte Fechas</a></li>';
+                            }
+
+                            break;
+
 
 
 

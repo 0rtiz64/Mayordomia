@@ -138,7 +138,7 @@ $fecha = $dTomarId["fecha_cumple"];
 
         $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue("A$contador", $contador1)
-            ->setCellValue("B$contador", $dTomarId["nombre_integrante"])
+            ->setCellValue("B$contador", utf8_encode($dTomarId["nombre_integrante"]))
             ->setCellValue("C$contador", $dTomarId["promo_cordero"])
             ->setCellValue("E$contador",$fCompleta )
             ->setCellValue("F$contador",$dTomarId["cel"] )

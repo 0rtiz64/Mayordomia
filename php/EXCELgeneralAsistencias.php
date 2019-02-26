@@ -97,7 +97,7 @@ WHERE idintegrante = $idIntegrante ");
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue("A$contador", $contador2)
         ->setCellValue("C$contador", $correlativoIntegrante)
-        ->setCellValue("B$contador", $nombreIntegrante)
+        ->setCellValue("B$contador", utf8_encode($nombreIntegrante))
         ->setCellValue("D$contador",$numEquipo.'-'.$nombreEquipo )
         ->setCellValue("E$contador",$cargo );
     $qContarAsistencias = mysqli_query($enlace,"SELECT  CAST(fechaMarcacion AS date)  AS qFecha  from marcacionprovicional

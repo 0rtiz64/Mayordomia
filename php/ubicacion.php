@@ -99,6 +99,11 @@
                             # code...
                             $direccion = "reporteGeneral.php";
                             break;
+
+                        case 'SM2.12':
+                            # code...
+                            $direccion = "reporteFechas.php";
+                            break;
 					}
 					break;
 

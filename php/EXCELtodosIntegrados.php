@@ -143,7 +143,7 @@ WHERE idArea = $idArea and promociones.`status` = 1 and detalle_integrantes.`sta
 
             $pestana->setCellValue('A'.$celdas, $No)
                 ->setCellValue('B'.$celdas, $datos["promo_cordero"])
-                ->setCellValue('D'.$celdas, $datos["nombre_integrante"])
+                ->setCellValue('D'.$celdas, utf8_encode($integrantesDatos2["nombre_integrante"]))
                 ->setCellValue('E'.$celdas, $datos["cel"])
                 ->setCellValue('F'.$celdas, $datos["tel"])
                 ->setCellValue('G'.$celdas, $datos["estado_civil"])
@@ -323,7 +323,7 @@ $idIntegranteInt = $datosIntegraciones["idintegrante"];
 
     $pestana2->setCellValue('A'.$contador, $No2)
         ->setCellValue('B'.$contador, $datosIntegraciones["promo_cordero"])
-        ->setCellValue('D'.$contador, $datosIntegraciones["nombre_integrante"])
+        ->setCellValue('D'.$contador, utf8_encode($datosIntegraciones["nombre_integrante"]))
         ->setCellValue('E'.$contador, $datosIntegraciones["cel"])
         ->setCellValue('F'.$contador, $datosIntegraciones["tel"])
         ->setCellValue('G'.$contador, $datosIntegraciones["estado_civil"])

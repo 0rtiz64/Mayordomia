@@ -199,7 +199,7 @@ while ($integrantesDatos = mysqli_fetch_array($Integrantes,MYSQLI_ASSOC)) {
     $objPHPExcel->setActiveSheetIndex(0)
         //->setCellValue("A$contador", $integrantesDatos["identidad"])
         ->setCellValue("A$contador", $integrantesDatos["promo_cordero"])
-        ->setCellValue("C$contador", $integrantesDatos["nombre_integrante"])
+        ->setCellValue("C$contador", utf8_encode($integrantesDatos["nombre_integrante"]))
         ->setCellValue("D$contador", $integrantesDatos["cel"])
         ->setCellValue("E$contador", $integrantesDatos["estado_civil"])
         ->setCellValue("F$contador", $integrantesDatos["sexo"])

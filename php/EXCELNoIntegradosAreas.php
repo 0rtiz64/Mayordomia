@@ -62,7 +62,7 @@ while ($datos = mysqli_fetch_array($queryNoIntegrados,MYSQLI_ASSOC)){
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue('A'.$celdas,$c)
         ->setCellValue('B'.$celdas,$datos['correlativo'] )
-        ->setCellValue('C'.$celdas, $datos['nombre_integrante'])
+        ->setCellValue('C'.$celdas, utf8_encode($datos['nombre_integrante']))
         ->setCellValue('D'.$celdas, $datos['cel'])
         ->setCellValue('E'.$celdas, $datos['num_equipo'].'-'.$datos['nombre_equipo']);
     $c++;

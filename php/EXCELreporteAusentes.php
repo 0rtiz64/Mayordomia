@@ -128,7 +128,7 @@ while($result = mysqli_fetch_array($queryAusentes,MYSQLI_ASSOC)){
 
         ->setCellValue("A$contador",$contador3)
         ->setCellValue("B$contador", $result["correlativo"])
-        ->setCellValue("C$contador",$result["nombre_integrante"])
+        ->setCellValue("C$contador",utf8_encode($result["nombre_integrante"]))
         ->setCellValue("D$contador",$result["num_equipo"] .'-'. $result["nombre_equipo"]);
 
 
