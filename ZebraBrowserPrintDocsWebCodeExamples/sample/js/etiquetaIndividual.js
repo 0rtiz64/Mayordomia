@@ -31,7 +31,7 @@ var Mp1 = "^XA\n" +
     "^FT502,359^A0I,51,50^FH\\^FD";
 
 var Mp2 = "^FS\n" +
-    "^FT799,292^A0I,39,38^FH\^FD";
+    "^FT799,292^A0I,39,38^FH\\^FD";
 
 var Mp3  ="^FS\n" +
     "^BY5,3,137^FT546,107^BCI,,N,N\n" +
@@ -175,9 +175,10 @@ function sendDataEtiqueta(nombre,numEquipo,nombreEquipo,idIntegrante,orden,promo
 
             if(orden == 1){
 
-                var contraPleca = String.fromCharCode(220);
+                var contraPleca = String.fromCharCode(92);
 
                 var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
+                console.log(nombreNuevo);
                 var nombreEquipoNuevo = nombreEquipo.replace("Ñ",contraPleca+"A5");
                 var promocionNueva = promocion.replace("Ñ",contraPleca+"A5");
                 //  console.log(nombre+"-"+numEquipo+"."+nombreEquipo+"-"+idIntegrante);
