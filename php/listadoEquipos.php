@@ -40,7 +40,7 @@ where detalle_integrantes.id_equipo = $idEquipo ");
         echo '<tr>';
         echo '<td>'.$contador.'</td>';
         echo '<td>'.$datosListdo["num_identidad"].'</td>';
-        echo '<td>'.$datosListdo["nombre_integrante"].'</td>';
+        echo '<td>'.utf8_encode($datosListdo["nombre_integrante"]).'</td>';
         echo '<td align="center">'.$datosListdo["nombre_cargo"].'</td>';
         echo '</tr>';
         $contador ++;

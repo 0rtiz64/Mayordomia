@@ -53,8 +53,8 @@ ORDER BY integrantes.nombre_integrante DESC LIMIT 1");
 $pastoreador1 = mysqli_fetch_array($past1,MYSQLI_ASSOC);
 $pastoreador2 = mysqli_fetch_array($past2,MYSQLI_ASSOC);
 
-$pastA = $pastoreador1["nombre_integrante"];
-$pastB =$pastoreador2["nombre_integrante"];
+$pastA = utf8_encode($pastoreador1["nombre_integrante"]);
+$pastB =utf8_encode($pastoreador2["nombre_integrante"]);
 
        echo' <div class="col-md-12">';
        echo '<a href="php/EXCELlistadoEquiposDos.php?idEquipo='.$idEquipo.'&PastA='.$pastA.'&pastB='.$pastB.'" class="btn btn-success" style="color: #ffffff" > EXPORTAR A EXCEL</a>';
