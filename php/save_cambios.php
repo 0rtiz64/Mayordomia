@@ -13,8 +13,12 @@ include '../gold/enlace.php';
 	$CELULAR = $_POST['CEL1'];
 	$TELEFONO = $_POST['TEL1'];
 	$ESTADOS = $_POST['ESTADO1'];
+
 	$GRAD = $_POST['grad'];
 
+	if($_POST['grad'] == ""){
+        $GRAD =2;
+    }
 	$EQUIPO =$_POST['EQUIPO'];
 	$CARGOS=$_POST['CARGOS'];
 
@@ -25,7 +29,7 @@ $datoPromocionActiva = mysqli_fetch_array($promocionActiva,MYSQLI_ASSOC);
 
 	$query_upedate = mysqli_query($enlace,"UPDATE integrantes set num_identidad='".$id_identidad."',nombre_integrante='".$nombreI."',fecha_cumple='".$FCumple."',cel='".$CELULAR."',tel='".$TELEFONO."',estado_civil='".$estado_civil."',sexo='".$estado_genero."',trasporte='".$estado_transporte."',direccion='".$direccion."',`status`='".$ESTADOS."' WHERE idintegrante=".$id_integrante);
 
-	$query_upedate2 = mysqli_query($enlace,"UPDATE detalle_integrantes SET `status` ='".$ESTADOS."',id_equipo='".$EQUIPO."', id_cargo ='".$CARGOS."',toga ='".$GRAD."' WHERE    id_integrante=$id_integrante AND  id_promocion =  '".$datoPromocionActiva['idpromocion']."'");
+	$query_upedate2 = mysqli_query($enlace,"UPDATE detalle_integrantes SET `status` ='".$ESTADOS."',id_equipo='".$EQUIPO."', id_cargo ='".$CARGOS."',toga ='".$GRAD."' WHERE    id_integrante=$id_integrante AND  id_promocion =  '".$datoPromocionActiva["idpromocion"]."'");
 
 
 	 $filas1= mysqli_affected_rows($enlace);
@@ -35,9 +39,9 @@ $datoPromocionActiva = mysqli_fetch_array($promocionActiva,MYSQLI_ASSOC);
 
 		//segundo query
 			echo '<div class="alert alert-success" style="text-align: center;"> 
-				<strong> REGISTRO EDITADO CORRECTAMENTE!!</strong>
+				<strong>GUARDADO EXITOSAMENTE</strong>
 	 			</div>';
-		
+
 	}
 mysqli_close($enlace);
 	
