@@ -146,17 +146,192 @@ session_start();
 
                           <?php
                           if($_SESSION['nombre'] == "Administrador"){
-                              echo' <div >';
-                              echo'<input type="text" class="form-control" placeholder="FECHA 1"> ';
+
+                              include 'gold/enlace.php';
+                              $queryFechasActive = mysqli_query($enlace,"SELECT clases.f1,clases.f2,clases.f3,clases.f4,clases.f5,clases.f6,clases.f7,clases.f8,promociones.desc_promocion from clases
+INNER JOIN promociones ON clases.idPromocion = promociones.idpromocion
+where  promociones.`status`=1");
+                              $datosFechaActive = mysqli_fetch_array($queryFechasActive,MYSQLI_ASSOC);
+                              $f1 = $datosFechaActive["f1"];
+                              $f2 = $datosFechaActive["f2"];
+                              $f3 = $datosFechaActive["f3"];
+                              $f4 = $datosFechaActive["f4"];
+                              $f5 = $datosFechaActive["f5"];
+                              $f6 = $datosFechaActive["f6"];
+                              $f7 = $datosFechaActive["f7"];
+                              $f8 = $datosFechaActive["f8"];
+
+
+
+                              echo'<div class="form-group">';
+                                  echo' <div class="col-md-3" >';
+                                  echo '<label>FECHA 1 </label>';
+                                    echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(1)">';
+                                        echo'<i class="fa fa-save"></i>';
+                                    echo'</div>';
+                                        echo'<input id="fecha1" type="date" class="form-control" value="'.$f1.'" >';
+                                  echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 2 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(2)">';
+                              echo'<i class="fa fa-save"></i>';
                               echo'</div>';
+                              echo'<input id="fecha2" type="date"  class="form-control" value="'.$f2.'"> ';
+                              echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 3 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(3)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha3" type="date" class="form-control" value="'.$f3.'"> ';
+                              echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 4 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(4)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha4" type="date" class="form-control" value="'.$f4.'"> ';
+                              echo'</div>';
+
+                              echo'</div>';
+
+
+                              echo'<div class="form-group">';
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 5 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(5)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha5" type="date" class="form-control" value="'.$f5.'"> ';
+                              echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 6 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(6)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha6" type="date" class="form-control" value="'.$f6.'"> ';
+                              echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 7 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(7)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha7" type="date" class="form-control" value="'.$f7.'"> ';
+                              echo'</div>';
+
+                              echo' <div class="col-md-3" >';
+                              echo '<label>FECHA 8 </label>';
+                              echo'<div class="input-group-addon  btn btn-primary btn-trans" onclick="guardarFecha(8)">';
+                              echo'<i class="fa fa-save"></i>';
+                              echo'</div>';
+                              echo'<input id="fecha8" type="date" class="form-control" value="'.$f8.'"> ';
+                              echo'</div>';
+
+                              echo'</div>';
+
                           }else{
-                              echo' <div >';
-                              echo'<input type="text" class="form-control " disabled="disabled" placeholder="FECHA 1" > ';
+                              include 'gold/enlace.php';
+                              $queryFechasDisabled = mysqli_query($enlace,"SELECT clases.f1,clases.f2,clases.f3,clases.f4,clases.f5,clases.f6,clases.f7,clases.f8,promociones.desc_promocion from clases
+INNER JOIN promociones ON clases.idPromocion = promociones.idpromocion
+where  promociones.`status`=1");
+                              $datosFechaDisabled = mysqli_fetch_array($queryFechasDisabled,MYSQLI_ASSOC);
+                              $f1 = $datosFechaDisabled["f1"];
+                              $f2 = $datosFechaDisabled["f2"];
+                              $f3 = $datosFechaDisabled["f3"];
+                              $f4 = $datosFechaDisabled["f4"];
+                              $f5 = $datosFechaDisabled["f5"];
+                              $f6 = $datosFechaDisabled["f6"];
+                              $f7 = $datosFechaDisabled["f7"];
+                              $f8 = $datosFechaDisabled["f8"];
+
+                              echo' <div class="form-group">';
+                                echo'<div class="col-md-3">';
+                                  echo'<label>FECHA 1</label>';
+                                  echo'<input type="date" class="form-control " disabled="disabled" value="'.$f1.'"> ';
+                                echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                                 echo'<label>FECHA 2</label>';
+                                 echo'<input type="date" class="form-control " disabled="disabled" value="'.$f2.'" > ';
+                              echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                                echo'<label>FECHA 3</label>';
+                                echo'<input type="date" class="form-control " disabled="disabled" value="'.$f3.'" > ';
+                              echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                                echo'<label>FECHA 4</label>';
+                                echo'<input type="date" class="form-control " disabled="disabled" value="'.$f4.'" > ';
+                              echo'</div>';
+
+                              echo'</div>';
+
+
+                              echo' <div class="form-group">';
+                              echo'<div class="col-md-3">';
+                              echo'<label>FECHA 5</label>';
+                              echo'<input type="date" class="form-control " disabled="disabled" value="'.$f5.'" > ';
+                              echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                              echo'<label>FECHA 6</label>';
+                              echo'<input type="date" class="form-control " disabled="disabled" value="'.$f6.'" > ';
+                              echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                              echo'<label>FECHA 7</label>';
+                              echo'<input type="date" class="form-control " disabled="disabled" value="'.$f7.'" > ';
+                              echo'</div>';
+
+                              echo'<div class="col-md-3">';
+                              echo'<label>FECHA 8</label>';
+                              echo'<input type="date" class="form-control " disabled="disabled" value="'.$f8.'" > ';
+                              echo'</div>';
+
                               echo'</div>';
                           }
                           ?>
 
+                          <div class="col-md-12">
+                              <div class="panel panel-default">
+
+                                  <div class="panel-body">
+
+                                     <div class="form-group col-md-10">
+                                         <select  id="selectEquipoReporteFechas" class="form-control">
+                                             <option value="">EQUIPO</option>
+                                             <?php
+                                             include 'gold/enlace.php';
+                                             $queryEquipos= mysqli_query($enlace,"SELECT * from equipos
+INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
+WHERE promociones.`status` = 1 and equipos.num_equipo>0 GROUP BY equipos.num_equipo ASC ");
+                                             while ($datosEquiposFecha =mysqli_fetch_array($queryEquipos,MYSQLI_ASSOC)){
+                                                 echo'<option value="'.$datosEquiposFecha["id_equipo"].'">'.$datosEquiposFecha["num_equipo"].'-'.$datosEquiposFecha["nombre_equipo"].'</option>';
+                                             }
+                                             ?>
+                                         </select>
+                                     </div>
+                                      <div class="col-md-2">
+                                          <input type="button" class="btn btn-success btn-trans" value="EXCEL" onclick="exportarExcel()">
+                                      </div>
+
+                                      <div class="form-group col-md-12" id="divTablaReporte">
+
+                                      </div>
+
+
+                                  </div>
+                              </div>
+                          </div>
+
                       </div>
+
 
               </section>
           </section>
@@ -188,6 +363,8 @@ session_start();
   <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
   <script src="myfiles/js/main.js"></script>
   <script src="js/export.js"></script>
+  <script src="js/sweetalert.js"></script>
+  <script src="js/reporteFechas.js"></script>
 
 
 
