@@ -58,13 +58,15 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('L3', 'CORRELATIVO')
     ->setCellValue('M3', 'DOCUMENTOS PENDIENTES');
 
+$promoActiva = mysqli_query($enlace,"SELECT * from promociones where `status`  = 1");
+$datosPromoActiva = mysqli_fetch_array($promoActiva,MYSQLI_ASSOC);
+$correlativoPromo = $datosPromoActiva["correlativo"];
 
 
-
-$verificar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from integrantes WHERE integrantes.documentosRespuesta = 1"));
+$verificar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from integrantes WHERE integrantes.documentosRespuesta = 1 and correlativo > $correlativoPromo "));
 
 if ($verificar >0){
-    $qTomarId = mysqli_query($enlace,"SELECT * from integrantes WHERE integrantes.documentosRespuesta = 1 GROUP BY correlativo ASC");
+    $qTomarId = mysqli_query($enlace,"SELECT * from integrantes WHERE integrantes.documentosRespuesta = 1 and correlativo > 19010000 GROUP BY correlativo ASC");
 
     $contador =4;
     $contador1 =1;

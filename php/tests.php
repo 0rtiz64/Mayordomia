@@ -7,7 +7,7 @@
  */
 include  '../gold/enlace.php';
 
-
+/*
 $querySeleccionarCel = mysqli_query($enlace,"SELECT * FROM integrantes where correlativo >19010000 and  LENGTH(cel) = 8");
 $C=1;
 while ($datos= mysqli_fetch_array($querySeleccionarCel,MYSQLI_ASSOC)){
@@ -20,7 +20,7 @@ while ($datos= mysqli_fetch_array($querySeleccionarCel,MYSQLI_ASSOC)){
     $uptade = mysqli_query($enlace,"UPDATE integrantes set cel='.$cel.' WHERE idintegrante=$idIntegrante");
     $C++;
 }
-
+*/
 /*
 $queryAgregarLiderazgo = mysqli_query($enlace,"SELECT  integrantes.idintegrante,idcargo from detalle_integrantes 
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
