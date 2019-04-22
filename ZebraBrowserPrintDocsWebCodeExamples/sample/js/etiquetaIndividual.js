@@ -35,7 +35,7 @@ var Mp2 = "^FS\n" +
 
 var Mp3  ="^FS\n" +
     "^BY5,3,137^FT546,107^BCI,,N,N\n" +
-    "^FD>;";
+    "^FD>:";
 
 var Mp4 ="^FS\n" +
     "^FO79,20^GB650,34,34^FS\n" +
@@ -179,6 +179,7 @@ function sendDataEtiqueta(nombre,numEquipo,nombreEquipo,idIntegrante,orden,promo
 
                 var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
                 console.log(nombreNuevo);
+                console.log(idIntegrante);
                 var nombreEquipoNuevo = nombreEquipo.replace("Ñ",contraPleca+"A5");
                 var promocionNueva = promocion.replace("Ñ",contraPleca+"A5");
                 //  console.log(nombre+"-"+numEquipo+"."+nombreEquipo+"-"+idIntegrante);

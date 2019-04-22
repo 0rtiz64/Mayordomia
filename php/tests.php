@@ -86,4 +86,28 @@ echo ' QUERY SUCCESSFULL';
     }
 //EQUIPO LIDERAZGO FINAL
 */
+
+
+/*
+//COMPARAR FICHA CON FOTO INICIA
+$queryPromoActual = mysqli_query($enlace,"SELECT * FROM integrantes WHERE correlativo > 19010000");
+while ($datos = mysqli_fetch_array($queryPromoActual,MYSQLI_ASSOC)){
+
+    //INICIO RUTA IMAGEN
+    $rutaImg1F="../Fotos/";
+    $finRutaF=".jpg";
+    $identidadF =$datos["num_identidad"];
+    $rutaImg2F=$rutaImg1F.$identidadF.$finRutaF;
+//FIN RUTA IMAGEN
+
+    if(file_exists($rutaImg2F)){
+
+    }else{
+        echo $datos["correlativo"]." NO TIENE FOTO </br>" ;
+    }
+}
+//COMPARAR FICHA CON FOTO FINAL
+*/
+
+echo "SCRIPT COMENTADO";
 ?>
