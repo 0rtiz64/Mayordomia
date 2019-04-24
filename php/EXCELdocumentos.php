@@ -53,10 +53,10 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('G3', 'TELEFONO 2')
     ->setCellValue('H3', 'ESTADO CIVIL')
     ->setCellValue('I3', 'GENERO')
-    ->setCellValue('J3', 'DIRECCION')
-    ->setCellValue('K3', 'AREAS')
-    ->setCellValue('L3', 'CORRELATIVO')
-    ->setCellValue('M3', 'DOCUMENTOS PENDIENTES');
+    ->setCellValue('J3', 'AREAS')
+    ->setCellValue('K3', 'CORRELATIVO')
+    ->setCellValue('L3', 'DOCUMENTOS PENDIENTES')
+    ->setCellValue('M3', 'EQUIPO');
 
 $promoActiva = mysqli_query($enlace,"SELECT * from promociones where `status`  = 1");
 $datosPromoActiva = mysqli_fetch_array($promoActiva,MYSQLI_ASSOC);
@@ -72,7 +72,7 @@ if ($verificar >0){
     $contador1 =1;
 
     while ($dTomarId= mysqli_fetch_array($qTomarId,MYSQLI_ASSOC)){
-
+$idIntegrante = $dTomarId["idintegrante"];
 $fecha = $dTomarId["fecha_cumple"];
         //INICIO FUNCION CONVERTIR FECHAS
         $dia = substr($fecha,8,2);
@@ -147,10 +147,32 @@ $fecha = $dTomarId["fecha_cumple"];
             ->setCellValue("G$contador",$dTomarId["tel"] )
             ->setCellValue("H$contador",$dTomarId["estado_civil"])
             ->setCellValue("I$contador",$dTomarId["sexo"] )
-            ->setCellValue("J$contador",$dTomarId["direccion"] )
-            ->setCellValue("K$contador",$dTomarId["areas"] )
-            ->setCellValue("L$contador",$dTomarId["correlativo"] )
-            ->setCellValue("M$contador",$dTomarId["documentosPendientes"] );
+            ->setCellValue("J$contador",$dTomarId["areas"] )
+            ->setCellValue("K$contador",$dTomarId["correlativo"] )
+            ->setCellValue("L$contador",$dTomarId["documentosPendientes"] );
+
+
+        //VERIFICAR SI ESTA ENLAZADO A EQUIPO INICIO
+        $queryVerificarEquipo =mysqli_num_rows(mysqli_query($enlace,"SELECT equipos.nombre_equipo,equipos.num_equipo from detalle_integrantes 
+INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegrante"));
+
+         if($queryVerificarEquipo>0){
+             //SI TIENE EQUIPO
+             $equipos= mysqli_query($enlace,"SELECT equipos.nombre_equipo,equipos.num_equipo from detalle_integrantes 
+INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegrante");
+             $datosEquipo = mysqli_fetch_array($equipos,MYSQLI_ASSOC);
+             $objPHPExcel->setActiveSheetIndex(0)
+                 ->setCellValue("M$contador",$datosEquipo["num_equipo"].'-'.$datosEquipo["nombre_equipo"]);
+         }else{
+             // NO TIENE EQUIPO
+             $objPHPExcel->setActiveSheetIndex(0)
+                 ->setCellValue("M$contador","");
+         }
+        //VERIFICAR SI ESTA ENLAZADO A EQUIPO FINAL
 
         $contador++;
         $contador1++;

@@ -39,7 +39,7 @@ var Mp3  ="^FS\n" +
 
 var Mp4 ="^FS\n" +
     "^FO79,20^GB650,34,34^FS\n" +
-    "^FT729,26^A0I,28,28^FR^FH\\^FDJOSUE 24:15    YO Y MI CASA SERVIREMOS A JEHOVA^FS\n" +
+    "^FT729,26^A0I,28,28^FR ^FH\\^FDJOSUE 24:15    YO Y MI CASA SERVIREMOS A JEHOVA^FS\n" +
     "^PQ1,0,1,Y^XZ";
 
 

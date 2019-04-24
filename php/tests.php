@@ -6,21 +6,22 @@
  * Time: 11:21 AM
  */
 include  '../gold/enlace.php';
-
 /*
-$querySeleccionarCel = mysqli_query($enlace,"SELECT * FROM integrantes where correlativo >19010000 and  LENGTH(cel) = 8");
+
+$querySeleccionarCel = mysqli_query($enlace,"SELECT * FROM integrantes where correlativo >19010000 and  LENGTH(tel) = 11");
 $C=1;
 while ($datos= mysqli_fetch_array($querySeleccionarCel,MYSQLI_ASSOC)){
-    $p1 = substr($datos["cel"],0,4);
+    $p1 = substr($datos["tel"],1,9);
     $p2 = substr($datos["cel"],4,8);
     $cel = $p1.'-'.$p2;
-    echo $C.'-----'.$datos["nombre_integrante"].'-----CEL VIEJO:'.$datos["cel"].'----------'.'CEL NUEVO:'.$cel;
+    echo $C.'-----'.$datos["nombre_integrante"].'-----CEL VIEJO:->'.$datos["tel"].'----------'.'CEL NUEVO:->'.$p1;
     echo'<br>';
-    $idIntegrante = $datos["idintegrante"];
-    $uptade = mysqli_query($enlace,"UPDATE integrantes set cel='.$cel.' WHERE idintegrante=$idIntegrante");
+  // $idIntegrante = $datos["idintegrante"];
+   // $uptade = mysqli_query($enlace,"UPDATE integrantes set cel=$p1 WHERE idintegrante=$idIntegrante");
     $C++;
 }
 */
+
 /*
 $queryAgregarLiderazgo = mysqli_query($enlace,"SELECT  integrantes.idintegrante,idcargo from detalle_integrantes 
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
