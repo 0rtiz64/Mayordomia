@@ -6,20 +6,21 @@
  * Time: 11:21 AM
  */
 include  '../gold/enlace.php';
+/*
 
-
-$querySeleccionarCel = mysqli_query($enlace,"SELECT * FROM integrantes where correlativo >19010000 and  LENGTH(cel) = 8");
+$querySeleccionarCel = mysqli_query($enlace,"SELECT * FROM integrantes where correlativo >19010000 and  LENGTH(tel) = 11");
 $C=1;
 while ($datos= mysqli_fetch_array($querySeleccionarCel,MYSQLI_ASSOC)){
-    $p1 = substr($datos["cel"],0,4);
+    $p1 = substr($datos["tel"],1,9);
     $p2 = substr($datos["cel"],4,8);
     $cel = $p1.'-'.$p2;
-    echo $C.'-----'.$datos["nombre_integrante"].'-----CEL VIEJO:'.$datos["cel"].'----------'.'CEL NUEVO:'.$cel;
+    echo $C.'-----'.$datos["nombre_integrante"].'-----CEL VIEJO:->'.$datos["tel"].'----------'.'CEL NUEVO:->'.$p1;
     echo'<br>';
-    $idIntegrante = $datos["idintegrante"];
-    $uptade = mysqli_query($enlace,"UPDATE integrantes set cel='.$cel.' WHERE idintegrante=$idIntegrante");
+  // $idIntegrante = $datos["idintegrante"];
+   // $uptade = mysqli_query($enlace,"UPDATE integrantes set cel=$p1 WHERE idintegrante=$idIntegrante");
     $C++;
 }
+*/
 
 /*
 $queryAgregarLiderazgo = mysqli_query($enlace,"SELECT  integrantes.idintegrante,idcargo from detalle_integrantes 
@@ -86,4 +87,28 @@ echo ' QUERY SUCCESSFULL';
     }
 //EQUIPO LIDERAZGO FINAL
 */
+
+
+/*
+//COMPARAR FICHA CON FOTO INICIA
+$queryPromoActual = mysqli_query($enlace,"SELECT * FROM integrantes WHERE correlativo > 19010000");
+while ($datos = mysqli_fetch_array($queryPromoActual,MYSQLI_ASSOC)){
+
+    //INICIO RUTA IMAGEN
+    $rutaImg1F="../Fotos/";
+    $finRutaF=".jpg";
+    $identidadF =$datos["num_identidad"];
+    $rutaImg2F=$rutaImg1F.$identidadF.$finRutaF;
+//FIN RUTA IMAGEN
+
+    if(file_exists($rutaImg2F)){
+
+    }else{
+        echo $datos["correlativo"]." NO TIENE FOTO </br>" ;
+    }
+}
+//COMPARAR FICHA CON FOTO FINAL
+*/
+
+echo "SCRIPT COMENTADO";
 ?>
