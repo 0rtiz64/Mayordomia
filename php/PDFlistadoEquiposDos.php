@@ -91,9 +91,9 @@ while ($rows = mysqli_fetch_array($queryDatos,MYSQLI_ASSOC)){
        <tr align="center">
         <td>'.$contador.'</td>
         <td>'.$rows["correlativo"].'</td>
-        <td style="font-size: small" colspan="2">'.$rows["nombre_integrante"].'</td>
+        <td style="font-size: small" colspan="3">'.$rows["nombre_integrante"].'</td>
     <td>'.$rows["cel"].'</td>
-    <td colspan="2"></td>
+      <td style="font-size: 15px;" ><p style="color: white">.</p></td>
     
        </tr>
        ';
