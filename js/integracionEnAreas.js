@@ -8,8 +8,19 @@ $(document).ready(function () {
 var tagLeidos  = [];
 
 function agregar() {
-    var tag = $('#tagId').val();
+    var tag1 = $('#tagId').val();
+    var tag = tag1.substr(1,tag1.length);
+    var inicio = tag1.substr(0,1);
     var url ='php/datosAgregarIntegracion.php';
+
+
+    if(inicio.trim() == "0"){
+        console.log("INICIA 0 PERMITIDO");
+    }else{
+        console.log("INVALIDO");
+        alertify.error("TAG NO PERMITIDO");
+        return false;
+    }
 
     if (tag.trim().length==""){
         alertify.error("CAMPO VACIO");
@@ -150,4 +161,71 @@ function integrarIntegrantes() {
 
 }
 
+
+function integrarIndividualModal() {
+    $('#modalIntegrarIndividual').modal({
+        show:true,
+        backdrop:'static'
+    });
+    return false;
+}
+//FIN ABRIR MODAL
+
+function integrarIndividual(){
+    var area = document.getElementById('selectAreasIntegracionIndividual').value;
+    var nombre = $('#nombreIntegracionIndividual').val().toUpperCase();
+    var identidad = $('#identidadIntegracionIndividual').val();
+    var telefono1= $('#telefono1IntegracionIndividual').val();
+    var telefono2 = $('#telefono2IntegracionIndividual').val();
+    var sirve = $('#sirveIntegracionIndividual').val().toUpperCase();
+    var url = 'php/integracionIndividual.php';
+
+
+    if(nombre.trim().length ==""){
+        alertify.error("CAMPO NOMBRE VACIO");
+        return false;
+    }else{
+        if(identidad.trim().length == ""){
+            alertify.error("CAMPO IDENTIDAD VACIO");
+            return false;
+        }else{
+            if(telefono1.trim().length ==""){
+                alertify.error("CAMPO TELEFONO 1 VACIO");
+                return false;
+            }
+        }
+    }
+
+
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpArea:area,
+            phpNombre:nombre,
+            phpIdentidad:identidad,
+            phpTelefono1:telefono1,
+            phpTelefono2:telefono2,
+            phpSirve:sirve
+        },
+        success: function(datos){
+
+            if(datos == 1){
+                alertify.error("IDENTIDAD YA REGISTRADA EN ESTA AREA");
+                return false;
+            }else{
+                alertify.success("REGISTRO GUARDADO");
+                 document.getElementById('selectAreasIntegracionIndividual').value ='';
+                $('#nombreIntegracionIndividual').val('');
+                $('#identidadIntegracionIndividual').val('');
+                $('#telefono1IntegracionIndividual').val('');
+                $('#telefono2IntegracionIndividual').val('');
+                $('#sirveIntegracionIndividual').val('');
+            }
+
+        }
+    });
+
+}
 

@@ -17,10 +17,10 @@ where idintegrante = $tag AND promociones.`status`=1"));
 if ($confirm>0){
     $query = mysqli_query($enlace,"SELECT * from integrantes where idintegrante = $tag");
     $rows= mysqli_fetch_array($query,MYSQLI_ASSOC);
-$alerta= ' <div class="alert alert-success"  align="center"> <strong>'.$rows['nombre_integrante'].'</strong>  </div>';
+$alerta= ' <div class="alert alert-success"  align="center"> <strong>'.utf8_encode($rows['nombre_integrante']).'</strong>  </div>';
     $datos = array(
         0 => $rows['idintegrante'],
-        1 => $rows['nombre_integrante'],
+        1 => utf8_encode($rows['nombre_integrante']),
         2 => $rows['num_identidad'],
         3 => $rows['cel'],
         4 => $rows['correlativo'],

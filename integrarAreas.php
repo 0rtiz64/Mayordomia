@@ -160,26 +160,50 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 <div class="col-md-12 form-group">
 
-    <div class="col-md-9" id="divSelectAreas">
+    <?php
+        if($_SESSION['nombre'] =="Administrador"){
+             echo '<div class="col-md-8" id="divSelectAreas">';
+                echo'<select  id="selectAreasServicio" class="form-control">';
+                    echo'<option value="">AREAS</option>';
+                    include 'gold/enlace.php';
+                    $query = mysqli_query($enlace,"SELECT * FROM areas GROUP BY Nombre ASC ");
+                    while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+                    echo '<option value="'.$datos["idArea"].'">'.$datos["Nombre"].'</option>';
+            }
+            echo'</select>';
 
-        <select  id="selectAreasServicio" class="form-control">
-            <option value="">AREAS</option>
+      echo'  <div class="col-md-12" id="agredadoNombre"></div>';
+    echo'</div>';
+        echo'<div class="col-md-2" id="medioDiv">';
+        echo'<input type="button" class="btn btn-primary" value="ENLAZAR" onclick="integrarIntegrantes()">';
+        echo'</div>';
+        echo'<div class="col-md-2" >';
+        echo'<input type="button" class="btn btn-info" value="INDIVIDUAL" onclick="integrarIndividualModal()">';
+        echo'</div>';
 
-            <?php
+        }else{
+            echo '<div class="col-md-9" id="divSelectAreas">';
+            echo'<select  id="selectAreasServicio" class="form-control">';
+            echo'<option value="">AREAS</option>';
             include 'gold/enlace.php';
             $query = mysqli_query($enlace,"SELECT * FROM areas GROUP BY Nombre ASC ");
             while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
                 echo '<option value="'.$datos["idArea"].'">'.$datos["Nombre"].'</option>';
             }
+            echo'</select>';
+
+            echo'  <div class="col-md-12" id="agredadoNombre"></div>';
+            echo'</div>';
+            echo'<div class="col-md-3" id="medioDiv">';
+            echo'<input type="button" class="btn btn-primary" value="ENLAZAR" onclick="integrarIntegrantes()">';
+            echo'</div>';
+
+        }
+
             ?>
-        </select>
 
-        <div class="col-md-12" id="agredadoNombre"></div>
-    </div>
 
-    <div class="col-md-3" id="medioDiv">
-        <input type="button" class="btn btn-primary" value="ENLAZAR" onclick="integrarIntegrantes()">
-    </div>
+
 
 </div>
 
@@ -211,6 +235,71 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!--main content end-->
 
 </section>
+
+
+<!--MODALES INICIO-->
+
+<div class="modal fade" id="modalIntegrarIndividual" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header info-bg">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel" style="color: #ffffff">INTEGRACION INDIVIDUAL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-md-12 form-group">
+                        <select class="form-control" id="selectAreasIntegracionIndividual">
+                            <option value="">AREAS</option>
+                            <?php
+                            include 'gold/enlace.php';
+                            $query = mysqli_query($enlace,"SELECT * FROM areas GROUP BY Nombre ASC ");
+                            while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
+                            echo '<option value="'.$datos["idArea"].'">'.$datos["Nombre"].'</option>';
+                            }
+                            ?>
+                            </select>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <input type="text" id="nombreIntegracionIndividual" class="form-control" placeholder="NOMBRE COMPLETO" style="text-transform: uppercase">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <input type="text" id="identidadIntegracionIndividual" class="form-control" placeholder="IDENTIDAD" style="text-transform: uppercase">
+                    </div>
+
+
+                    <div class="col-md-6 form-group">
+                        <input type="text" id="telefono1IntegracionIndividual" class="form-control" placeholder="TELEFONO 1">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <input type="text" id="telefono2IntegracionIndividual" class="form-control" placeholder="TELEFONO 2">
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                        <input type="text" id="sirveIntegracionIndividual" class="form-control" placeholder="SIRVE ACTUALMENTE" style="text-transform: uppercase">
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">CANCELAR</button>
+                <button type="button" class="btn btn-info" onclick="integrarIndividual();">ENLAZAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODALES FINAL-->
+
+
 <!--Global JS-->
 <script src="myfiles/js/jquery-3.2.1.min%20(2).js"></script>
 <script src="assets/js/jquery-1.10.2.min.js"></script>

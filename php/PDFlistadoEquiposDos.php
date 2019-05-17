@@ -121,14 +121,17 @@ $nombreEquipo= $datosEquipo["nombre_equipo"];
 <td colspan="7"> PASTOREADORES: ' .$pastA.' & '.$pastB.'</td>
 </tr>
 
+</thead>
+</table>
 
+<table style ="width: 100%;" border=1 cellspacing=0 >
+ <thead>
 <tr align="center" style="background-color: #2ecc71; ">
-<td><strong>No.</strong></td>
-<td><strong>CORRELATIVO</strong></td>
-<td colspan="2"><strong>NOMBRE</strong></td>
-<td><strong>TELEFONO</strong></td>
-<td colspan="2"><strong>FIRMA</strong></td>
-
+<td style="font-size: small;width: 5px "><strong>No.</strong></td>
+<td style="font-size: small;width: 17px"><strong>CORRELATIVO</strong></td>
+<td style="font-size: small;width: 350px" colspan="3"><strong>NOMBRE</strong></td>
+<td ><strong>TELEFONO</strong></td>
+<td style="width:140px " ><strong>NUEVO TELEFONO</strong></td>
 
 
 </tr>

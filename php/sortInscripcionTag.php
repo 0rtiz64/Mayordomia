@@ -51,7 +51,7 @@ while ($datos = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 
     echo'<tr>';
     echo '<td>'.$contador.'</td>';
-    echo '<td>'.$datos["nombre_integrante"].'</td>';
+    echo '<td>'.utf8_encode($datos["nombre_integrante"]).'</td>';
     echo '<td>'.$datos["num_identidad"].'</td>';
     echo '<td>'.$datos["correlativo"].'</td>';
 

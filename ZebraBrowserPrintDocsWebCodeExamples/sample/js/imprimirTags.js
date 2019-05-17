@@ -32,7 +32,7 @@ var p1 = "\n" +
 
 
 var p2 ="^FS\n" +
-    "^BY4,3,91^FT516,91^BCI,,N,N\n" +
+    "^BY3,3,91^FT516,91^BCI,,N,N\n" +
     "^FD>:";
 
 var p3 = "^FS\n" +
@@ -361,13 +361,13 @@ function sendData(response)
                     //console.log("VALOR DE CONTADOR B:" +b);
                     //console.log(String(jsonData[i][b]));
                     var cantidad = $('#cantidadTagsImprimir').val();
-                    var nombre = String (jsonData[i][0]);
-                    var identidad = String (jsonData[i][3]);
-                    var cel =String (jsonData[i][1]);
-                    var expediente=String (jsonData[i][2]);
-                    var idIntegrante=String (jsonData[i][4]);
-                    var promocion=String (jsonData[i][5]);
-                    var numEquipo=String (jsonData[i][6]);
+                    var nombre = String (jsonData[i]["0"]);
+                    var identidad = String (jsonData[i]["num_identidad"]);
+                    var cel =String (jsonData[i]["cel"]);
+                    var expediente=String (jsonData[i]["correlativo"]);
+                    var idIntegrante=String ('0'+jsonData[i]["idintegrante"]);
+                    var promocion=String (jsonData[i]["desc_promocion"]);
+                    var numEquipo=String (jsonData[i]["num_equipo"]);
 var integracion="INTEGRACION";
                     var contraPleca = String.fromCharCode(92);
 
@@ -377,7 +377,7 @@ var integracion="INTEGRACION";
                 }
 
                   console.log(promocion+"-"+nombreNuevo+"."+idIntegrante+"-"+cel+"-"+identidad+"-"+expediente+"-"+cantidad);
-               selected_printer.send(p1+nombreNuevo+p2+idIntegrante+p3+cel+p4+identidad+p5+expediente+p6+numEquipo+p7+cantidad+p8);
+                selected_printer.send(p1+nombreNuevo+p2+idIntegrante+p3+cel+p4+identidad+p5+expediente+p6+numEquipo+p7+cantidad+p8);
 
             }
 

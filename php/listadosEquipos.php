@@ -109,7 +109,7 @@ WHERE detalle_integrantes.id_equipo= $idEquipo AND cargos.idcargo =9");
     echo "<th>CORRELATIVO</th>";
     echo "<th>NOMBRE</th>";
     echo "<th>TELEFONO</th>";
-    echo "<th>FIRMA</th>";
+    echo "<th>NUEVO TELEFONO</th>";
     echo "</tr>";
     echo "</thead>";
 

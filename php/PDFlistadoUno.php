@@ -89,12 +89,12 @@ WHERE detalle_integrantes.`status`=1 AND detalle_integrantes.id_equipo= $idEquip
 
 while ($rows = mysqli_fetch_array($queryDatos,MYSQLI_ASSOC)){
     $filas.='
-       <tr align="center">
-        <td>'.$contador.'</td>
+       <tr align="center" >
+        <td  >'.$contador.'</td>
         <td>'.$rows["correlativo"].'</td>
-        <td style="font-size: small" colspan="2">'.$rows["nombre_integrante"].'</td>
+        <td style="font-size: small" colspan="3">'.$rows["nombre_integrante"].'</td>
     <td>'.$rows["cel"].'</td>
-    <td colspan="2"></td>
+    <td style="font-size: 15px;" ><p style="color: white">.</p></td>
        </tr>
        ';
     $contador++;
@@ -120,18 +120,20 @@ $nombreEquipo= $datosEquipo["nombre_equipo"];
 <tr style="background-color: #f3dc53;"  align="center">
 <td colspan="7"> PASTOREADOR: ' .$pastA.'</td>
 </tr>
+</thead>
+</table>
 
 
 
 
-
-
+ <table style ="width: 100%;" border=1 cellspacing=0 >
+ <thead>
 <tr align="center" style="background-color: #2ecc71; ">
-<td><strong>No.</strong></td>
-<td><strong>CORRELATIVO</strong></td>
-<td colspan="2"><strong>NOMBRE</strong></td>
-<td><strong>TELEFONO</strong></td>
-<td colspan="2"><strong>FIRMA</strong></td>
+<td style="font-size: small;width: 5px "><strong>No.</strong></td>
+<td style="font-size: small;width: 17px"><strong>CORRELATIVO</strong></td>
+<td style="font-size: small;width: 350px" colspan="3"><strong>NOMBRE</strong></td>
+<td ><strong>TELEFONO</strong></td>
+<td style="width:140px " ><strong>NUEVO TELEFONO</strong></td>
 
 
 </tr>

@@ -16,7 +16,7 @@ function desencriptar($cadena){
 $clave = encriptar('2415');
 echo $clave;
 echo "<br>";
-$valor = desencriptar($clave);
+$valor = desencriptar('978NCZv48UbSFHTdTDRRJeS2MbTgWGX8LthbgYU8VZE=');
 echo $valor;
 */
  ?>
