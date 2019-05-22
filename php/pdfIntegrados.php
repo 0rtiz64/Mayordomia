@@ -179,10 +179,66 @@ $contenido= '
 
 
     </tbody>
-    </table>
+    </table>   ';
+
+
+
+
+$confirmarEnlazadosManual = mysqli_num_rows(mysqli_query($enlace,"SELECT * FROM integracionindividual WHERE idArea = $idArea"));
+
+if($confirmarEnlazadosManual>0){
+$contenido.='   <table style ="width: 100%;margin-top: 10%" border=1 cellspacing=0 >
+<thead>
+<tr style="background-color: #F1C40F" > 
+<td colspan="6" align="center" style="color: black;"><strong>ESCUELA DE MAYORDOMIA - INTEGRACION MANUAL - NO PERTENECEN A '.$promoActiva.'</strong></td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+<tr align="center" style="background-color: #2ecc71; ">
+<td width="20px"><strong>#</strong></td>
+<td width="300px"><strong>NOMBRE COMPLETO</strong></td>
+<td  ><strong>IDENTIDAD</strong></td>
+<td><strong>TELEFONO 1</strong></td>
+<td><strong>TELEFONO 2</strong></td>
+<td><strong>SIRVE ACTUALMENTE</strong></td>
+</tr>
+
+</thead>
+<tbody>';
+$CIM = 1;
+    $queryIntegradosManual = mysqli_query($enlace,"SELECT * FROM integracionindividual WHERE idArea =$idArea");
+    while ($datosIntegradosManual = mysqli_fetch_array($queryIntegradosManual,MYSQLI_ASSOC)){
+        $contenido.='
+        <tr align="center">
+<td width="20px">'.$CIM.'</td>
+<td width="300px">'.$datosIntegradosManual["nombre"].'</td>
+<td>'.$datosIntegradosManual["identidad"].'</td>
+<td>'.$datosIntegradosManual["telefono1"].'</td>
+<td>'.$datosIntegradosManual["telefono2"].'</td>
+<td>'.$datosIntegradosManual["sirve"].'</td>
+</tr>
+        ';
+
+        $CIM++;
+    }
+
+    $contenido.='
+
+</tbody>
+</table>
 
 ';
+}else{
 
+}
 
 $dompdf = new DOMPDF();
 $dompdf->load_html( $contenido);

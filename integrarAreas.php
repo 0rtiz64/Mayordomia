@@ -239,6 +239,34 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
 <!--MODALES INICIO-->
 
+<div class="modal fade" id="editTelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="labelModal"></h4>
+            </div>
+            <div class="modal-body modal-scroll">
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="TELEFONO 1" id="inputTel1Edit">
+                    <input type="hidden" class="form-control"  id="inputidIntegranteEdit">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="TELEFONO 2" id="inputTel2Edit">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                <button type="button" class="btn btn-info" onclick="guardarEditTel()">GUARDAR</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="modal fade" id="modalIntegrarIndividual" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">

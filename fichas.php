@@ -138,12 +138,17 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 <div class="row">
                     <h1 class="h1">FICHAS DE INSCRIPCION</h1>
                     <div class="col-md-12">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <input autocomplete="off" type="text" class="form-control" id="buscarFicha" placeholder="BUSCAR POR NOMBRE"  style="text-transform: uppercase">
                     </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input autocomplete="off" type="number" class="form-control" id="buscarFichaNumero" placeholder="BUSCAR POR NUMERO DE FICHA"  style="text-transform: uppercase">
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <input type="password" class="form-control" placeholder="LEER TAG INTEGRACION" id="inputIntegracionTag" onkeypress="if (event.keyCode == 13) tagIntegracion()">
                         </div>
 
                         <div class="col-md-12" id="fichasMostrar" style=" overflow: auto "></div>
@@ -155,6 +160,38 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!--main content end-->
 
 </section>
+
+<!--MODAL EDIT TELEFONOS INICIO-->
+<div class="modal fade" id="editTelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="labelModal"></h4>
+            </div>
+            <div class="modal-body modal-scroll">
+
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="TELEFONO 1" id="inputTel1Edit">
+                    <input type="hidden" class="form-control"  id="inputidIntegranteEdit">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="TELEFONO 2" id="inputTel2Edit">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">CERRAR</button>
+                <button type="button" class="btn btn-info" onclick="guardarEditTel()">GUARDAR</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL EDIT TELEFONOS FINAL-->
+
+
+
 <!--Global JS-->
 <script src="myfiles/js/jquery-3.2.1.min%20(2).js"></script>
 <script src="assets/js/jquery-1.10.2.min.js"></script>

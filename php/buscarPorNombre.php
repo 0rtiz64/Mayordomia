@@ -36,7 +36,7 @@ while ($datos = mysqli_fetch_array($busqueda,MYSQLI_ASSOC)){
 
   echo "<tr align='center'>";
     echo "<td>".$contador."</td>";
-    echo "<td>".$datos['nombre_integrante']."</td>";
+    echo "<td>".utf8_encode($datos['nombre_integrante'])."</td>";
     echo '<td><a href="javascript:verAreasIntegrante('.$datos["idIntegrante"].' )" class="btn btn-info btn-xs">Ver Areas</a> </td>';
     echo "</tr>";
 $contador++;

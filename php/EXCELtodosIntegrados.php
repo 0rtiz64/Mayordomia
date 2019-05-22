@@ -143,7 +143,7 @@ WHERE idArea = $idArea and promociones.`status` = 1 and detalle_integrantes.`sta
 
             $pestana->setCellValue('A'.$celdas, $No)
                 ->setCellValue('B'.$celdas, $datos["promo_cordero"])
-                ->setCellValue('D'.$celdas, utf8_encode($integrantesDatos2["nombre_integrante"]))
+                ->setCellValue('D'.$celdas, utf8_encode($datos["nombre_integrante"]))
                 ->setCellValue('E'.$celdas, $datos["cel"])
                 ->setCellValue('F'.$celdas, $datos["tel"])
                 ->setCellValue('G'.$celdas, $datos["estado_civil"])
@@ -349,6 +349,38 @@ WHERE integracion.idIntegrante = $idIntegranteInt");
 }
 
 //GENERAL FINAL
+
+
+
+
+$pestana = $objPHPExcel->createSheet($contadorPestanas); //CREAR PESTANAS;
+
+$pestana->setCellValue('A3', 'No.')
+    ->setCellValue('B3', 'NOMBRE')
+    ->setCellValue('C3', 'IDENTIDAD')
+    ->setCellValue('D3', 'TELEFONO 1')
+    ->setCellValue('E3', 'TELEFONO 2')
+    ->setCellValue('F3', 'SIRVE ACTUALMENTE');
+
+
+$queryIntegradosManual = mysqli_query($enlace,"SELECT * FROM integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE idArea = $idArea and promociones.`status` = 1");
+$CM= 1;
+$CMC = 4;
+while($datosIntegradoManual = mysqli_fetch_array($queryIntegradosManual,MYSQLI_ASSOC)){
+
+
+    $objPHPExcel->setActiveSheetIndex(1)
+        ->setCellValue('A'.$CMC, $CM)
+        ->setCellValue('B'.$CMC, utf8_encode($datosIntegradoManual["nombre"]))
+        ->setCellValue('D'.$CMC, $datosIntegradoManual["telefono1"])
+        ->setCellValue('E'.$CMC, $datosIntegradoManual["telefono2"])
+        ->setCellValue('F'.$CMC, $datosIntegradoManual["sirve"]);
+    $objPHPExcel->getActiveSheet(1)->getCell("C".$CMC)->setValueExplicit($datosIntegradoManual["identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
+
+    $CM++;
+}
 
 $objPHPExcel->setActiveSheetIndex(0);
 

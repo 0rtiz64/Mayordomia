@@ -165,19 +165,48 @@ while ($datosFinal= mysqli_fetch_array($query,MYSQLI_ASSOC)){
     $contador++;
     $contador2++;
 }
+$objPHPExcel->getActiveSheet()->setTitle('LISTADO DE INTEGRACION');
+$objPHPExcel->setActiveSheetIndex(0);
 
 
 
 
+$pestana = $objPHPExcel->createSheet(1); //CREAR PESTANAS;
+
+$pestana->setCellValue('A3', 'No.')
+    ->setCellValue('B3', 'NOMBRE')
+    ->setCellValue('C3', 'IDENTIDAD')
+    ->setCellValue('D3', 'TELEFONO 1')
+    ->setCellValue('E3', 'TELEFONO 2')
+    ->setCellValue('F3', 'SIRVE ACTUALMENTE');
 
 
+$queryIntegradosManual = mysqli_query($enlace,"SELECT * FROM integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE idArea = $idArea and promociones.`status` = 1");
+$CM= 1;
+$CMC = 4;
+while($datosIntegradoManual = mysqli_fetch_array($queryIntegradosManual,MYSQLI_ASSOC)){
 
+
+    $objPHPExcel->setActiveSheetIndex(1)
+        ->setCellValue('A'.$CMC, $CM)
+        ->setCellValue('B'.$CMC, utf8_encode($datosIntegradoManual["nombre"]))
+        ->setCellValue('D'.$CMC, $datosIntegradoManual["telefono1"])
+        ->setCellValue('E'.$CMC, $datosIntegradoManual["telefono2"])
+        ->setCellValue('F'.$CMC, $datosIntegradoManual["sirve"]);
+    $objPHPExcel->getActiveSheet(1)->getCell("C".$CMC)->setValueExplicit($datosIntegradoManual["identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
+
+    $CM++;
+}
 
 //FIN DATOS
 
 
-$objPHPExcel->getActiveSheet()->setTitle('LISTADO DE INTEGRACION');
-$objPHPExcel->setActiveSheetIndex(0);
+
+$objPHPExcel->setActiveSheetIndex(1);
+$objPHPExcel->getActiveSheet()->setTitle("INTEGRADOS MANUAL");
+
 
 getHeders();
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');

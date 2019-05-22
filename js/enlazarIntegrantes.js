@@ -144,6 +144,56 @@ $('#buscarFichaNumero').on('keyup',function(){
 });
 
 
+function tagIntegracion() {
+    var tag1 = $('#inputIntegracionTag').val();
+    var tag = tag1.substr(1,tag1.length);
+    var inicio = tag1.substr(0,1);
+    var url = 'php/editarTelefonos.php';
+
+    if(inicio.trim() == "0"){
+        console.log("INICIA 0 PERMITIDO");
+    }else{
+        console.log("INVALIDO");
+        alertify.error("TAG NO PERMITIDO");
+        $('#inputIntegracionTag').val("");
+        return false;
+    }
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{phpTag:tag},
+        success: function(datos){
+        var data = eval(datos);
+
+        if(data[3]== 0){
+            alertify.error("INTEGRANTE NO ENCONTRADO EN ESTA PROMOCION");
+            $('#inputIntegracionTag').val("");
+            return false;
+        }else{
+            var nombre = data[0];
+            var tel1 = data[1];
+            var tel2 = data[2];
+            var idInt = data[3];
+
+            $('#labelModal').html(nombre);
+            $('#inputTel1Edit').val(tel1);
+            $('#inputTel2Edit').val(tel2);
+            $('#inputidIntegranteEdit').val(idInt);
+            $('#inputIntegracionTag').val("");
+            $('#editTelModal').modal({
+                show:true,
+                backdrop:'static'
+            });
+            }
+        }
+    });
+
+    return false;
+
+}
+
+
 
 //INICIO DE LIMPIAR INPUPT CUANDO SE ESCRIBE EN EL OTRO
 $('#buscarFicha').on('keyup',function(){
@@ -174,6 +224,41 @@ $('#buscarFichaNumero').on('keyup',function(){
     return false;
 });
 
+
+function guardarEditTel(){
+    var tel1 = $('#inputTel1Edit').val();
+    var tel2 = $('#inputTel2Edit').val();
+    var idInt = $('#inputidIntegranteEdit').val();
+    var url = 'php/editTelefonoIntegracion.php';
+
+    if(tel1.trim().length==""){
+        alertify.error(" TELEFONO 1 CAMPO VACIO");
+        return false;
+    }
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpId:idInt,
+            phpTel1:tel1,
+            phpTel2:tel2
+        },
+        success: function(datos){
+                if(datos == 1){
+                    alertify.success("REGISTRO EDITADO CON EXITO");
+                    $('#inputTel1Edit').val("");
+                    $('#inputTel2Edit').val("");
+                    $('#inputidIntegranteEdit').val("");
+                    $('#editTelModal').modal('toggle');
+                }else{
+                    alertify.error("ERROR INTEGRANTE NO ENCONTRADO");
+                    return false;
+                }
+        }
+    });
+
+    return false;
+}
 
 
 function verDetalles() {

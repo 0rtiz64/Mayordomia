@@ -65,7 +65,7 @@ WHERE detalle_integrantes.`status`=1 AND  integracion.idArea =$idArea and promoc
 
         echo'<tr>';
         echo '<td>'.$contador.'</td>';
-        echo '<td>'.$datos["nombre_integrante"].'</td>';
+        echo '<td>'.utf8_encode($datos["nombre_integrante"]).'</td>';
         echo '<td>'.$datos["num_identidad"].'</td>';
         echo '<td>'.$datos["correlativo"].'</td>';
 
