@@ -218,7 +218,7 @@ $CIM = 1;
     while ($datosIntegradosManual = mysqli_fetch_array($queryIntegradosManual,MYSQLI_ASSOC)){
         $contenido.='
         <tr align="center">
-<td width="20px">'.$CIM.'</td>
+<td width="20px">'.$contador.'</td>
 <td width="300px">'.$datosIntegradosManual["nombre"].'</td>
 <td>'.$datosIntegradosManual["identidad"].'</td>
 <td>'.$datosIntegradosManual["telefono1"].'</td>
@@ -228,6 +228,7 @@ $CIM = 1;
         ';
 
         $CIM++;
+        $contador++;
     }
 
     $contenido.='

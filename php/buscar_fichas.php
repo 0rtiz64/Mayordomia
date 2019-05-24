@@ -44,7 +44,7 @@ FROM integrantes
 WHERE integrantes.nombre_integrante LIKE'%".$namePerson1."%' "));
     if($queryRows >0){
 
-        $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.cel,integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.correlativo
+        $query = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.cel,integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.correlativo,integrantes.tel
 FROM integrantes
 WHERE integrantes.nombre_integrante LIKE'%".$namePerson1."%' ");
         while ($rows = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
@@ -69,7 +69,7 @@ WHERE detalle_integrantes.id_integrante = $idIntegrante and promociones.`status`
             echo "<td>".$rows["correlativo"]."</td>";
             echo '<td><a href="php/fichaInscripcion.php?numero='.$rows["idintegrante"].'" target="_blank"  class="btn btn-danger btn-sm" style="color:white;" id="PDF">FICHA</a> </td>';
             echo '<td> <a href="javascript:sendDataTag(\''.$datoPromocion["desc_promocion"].'\',\''.utf8_encode($rows["nombre_integrante"]).'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:tomarDatosDetalleIntegrante('.$rows["idintegrante"].')" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
-            echo '<td> <a href="javascript:sendDataIntegracionIndividual(\''.$rows["cel"].'\',\''.utf8_encode($rows["nombre_integrante"]).'\',\''.$rows["num_identidad"].'\','.$rows["correlativo"].','.$rows["idintegrante"].','.$numEquipo.',2)" class="btn btn-primary btn-sm">INTEGRACION </a></td>';
+            echo '<td> <a href="javascript:sendDataIntegracionIndividual(\''.$rows["cel"].'\',\''.utf8_encode($rows["nombre_integrante"]).'\',\''.$rows["tel"].'\','.$rows["correlativo"].','.$rows["idintegrante"].','.$numEquipo.',2)" class="btn btn-primary btn-sm">INTEGRACION </a></td>';
             echo '<td> <a href="javascript:togaIndividual('.$rows["idintegrante"].')" class="btn btn-info btn-sm">GRADUACION</a></td>';
             //echo '<td> <a href="javascript:probando(\''.$rows["nombre_integrante"].'\')" class="btn btn-primary btn-sm">CARNET </a></td>';        echo '<td><a href="javascript:prueba()" class="btn btn-info btn-sm">ETIQUETA</a> </td>';
             echo "</tr>";

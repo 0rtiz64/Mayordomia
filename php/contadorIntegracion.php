@@ -23,7 +23,7 @@ while ($totalIntegradosDatos = mysqli_fetch_array($totalIntegradosQuery,MYSQLI_A
 
 echo'<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
 echo'<div class="progress progress-striped active">';
-echo'<div class="progress-bar progress-bar-primary" style="width: 100%">'.$cIntegrados.' INTEGRADOS</div>';
+echo'<div class="progress-bar progress-bar-primary" style="width: 100%">'.$cIntegrados.' INTEGRADOS EN PROMOCION</div>';
 echo'</div>';
 echo'</div>';
 
@@ -33,7 +33,7 @@ WHERE promociones.`status` = 1");
 $totalIntegracionesDatos = mysqli_fetch_array($totalIntegracionesQuery,MYSQLI_ASSOC);
 echo'<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">';
     echo'<div class="progress progress-striped active">';
-        echo'<div class="progress-bar progress-bar-info" style="width: 100%">'.$totalIntegracionesDatos["integraciones"].' INTEGRACIONES</div>';
+        echo'<div class="progress-bar progress-bar-info" style="width: 100%">'.$totalIntegracionesDatos["integraciones"].' INTEGRACIONES EN PROMOCION</div>';
     echo'</div>';
 echo'</div>';
 
@@ -43,9 +43,10 @@ echo'</div>';
 
 echo'<table class="table table-bordered">';
 echo'<thead>';
-echo'<tr>';
-echo'<th>AREA</th>';
-echo'<th>CANTIDAD</th>';
+echo'<tr align="center">';
+echo'<td><strong>AREA</strong></td>';
+echo'<td><strong>PROMOCION</strong></td>';
+echo'<td><strong>MANUAL</strong></td>';
 echo'</tr>';
 
 echo'</thead>';
@@ -70,24 +71,20 @@ WHERE integracion.idArea = $idArea and promociones.`status` = 1");
 
     $cantidad = $datosContadorPorArea["C"];
 
+    $cantidadManualQuery = mysqli_query($enlace,"SELECT COUNT(*) as CM from integracionindividual
+INNER JOIN promociones on integracionindividual.idPromocion= promociones.idpromocion
+WHERE integracionindividual.idArea= $idArea and promociones.`status` = 1");
+    $datosContadorPorAreaManual = mysqli_fetch_array($cantidadManualQuery,MYSQLI_ASSOC);
+    $cantidadManual = $datosContadorPorAreaManual["CM"];
 
 
-    $clasBadge = "badge badge-danager animated";
 
-
-
-
-
-
-                echo'<tr>';
+    $clasBadge = "badge badge-info animated";
+                echo'<tr align="center">';
                     echo'<td>'.$nombreArea.'</td>';
                     echo'<td><span class="'.$clasBadge.'" id="new-messages">'.$cantidad.'</span></td>';
+                    echo'<td><span class="badge badge-success animated" id="new-messages">'.$cantidadManual.'</span></td>';
                     echo'</tr>';
-
-
-
-
-
 
 $c++;
 }

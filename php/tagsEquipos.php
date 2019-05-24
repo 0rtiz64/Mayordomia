@@ -11,7 +11,7 @@ $idEquipo = $_POST["phpidEquipo"];
 $fechaentrada = date('Y-m-d ');
 $rawdata = array();
 $i=0;
-$query = mysqli_query($enlace,"select integrantes.nombre_integrante,integrantes.cel,integrantes.correlativo,integrantes.num_identidad,integrantes.idintegrante,promociones.desc_promocion,
+$query = mysqli_query($enlace,"select integrantes.nombre_integrante,integrantes.cel,integrantes.correlativo,integrantes.tel,integrantes.idintegrante,promociones.desc_promocion,
 equipos.num_equipo,equipos.nombre_equipo from detalle_integrantes 
 INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN equipos ON detalle_integrantes.id_equipo = equipos.id_equipo

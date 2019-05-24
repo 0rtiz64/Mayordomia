@@ -35,7 +35,7 @@ function agregar() {
         return false;
     }
 
-   tagLeidos.push(tag);
+    tagLeidos.push(tag);
 
     $.ajax({
         type:'POST',
@@ -52,7 +52,7 @@ function agregar() {
             }
 
 
- $('#tagId').val("");
+            $('#tagId').val("");
         }
     });
     return false;
@@ -61,7 +61,7 @@ function agregar() {
 var cont = 0;
 function add(idIntegrante,nombreIntegrante,identidad,cel,correlativo) {
     cont ++;
-    var fila = '<tr id="'+cont+'" ondblclick="editTel('+idIntegrante+')"> <td>' + cont + ' <input type="hidden" value="'+idIntegrante+'" name="itemE[]"></td> <td  ><p style="font-size: xx-small">' + nombreIntegrante+ '</p></td> <td>' + identidad+ '</td> <td>' + cel+ '</td> <td>' + correlativo+ '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+','+idIntegrante+')"></td> </tr>';
+    var fila = '<tr id="'+cont+'" ondblclick="editTel('+idIntegrante+','+cont+')"> <td>' + cont + ' <input type="hidden" value="'+idIntegrante+'" name="itemE[]"></td> <td  ><p style="font-size: xx-small">' + nombreIntegrante+ '</p></td> <td>' + identidad+ '</td> <td id="E'+cont+'">' + cel+ '</td> <td>' + correlativo+ '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+','+idIntegrante+')"></td> </tr>';
     $('#tablaAgregados').append(fila);
     var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
     $('#contadorVisible').html(visile).show(200);
@@ -75,7 +75,7 @@ function remover(id_fila2,idIntegrante) {
     var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
     $('#contadorVisible').html(visile).show(200);
 
-var url = 'php/buscarId.php';
+    var url = 'php/buscarId.php';
 
     $.ajax({
         type:'POST',
@@ -87,7 +87,7 @@ var url = 'php/buscarId.php';
             var  indice = tagLeidos.indexOf(datos);
 
             if (indice == -1){
-           alertify.error("Se produjo un error, notificar al desarrollador");
+                alertify.error("Se produjo un error, notificar al desarrollador");
             }else{
                 tagLeidos.splice(indice,1);
 
@@ -221,7 +221,7 @@ function integrarIndividual(){
                 return false;
             }else{
                 alertify.success("REGISTRO GUARDADO");
-                 document.getElementById('selectAreasIntegracionIndividual').value ='';
+                document.getElementById('selectAreasIntegracionIndividual').value ='';
                 $('#nombreIntegracionIndividual').val('');
                 $('#identidadIntegracionIndividual').val('');
                 $('#telefono1IntegracionIndividual').val('');
@@ -244,7 +244,9 @@ $('#modalIntegrarIndividual').on('hidden.bs.modal', function () {
     return false;
 });
 
-function editTel(idInt) {
+function editTel(idInt, idTel) {
+    var idTelNew ="E"+idTel;
+    $('#inputIdTel').val(idTelNew);
     var url = 'php/editarTelefonos.php';
     $.ajax({
         type:'POST',
@@ -284,6 +286,7 @@ function guardarEditTel(){
     var tel1 = $('#inputTel1Edit').val();
     var tel2 = $('#inputTel2Edit').val();
     var idInt = $('#inputidIntegranteEdit').val();
+    var idTd = $('#inputIdTel').val()
     var url = 'php/editTelefonoIntegracion.php';
 
     if(tel1.trim().length==""){
@@ -305,6 +308,7 @@ function guardarEditTel(){
                 $('#inputTel2Edit').val("");
                 $('#inputidIntegranteEdit').val("");
                 $('#editTelModal').modal('toggle');
+                $('#'+idTd).html(tel1);
             }else{
                 alertify.error("ERROR INTEGRANTE NO ENCONTRADO");
                 return false;

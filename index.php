@@ -25,6 +25,8 @@
     <!-- Fonts -->
     <link href='css/itallic.css' rel='stylesheet' type='text/css'>
     <link href='css/opensans.css' rel='stylesheet' type='text/css'>
+
+
     <!-- Feature detection -->
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

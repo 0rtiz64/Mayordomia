@@ -42,11 +42,11 @@ var p4 = "^FS\n" +
     "^FT451,54^A0I,34,33^FH\\^FD";
 
 var p5 = "^FS\n" +
-    "^FT650,100^A0I,31,31^FH\\^FD";
+    "^FT680,100^A0I,31,31^FH\\^FD";
 
 var p6 = "^FS\n" +
-    "^FT153,136^A0I,25,24^FH\\^FDCELULAR:^FS\n" +
-    "^FT652,141^A0I,25,24^FH\\^FDEXPEDIENTE:^FS\n" +
+    "^FT153,136^A0I,25,24^FH\\^FDTELEFONO2:^FS\n" +
+    "^FT652,141^A0I,25,24^FH\\^FDTELEFONO1:^FS\n" +
     "^FT382,267^A0I,28,28^FH\\^FD";
 
 
@@ -245,7 +245,7 @@ function imprimirTags() {
     var url = 'php/tagsEquipos.php';
 
     if (equipo.trim().length==""){
-        alertify.error("EQUIPO VACIO");
+            alertify.error("EQUIPO VACIO");
         return false;
     }else{
         if(cantidad.trim().length==""){
@@ -362,7 +362,7 @@ function sendData(response)
                     //console.log(String(jsonData[i][b]));
                     var cantidad = $('#cantidadTagsImprimir').val();
                     var nombre = String (jsonData[i]["0"]);
-                    var identidad = String (jsonData[i]["num_identidad"]);
+                    var tel = String (jsonData[i]["tel"]);
                     var cel =String (jsonData[i]["cel"]);
                     var expediente=String (jsonData[i]["correlativo"]);
                     var idIntegrante=String ('0'+jsonData[i]["idintegrante"]);
@@ -376,8 +376,9 @@ var integracion="INTEGRACION";
 
                 }
 
-                  console.log(promocion+"-"+nombreNuevo+"."+idIntegrante+"-"+cel+"-"+identidad+"-"+expediente+"-"+cantidad);
-                selected_printer.send(p1+nombreNuevo+p2+idIntegrante+p3+cel+p4+identidad+p5+expediente+p6+numEquipo+p7+cantidad+p8);
+                  console.log(promocion+"-"+nombreNuevo+"."+idIntegrante+"-"+cel+"-"+tel
+                      +"-"+expediente+"-"+cantidad);
+                selected_printer.send(p1+nombreNuevo+p2+idIntegrante+p3+tel+p4+expediente+p5+cel+p6+numEquipo+p7+cantidad+p8);
 
             }
 

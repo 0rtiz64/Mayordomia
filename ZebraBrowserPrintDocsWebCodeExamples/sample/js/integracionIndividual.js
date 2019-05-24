@@ -42,11 +42,11 @@ var Ip4 = "^FS\n" +
 "^FT451,54^A0I,34,33^FH\\^FD";
 
 var Ip5 = "^FS\n" +
-"^FT650,100^A0I,31,31^FH\\^FD";
+"^FT680,100^A0I,31,31^FH\\^FD";
 
 var Ip6 = "^FS\n" +
-"^FT153,136^A0I,25,24^FH\\^FDCELULAR:^FS\n" +
-"^FT652,141^A0I,25,24^FH\\^FDEXPEDIENTE:^FS\n" +
+"^FT153,136^A0I,25,24^FH\\^FDTELEFONO2:^FS\n" +
+"^FT652,141^A0I,25,24^FH\\^FDTELEFONO1:^FS\n" +
 "^FT382,267^A0I,28,28^FH\\^FD";
 
 
@@ -173,7 +173,7 @@ function showBrowserPrintNotFound()
 
 
 
-function sendDataIntegracionIndividual(cel,nombre,identidad,expediente,idIntegrante,numEquipo)
+function sendDataIntegracionIndividual(cel,nombre,tel,expediente,idIntegrante,numEquipo)
 {
 
     console.log("INICIANDO SEND DATA");
@@ -185,7 +185,7 @@ function sendDataIntegracionIndividual(cel,nombre,identidad,expediente,idIntegra
             var contraPleca = String.fromCharCode(92);
 var integracion ="INTEGRACION";
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
-            selected_printer.send(Ip1+nombreNuevo+Ip2+idIntegrante+Ip3+cel+Ip4+identidad+Ip5+expediente+Ip6+numEquipo+Ip7+1+Ip8);
+            selected_printer.send(Ip1+nombreNuevo+Ip2+idIntegrante+Ip3+tel+Ip4+expediente+Ip5+cel+Ip6+numEquipo+Ip7+1+Ip8);
             console.log(numEquipo);
         }
         else

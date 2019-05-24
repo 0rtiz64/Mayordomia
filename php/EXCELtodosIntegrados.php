@@ -360,27 +360,34 @@ $pestana->setCellValue('A3', 'No.')
     ->setCellValue('C3', 'IDENTIDAD')
     ->setCellValue('D3', 'TELEFONO 1')
     ->setCellValue('E3', 'TELEFONO 2')
-    ->setCellValue('F3', 'SIRVE ACTUALMENTE');
+    ->setCellValue('F3', 'SIRVE ACTUALMENTE')
+    ->setCellValue('G3', 'AREA INTEGRADO');
 
 
-$queryIntegradosManual = mysqli_query($enlace,"SELECT * FROM integracionindividual 
+$queryIntegradosManual = mysqli_query($enlace,"SELECT integracionindividual.nombre,integracionindividual.identidad,integracionindividual.telefono1,
+integracionindividual.telefono2,integracionindividual.sirve,areas.Nombre as area FROM integracionindividual 
 INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
-WHERE idArea = $idArea and promociones.`status` = 1");
+INNER JOIN areas on integracionindividual.idArea = areas.idArea
+WHERE  promociones.`status` = 1 ");
 $CM= 1;
 $CMC = 4;
 while($datosIntegradoManual = mysqli_fetch_array($queryIntegradosManual,MYSQLI_ASSOC)){
 
 
-    $objPHPExcel->setActiveSheetIndex(1)
-        ->setCellValue('A'.$CMC, $CM)
+    $objPHPExcel->setActiveSheetIndex(1);
+      $pestana  ->setCellValue('A'.$CMC, $CM)
         ->setCellValue('B'.$CMC, utf8_encode($datosIntegradoManual["nombre"]))
         ->setCellValue('D'.$CMC, $datosIntegradoManual["telefono1"])
         ->setCellValue('E'.$CMC, $datosIntegradoManual["telefono2"])
-        ->setCellValue('F'.$CMC, $datosIntegradoManual["sirve"]);
-    $objPHPExcel->getActiveSheet(1)->getCell("C".$CMC)->setValueExplicit($datosIntegradoManual["identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
+        ->setCellValue('F'.$CMC, $datosIntegradoManual["sirve"])
+        ->setCellValue('G'.$CMC, $datosIntegradoManual["area"]);
+    $pestana->setCellValue()->getCell("C$CMC")->setValueExplicit($datosIntegradoManual["identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
 
     $CM++;
+    $CMC++;
 }
+$objPHPExcel->setActiveSheetIndex($contadorPestanas);
+$objPHPExcel->getActiveSheet()->setTitle("INTEGRADOS MANUAL");
 
 $objPHPExcel->setActiveSheetIndex(0);
 

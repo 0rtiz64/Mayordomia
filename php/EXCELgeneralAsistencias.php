@@ -66,7 +66,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 
 
-$qTomarId = mysqli_query($enlace,"select * from marcacionprovicional GROUP BY idIntegrante");
+$qTomarId = mysqli_query($enlace,"select * from marcacionprovicional 
+INNER JOIN promociones on marcacionprovicional.idPromocion = promociones.idpromocion
+WHERE promociones.`status`=1 GROUP BY idIntegrante");
 
 
 
