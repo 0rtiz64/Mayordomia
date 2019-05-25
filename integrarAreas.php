@@ -212,8 +212,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         <thead>
                                         <th>#</th>
                                         <th>Nombre</th>
-                                        <th>Identidad</th>
-                                        <th>Celular</th>
+                                        <th>Telefono 1</th>
+                                        <th>Telefono 2</th>
                                         <th>Expediente</th>
                                         <th>Opcion</th>
                                         </thead>

@@ -21,7 +21,7 @@ $alerta= ' <div class="alert alert-success"  align="center"> <strong>'.utf8_enco
     $datos = array(
         0 => $rows['idintegrante'],
         1 => utf8_encode($rows['nombre_integrante']),
-        2 => $rows['num_identidad'],
+        2 => $rows['tel'],
         3 => $rows['cel'],
         4 => $rows['correlativo'],
         5 => $alerta,
