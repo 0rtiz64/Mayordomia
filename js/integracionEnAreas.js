@@ -61,7 +61,7 @@ function agregar() {
 var cont = 0;
 function add(idIntegrante,nombreIntegrante,tel,cel,correlativo) {
     cont ++;
-    var fila = '<tr id="'+cont+'" ondblclick="editTel('+idIntegrante+','+cont+')"> <td>' + cont + ' <input type="hidden" value="'+idIntegrante+'" name="itemE[]"></td> <td>' + nombreIntegrante+ '</td> <td>' + cel+ '</td> <td id="E'+cont+'">' + tel+ '</td> <td>' + correlativo+ '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+','+idIntegrante+')"></td> </tr>';
+    var fila = '<tr id="'+cont+'" ondblclick="editTel('+idIntegrante+','+cont+')"> <td>' + cont + ' <input type="hidden" value="'+idIntegrante+'" name="itemE[]"></td> <td>' + nombreIntegrante+ '</td> <td id="E1'+cont+'">' + cel+ '</td> <td id="E2'+cont+'">' + tel+ '</td> <td>' + correlativo+ '</td> <td><input type="button" class="btn btn-danger btn-xs" value="Retirar" onclick="remover('+cont+','+idIntegrante+')"></td> </tr>';
     $('#tablaAgregados').append(fila);
     var visile = 'Integrantes en Listado:<span class="badge badge-danager animated bounceIn" id="new-messages">'+cont+'</span>';
     $('#contadorVisible').html(visile).show(200);
@@ -245,8 +245,10 @@ $('#modalIntegrarIndividual').on('hidden.bs.modal', function () {
 });
 
 function editTel(idInt, idTel) {
-    var idTelNew ="E"+idTel;
-    $('#inputIdTel').val(idTelNew);
+    var idTelNew1 ="E1"+idTel;
+    var idTelNew2 ="E2"+idTel;
+    $('#inputIdTel1').val(idTelNew1);
+    $('#inputIdTel2').val(idTelNew2);
     var url = 'php/editarTelefonos.php';
     $.ajax({
         type:'POST',
@@ -286,7 +288,8 @@ function guardarEditTel(){
     var tel1 = $('#inputTel1Edit').val();
     var tel2 = $('#inputTel2Edit').val();
     var idInt = $('#inputidIntegranteEdit').val();
-    var idTd = $('#inputIdTel').val()
+    var idTd1 = $('#inputIdTel1').val();
+    var idTd2 = $('#inputIdTel2').val();
     var url = 'php/editTelefonoIntegracion.php';
 
     if(tel1.trim().length==""){
@@ -308,7 +311,8 @@ function guardarEditTel(){
                 $('#inputTel2Edit').val("");
                 $('#inputidIntegranteEdit').val("");
                 $('#editTelModal').modal('toggle');
-                $('#'+idTd).html(tel1);
+                $('#'+idTd1).html(tel1);
+                $('#'+idTd2).html(tel2);
             }else{
                 alertify.error("ERROR INTEGRANTE NO ENCONTRADO");
                 return false;

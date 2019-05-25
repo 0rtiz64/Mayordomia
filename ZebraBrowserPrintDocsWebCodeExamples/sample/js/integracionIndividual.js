@@ -183,9 +183,11 @@ function sendDataIntegracionIndividual(cel,nombre,tel,expediente,idIntegrante,nu
         {
 
             var contraPleca = String.fromCharCode(92);
+            var idUs= '0'+idIntegrante;
+           // alert(typeof(idUs));
 var integracion ="INTEGRACION";
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
-            selected_printer.send(Ip1+nombreNuevo+Ip2+idIntegrante+Ip3+tel+Ip4+expediente+Ip5+cel+Ip6+numEquipo+Ip7+1+Ip8);
+            selected_printer.send(Ip1+nombreNuevo+Ip2+idUs+Ip3+tel+Ip4+expediente+Ip5+cel+Ip6+numEquipo+Ip7+1+Ip8);
             console.log(numEquipo);
         }
         else

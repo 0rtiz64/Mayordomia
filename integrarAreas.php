@@ -249,7 +249,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
             <div class="modal-body modal-scroll">
 
                 <div class="form-group col-md-6">
-                    <input type="hidden" id="inputIdTel">
+                    <input type="hidden" id="inputIdTel1">
+                    <input type="hidden" id="inputIdTel2">
                     <input type="text" class="form-control" placeholder="TELEFONO 1" id="inputTel1Edit">
                     <input type="hidden" class="form-control"  id="inputidIntegranteEdit">
                 </div>
