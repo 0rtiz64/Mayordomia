@@ -107,7 +107,7 @@ while($result = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 
   <td>'.$contador.'</td>
   <td>'.$inte.'</td>
-    <td style="font-size: x-small">'.$result["nombre_integrante"].'</td>
+    <td style="font-size: x-small">'.utf8_encode($result["nombre_integrante"]).'</td>
     <td >'.$result["num_identidad"].'</td>
     <td align="center">'.$result["correlativo"].'</td>
     <td align="center">'.$result["cel"].'</td>
@@ -219,7 +219,7 @@ $CIM = 1;
         $contenido.='
         <tr align="center">
 <td width="20px">'.$contador.'</td>
-<td width="300px">'.$datosIntegradosManual["nombre"].'</td>
+<td width="300px">'.utf8_encode($datosIntegradosManual["nombre"]).'</td>
 <td>'.$datosIntegradosManual["identidad"].'</td>
 <td>'.$datosIntegradosManual["telefono1"].'</td>
 <td>'.$datosIntegradosManual["telefono2"].'</td>
