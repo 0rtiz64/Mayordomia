@@ -56,7 +56,8 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('J3', 'AREAS')
     ->setCellValue('K3', 'CORRELATIVO')
     ->setCellValue('L3', 'DOCUMENTOS PENDIENTES')
-    ->setCellValue('M3', 'EQUIPO');
+    ->setCellValue('M3', 'EQUIPO')
+    ->setCellValue('N3', 'ESTADO');
 
 $promoActiva = mysqli_query($enlace,"SELECT * from promociones where `status`  = 1");
 $datosPromoActiva = mysqli_fetch_array($promoActiva,MYSQLI_ASSOC);
@@ -160,13 +161,26 @@ WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegr
 
          if($queryVerificarEquipo>0){
              //SI TIENE EQUIPO
-             $equipos= mysqli_query($enlace,"SELECT equipos.nombre_equipo,equipos.num_equipo from detalle_integrantes 
+             $equipos= mysqli_query($enlace,"SELECT equipos.nombre_equipo,equipos.num_equipo,detalle_integrantes.`status` as ESTADO from detalle_integrantes 
 INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegrante");
              $datosEquipo = mysqli_fetch_array($equipos,MYSQLI_ASSOC);
+
+             if($datosEquipo["ESTADO"] ==1){
+                 $estado = "ACTIVO";
+             }else{
+                 if($datosEquipo["ESTADO"]==2){
+                     $estado="RETIRADO";
+                 }else{
+                     if($datosEquipo["ESTADO"]==3){
+                         $estado="INACTIVO";
+                     }
+                 }
+             }
              $objPHPExcel->setActiveSheetIndex(0)
-                 ->setCellValue("M$contador",$datosEquipo["num_equipo"].'-'.$datosEquipo["nombre_equipo"]);
+                 ->setCellValue("M$contador",$datosEquipo["num_equipo"].'-'.$datosEquipo["nombre_equipo"])
+                 ->setCellValue("N$contador",$estado);
          }else{
              // NO TIENE EQUIPO
              $objPHPExcel->setActiveSheetIndex(0)
