@@ -16,6 +16,7 @@ var format_start = "^XA^LL200^FO80,50^A0N36,36^FD";
 var format_end = "^FS^XZ";
 var default_mode = true;
 
+
 var Ip1 = "\n" +
     "^XA\n" +
     "^MMT\n" +
@@ -32,26 +33,26 @@ var Ip1 = "\n" +
 
 
 var Ip2 ="^FS\n" +
-"^BY4,3,91^FT516,91^BCI,,N,N\n" +
-"^FD>:";
+    "^BY3,3,91^FT516,91^BCI,,N,N\n" +
+    "^FD>:";
 
 var Ip3 = "^FS\n" +
-"^FT180,101^A0I,31,31^FH\\^FD";
+    "^FT180,101^A0I,31,31^FH\\^FD";
 
 var Ip4 = "^FS\n" +
-"^FT451,54^A0I,34,33^FH\\^FD";
+    "^FT451,54^A0I,34,33^FH\\^FD";
 
 var Ip5 = "^FS\n" +
-"^FT680,100^A0I,31,31^FH\\^FD";
+    "^FT680,100^A0I,31,31^FH\\^FD";
 
 var Ip6 = "^FS\n" +
-"^FT153,136^A0I,25,24^FH\\^FDTELEFONO2:^FS\n" +
-"^FT652,141^A0I,25,24^FH\\^FDTELEFONO1:^FS\n" +
-"^FT382,267^A0I,28,28^FH\\^FD";
+    "^FT153,136^A0I,25,24^FH\\^FDTELEFONO2:^FS\n" +
+    "^FT652,141^A0I,25,24^FH\\^FDTELEFONO1:^FS\n" +
+    "^FT382,267^A0I,28,28^FH\\^FD";
 
 
 var Ip7 = "^FS\n" +
-"^PQ";
+    "^PQ";
 
 var Ip8 =",0,1,Y^XZ\n";
 
