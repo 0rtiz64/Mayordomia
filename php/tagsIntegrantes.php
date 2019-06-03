@@ -23,7 +23,7 @@ $datosEquipoNombre = mysqli_fetch_array($equipoNombreQuery,MYSQLI_ASSOC);
 echo ' <table class="table table-bordered" id="tablaRegistrosIntegrantes">';
                                 echo  '<thead>';
                                 echo '<tr>';
-                                    echo '<td style="text-align: center" colspan="4s">'.$datosEquipoNombre["num_equipo"].'-'.$datosEquipoNombre["nombre_equipo"].' </td>';
+                                    echo '<td style="text-align: center" colspan="4">'.$datosEquipoNombre["num_equipo"].'-'.$datosEquipoNombre["nombre_equipo"].' </td>';
                                 echo '</tr>';
                                 echo '<tr>';
 

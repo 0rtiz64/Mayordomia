@@ -76,10 +76,82 @@ WHERE detalle_integrantes.`status`=1 AND  integracion.idArea =$idArea and promoc
     echo '</tbody>';
     echo '</table>';
 
+    $confirmarManuales = mysqli_num_rows(mysqli_query($enlace,"SELECT * from integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1 AND integracionindividual.idArea = $idArea"));
+    if($confirmarManuales>0){
+        echo ' <table class="table table-bordered">';
+        echo  '<thead>';
+        echo '<tr>';
+        echo'<td colspan="6" align="center" style="background-color: yellow"><strong>ESCUELA DE MAYORDOMIA - INTEGRACION MANUAL</strong></td>';
+        echo '</tr>';
+        echo '<tr align="center">';
+        echo  '<td><strong>#</strong></td>';
+        echo  '<td> <strong>Nombre</strong> </td>';
+        echo '<td><strong>Identidad</strong></td>';
+        echo '<td><strong>Telefono 1</strong></td>';
+        echo '<td><strong>Telefono 2</strong></td>';
+        echo '<td><strong>Sirve Actualmente</strong></td>';
+        echo '</tr>';
+
+        $queryManual= mysqli_query($enlace,"SELECT * from integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1 AND integracionindividual.idArea = $idArea");
+        $CM =1;
+        while ($datosManuales= mysqli_fetch_array($queryManual,MYSQLI_ASSOC)){
+            echo '<tr align="center">';
+            echo  '<td>'.$CM.'</td>';
+            echo  '<td>'.$datosManuales["nombre"].'</td>';
+            echo '<td>'.$datosManuales["identidad"].'</td>';
+            echo '<td>'.$datosManuales["telefono1"].'</td>';
+            echo '<td>'.$datosManuales["telefono2"].'</td>';
+            echo '<td>'.$datosManuales["sirve"].'</td>';
+            echo '</tr>';
+            $CM++;
+        }
+    }
+
 
 }else{
 
     echo "<div class='alert alert-danger' > <strong>AUN NO HAY DATOS PARA ESTA AREA</strong>  </div>";
+    $confirmarManuales = mysqli_num_rows(mysqli_query($enlace,"SELECT * from integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1 AND integracionindividual.idArea = $idArea"));
+    if($confirmarManuales>0){
+        echo '<a href="php/pdfIntegrados.php?area='.$idArea.'" target="_blank" class="btn btn-danger" style="color: #ffffff;float: left">EXPORTAR A PDF</a> ';
+        echo ' <table class="table table-bordered">';
+        echo  '<thead>';
+        echo '<tr>';
+        echo'<td colspan="6" align="center" style="background-color: yellow"><strong>ESCUELA DE MAYORDOMIA - INTEGRACION MANUAL</strong></td>';
+        echo '</tr>';
+        echo '<tr align="center">';
+        echo  '<td><strong>#</strong></td>';
+        echo  '<td> <strong>Nombre</strong> </td>';
+        echo '<td><strong>Identidad</strong></td>';
+        echo '<td><strong>Telefono 1</strong></td>';
+        echo '<td><strong>Telefono 2</strong></td>';
+        echo '<td><strong>Sirve Actualmente</strong></td>';
+        echo '</tr>';
+
+        $queryManual= mysqli_query($enlace,"SELECT * from integracionindividual 
+INNER JOIN promociones on integracionindividual.idPromocion = promociones.idpromocion
+WHERE promociones.`status` = 1 AND integracionindividual.idArea = $idArea");
+        $CM =1;
+        while ($datosManuales= mysqli_fetch_array($queryManual,MYSQLI_ASSOC)){
+            echo '<tr align="center">';
+            echo  '<td>'.$CM.'</td>';
+            echo  '<td>'.$datosManuales["nombre"].'</td>';
+            echo '<td>'.$datosManuales["identidad"].'</td>';
+            echo '<td>'.$datosManuales["telefono1"].'</td>';
+            echo '<td>'.$datosManuales["telefono2"].'</td>';
+            echo '<td>'.$datosManuales["sirve"].'</td>';
+            echo '</tr>';
+            $CM++;
+        }
+    }
+
+
 }
 
 
