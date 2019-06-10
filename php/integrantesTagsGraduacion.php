@@ -12,7 +12,7 @@ $query = "SELECT * from equipos
 INNER JOIN promociones on equipos.id_promocion = promociones.idpromocion
 INNER JOIN detalle_integrantes on equipos.id_equipo = detalle_integrantes.id_equipo
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
-WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '.$idEquipo.' and detalle_integrantes.`status` =1 and detalle_integrantes.toga = 2 and detalle_integrantes.id_cargo = 10 GROUP BY integrantes.nombre_integrante ASC";
+WHERE promociones.`status` = 1 and detalle_integrantes.id_equipo = '.$idEquipo.' and detalle_integrantes.`status` =1  and detalle_integrantes.id_cargo = 10 GROUP BY integrantes.nombre_integrante ASC";
 $queryConfirma = mysqli_num_rows(mysqli_query($enlace,$query));
 
 if($queryConfirma >0){
@@ -34,7 +34,7 @@ if($queryConfirma >0){
                         while ($datos = mysqli_fetch_array($queryDatos,MYSQLI_ASSOC)){
                             echo'<tr align="center">';
                             echo'<td>'.$cont.'</td>';
-                            echo'<td>'.$datos["nombre_integrante"].'</td>';
+                            echo'<td>'.utf8_encode($datos["nombre_integrante"]).'</td>';
                             echo'<td>'.$datos["correlativo"].'</td>';
                             echo'</tr>';
                             $cont++;
