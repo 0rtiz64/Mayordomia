@@ -12,11 +12,11 @@ function desencriptar($cadena){
      $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($cadena), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
     return $decrypted;  //Devuelve el string desencriptado
 }
-/*
-$clave = encriptar('2415');
+
+/*$clave = encriptar('2415');
 echo $clave;
 echo "<br>";
-$valor = desencriptar('978NCZv48UbSFHTdTDRRJeS2MbTgWGX8LthbgYU8VZE=');
+$valor = desencriptar('AiQjClvgw2Mcj2q5rxxklYrSXY3TBSKWopkPYKu2mwE=');
 echo $valor;
 */
  ?>
