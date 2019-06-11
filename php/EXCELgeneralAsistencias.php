@@ -103,7 +103,8 @@ WHERE idintegrante = $idIntegrante ");
         ->setCellValue("D$contador",$numEquipo.'-'.$nombreEquipo )
         ->setCellValue("E$contador",$cargo );
     $qContarAsistencias = mysqli_query($enlace,"SELECT  CAST(fechaMarcacion AS date)  AS qFecha  from marcacionprovicional
-WHERE idIntegrante=$idIntegrante GROUP BY qFecha ASC");
+INNER JOIN promociones on marcacionprovicional.idPromocion = promociones.idpromocion
+WHERE idIntegrante=$idIntegrante and promociones.`status` = 1 GROUP BY qFecha ASC");
     $celda = 5;
     while ($dContarAsistencias = mysqli_fetch_array($qContarAsistencias,MYSQLI_ASSOC)){
         $fecha = $dContarAsistencias["qFecha"];
