@@ -117,7 +117,7 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
                             <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
                         </div>
                 <div class="col-md-2" style="float: right;">
-                          <input id="checkBox" onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
+                          <input  onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
                         </div> 
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   
