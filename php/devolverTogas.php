@@ -29,7 +29,9 @@ function FcontadorGeneral ($enlace){
     //CONSULTAR PROMOCION ACTIVA FINAL
 
     //DEVUELTA INICIO
-    $queryDevuelta = mysqli_query($enlace,"SELECT COUNT(*) CANTIDADDEVUELTA from graduacion WHERE devuelta = 1");
+    $queryDevuelta = mysqli_query($enlace,"SELECT COUNT(*) CANTIDADDEVUELTA from graduacion 
+    INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion
+   WHERE devuelta = 1 and promociones.`status` = 1");
     $datosDevuelta = mysqli_fetch_array($queryDevuelta,MYSQLI_ASSOC);
     $cantidadDevuelta = $datosDevuelta["CANTIDADDEVUELTA"];
     //DEVUELTA FINAL
@@ -69,13 +71,13 @@ WHERE promociones.`status`= 1 and num_equipo >0 GROUP BY equipos.num_equipo ASC
 
         $queryCantidad= mysqli_query($enlace,"SELECT count(*) as CANTIDAD from graduacion
 INNER JOIN detalle_integrantes on graduacion.idDetalleIntegrante = detalle_integrantes.idetalle_integrantes
-WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status` = 1 and detalle_integrantes.id_cargo = 10 and detalle_integrantes.toga = 2");
+WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status` = 1 and detalle_integrantes.id_cargo = 10");
         $datosCantidadEquipo = mysqli_fetch_array($queryCantidad,MYSQLI_ASSOC);
         $cantidad = $datosCantidadEquipo["CANTIDAD"];
 
 
         $maximoDetalle = mysqli_query($enlace,"SELECT count(*) as CantDetalle from detalle_integrantes
- WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status` = 1 and detalle_integrantes.toga = 2 and detalle_integrantes.id_cargo = 10");
+ WHERE detalle_integrantes.id_equipo = $idEquipo and detalle_integrantes.`status` = 1  and detalle_integrantes.id_cargo = 10");
         $datosMaximoDetalle = mysqli_fetch_array($maximoDetalle,MYSQLI_ASSOC);
         $maximoDetalleCantidad = $datosMaximoDetalle["CantDetalle"];
 
@@ -115,7 +117,7 @@ WHERE graduacion.idEquipo = $idEquipo and graduacion.devuelta = 1");
                             <h1 class="text-left timer" data-from="0" data-to="180" data-speed="2500">E:'.$cantidad.'- D:'.$cantidadDevueltaEquipo.'</h1>
                         </div>
                 <div class="col-md-2" style="float: right;">
-                          <input onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
+                          <input id="checkBox" onclick="checkBox('.$idEquipo.');"  type="checkbox" class="form-control myCheck" style="width: 30px" title="DEVOLVER"> 
                         </div> 
                           <p>'.$numEquipo.' - '.$nombreEquipo.'</p> 
                           <input type="hidden" value="'.$idEquipo.'">   

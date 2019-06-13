@@ -65,10 +65,14 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('Q3', 'FECHA 12');
 
 
+$corrQuery = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
+$datosCorr = mysqli_fetch_array($corrQuery,MYSQLI_ASSOC);
+$correlativoPromocion = $datosCorr["correlativo"];
 
 $qTomarId = mysqli_query($enlace,"select * from marcacionprovicional 
 INNER JOIN promociones on marcacionprovicional.idPromocion = promociones.idpromocion
-WHERE promociones.`status`=1 GROUP BY idIntegrante");
+INNER JOIN integrantes on marcacionprovicional.idIntegrante = integrantes.idintegrante
+WHERE promociones.`status`=1 AND integrantes.correlativo> $correlativoPromocion GROUP BY marcacionprovicional.idIntegrante");
 
 
 
