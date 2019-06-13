@@ -114,7 +114,6 @@ $('#togasDevolver').on('keyup',function () {
 
                 alertify.error("NO SE PUEDEN DEVOLVER MAS TOGAS DE LAS ENTREGADAS");
                 $('#togasDevolver').val("");
-                $("#checkBox").unse
                  $('#modalConfirm').modal('toggle');
                 return false;
             }
