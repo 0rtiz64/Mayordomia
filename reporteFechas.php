@@ -330,7 +330,7 @@ WHERE promociones.`status` = 1 and equipos.num_equipo>0 GROUP BY equipos.num_equ
                                       <div class="row">
 
                                           <!--PRINCIPAL-->
-                                          <div style="width: 270px;margin-left: 3%;">
+                                          <div class="col-md-4">
                                               <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
                                                   <div align="center" id="icon" class="col-md-2" style="margin-left:5%;border: 0.5px solid #2165b2; padding: 5px;border-radius: 35px; background: #2165b2; width: 25px;height: 25px">
                                                       <i class="fa fa-users" style="color: #ffff;"></i>
@@ -339,114 +339,115 @@ WHERE promociones.`status` = 1 and equipos.num_equipo>0 GROUP BY equipos.num_equ
                                                       <h4 style="margin-top: 1%;color: #2165b2"> 1 - DANIEL</h4>
                                                   </div>
 
-                                                  <h4 style="margin-top: 3%;margin-left: 5%;color: #000;">PORCENTAJE TOTAL: 100%</h4>
+                                                  <h4 style="margin-top: 20%;margin-left: 5%;color: #000;">PORCENTAJE TOTAL: 100%</h4>
+                                                  <h4 style="margin-top: 20%;margin-left: 5%;color: #000;">PORCENTAJE TOTAL: 100%</h4>
+
                                               </div>
                                           </div>
                                           <!--PRINCIPAL-->
 
                                           <!--ARRIBA-->
-                                          <div style="width: 120px;margin-left: 32%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
-                                                  </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F1</strong></h4>
-                                                  </div>
+                                          <div class="col-md-8">
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F1</strong></h4>
+                                                      </div>
 
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
+                                                  </div>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F2</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 45.5%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F2</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F3</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 59%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F3</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F4</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 72.5%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F4</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
                                           </div>
                                           <!--ARRIBA-->
+
                                           <!--ABAJO-->
-                                          <div style="width: 120px;margin-left: 32%;margin-top:-1.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
-                                                  </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F5</strong></h4>
-                                                  </div>
+                                          <div class="col-md-8">
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F5</strong></h4>
+                                                      </div>
 
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
+                                                  </div>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F6</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 45.5%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F6</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F7</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 59%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F7</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
-                                          </div>
+                                              <div class="col-md-3" >
+                                                  <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
+                                                      <div class="col-md-6" align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
+                                                          <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      </div>
+                                                      <div class="col-md-6" style="margin-top: -3%">
+                                                          <h4 style="color: #F0AD4E"> <strong>F8</strong></h4>
+                                                      </div>
 
-                                          <div style="width: 120px;margin-left: 72.5%;margin-top: -9.5%">
-                                              <div class="panel" style="border: 0.5px solid white;padding: 10px;border-radius: 25px">
-                                                  <div align="center" id="icon"  style="margin-left:5%;border: 0.5px solid #F0AD4E; padding: 5px;border-radius: 35px; background: #F0AD4E; width: 25px;height: 25px">
-                                                      <i class="fa fa-calendar" style="color: #ffff;"></i>
+                                                      <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                                   </div>
-                                                  <div style="margin-left: 35%;margin-top: -30%" >
-                                                      <h4 style="color: #F0AD4E"> <strong>F8</strong></h4>
-                                                  </div>
-
-                                                  <h4 style="margin-left: 5%;color: #000;">C:28 - P:78%</h4>
                                               </div>
                                           </div>
                                           <!--ABAJO-->

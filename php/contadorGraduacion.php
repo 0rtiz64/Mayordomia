@@ -152,7 +152,7 @@ if($confirmar>0){
     $datosQuery=mysqli_fetch_array($query,MYSQLI_ASSOC);
     $detalleIntegrante = $datosQuery["idetalle_integrantes"];
     $idEquipoInsert = $datosQuery["id_equipo"];
-    $queryGraduacion = "SELECT * from graduacion WHERE idIntegrante = $tag";
+    $queryGraduacion = "SELECT * from graduacion INNER JOIN promociones on graduacion.idPromocion = promociones.idpromocion WHERE graduacion.idIntegrante = $tag and promociones.`status` =1";
     $confirmarLeido = mysqli_num_rows(mysqli_query($enlace,$queryGraduacion));
 
     if($confirmarLeido>0){

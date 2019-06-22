@@ -406,6 +406,15 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             break;
 
 
+                        case 'SM3.11':
+                            # code...
+                            if($focusSubMenu == "SM3.10"){
+                                $accesoMenus .='<li class="active"><a href="matriculaDatos.php">Contador Matricula</a></li>';
+                            }else{
+                                $accesoMenus .='<li ><a href="matriculaDatos.php">Contador Matricula</a></li>';
+                            }
+
+                            break;
 
 
                         case 'SM3.0':

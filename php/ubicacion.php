@@ -130,6 +130,10 @@
                             $direccion = "fichas.php";
                             break;
 
+                        case 'SM3.11':
+                            # code ...
+                            $direccion = "matriculaDatos.php";
+                            break;
                     }
 					break;
 

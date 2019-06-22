@@ -70,8 +70,8 @@ var ip1 = "\n" +
     "^FT496,285^A0I,51,50^FH\\^FD";
 
 var ip2 ="^FS\n" +
-"^BY5,3,98^FT523,54^BCI,,N,N\n" +
-"^FD>;";
+"^BY4,3,98^FT523,54^BCI,,N,N\n" +
+"^FD>:";
 
 var ip3 = "^FS\n" +
 "^FO46,46^GE124,116,8^FS\n" +
