@@ -118,7 +118,7 @@ var contraPleca = String.fromCharCode(92);
     var datoNuevo = nombre.replace("Ñ",contraPleca+"A5");
     alert(datoNuevo);
 }
-function sendDataTag(promocion,nombre,id,corrVisible,corr)
+function sendDataTag(promocion,nombre,id,corrVisible,corr,tel1,tel2)
 {
 
 	showLoading("Printing...");
@@ -162,6 +162,63 @@ function sendDataTag(promocion,nombre,id,corrVisible,corr)
                 "^PQ2,0,1,Y^XZ";
 
 
+            /*INICIO NUEVO ZPL*/
+            var nuevoZPL= "\n" +
+                "^XA\n" +
+                "^MMT\n" +
+                "^PW691\n" +
+                "^LL0386\n" +
+                "^LS0\n" +
+                "^FO32,224^GFA,02560,02560,00016,:Z64:\n" +
+                "eJztlc9r01AcwL/Jiy/FPbIK/sggrGGrODx1zkOYw24e5sGDF8uubQbzWqagsmnjNiaM4v4BwaEX2cEdvLgpW7Gl9SBz/0FrBfUgayeDRZ19Nj+bxLmBR9kXSvj0k+/7fr8v5AXgMP6/CEeC/8g+4iKcX9MnPjxDv/v4Kt318WNKfRynVPNyhtIND7K1JZrzMEPL9IufaxUPH6Hl+W0PI/qeqft4fSjt4Tb6rqL4uPztto/nNx0+kUgkRsprjTvNawKsjUFL8V3d9jxtxjb9ZVyMoaNG/4v0p1Gfs3+I0h2HoxbXvMzsUOpl0GtrFU8+NDKZnNdnps39w46PW/vr+ghtgDe/3XoerkdU9/Exs3yLQQBfvh0tb4VRPyrdvTVyeZw/lbq5Y3rSm02+7WLlvDhr5uNeMrQxOgXFDmx69hyZ1rqnYE5kTUYxgkB9Ey6KlmcWshi6VJgNmZ5D9V3CV8cjef2e6XEsS6CrHx6ILLZZBLXTzccyiYEqyEVrfaN+OqRiuWT1E0XLq/G5j2g1/3I1ME84ON/e81+EFfgx8ax/um7WZ/KawndKAwKZtNYHTcFYOiqEBZN5yBmMBZm3+oOKIrAS77AASYUHCT0EfsbmHl4jzDqwNqcVVJegAcjxCugEbQKadTxMNtfz+k4iCG5+UuGwJHjrg8nY7W/Y4NhJq38t23MJE15QiPU8SjwtZSW+MaDY8+NFTZ+As08reI/9OpDbKg0hVK0ur/RZzyM8OsOFCuc7uFTRul8lOFQAkUvaPEb4jaLBww6jcIkVcVI16/OfCIrl8zpXH3M8s5CrihzYfJ0wuUJa5Abt/FECuZws4sEpk0OpLOQKMfF4yuqnvfIc7n/Of22/0nbQPP80f4BPJ1pxDYIHrxHMixuPtmoXXqku973+4GO/B8uvBH3ygHzHA9udbXqt1SUjbdVirTeheXTKGiD3BsY4XHjvgauDsOAdk2meL4EvyB8x+HcVfA/3CCbAIT8m9s8O768Pw43flt8XJw==:0CA6\n" +
+                "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
+                "eJzt1L9rE2EYB/D3cqEp9bgLGOhBDhMKrpqQJWLwkAap6CDSopsRQTqIxkGtU84fDS5VBIcODsXN/0HwTZW0Q6BL3aq+drBL6KXUIUO41/e9K/rmfZ+rnSXPcDSfPrz3fX8dQqMa1aj+z3pXnKkmJmbnM6+uTr0RfOfk47nqpcnk7OKVW5t/WZs6f30WzWwmM80LUxmh/+eDi1+mv84tXPNubP86wnvTaf44+FsY/8kLjIm1np838B1D6G8t4099t1MMjFpHdLrcWXPy7VLTaHQuC96wt9pmba2kG+5SV/Db9rfOGN7Y140zSwPBH9r7zDuPdDNrfRC8Yv9gvl7Ss1nLEdyx99pOjflZ0xTzjNu4zSKWmsWXxrB70313Y29w8/N4UlwIGyEy8XSlvOINL5CN4CogZNHAvH9qp7wl/cuiNPF6O1NNqm6lV8niW8lzlB5Pr6afV+V+f9ckCfJ+XR0HjHSIG5CbNMhhuD81gB25gLP8KAUMxPIjjcTkXIhxJ8YtyAOEdA/u19RA0fqogVj+BkZ1td/fvbeL8tA4DYqVg1EIvadMoB76wJSd3KVBIwjGZG/5vJ+mJNYwPz+UPpPdY48ic2/YE/z3Od9vSa7zh+vSFob8I8WShznc74qHuV2f4hrkVHHjX14H/LTve3nA2ZZ5haO5c+BI8nD/ckEAe1w/jesfgG75XdnDPBbtx3hPduNwJ6CnKI5xD3SdubT+4T7qPkI1wLUB7KivXLA/5xgPe3jeAsC9KI58gfk559MKz7vomC8/UT8EmC8/id4jVo3395B8v/j8uSv3scC9j5RPaDly5b47kZdlNyNXvjOT0Xt7srMJ5Vh+LDubMDsOwHePoGOUKNPin1q2bidUr6AE9SqqW3xflDgsEIuiE9U1tuk5NQ67vZ7WBZjFocAwrBoByKMaFfoNqMMxWQ==:9E2C\n" +
+                "^FT485,314^A0I,42,43^FH\\^FDPROMOCION 7^FS\n" +
+                "^FT659,216^A0I,28,28^FH\\^FDMELVIN DAVID ORTIZ RAMOS^FS\n" +
+                "^BY5,3,88^FT503,92^BCI,,N,N\n" +
+                "^FD>;3831^FS\n" +
+                "^FT407,19^A0I,31,31^FH\\^FD19010001^FS\n" +
+                "^FT174,98^A0I,28,28^FH\\^FD3181-4983^FS\n" +
+                "^FT444,57^A0I,31,31^FH\\^FD0501199706845^FS\n" +
+                "^FT669,97^A0I,28,28^FH\\^FD8902-6282^FS\n" +
+                "^PQ1,0,1,Y^XZ\n";
+
+
+            var n1 = "\n" +
+                "^XA\n" +
+                "^MMT\n" +
+                "^PW691\n" +
+                "^LL0386\n" +
+                "^LS0\n" +
+                "^FO32,224^GFA,02560,02560,00016,:Z64:\n" +
+                "eJztlc9r01AcwL/Jiy/FPbIK/sggrGGrODx1zkOYw24e5sGDF8uubQbzWqagsmnjNiaM4v4BwaEX2cEdvLgpW7Gl9SBz/0FrBfUgayeDRZ19Nj+bxLmBR9kXSvj0k+/7fr8v5AXgMP6/CEeC/8g+4iKcX9MnPjxDv/v4Kt318WNKfRynVPNyhtIND7K1JZrzMEPL9IufaxUPH6Hl+W0PI/qeqft4fSjt4Tb6rqL4uPztto/nNx0+kUgkRsprjTvNawKsjUFL8V3d9jxtxjb9ZVyMoaNG/4v0p1Gfs3+I0h2HoxbXvMzsUOpl0GtrFU8+NDKZnNdnps39w46PW/vr+ghtgDe/3XoerkdU9/Exs3yLQQBfvh0tb4VRPyrdvTVyeZw/lbq5Y3rSm02+7WLlvDhr5uNeMrQxOgXFDmx69hyZ1rqnYE5kTUYxgkB9Ey6KlmcWshi6VJgNmZ5D9V3CV8cjef2e6XEsS6CrHx6ILLZZBLXTzccyiYEqyEVrfaN+OqRiuWT1E0XLq/G5j2g1/3I1ME84ON/e81+EFfgx8ax/um7WZ/KawndKAwKZtNYHTcFYOiqEBZN5yBmMBZm3+oOKIrAS77AASYUHCT0EfsbmHl4jzDqwNqcVVJegAcjxCugEbQKadTxMNtfz+k4iCG5+UuGwJHjrg8nY7W/Y4NhJq38t23MJE15QiPU8SjwtZSW+MaDY8+NFTZ+As08reI/9OpDbKg0hVK0ur/RZzyM8OsOFCuc7uFTRul8lOFQAkUvaPEb4jaLBww6jcIkVcVI16/OfCIrl8zpXH3M8s5CrihzYfJ0wuUJa5Abt/FECuZws4sEpk0OpLOQKMfF4yuqnvfIc7n/Of22/0nbQPP80f4BPJ1pxDYIHrxHMixuPtmoXXqku973+4GO/B8uvBH3ygHzHA9udbXqt1SUjbdVirTeheXTKGiD3BsY4XHjvgauDsOAdk2meL4EvyB8x+HcVfA/3CCbAIT8m9s8O768Pw43flt8XJw==:0CA6\n" +
+                "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
+                "eJzt1L9rE2EYB/D3cqEp9bgLGOhBDhMKrpqQJWLwkAap6CDSopsRQTqIxkGtU84fDS5VBIcODsXN/0HwTZW0Q6BL3aq+drBL6KXUIUO41/e9K/rmfZ+rnSXPcDSfPrz3fX8dQqMa1aj+z3pXnKkmJmbnM6+uTr0RfOfk47nqpcnk7OKVW5t/WZs6f30WzWwmM80LUxmh/+eDi1+mv84tXPNubP86wnvTaf44+FsY/8kLjIm1np838B1D6G8t4099t1MMjFpHdLrcWXPy7VLTaHQuC96wt9pmba2kG+5SV/Db9rfOGN7Y140zSwPBH9r7zDuPdDNrfRC8Yv9gvl7Ss1nLEdyx99pOjflZ0xTzjNu4zSKWmsWXxrB70313Y29w8/N4UlwIGyEy8XSlvOINL5CN4CogZNHAvH9qp7wl/cuiNPF6O1NNqm6lV8niW8lzlB5Pr6afV+V+f9ckCfJ+XR0HjHSIG5CbNMhhuD81gB25gLP8KAUMxPIjjcTkXIhxJ8YtyAOEdA/u19RA0fqogVj+BkZ1td/fvbeL8tA4DYqVg1EIvadMoB76wJSd3KVBIwjGZG/5vJ+mJNYwPz+UPpPdY48ic2/YE/z3Od9vSa7zh+vSFob8I8WShznc74qHuV2f4hrkVHHjX14H/LTve3nA2ZZ5haO5c+BI8nD/ckEAe1w/jesfgG75XdnDPBbtx3hPduNwJ6CnKI5xD3SdubT+4T7qPkI1wLUB7KivXLA/5xgPe3jeAsC9KI58gfk559MKz7vomC8/UT8EmC8/id4jVo3395B8v/j8uSv3scC9j5RPaDly5b47kZdlNyNXvjOT0Xt7srMJ5Vh+LDubMDsOwHePoGOUKNPin1q2bidUr6AE9SqqW3xflDgsEIuiE9U1tuk5NQ67vZ7WBZjFocAwrBoByKMaFfoNqMMxWQ==:9E2C\n" +
+                "^FT485,314^A0I,42,43^FH\\^FD";
+
+            var n2="^FS\n" +
+                "^FT659,216^A0I,28,28^FH\\^FD";
+
+            var n3 = "^FS\n" +
+                "^BY5,3,88^FT503,92^BCI,,N,N\n" +
+                "^FD>;";
+
+            var n4 = "^FS\n" +
+                "^FT407,19^A0I,31,31^FH\\^FD";
+
+            var n5 ="^FS\n" +
+                "^FT174,98^A0I,28,28^FH\\^FD";
+
+            var n6 = "^FS\n" +
+                "^FT444,57^A0I,31,31^FH\\^FD";
+
+            var n7 = "^FS\n" +
+                "^FT669,97^A0I,28,28^FH\\^FD";
+
+            var n8 = "^FS\n" +
+                "^PQ2,0,1,Y^XZ\n";
+            /*FIN NUEVO ZPL*/
+
 
             var promocion1 =promocion.toUpperCase();
             var contraPleca = String.fromCharCode(92);
@@ -169,7 +226,8 @@ function sendDataTag(promocion,nombre,id,corrVisible,corr)
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
             //alert(nombreNuevo);
 
-            selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+corrVisible+p5+corr+p6, printComplete, printerError);
+           // selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+corrVisible+p5+corr+p6, printComplete, printerError);
+            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+corr+n4+corrVisible+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
             console.log(promocion+" "+ nombreNuevo+" "+id+3+" "+corrVisible+" "+corr);
             //$('#formularioRegistro')[0].reset();
 		}

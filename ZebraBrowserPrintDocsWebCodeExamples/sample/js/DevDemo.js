@@ -14,6 +14,64 @@ var format_start = "^XA^LL200^FO80,50^A0N36,36^FD";
 var format_end = "^FS^XZ";
 var default_mode = true;
 
+
+/*INICIO NUEVO ZPL MATRICULA*/
+var nuevoZPL= "\n" +
+    "^XA\n" +
+    "^MMT\n" +
+    "^PW691\n" +
+    "^LL0386\n" +
+    "^LS0\n" +
+    "^FO32,224^GFA,02560,02560,00016,:Z64:\n" +
+    "eJztlc9r01AcwL/Jiy/FPbIK/sggrGGrODx1zkOYw24e5sGDF8uubQbzWqagsmnjNiaM4v4BwaEX2cEdvLgpW7Gl9SBz/0FrBfUgayeDRZ19Nj+bxLmBR9kXSvj0k+/7fr8v5AXgMP6/CEeC/8g+4iKcX9MnPjxDv/v4Kt318WNKfRynVPNyhtIND7K1JZrzMEPL9IufaxUPH6Hl+W0PI/qeqft4fSjt4Tb6rqL4uPztto/nNx0+kUgkRsprjTvNawKsjUFL8V3d9jxtxjb9ZVyMoaNG/4v0p1Gfs3+I0h2HoxbXvMzsUOpl0GtrFU8+NDKZnNdnps39w46PW/vr+ghtgDe/3XoerkdU9/Exs3yLQQBfvh0tb4VRPyrdvTVyeZw/lbq5Y3rSm02+7WLlvDhr5uNeMrQxOgXFDmx69hyZ1rqnYE5kTUYxgkB9Ey6KlmcWshi6VJgNmZ5D9V3CV8cjef2e6XEsS6CrHx6ILLZZBLXTzccyiYEqyEVrfaN+OqRiuWT1E0XLq/G5j2g1/3I1ME84ON/e81+EFfgx8ax/um7WZ/KawndKAwKZtNYHTcFYOiqEBZN5yBmMBZm3+oOKIrAS77AASYUHCT0EfsbmHl4jzDqwNqcVVJegAcjxCugEbQKadTxMNtfz+k4iCG5+UuGwJHjrg8nY7W/Y4NhJq38t23MJE15QiPU8SjwtZSW+MaDY8+NFTZ+As08reI/9OpDbKg0hVK0ur/RZzyM8OsOFCuc7uFTRul8lOFQAkUvaPEb4jaLBww6jcIkVcVI16/OfCIrl8zpXH3M8s5CrihzYfJ0wuUJa5Abt/FECuZws4sEpk0OpLOQKMfF4yuqnvfIc7n/Of22/0nbQPP80f4BPJ1pxDYIHrxHMixuPtmoXXqku973+4GO/B8uvBH3ygHzHA9udbXqt1SUjbdVirTeheXTKGiD3BsY4XHjvgauDsOAdk2meL4EvyB8x+HcVfA/3CCbAIT8m9s8O768Pw43flt8XJw==:0CA6\n" +
+    "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
+    "eJzt1L9rE2EYB/D3cqEp9bgLGOhBDhMKrpqQJWLwkAap6CDSopsRQTqIxkGtU84fDS5VBIcODsXN/0HwTZW0Q6BL3aq+drBL6KXUIUO41/e9K/rmfZ+rnSXPcDSfPrz3fX8dQqMa1aj+z3pXnKkmJmbnM6+uTr0RfOfk47nqpcnk7OKVW5t/WZs6f30WzWwmM80LUxmh/+eDi1+mv84tXPNubP86wnvTaf44+FsY/8kLjIm1np838B1D6G8t4099t1MMjFpHdLrcWXPy7VLTaHQuC96wt9pmba2kG+5SV/Db9rfOGN7Y140zSwPBH9r7zDuPdDNrfRC8Yv9gvl7Ss1nLEdyx99pOjflZ0xTzjNu4zSKWmsWXxrB70313Y29w8/N4UlwIGyEy8XSlvOINL5CN4CogZNHAvH9qp7wl/cuiNPF6O1NNqm6lV8niW8lzlB5Pr6afV+V+f9ckCfJ+XR0HjHSIG5CbNMhhuD81gB25gLP8KAUMxPIjjcTkXIhxJ8YtyAOEdA/u19RA0fqogVj+BkZ1td/fvbeL8tA4DYqVg1EIvadMoB76wJSd3KVBIwjGZG/5vJ+mJNYwPz+UPpPdY48ic2/YE/z3Od9vSa7zh+vSFob8I8WShznc74qHuV2f4hrkVHHjX14H/LTve3nA2ZZ5haO5c+BI8nD/ckEAe1w/jesfgG75XdnDPBbtx3hPduNwJ6CnKI5xD3SdubT+4T7qPkI1wLUB7KivXLA/5xgPe3jeAsC9KI58gfk559MKz7vomC8/UT8EmC8/id4jVo3395B8v/j8uSv3scC9j5RPaDly5b47kZdlNyNXvjOT0Xt7srMJ5Vh+LDubMDsOwHePoGOUKNPin1q2bidUr6AE9SqqW3xflDgsEIuiE9U1tuk5NQ67vZ7WBZjFocAwrBoByKMaFfoNqMMxWQ==:9E2C\n" +
+    "^FT485,314^A0I,42,43^FH\\^FDPROMOCION 7^FS\n" +
+    "^FT659,216^A0I,28,28^FH\\^FDMELVIN DAVID ORTIZ RAMOS^FS\n" +
+    "^BY5,3,88^FT503,92^BCI,,N,N\n" +
+    "^FD>;3831^FS\n" +
+    "^FT407,19^A0I,31,31^FH\\^FD19010001^FS\n" +
+    "^FT174,98^A0I,28,28^FH\\^FD3181-4983^FS\n" +
+    "^FT444,57^A0I,31,31^FH\\^FD0501199706845^FS\n" +
+    "^FT669,97^A0I,28,28^FH\\^FD8902-6282^FS\n" +
+    "^PQ1,0,1,Y^XZ\n";
+
+
+var n1 = "\n" +
+    "^XA\n" +
+    "^MMT\n" +
+    "^PW691\n" +
+    "^LL0386\n" +
+    "^LS0\n" +
+    "^FO32,224^GFA,02560,02560,00016,:Z64:\n" +
+    "eJztlc9r01AcwL/Jiy/FPbIK/sggrGGrODx1zkOYw24e5sGDF8uubQbzWqagsmnjNiaM4v4BwaEX2cEdvLgpW7Gl9SBz/0FrBfUgayeDRZ19Nj+bxLmBR9kXSvj0k+/7fr8v5AXgMP6/CEeC/8g+4iKcX9MnPjxDv/v4Kt318WNKfRynVPNyhtIND7K1JZrzMEPL9IufaxUPH6Hl+W0PI/qeqft4fSjt4Tb6rqL4uPztto/nNx0+kUgkRsprjTvNawKsjUFL8V3d9jxtxjb9ZVyMoaNG/4v0p1Gfs3+I0h2HoxbXvMzsUOpl0GtrFU8+NDKZnNdnps39w46PW/vr+ghtgDe/3XoerkdU9/Exs3yLQQBfvh0tb4VRPyrdvTVyeZw/lbq5Y3rSm02+7WLlvDhr5uNeMrQxOgXFDmx69hyZ1rqnYE5kTUYxgkB9Ey6KlmcWshi6VJgNmZ5D9V3CV8cjef2e6XEsS6CrHx6ILLZZBLXTzccyiYEqyEVrfaN+OqRiuWT1E0XLq/G5j2g1/3I1ME84ON/e81+EFfgx8ax/um7WZ/KawndKAwKZtNYHTcFYOiqEBZN5yBmMBZm3+oOKIrAS77AASYUHCT0EfsbmHl4jzDqwNqcVVJegAcjxCugEbQKadTxMNtfz+k4iCG5+UuGwJHjrg8nY7W/Y4NhJq38t23MJE15QiPU8SjwtZSW+MaDY8+NFTZ+As08reI/9OpDbKg0hVK0ur/RZzyM8OsOFCuc7uFTRul8lOFQAkUvaPEb4jaLBww6jcIkVcVI16/OfCIrl8zpXH3M8s5CrihzYfJ0wuUJa5Abt/FECuZws4sEpk0OpLOQKMfF4yuqnvfIc7n/Of22/0nbQPP80f4BPJ1pxDYIHrxHMixuPtmoXXqku973+4GO/B8uvBH3ygHzHA9udbXqt1SUjbdVirTeheXTKGiD3BsY4XHjvgauDsOAdk2meL4EvyB8x+HcVfA/3CCbAIT8m9s8O768Pw43flt8XJw==:0CA6\n" +
+    "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
+    "eJzt1L9rE2EYB/D3cqEp9bgLGOhBDhMKrpqQJWLwkAap6CDSopsRQTqIxkGtU84fDS5VBIcODsXN/0HwTZW0Q6BL3aq+drBL6KXUIUO41/e9K/rmfZ+rnSXPcDSfPrz3fX8dQqMa1aj+z3pXnKkmJmbnM6+uTr0RfOfk47nqpcnk7OKVW5t/WZs6f30WzWwmM80LUxmh/+eDi1+mv84tXPNubP86wnvTaf44+FsY/8kLjIm1np838B1D6G8t4099t1MMjFpHdLrcWXPy7VLTaHQuC96wt9pmba2kG+5SV/Db9rfOGN7Y140zSwPBH9r7zDuPdDNrfRC8Yv9gvl7Ss1nLEdyx99pOjflZ0xTzjNu4zSKWmsWXxrB70313Y29w8/N4UlwIGyEy8XSlvOINL5CN4CogZNHAvH9qp7wl/cuiNPF6O1NNqm6lV8niW8lzlB5Pr6afV+V+f9ckCfJ+XR0HjHSIG5CbNMhhuD81gB25gLP8KAUMxPIjjcTkXIhxJ8YtyAOEdA/u19RA0fqogVj+BkZ1td/fvbeL8tA4DYqVg1EIvadMoB76wJSd3KVBIwjGZG/5vJ+mJNYwPz+UPpPdY48ic2/YE/z3Od9vSa7zh+vSFob8I8WShznc74qHuV2f4hrkVHHjX14H/LTve3nA2ZZ5haO5c+BI8nD/ckEAe1w/jesfgG75XdnDPBbtx3hPduNwJ6CnKI5xD3SdubT+4T7qPkI1wLUB7KivXLA/5xgPe3jeAsC9KI58gfk559MKz7vomC8/UT8EmC8/id4jVo3395B8v/j8uSv3scC9j5RPaDly5b47kZdlNyNXvjOT0Xt7srMJ5Vh+LDubMDsOwHePoGOUKNPin1q2bidUr6AE9SqqW3xflDgsEIuiE9U1tuk5NQ67vZ7WBZjFocAwrBoByKMaFfoNqMMxWQ==:9E2C\n" +
+    "^FT485,314^A0I,42,43^FH\\^FD";
+
+var n2="^FS\n" +
+"^FT659,216^A0I,28,28^FH\\^FD";
+
+var n3 = "^FS\n" +
+"^BY5,3,88^FT503,92^BCI,,N,N\n" +
+"^FD>;";
+
+var n4 = "^FS\n" +
+"^FT407,19^A0I,31,31^FH\\^FD";
+
+var n5 ="^FS\n" +
+"^FT174,98^A0I,28,28^FH\\^FD";
+
+var n6 = "^FS\n" +
+"^FT444,57^A0I,31,31^FH\\^FD";
+
+var n7 = "^FS\n" +
+"^FT669,97^A0I,28,28^FH\\^FD";
+
+var n8 = "^FS\n" +
+"^PQ2,0,1,Y^XZ\n";
+/*FIN NUEVO ZPL MATRICULA*/
+
 var p1 ="^XA\n" +
     "^MMT\n" +
     "^PW670\n" +
@@ -246,6 +304,8 @@ function sendDataModal(idIntegrante,correlativo)
         {
             var nombre1 =$('#NombreRegistroModal').val();
             var id =$('#identidadRegistrarModal').val();
+            var tel1 =$('#telefono1RegistrarModal').val();
+            var tel2 =$('#telefono2RegistrarModal').val();
             //var corr =$('#numeroExpedienteRegistrar').val();
             var nombre = nombre1.toUpperCase();
             var promocion = $('#promoAc').val();
@@ -256,7 +316,8 @@ function sendDataModal(idIntegrante,correlativo)
 
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
-            selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+           // selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativo+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
             ticketInfo();
             //$('#formularioRegistro')[0].reset();
         }
@@ -282,6 +343,8 @@ function sendData(idIntegrante,correlativo)
 		{
 			var nombre1 =$('#NombreRegistro').val();
 			var id =$('#identidadRegistrar').val();
+			var tel1 =$('#telefono1Registrar').val();
+			var tel2 =$('#telefono2Registrar').val();
 			//var corr =$('#numeroExpedienteRegistrar').val();
 			var nombre = nombre1.toUpperCase();
 			var promocion = $('#promoAc').val();
@@ -292,7 +355,8 @@ function sendData(idIntegrante,correlativo)
 
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
-			selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+			//selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
+			selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativo+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
 			console.log(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6);
             ticketInfo();
             //$('#formularioRegistro')[0].reset();
@@ -322,7 +386,7 @@ function ticketInfo(idIntegrante,correlativo)
               "eJztlM9L21AcwL8vqSaMR6wDIQ5Hqw7ZqUvm2AqCaWFHDx53GMyqeK5sMBmDphVcDyI77rCBp1HEg7DDvJmKqEjRXWSXObOLHlZshUEF074lfUmbV53uD/Bb+uPzPu/73vd9mwTgJm7iYggtrLOIQhvswFqZ9cRiMvpJjfEvCGF8qIW1Q/KN4RIx/ZxqYa30e9HPpJL+w/AxKAwfJf3MnR+fRpnyv5MZzy0tLeVKe7U3znd9b0JIJVWzP4lzaM4Zy2nVVWZ9UvUawlE+d1h0fsfs92tSYfzMWok9X+rQ9HttgRiec/JDlQbXfUdL/wRCwO95YoF/fyBnjAfNZLkZFzguPNnfP2j7lD/4WWeU6f0woKTDmyqm8zfj7yfVfLiguHyE9G3FgMJDTPefQrqhJoINP9yZzihqMKNkKU91zfLT3Xe3kj/c9dAcp4jBTWW+zjGbQW2DDWWE+nWUvacIMKeIbn7vx0mVD26pAcqRyM7n2vrOYvGkef4rzgchQ9OrWlkTTMpRU0LvpB5JPKP7J5MS4rGER2XqF6MSj2wO0/MgQ3ZYwDGPscTpmJ+HdrHeP6NHssdQAdqp17EEZQxFj20PFuYtv4/Y67ns5EMH7sANL0vA41s4LNF6jG6pk2/WA6YidXIOi2790wvqHBbmo1Hq7+TJqRVJnz9wz4vsGyBo/0KX94f2r9FFDi0PzWb6B1eXx93+4wRqHw924zjdn8P5tN4XkLGRrZ8/ZrM1ATKOF9z5aT3bn5ZFY5tyNQ/biV9nuOz5vD46psoYqLfz9eR4UB5B9HoAMaGP9d2WMaLXD7I0Pfxy8BmewI36w84DTASxWf8V//813JqfWiPea+Wy+bkcZLOg23tnc3TokbU3Uxn64i3EDZzsOjzmse2Tfv+4uMvMf0X900Z+cSH61ecDzx2/EvBKMKE9egRw3+O2+rPnra9GE2C4iQiEcgoCzQEdJB2uC98M58oJ/GueE8ELt2FLdF2tr0u/if+Mv0k2DfU=:9475\n" +
               "^FO512,224^GFA,03840,03840,00024,:Z64:\n" +
               "eJzt1c1rE0EUAPDZbJoNZZtUVBpl22pA0FtiqPRgm+BJPAlaxFuqNxFMS2kLPWRDoAlx/TiKFAuSgwf/AWnBiYXmErHiJbdsQNRDYROrUiTsOJNtYTIfoniTPJJd8uPt7ONt5i0A/ehHP/qB4yTKvNqMT5wZ/Xgje57yQd+xknk59WIgWhy+Qnno6+LGWnChORpdnbtD5/uP43zl3MBp5cgg5WNoYWNz6btrNEfm5v+hzuAJS59W9/SkGrvgo3zo5pq1FG5b2fzEYoDycLtYq1ixWjM//ukW5YH4g11Yj3XglrH9g3Lf7P27Zj2OXd/+Sbk6uz5l1hMGrBYKzyhXKg8NWE/o8G21EOpxy6hYCb1Zq2p0PSBX1Fce7b1ceXI7QNev5B77k1q7k4yk/X/UCBVfMzOTwkeQol3BH4Rgebm085y5BHulfPXptVXWHQeWY6VLUT4flk+VrgvWgaKSZA6Q+0aSv9WSuCtZf9wUOK5ftSX17Ev8osTDElf5G3ddgWIHfEHYdwDI8O4470xwVpTfQMAQu62zrHW9E2A9hPvfcF2NdX2I5KM868ZU13Mm45E4Qh8Qeg8Zn8Rf/z3HZj1GalpHYneQnWac/NYQagn9M7JjjNsH+axDz7l84iMS1xzHDvaycrhOhHHz9w6F7kpclo+QydZz4ECUrzoOEOWryBXnS70j8X3OITnwDjxv/ZUDBwLRcwFZk/M0OSSB2A1+g6WZ82GQ65NQ7K9tfgNHvPK9uqgIkvZ/4QeB4bWz2z86QuQxdviBEiDuksHeG6rn3L7GCxAPsa54zs+NVve+k5xncP27XDsBWO7Wb3MeIX8HwdwLkf4I5mTABMgWzFUV4v6P8Q7IS0Ewt8H0MDjKl4Nf8nhs87cl7W90BIwfOxItg1v3Tcj9+B/jF4ObRco=:CA05\n" +
-              "^FT488,300^A0I,51,50^FH\\^FDPROMOCION 6^FS\n" +
+              "^FT488,300^A0I,51,50^FH\\^FDPROMOCION 7^FS\n" +
               "^FT645,222^A0I,20,19^FB595,1,0,C^FH\\^FDCONSULTAS EN HORARIO DE LUNES A VIERNES 10AM-12MD/ 1PM-3PM^FS\n" +
               "^FT652,50^A0I,25,24^FB623,1,0,C^FH\\^FDMATEO 23:11^FS\n" +
               "^FT652,19^A0I,25,24^FB623,1,0,C^FH\\^FDEL MAS GRANDE  ENTRE USTEDES DEBE SERVIR A LOS DEMAS^FS\n" +
