@@ -23,7 +23,7 @@ $datosPromoActual= mysqli_fetch_array($queryPromoActual,MYSQLI_ASSOC);
 $corrPromoActual = $datosPromoActual["correlativo"];
 $corrParametro = substr($corrPromoActual,0,4);
 
-$queryMatriculadosGeneral = mysqli_query($enlace,"SELECT COUNT(*) as GENERAL from integrantes WHERE correlativo LIKE '%".$corrParametro."%'");
+$queryMatriculadosGeneral = mysqli_query($enlace,"SELECT COUNT(*) as GENERAL from integrantes WHERE correlativo LIKE '%".$corrParametro."%' and correlativo > $corrPromoActual");
 $datosMatriculadosGeneral = mysqli_fetch_array($queryMatriculadosGeneral,MYSQLI_ASSOC);
 $matriculadosGeneral = $datosMatriculadosGeneral["GENERAL"];
 
