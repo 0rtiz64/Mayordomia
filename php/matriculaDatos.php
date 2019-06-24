@@ -8,13 +8,11 @@
 include "../gold/enlace.php";
 $fecha = $_POST["phpFecha"];
 
-$queryCorrelativoInicial = mysqli_query($enlace,"SELECT correlativo,fecha_registro from integrantes where CAST(fecha_registro AS DATE) ='".$fecha."' 
-GROUP BY fecha_registro ASC LIMIT 1");
+$queryCorrelativoInicial = mysqli_query($enlace,"SELECT MIN(correlativo) AS correlativo  from integrantes where CAST(fecha_registro AS DATE) ='".$fecha."' ");
 $datosCorerlativoInicial = mysqli_fetch_array($queryCorrelativoInicial,MYSQLI_ASSOC);
 $correlativoInicial = $datosCorerlativoInicial["correlativo"];
 
-$queryCorrelativoFinal = mysqli_query($enlace,"SELECT correlativo,fecha_registro from integrantes where CAST(fecha_registro AS DATE) ='".$fecha."' 
-GROUP BY fecha_registro DESC LIMIT 1");
+$queryCorrelativoFinal = mysqli_query($enlace,"SELECT MAX(correlativo) AS correlativo  from integrantes where CAST(fecha_registro AS DATE) ='".$fecha."' ");
 $datosCorerlativoFinal= mysqli_fetch_array($queryCorrelativoFinal,MYSQLI_ASSOC);
 $correlativoFinal= $datosCorerlativoFinal["correlativo"];
 
