@@ -29,7 +29,11 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!-- Fonts -->
     <link href='css/itallic.css' rel='stylesheet' type='text/css'>
     <link href='css/opensans.css' rel='stylesheet' type='text/css'>
-
+    <style>
+        .myPanel{
+            background-color: #424242;
+        }
+    </style>
 
     <!--DatePicker-->
     <link rel="stylesheet" href="myfiles/DatePicker/css/bootstrap-datepicker.css">
@@ -119,8 +123,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 <?php
                 include 'menu.php';
                 $permisos = $_SESSION['area'];
-                $focusMenu = "M3";
-                $focusSubMenu = "SM3.1";
+                $focusMenu = "M0";
+                $focusSubMenu = "SM0.1";
                 menuSubmenu($permisos,$focusMenu,$focusSubMenu);
                 ?>
 
@@ -134,329 +138,359 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         <section class="main-content-wrapper">
             <section id="main-content">
                 <div class="row">
-                    <h1 class="h1">REGISTRO DE SERVIDORES</h1>
+                    <h1 class="h1">REGISTRO SERVIDORES</h1>
+
                     <div class="col-md-12">
-                        <div class="collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
-                        <br>
-                        <br>
-                        <br>
-                        <form class="form-horizontal" id="formularioRegistro" role="form">
-
-
-                            <div class="form-group">
-
-                                <div class="col-lg-4" id="divIdentidad">
-                                    <input type="text" id="identidadRegistrar" class="form-control " autofocus min="0" placeholder="Identidad" style="text-transform: uppercase">
-                                    <div id="alertIdentidad" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
+                        <div class="panel-group accordion" id="accordion">
+                            <div id="divDatosGenerales" class="panel">
+                                <div class="panel-heading myPanel" id="divDatosGeneralesHeader">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="color: white">
+                                            A) DATOS GENERALES
+                                        </a>
+                                    </h4>
                                 </div>
-
-
-                                <div class="col-lg-4" id="divNombre">
-                                    <input type="text" id="NombreRegistro" class="form-control" placeholder="Nombre Completo" style='text-transform:uppercase'>
-                                    <input type="text" id="ApellidoCasada" class="form-control collapse" placeholder="Apellido de Casada" style="text-transform: uppercase">
-                                    <div id="alertNombre" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Nombre Invalido</div>
-                                </div>
-
-                                <div class="col-lg-4" id="divFecha">
-                                    <div class="input-group">
-                                        <input type="date" id="fecha_cumpleRegistro" name="datarange" class="datepicker form-control" placeholder="Ejemplo:2017-09-25">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                    </div>
-                                    <div id="alertFecha" style="background-color: #d9534f; color: white; border-radius: 4px" align="center" class="collapse">Fecha Invalida</div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-lg-4" id="divCivil">
-                                    <select class="form-control" id="estadoCivilRegistrar">
-                                        <option value="">Estado Civil</option>
-                                        <option value="Casado">Casado</option>
-                                        <option value="Soltero">Soltero</option>
-                                        <option value="Divorciado">Divorciado</option>
-                                        <option value="Union">Union Libre</option>
-                                        <option value="Viudo">Viudo</option>
-                                    </select>
-                                    <div id="alertEstado" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Civil Invalido</div>
-
-                                </div>
-
-                                <div class="col-lg-4" id="divGenero">
-                                    <select id="generoRegistrar" class="form-control">
-                                        <option value="">Genero</option>
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-                                    </select>
-                                    <div id="alertGenero" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Genero Invalido</div>
-                                </div>
-
-                                <div class="col-lg-4" id="divTransporte">
-                                    <select class="form-control" id="tranporteRegistrar">
-                                        <option value="">Necesita Transporte</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    <div id="alertTransporte" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="form-group" >
-                                <div class="col-lg-4" id="divTelefono1">
-                                    <input type="text" class="form-control" id="telefono1Registrar" min="0" placeholder="Telefono 1">
-                                    <div id="alertTelefono1" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
-                                </div>
-
-                                <div class="col-lg-4" id="divTelefono2">
-                                    <input type="text" class="form-control" id="telefono2Registrar" min="0" placeholder="Telefono 2">
-                                </div>
-
-                                <div class="col-lg-4" id="divIntegrado">
-                                    <select class="form-control" id="integradoRegistrar">
-                                        <option value="">Esta integrado</option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                    <div id="alertIntegrado" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Respuesta Invalida</div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group collapse" id="areasRegistro">
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control" placeholder="Areas de Servicio" id="areasRegistroText" style="text-transform: uppercase">
-
-
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-md-4" id="divEquipos">
-                                    <select  id="equiposServidores" class="form-control">
-                                        <option value="">Equipos de Servicio</option>
-                                        <?php
-                                        include 'gold/enlace.php';
-                                        $queryEquiposServicio = mysqli_query($enlace,"SELECT * FROM servicioequipos");
-                                        while ($datosEquipos = mysqli_fetch_array($queryEquiposServicio,MYSQLI_ASSOC)){
-                                            echo'<option value="'.$datosEquipos["idEquipo"].'">'.$datosEquipos["nombreEquipo"].'</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-
-
-                                <div class="col-md-4" id="divCargos">
-                                    <select  id="cargosServidores" class="form-control">
-                                        <option value="">Selecciona Cargo</option>
-                                        <?php
-                                        include 'gold/enlace.php';
-
-                                        $queryCargos =mysqli_query($enlace,"SELECT * FROM serviciocargos");
-                                        while ($datosCargos = mysqli_fetch_array($queryCargos,MYSQLI_ASSOC)){
-                                            echo' <option value="'.$datosCargos["idCargo"].'">'.$datosCargos["nombreCargo"].'</option>';
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4" id="divCorderito">
-                                    <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrar" min="0" placeholder="Promocion de Corderitos">
-                                    <div id="alertPromocion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group ">
-                                <div class="col-md-12" id="divDireccion">
-                                    <textarea class="form-control" rows="3" id="direccionRegistrar" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                    <div id="alertDireccion" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="form-inline">
-                            <input id"btnRegistrar" type="button" class="btn btn-success" value="REGISTRAR" style="float: right" onclick="matricularServidor();">
-                            <input type="button" id="btnpdf" class="btn btn-danger collapse" value="PDF" style=" float: right; margin-right:20px" onclick="consultarIdParaPDF()">
-
-                            <input id="btnLimpiar" type="button" class="btn btn-primary collapse" style="float: right ;margin-right:20px" value="NUEVO" onclick="limpiar()">
-                        </div>
-                    </div>
-
-
-
-                    <!-- Inicia Modal Duplicados -->
-                    <div class="modal fade" id="ModalEditarServidoresDuplicados" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content ">
-                                <div class="modal-header danger-bg" id="claseModalColor">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <!--h4 class="modal-title" id="myModalLabel" style="color: white">IDENTIDAD YA REGISTRADA EN </h4-->
-                                    <h4 style="color: #FFFFFF" id="tituloModal"></h4>
-
-
-
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="col-md-12">
-                                        <form class="form-horizontal" id="formularioRegistro" role="form">
-
-
-
-
-
-
-
-                                            <div class="form-group">
-
-                                                <div class="col-lg-4" id="divIdentidadModal">
-                                                    <input type="text" id="identidadRegistrarModal" class="form-control " min="0" placeholder="Identidad">
-                                                    <div id="alertIdentidadModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Identidad Invalida</div>
-                                                </div>
-
-
-                                                <div class="col-lg-4" id="divNombreModal">
-                                                    <input type="text" id="NombreRegistroModal" class="form-control" placeholder="Nombre Completo" style='text-transform:uppercase'>
-                                                    <input type="text" id="ApellidoCasadaModal" class="form-control collapse" placeholder="Apellido de Casada" style="text-transform: uppercase">
-                                                    <div id="alertNombreModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Nombre Invalido</div>
-                                                </div>
-
-                                                <div class="col-lg-4" id="divFechaModal">
-                                                    <div class="input-group">
-                                                        <input type="date" id="fecha_cumpleRegistroModal" name="datarange" class="datepicker form-control" placeholder="Ejemplo:2017-09-25">
-                                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    </div>
-                                                    <div id="alertFechaModal" style="background-color: #d9534f; color: white; border-radius: 4px" align="center" class="collapse">Fecha Invalida</div>
-                                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12 form-group">
+                                                <input style="text-transform: uppercase;" id="inputNombreRegister"  type="text" class="form-control has-error" placeholder="NOMBRE COMPLETO" title="NOMBRE COMPLETO">
                                             </div>
-                                            <div class="form-group">
+                                        </div>
 
-                                                <div class="col-lg-4" id="divCivilModal">
-                                                    <select class="form-control" id="estadoCivilRegistrarModal">
-                                                        <option value="">Estado Civil</option>
-                                                        <option value="Casado">Casado</option>
-                                                        <option value="Soltero">Soltero</option>
-                                                        <option value="Divorciado">Divorciado</option>
-                                                        <option value="Union">Union Libre</option>
-                                                        <option value="Viudo">Viudo</option>
-                                                    </select>
-                                                    <div id="alertEstadoModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Estado Civil Invalido</div>
-
-                                                </div>
-
-                                                <div class="col-lg-4" id="divGeneroModal">
-                                                    <select id="generoRegistrarModal" class="form-control">
-                                                        <option value="">Genero</option>
-                                                        <option value="M">Masculino</option>
-                                                        <option value="F">Femenino</option>
-                                                    </select>
-                                                    <div id="alertGeneroModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Genero Invalido</div>
-                                                </div>
-
-                                                <div class="col-lg-4" id="divTransporteModal">
-                                                    <select class="form-control" id="tranporteRegistrarModal">
-                                                        <option value="">Necesita Transporte</option>
-                                                        <option value="Si">Si</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                    <div id="alertTransporteModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
-                                                </div>
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputIdentidadRegister" placeholder="IDENTIDAD" title="IDENTIDAD">
                                             </div>
 
-                                            <div class="form-group" >
-                                                <div class="col-lg-4" id="divTelefono1Modal">
-                                                    <input type="text" class="form-control" id="telefono1RegistrarModal" min="0" placeholder="Telefono 1">
-                                                    <div id="alertTelefono1Modal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Telefono Invalido</div>
-                                                </div>
+                                            <div class="col-md-6">
+                                                <select  id="inputGeneroRegister" class="form-control" title="GENERO">
+                                                    <option value="">GENERO</option>
+                                                    <option value="M">MASCULINO</option>
+                                                    <option value="F">FEMENINO</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                                <div class="col-lg-4" id="divTelefono2Modal">
-                                                    <input type="text" class="form-control" id="telefono2RegistrarModal" min="0" placeholder="Telefono 2">
-                                                </div>
-
-                                                <div class="col-lg-4" id="divIntegradoModal">
-                                                    <select class="form-control" id="integradoRegistrarModal">
-                                                        <option value="">Esta integrado</option>
-                                                        <option value="Si">Si</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                    <div id="alertIntegradoModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Respuesta Invalida</div>
-                                                </div>
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="date" class="form-control" id="inputFechaNacimientoRegister" placeholder="FECHA NACIMIENTO" title="FECHA NACIMIENTO">
                                             </div>
 
-
-                                            <div class="form-group collapse" id="areasRegistroModal">
-                                                <div class="col-lg-12">
-                                                    <input type="text" class="form-control" placeholder="Areas de Servicio" id="areasRegistroTextModal" style="text-transform: uppercase">
-
-
-                                                </div>
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputTipoSangreRegister" placeholder="TIPO DE SANGRE" title="TIPO DE SANGRE">
                                             </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-4" id="divEquipoModal">
-                                                    <select  id="equipoModal" class="form-control">
-                                                        <option value="">SELECIONA EQUIPO</option>
-                                                        <?php
-                                                        include 'gold/enlace.php';
-                                                        $queryEquiposModal=mysqli_query($enlace,"SELECT * from servicioequipos");
-                                                        while($resultadoEquiposModal=mysqli_fetch_array($queryEquiposModal,MYSQLI_ASSOC)){
-                                                            echo '<option value="'.$resultadoEquiposModal["idEquipo"].'">'.$resultadoEquiposModal["nombreEquipo"].'</option>';
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
+                                        </div>
 
 
-
-                                                <div class="col-md-4" id="divCargoModal">
-                                                    <select  id="cargoModal" class="form-control">
-                                                        <option value="">SELECIONA CARGO</option>
-                                                        <?php
-                                                        include 'gold/enlace.php';
-                                                        $queryEquiposModal=mysqli_query($enlace,"SELECT * from serviciocargos");
-                                                        while($resultadoEquiposModal=mysqli_fetch_array($queryEquiposModal,MYSQLI_ASSOC)){
-                                                            echo '<option value="'.$resultadoEquiposModal["idCargo"].'">'.$resultadoEquiposModal["nombreCargo"].'</option>';
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                    <div id="alertCargoModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Respuesta Invalida</div>
-
-                                                </div>
-
-
-                                                <div class="col-lg-4" id="divCorderitoModal">
-                                                    <input type="number" style="text-transform: uppercase;" class="form-control" id="corderitosPromocionRegistrarModal" min="0" placeholder="Promocion de Corderitos">
-                                                    <div id="alertPromocionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse">Promocion Invalida</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-12" id="divDireccionModal">
-                                                    <textarea class="form-control" rows="3" id="direccionRegistrarModal" placeholder="Direccion" style="text-transform: uppercase"></textarea>
-                                                    <div id="alertDireccionModal" style="background-color: #D9534F; color: white; border-radius:4px" align="center" class="collapse  ">Direccion Invalida</div>
-                                                </div>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="divDomicilio" class="panel">
+                                <div class="panel-heading myPanel" id="divDomicilioHeader">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color: #FFFFFF">
+                                           B) DOMICILIO Y FAMILIAR
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="DIRECCION" id="inputDireccionRegister" title="DIRECCION">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="REFERENCIA" id="inputReferenciaRegister" title="REFERENCIA">
+                                            </div>
+                                        </div>
 
-                                <div class="modal-footer">
-                                    <div class="alert alert-success alert-dismissable  collapse" id="guardado" align="center"><strong>Registro Guardado</strong></div>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarModalRegistrar" onclick="limpiar()">Cerrar</button>
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="TIPO CASA" id="inputTipoCasaRegister" title="TIPO CASA">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select  id="inputTransporteRegister" class="form-control" title="¿NECESITA TRANSPORTE?">
+                                                    <option value="">¿NECESITA TRANSPORTE?</option>
+                                                    <option value="Si">SI</option>
+                                                    <option value="No">NO</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="TELEFONO 1" id="inputTel1Register" title="TELEFONO 1">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="TELEFONO 2" id="inputTel2Register" title="TELEFONO 2">
+                                            </div>
+                                        </div>
 
-                                    <input type="button" class="btn btn-danger" value="PDF" onclick="consultarIdParaPDFModal()" id="pdfActualizarModal">
-                                    <input type="button" class="btn btn-primary" value="ACTUALIZAR DATOS" onclick="actualizarDatosServidoresModal();" id="actualizarModal">
-                                    <input type="button" class="btn btn-primary" value="INGRESAR" onclick="guardarIntegranteComoServidor()" id="btnIngresarModal">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="CORREO" id="inputCorreoRegister" title="CORREO">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select  id="inputCivilRegister" class="form-control" title="ESTADO CIVIL">
+                                                    <option value="">ESTADO CIVIL</option>
+                                                    <option value="Casado">CASAD@</option>
+                                                    <option value="Soltero">SOLTER@</option>
+                                                    <option value="Divorciado">DIVORCIAD@</option>
+                                                    <option value="Viudo">VIUD@</option>
+                                                    <option value="Union">UNION LIBRE</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="CONYUGUE" id="inputConyugueRegister" title="CONYUGUE">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="number"  min="0" class="form-control" placeholder="HIJOS" id="inputHijosRegister" title="HIJOS">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divIglesia" class="panel">
+                                <div class="panel-heading myPanel">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color: #FFFFFF">
+                                           C) IGLESIA
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <label> FECHA DE CONVERSION</label>
+                                                <input type="date" id="inputFechaConversionRegister" class="form-control" title="FECHA DE CONVERSION">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label> FECHA EN IGLESIA</label>
+                                                <input type="date" id="inputFechaIglesiaRegister" class="form-control" title="FECHA IGLESIA">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <label> ¿BAUTISMO ESPIRITU SANTO?</label>
+                                                <select  id="inputBautismoEsRegister" class="form-control" title="BAUTIMO ESPIRITU SANTO">
+                                                    <option value="">BAUTISMO ESPIRITU SANTO</option>
+                                                    <option value="Si">SI</option>
+                                                    <option value="No">NO</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label> FECHA DE RECONCILIACION</label>
+                                                <input type="date" id="inputFechaReconciliacionRegister" class="form-control" title="FECHA DE RECONCILIACION">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <label> FECHA BAUTISMO EN AGUAS</label>
+                                                <input type="date" id="inputFechaBautismoAguasRegister" class="form-control" title="FECHA BAUTISMO EN AGUAS">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label> FECHA COBERTURA</label>
+                                                <input type="date" id="inputFechaCoberturaRegister" class="form-control" title="FECHA COBERTURA">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <label> PROMOCION CORDERITOS</label>
+                                                <input type="number" min="0" id="inputPromocionCorderitosRegister" class="form-control" title="PROMOCION CORDERITOS" placeholder="PROMOCION CORDERITOS">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label> ¿SIRVE EN OTRAS AREAS?</label>
+                                                <input style="text-transform: uppercase" type="text" id="inputAreasRegister" class="form-control" title="SIRVE EN OTRAS AREAS" placeholder="AREAS DE SERVICIO">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <label> PROMOCION MAYORDOMIA</label>
+                                                <input type="number" min="0" id="inputPromocionMayordomiaRegister" class="form-control" title="PROMOCION MAYORDOMIA" placeholder="PROMOCION MAYORDOMIA">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label> EXPEDIENTE MAYORDOMIA</label>
+                                                <input style="text-transform: uppercase" type="text" id="inputExpedienteRegister" class="form-control" title="EXPEDIENTE MAYORDOMIA" placeholder="EXPEDIENTE MAYORDOMIA">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divEducacion" class="panel">
+                                <div class="panel-heading myPanel">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color: #FFFFFF">
+                                           D) EDUCACION
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputNivelEducativoRegister" placeholder="NIVEL EDUCATIVO" title="NIVEL EDUCATIVO">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputProfesionRegister" placeholder="PROFESION U OFICIO" title="PROFECION U OFICIO    ">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-12">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputHabilidadesRegister" placeholder="HABILIDADES" title="HABILIDADES">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divLaboral" class="panel">
+                                <div class="panel-heading myPanel">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="color: #FFFFFF">
+                                            E) LABORAL
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputEstadLaboralRegister" placeholder="ESTADO LABORAL" title="ESTADO LABORAL">
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputEmpresaRegister" placeholder="EMPRESA" title="EMPRESA">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-4">
+                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputPuestoRegister" placeholder="PUESTO QUE DESEMPEÑA" title="PUESTO QUE DESEMPEÑA">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputTelEmpresaRegister" placeholder="TELEFONO DE EMPRESA" title="TELEFONO DE EMPRESA">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputHorarioRegister" placeholder="HORARIO" title="HORARIO">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divExpediente" class="panel">
+                                <div class="panel-heading myPanel">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" style="color: #FFFFFF">
+                                          F) CONTROL DE EXPEDIENTE
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-4">
+                                                <label>CARNET</label>
+                                                <select  id="inputCarnetRegister" class="form-control" title="CARNET">
+                                                    <option value="">CARNET</option>
+                                                    <option value="Si">SI</option>
+                                                    <option value="No">NO</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>FECHA DE VIGENCIA</label>
+                                                <input type="date" class="form-control" id="inputVigenciaCarnetRegister" title="FECHA DE VIGENCIA">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>FECHA DE GESTION</label>
+                                                <input type="date" class="form-control" id="inputFechaGestionRegister" title="FECHA DE GESTION">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-4">
+                                                <label>FECHA DE ENTREGA</label>
+                                                <input type="date" class="form-control" id="inputFechaEntregaRegister" title="FECHA DE ENTREGA">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>NOMBRE EN CARNET</label>
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="NOMBRE EN CARNET" id="inputNombreCarnetEntregaRegister" title="NOMBRE EN CARNET">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>FECHA INICIO MAYORDOMIA</label>
+                                                <input type="date" class="form-control" id="inputInicioMayordomiaRegister" title="FECHA INICIO MAYORDOMIA">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-3">
+                                                <label>EQUIPO DE SERVICIO</label>
+                                                <select id="inputEquipoRegister" class="form-control" title="EQUIPO DE SERVICIO">
+                                                    <option value="">EQUIPO DE SERVICIO</option>
+                                                    <?php
+                                                    include "gold/enlace.php";
+                                                    $queryEquiposSelect = mysqli_query($enlace,"SELECT * from servicioequipos WHERE estado =1 GROUP BY nombreEquipo ASC");
+                                                    while ($datosEquiposSelect = mysqli_fetch_array($queryEquiposSelect,MYSQLI_ASSOC)){
+                                                        echo'<option value="'.$datosEquiposSelect["idEquipo"].'">'.$datosEquiposSelect["nombreEquipo"].'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>CARGO</label>
+                                                <select  id="inputCargoRegister" class="form-control" title="CARGO">
+                                                    <option value="">CARGO</option>
+                                                    <?php
+                                                    include "gold/enlace.php";
+                                                    $queryCargosSelect =  mysqli_query($enlace,"SELECT * from serviciocargos GROUP BY nombreCargo ASC");
+                                                    while ($datosCargos = mysqli_fetch_array($queryCargosSelect,MYSQLI_ASSOC)){
+                                                        echo'<option value="'.$datosCargos["idCargo"].'">'.$datosCargos["nombreCargo"].'</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>ESTADO</label>
+                                                <select id="inputEstadoRegister" class="form-control" title="ESTADO">
+                                                    <option value="">ESTADO</option>
+                                                    <option value="1">ACTIVO</option>
+                                                    <option value="2">INACTIVO</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>EXPEDIENTE SERVIDOR</label>
+                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="EXPEDIENTE SERVIDOR" title="EXPEDIENTE SERVIDOR">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-12">
+                                                <label>OBSERVACIONES</label>
+                                                <textarea  style="text-transform: uppercase" class="form-control" id="inputObservacionesRegister" cols="90" rows="5" placeholder="OBSERVACIONES" title="OBSERVACIONES"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Modal Duplicados -->
+                </div>
             </section>
         </section>
     </form>
@@ -485,7 +519,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     }
 </script>
 <script src="myfiles/DatePicker/js/bootstrap-datepicker.js"></script>
-<script src="js/matriculaServidores.js"></script>
+<script src="js/servidoresControllers.js"></script>
 <script src="js/export.js"></script>
 
 

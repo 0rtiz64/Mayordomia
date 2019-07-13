@@ -16,7 +16,7 @@ $miarraySubmenu = array();
 for ($i=0; $i < count($submenu); $i++) { 
     # code...
 //sacar submenus : preg_match('/SM[0-9].[0-9]/',$submenu[$i])
-    if (preg_match('/^M[0-9]/',$submenu[$i])) 
+    if (preg_match('/^M[0-9]/',$submenu[$i]))
     {
     //echo "HAY COINCIDENCIA<br>";
     //imprimo el array en pantalla
@@ -35,7 +35,7 @@ for ($i=0; $i < count($submenu); $i++) {
 for ($i=0; $i < count($submenu); $i++) { 
     # code...
 //sacar submenus : preg_match('/SM[0-9].[0-9]/',$submenu[$i])
-    if (preg_match('/^SM[0-9].[0-9]/',$submenu[$i])) 
+    if (preg_match('/^SM[0-9].[0-9]/',$submenu[$i]))
     {
     //echo "HAY COINCIDENCIA<br>";
     //imprimo el array en pantalla
@@ -320,15 +320,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                     # code...
                     switch ($miarraySubmenu[$z]) {
 
-                        case 'SM3.1':
-                            # code...
-                            if($focusSubMenu == "SM3.1"){
-                                $accesoMenus .='<li class="active"><a href="matriculaServidores.php"> Registro de Servidores</a></li>';
-                            }else{
-                                $accesoMenus .='<li ><a href="matriculaServidores.php"> Registro de Servidores</a></li>';
-                            }
 
-                            break;
 
                         case 'SM3.2':
                             # code...
@@ -360,15 +352,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                             break;
 
-                        case 'SM3.5':
-                            # code...
-                            if($focusSubMenu == "SM3.5"){
-                                $accesoMenus .= '<li class="active"><a href="cambiosServidores.php">Cambios Servidores</a></li>';
-                            }else{
-                                $accesoMenus .= '<li ><a href="cambiosServidores.php">Cambios Servidores</a></li>';
-                            }
 
-                            break;
 
 
 
@@ -533,7 +517,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
             }
             break;
 
-        case 'M6':
+            case 'M6':
 
             if($focusMenu == "M6"){
                 $accesoMenus .='<li class="sub-menu active">
@@ -592,8 +576,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
             }
             break;
 
-
-        case 'M7':
+            case 'M7':
 
             if($focusMenu == "M7"){
                 $accesoMenus .='<li class="sub-menu active">
@@ -604,9 +587,8 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                                     <a href="respaldoDB.php"><i class="fa fa-chevron-circle-down"></i><span>Respaldo</span></a>
                                     <ul>';
             }
-            //FIN M7
 
-        case 'M8':
+            case 'M8':
 
             if($focusMenu == "M8"){
                 $accesoMenus .='<li class="sub-menu active">
@@ -657,8 +639,7 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
             }
             break;
 
-
-        case 'M9':
+            case 'M9':
 
             if($focusMenu == "M9"){
                 $accesoMenus .='<li class="sub-menu active">
@@ -683,13 +664,76 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM9.2':
+                        # code...
+                        if($focusSubMenu == "SM9.2"){
+                            $accesoMenus .='<li class="active"><a href="matriculaServidores.php"> Registro</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="matriculaServidores.php"> Registro</a></li>';
+                        }
 
+                        break;
 
+                    case 'SM9.3':
+                        # code...
+                        if($focusSubMenu == "SM9.3"){
+                            $accesoMenus .='<li class="active"><a href="cambiosServidores.php"> Cambios</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="cambiosServidores.php"> Cambios</a></li>';
+                        }
 
-
+                        break;
 
 
                     case 'SM9.0':
+                        # code...
+                        $accesoMenus .="</ul>
+                                            </li>";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+            }
+            break;
+
+            case 'M0':
+
+            if($focusMenu == "M0"){
+                $accesoMenus .='<li class="sub-menu active">
+                                    <a href="javascript:void(0);"><i class="fa fa-users"></i><span>Servidores</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }else{
+                $accesoMenus .='<li class="sub-menu">
+                                    <a href="javascript:void(0);"><i class="fa fa-users"></i><span>Servidores</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                                    <ul>';
+            }
+
+            for ($z=0; $z < count($miarraySubmenu); $z++) {
+                # code...
+                switch ($miarraySubmenu[$z]) {
+                    case 'SM0.1':
+                        # code...
+                        if($focusSubMenu == "SM0.1"){
+                            $accesoMenus .='<li class="active"><a href="matriculaServidores.php"> Registro</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="matriculaServidores.php"> Registro</a></li>';
+                        }
+
+                        break;
+
+                    case 'SM0.2':
+                        # code...
+                        if($focusSubMenu == "SM0.2"){
+                            $accesoMenus .='<li class="active"><a href="cambiosServidores.php"> Cambios</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="cambiosServidores.php"> Cambios</a></li>';
+                        }
+
+                        break;
+
+
+                    case 'SM0.0':
                         # code...
                         $accesoMenus .="</ul>
                                             </li>";
