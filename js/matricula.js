@@ -723,7 +723,7 @@ function actualizarDatos(){
                                                         $('#divDireccionModal').addClass('has-success');
 
                                                         if(registrado.trim().length== ""){
-                                                            alertify.error("NOMBRE REGISTRADO ES INVALIDO");
+                                                            alertify.error("NOMBRE DE SERVIDOR MULTIMEDIDOS VACIO");
                                                             return false;
                                                         }else{
                                                             if(bautizadoModal.trim().length == ""){
