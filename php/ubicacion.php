@@ -110,10 +110,7 @@
 				case 'M3':
 					# code...
 					switch ($miarraySubmenu[0]) {
-						case 'SM3.1':
-							# code...
-							$direccion = "matriculaServidores.php";
-							break;
+
 
                         case 'SM3.2':
                             # code ...
@@ -162,6 +159,22 @@
                         $direccion = "contadorIntegracion.php";
                         break;
 
+
+                }
+                break;
+
+            case 'M0':
+                # code...
+                switch ($miarraySubmenu[0]) {
+                    case 'SM0.1':
+                        # code...
+                        $direccion = "matriculaServidores.php";
+                        break;
+
+                    case 'SM0.2':
+                        # code...
+                        $direccion = "cambiosServidores.php";
+                        break;
 
                 }
                 break;
