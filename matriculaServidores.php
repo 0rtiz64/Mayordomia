@@ -186,7 +186,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divDomicilio" class="panel">
+                            <div id="divDomicilio" onclick="validarDatosGenerales()" class="panel">
                                 <div class="panel-heading myPanel" id="divDomicilioHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color: #FFFFFF">
@@ -254,8 +254,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divIglesia" class="panel">
-                                <div class="panel-heading myPanel">
+                            <div id="divIglesia" onclick="validarDatosDomicilio()" class="panel">
+                                <div class="panel-heading myPanel" id="divIglesiaHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color: #FFFFFF">
                                            C) IGLESIA
@@ -329,8 +329,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divEducacion" class="panel">
-                                <div class="panel-heading myPanel">
+                            <div id="divEducacion" onclick="validarDatosIglesia()" class="panel">
+                                <div class="panel-heading myPanel" id="divEducacionHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color: #FFFFFF">
                                            D) EDUCACION
@@ -357,8 +357,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divLaboral" class="panel">
-                                <div class="panel-heading myPanel">
+                            <div id="divLaboral" onclick="validarDatosEducacion()" class="panel">
+                                <div class="panel-heading myPanel" id="divLaboralHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="color: #FFFFFF">
                                             E) LABORAL
@@ -394,8 +394,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divExpediente" class="panel">
-                                <div class="panel-heading myPanel">
+                            <div id="divExpediente" onclick="validarDatosLaboral()" class="panel">
+                                <div class="panel-heading myPanel" id="divExpedienteHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" style="color: #FFFFFF">
                                           F) CONTROL DE EXPEDIENTE
@@ -439,7 +439,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         </div>
 
                                         <div class="col-md-12 form-group">
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label>EQUIPO DE SERVICIO</label>
                                                 <select id="inputEquipoRegister" class="form-control" title="EQUIPO DE SERVICIO">
                                                     <option value="">EQUIPO DE SERVICIO</option>
@@ -452,7 +452,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label>CARGO</label>
                                                 <select  id="inputCargoRegister" class="form-control" title="CARGO">
                                                     <option value="">CARGO</option>
@@ -465,17 +465,13 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <label>ESTADO</label>
                                                 <select id="inputEstadoRegister" class="form-control" title="ESTADO">
                                                     <option value="">ESTADO</option>
                                                     <option value="1">ACTIVO</option>
                                                     <option value="2">INACTIVO</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>EXPEDIENTE SERVIDOR</label>
-                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="EXPEDIENTE SERVIDOR" title="EXPEDIENTE SERVIDOR">
                                             </div>
                                         </div>
 
@@ -487,6 +483,14 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-6">
+                                <input type="button" class="btn btn-default btn-block" value="CANCELAR" onclick="cancelarRegister()">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="button" class="btn btn-success btn-block" value="REGISTRAR"onclick="registrarServidor()">
                             </div>
                         </div>
                     </div>
