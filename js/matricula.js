@@ -281,7 +281,7 @@ var correlativoVisible = $('#correlativo').val();
         type:'POST',
         url:url,
         data:{
-         phpCorr:correlativoVisible,
+            phpCorr:correlativoVisible,
             phpPromoCordero: promCorderitos,
             phpEstadoCivil: estadoCivil,
             phpGenero:genero,
@@ -311,14 +311,14 @@ var correlativoVisible = $('#correlativo').val();
         },
         success: function(datos){
 
-           // $('#formularioRegistro')[0].reset();
+            // $('#formularioRegistro')[0].reset();
 
             $('#guardado').html(datos).show('1000').delay('2500').hide('200');
             //$('#numeroExpedienteRegistrar').val(newId);
 
             //abrirEnPestana('php/fichaInscripcion.php?numero='+id);
             $('#btnCarnet').show();
-             $('#btnLimpiar').show();
+            $('#btnLimpiar').show();
 
 
 
@@ -328,19 +328,23 @@ var correlativoVisible = $('#correlativo').val();
                 var p2 = tel1.substring(5, 9);
 
                 var nuevoNumero = extencion+p1+p2;
-               // mensajeWhatsapp(nuevoNumero,nombre);
+                // mensajeWhatsapp(nuevoNumero,nombre);
 
             }else{
                 var extencion = "504";
                 var nuevoNumero = extencion+tel1;
-               // mensajeWhatsapp(nuevoNumero,nombre);
+                // mensajeWhatsapp(nuevoNumero,nombre);
             }
 
             return false;
 
 
+        },
+        error: function () {
+            alertify.error("ERROR, SIN CONEXION AL SERVIDOR")
         }
     });
+
 
     return false;
 }
@@ -796,6 +800,9 @@ function actualizarDatos(){
             return false;
 
 
+        },
+        error: function () {
+            alertify.error("ERROR, SIN CONEXION AL SERVIDOR");
         }
     });
 
