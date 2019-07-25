@@ -160,33 +160,41 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <form class="form-horizontal" >
                     <div class="col-md-12 form-horizontal"> <!--DIV PRINCIPAL-->
 
-                        <div class="col-md-12 form-group" id="divInputProvicional">
+                        <?php
+                      if($_SESSION['nombre']== "Administrador"){
+                          $div = '  <div class="col-md-12 form-group" id="divInputProvicional">
                             <div class="col-md-12 form-group">
                                 <input type="password" class="form-control" id="marcacionProvicionalInput" placeholder="MARCACION ID INTERNO">
                             </div>
                             <input type="submit" class="btn btn-success collapse" onclick="marcacionProvicional(); ">
 
                         </div>
-
-
-
-
-
                             <div class="col-md-9 form-group" id="marcacionManualDiv">
                                 <input type="text" class="form-control" id="marcacionManualInput" placeholder="MARCACION BUSQUEDA">
                             </div>
-
                             <div class="col-md-3">
                                 <input type="button" class="btn btn-primary" value="BUSCAR" id="buscarBoton">
                                 <input type="button" class="btn btn-success" value="MARCAR" onclick="marcarManual()">
                             </div>
-
                         <div class="col-md-10 form-group collapse" id="marcacionAutoDiv">
                             <input type="text" class="form-control" placeholder="MARCACION POR IDENDITAD" id="marcacionAutoInput">
                         </div>
                         <div class="col-md-2 collapse">
                             <input type="button" class="btn btn-success"value="MARCAR" onclick="marcacionAuto()">
-                        </div>
+                        </div> ';
+                          echo $div;
+                      }else{
+                          $div = ' <div class="col-md-12 form-group" id="divInputProvicional">
+                            <div class="col-md-12 form-group">
+                                <input type="password" class="form-control" id="marcacionProvicionalInput" placeholder="MARCACION ID INTERNO">
+                            </div>
+                            <input type="submit" class="btn btn-success collapse" onclick="marcacionProvicional(); ">
+
+                        </div>';
+                          echo $div;
+                      }
+                        ?>
+
 
 
 

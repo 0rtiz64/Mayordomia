@@ -267,7 +267,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                         <div class="col-md-12 form-group">
                                             <div class="col-md-6">
                                                 <label> FECHA DE CONVERSION</label>
-                                                <input type="date" id="inputFechaConversionRegister" class="form-control" title="FECHA DE CONVERSION">
+                                                <input style="text-transform: uppercase" type="date" class="form-control" id="inputFechaConversionRegister" placeholder="FECHA DE CONVERSION"  title="FECHA DE CONVERSION">
+
                                             </div>
 
                                             <div class="col-md-6">

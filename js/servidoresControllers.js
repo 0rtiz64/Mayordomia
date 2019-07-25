@@ -285,6 +285,7 @@ function registrarServidor() {
     var conyugueRegister = $("#inputConyugueRegister").val().toUpperCase();
     var hijosRegister = $("#inputHijosRegister").val().toUpperCase();
 
+
     var fechaConvercionRegister = $("#inputFechaConversionRegister").val().toUpperCase();
     var fechaIglesiaRegister = $("#inputFechaIglesiaRegister").val().toUpperCase();
     var bautismoEspirituSantoRegister = document.getElementById('inputBautismoEsRegister').value;
@@ -317,7 +318,7 @@ function registrarServidor() {
     var estadoRegister =document.getElementById('inputEstadoRegister').value;
     var observacionesRegister = $("#inputObservacionesRegister").val().toUpperCase();
 
-/*
+
     if($("#inputNombreRegister").val().trim().length ==""){
         $("#inputNombreRegister").css("border-color", "#a94442");
         $("#divDatosGeneralesHeader").css("background-color", "#a94442");
@@ -492,7 +493,7 @@ function registrarServidor() {
             }// FIN GENERO
         } // FIN IDENTIDAD
     }// FIN NOMBRE
-*/
+
     var miJson = [{
         "nombre": nombreRegister,
         "identidad": identidadRegister,
@@ -540,7 +541,50 @@ function registrarServidor() {
     }];
     console.log(miJson);
     var url = 'php/servidoresRegister.php';
-   $.ajax({
+if(fechaConvercionRegister.trim().length ==""){
+    console.log("FECHA CONVERSION VACIA");
+    fechaConvercionRegister = "1970-01-01";
+};
+
+if(fechaIglesiaRegister.trim().length ==""){
+    fechaConvercionRegister = "1970-01-01";
+}
+
+    if(fechaReconciliacionRegister.trim().length ==""){
+        fechaReconciliacionRegister= "1970-01-01";
+    }
+
+    if(fechaBautismoAguasRegister.trim().length ==""){
+        fechaBautismoAguasRegister= "1970-01-01";
+    }
+
+    if(fechaCoberturaRegister.trim().length ==""){
+        fechaCoberturaRegister= "1970-01-01";
+    }
+
+    if(fechaVigenciaRegister.trim().length ==""){
+        fechaVigenciaRegister= "1970-01-01";
+    }
+
+    if(fechaGestionRegister.trim().length ==""){
+        fechaGestionRegister= "1970-01-01";
+    }
+
+    if(fechaEntregaRegister.trim().length ==""){
+        fechaEntregaRegister= "1970-01-01";
+    }
+
+    if(fechaInicioMayordomiaRegister.trim().length ==""){
+        fechaInicioMayordomiaRegister= "1970-01-01";
+    }
+
+
+
+
+
+
+
+    $.ajax({
         type:'POST',
         url:url,
         data: {
@@ -590,8 +634,17 @@ function registrarServidor() {
         },
         success: function (datos) {
            //SUCCESS
-            console.log("REGISTRADO "+datos);
-            return false;
+
+            if(datos == 0){
+                alertify.error("IDENTIDAD YA REGISTRADA");
+                return false;
+            }else{
+                alertify.success("REGISTRO GUARDADO");
+                cancelarRegister();
+                console.log("REGISTRADO "+datos+ " FECHA INPUT:" + fechaConvercionRegister);
+                return false;
+            }
+
         }
     });
     return false;
