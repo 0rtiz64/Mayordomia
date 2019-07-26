@@ -125,79 +125,6 @@ function validarDatosDomicilio() {
         }
     }
 }
-
-function validarDatosIglesia() {
-    if($("#inputPromocionCorderitosRegister").val().trim().length ==""){
-        $("#inputPromocionCorderitosRegister").css("border-color", "#a94442");
-        $("#divIglesiaHeader").css("background-color", "#a94442");
-        alertify.error("CAMPO VACIO");
-        return false;
-    }else{
-        $("#inputPromocionCorderitosRegister").css("border-color", "#28A745");
-        $("#divIglesiaHeader").css("background-color","#424242");
-
-        if($("#inputPromocionMayordomiaRegister").val().trim().length ==""){
-            $("#inputPromocionMayordomiaRegister").css("border-color", "#a94442");
-            $("#divIglesiaHeader").css("background-color", "#a94442");
-            alertify.error("CAMPO VACIO");
-            return false;
-
-        }else{
-            $("#inputPromocionMayordomiaRegister").css("border-color", "#28A745");
-            $("#divIglesiaHeader").css("background-color","#28A745");
-
-        }
-    }
-}
-
-function validarDatosEducacion() {
-    if($("#inputNivelEducativoRegister").val().trim().length ==""){
-        $("#inputNivelEducativoRegister").css("border-color", "#a94442");
-        $("#divEducacionHeader").css("background-color", "#a94442");
-        alertify.error("CAMPO VACIO");
-        return false;
-    }else{
-        $("#inputNivelEducativoRegister").css("border-color", "#28A745");
-        $("#divEducacionHeader").css("background-color","#424242");
-
-        if($("#inputProfesionRegister").val().trim().length ==""){
-            $("#inputProfesionRegister").css("border-color", "#a94442");
-            $("#divEducacionHeader").css("background-color", "#a94442");
-            alertify.error("CAMPO VACIO");
-            return false;
-
-        }else{
-            $("#inputProfesionRegister").css("border-color", "#28A745");
-            $("#divEducacionHeader").css("background-color","#424242");
-
-            if($("#inputHabilidadesRegister").val().trim().length ==""){
-                $("#inputHabilidadesRegister").css("border-color", "#a94442");
-                $("#divEducacionHeader").css("background-color", "#a94442");
-                alertify.error("CAMPO VACIO");
-                return false;
-
-            }else {
-                $("#inputHabilidadesRegister").css("border-color", "#28A745");
-                $("#divEducacionHeader").css("background-color", "#28A745");
-            }
-        }
-    }
-}
-
-function  validarDatosLaboral() {
-    if($("#inputEstadLaboralRegister").val().trim().length ==""){
-        $("#inputEstadLaboralRegister").css("border-color", "#a94442");
-        $("#divLaboralHeader").css("background-color", "#a94442");
-        alertify.error("CAMPO VACIO");
-        return false;
-    }else{
-        $("#inputEstadLaboralRegister").css("border-color", "#28A745");
-        $("#divLaboralHeader").css("background-color","#28A745");
-
-
-    }
-}
-
 function cancelarRegister() {
     $("#divDatosGeneralesHeader").css("background-color","#424242");
     $("#divDomicilioHeader").css("background-color","#424242");
@@ -297,7 +224,9 @@ function registrarServidor() {
     var promocionMayordomiaRegister = $("#inputPromocionMayordomiaRegister").val().toUpperCase();
     var expedienteRegister = $("#inputExpedienteRegister").val().toUpperCase();
 
-    var nivelEducativoRegister = $("#inputNivelEducativoRegister").val().toUpperCase();
+
+   // var nivelEducativoRegister = document.getElementById('inputNivelEducativoRegister').value;
+    var nivelEducativoRegister =$("#inputNivelEducativoRegister").val();
     var profesionRegister = $("#inputProfesionRegister").val().toUpperCase();
     var habilidadesRegister = $("#inputHabilidadesRegister").val().toUpperCase();
 
@@ -317,6 +246,7 @@ function registrarServidor() {
     var cargoRegister = document.getElementById('inputCargoRegister').value;
     var estadoRegister =document.getElementById('inputEstadoRegister').value;
     var observacionesRegister = $("#inputObservacionesRegister").val().toUpperCase();
+    var registradoPorRegister = $("#registradoPorRegister").val().toUpperCase();
 
 
     if($("#inputNombreRegister").val().trim().length ==""){
@@ -393,72 +323,6 @@ function registrarServidor() {
                                     $("#inputCivilRegister").css("border-color", "#28A745");
                                     $("#divDomicilioHeader").css("background-color","#28A745");
 
-                                    if($("#inputPromocionCorderitosRegister").val().trim().length ==""){
-                                        $("#inputPromocionCorderitosRegister").css("border-color", "#a94442");
-                                        $("#divIglesiaHeader").css("background-color", "#a94442");
-                                        alertify.error("CAMPO VACIO");
-                                        return false;
-                                    }else{
-                                        $("#inputPromocionCorderitosRegister").css("border-color", "#28A745");
-                                        $("#divIglesiaHeader").css("background-color","#424242");
-
-                                        if($("#inputPromocionMayordomiaRegister").val().trim().length ==""){
-                                            $("#inputPromocionMayordomiaRegister").css("border-color", "#a94442");
-                                            $("#divIglesiaHeader").css("background-color", "#a94442");
-                                            alertify.error("CAMPO VACIO");
-                                            return false;
-
-                                        }else{
-                                            $("#inputPromocionMayordomiaRegister").css("border-color", "#28A745");
-                                            $("#divIglesiaHeader").css("background-color","#28A745");
-
-                                            if($("#inputNivelEducativoRegister").val().trim().length ==""){
-                                                $("#inputNivelEducativoRegister").css("border-color", "#a94442");
-                                                $("#divEducacionHeader").css("background-color", "#a94442");
-                                                alertify.error("CAMPO VACIO");
-                                                return false;
-                                            }else{
-                                                $("#inputNivelEducativoRegister").css("border-color", "#28A745");
-                                                $("#divEducacionHeader").css("background-color","#424242");
-
-                                                if($("#inputProfesionRegister").val().trim().length ==""){
-                                                    $("#inputProfesionRegister").css("border-color", "#a94442");
-                                                    $("#divEducacionHeader").css("background-color", "#a94442");
-                                                    alertify.error("CAMPO VACIO");
-                                                    return false;
-
-                                                }else{
-                                                    $("#inputProfesionRegister").css("border-color", "#28A745");
-                                                    $("#divEducacionHeader").css("background-color","#424242");
-
-                                                    if($("#inputHabilidadesRegister").val().trim().length ==""){
-                                                        $("#inputHabilidadesRegister").css("border-color", "#a94442");
-                                                        $("#divEducacionHeader").css("background-color", "#a94442");
-                                                        alertify.error("CAMPO VACIO");
-                                                        return false;
-
-                                                    }else {
-                                                        $("#inputHabilidadesRegister").css("border-color", "#28A745");
-                                                        $("#divEducacionHeader").css("background-color", "#28A745");
-
-                                                        if($("#inputEstadLaboralRegister").val().trim().length ==""){
-                                                            $("#inputEstadLaboralRegister").css("border-color", "#a94442");
-                                                            $("#divLaboralHeader").css("background-color", "#a94442");
-                                                            alertify.error("CAMPO VACIO");
-                                                            return false;
-                                                        }else{
-                                                            $("#inputEstadLaboralRegister").css("border-color", "#28A745");
-                                                            $("#divLaboralHeader").css("background-color","#28A745");
-
-                                                            if($("#inputNombreCarnetEntregaRegister").val().trim().length ==""){
-                                                                $("#inputNombreCarnetEntregaRegister").css("border-color", "#a94442");
-                                                                $("#divExpedienteHeader").css("background-color", "#a94442");
-                                                                alertify.error("CAMPO VACIO");
-                                                                return false;
-                                                            }else{
-                                                                $("#inputNombreCarnetEntregaRegister").css("border-color", "#28A745");
-                                                                $("#divExpedienteHeader").css("background-color","#424242");
-
                                                                 if($("#inputEquipoRegister").val().trim().length ==""){
                                                                     $("#inputEquipoRegister").css("border-color", "#a94442");
                                                                     $("#divExpedienteHeader").css("background-color", "#a94442");
@@ -476,13 +340,16 @@ function registrarServidor() {
                                                                     }else{
                                                                         $("#inputCargoRegister").css("border-color", "#28A745");
                                                                         $("#divExpedienteHeader").css("background-color", "#28A745");
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
+
+                                                                        if($("#registradoPorRegister").val().trim().length ==""){
+                                                                            $("#registradoPorRegister").css("border-color", "#a94442");
+                                                                            $("#divExpedienteHeader").css("background-color", "#a94442");
+                                                                            alertify.error("CAMPO VACIO");
+                                                                            return false;
+                                                                        }else {
+                                                                            $("#registradoPorRegister").css("border-color", "#28A745");
+                                                                            $("#divExpedienteHeader").css("background-color", "#28A745");
+                                                                        }
                                         }
                                     }
                                 }
@@ -541,6 +408,12 @@ function registrarServidor() {
     }];
     console.log(miJson);
     var url = 'php/servidoresRegister.php';
+
+    if(fechaIglesiaRegister.trim().length ==""){
+        console.log("FECHA CONVERSION VACIA");
+        fechaIglesiaRegister = "1970-01-01";
+    };
+
 if(fechaConvercionRegister.trim().length ==""){
     console.log("FECHA CONVERSION VACIA");
     fechaConvercionRegister = "1970-01-01";
@@ -576,6 +449,10 @@ if(fechaIglesiaRegister.trim().length ==""){
 
     if(fechaInicioMayordomiaRegister.trim().length ==""){
         fechaInicioMayordomiaRegister= "1970-01-01";
+    }
+
+    if(estadoRegister.trim().length ==""){
+        estadoRegister=1;
     }
 
 
@@ -631,6 +508,7 @@ if(fechaIglesiaRegister.trim().length ==""){
             phpCargo: cargoRegister,
             phpEstado: estadoRegister,
             phpObservaciones: observacionesRegister,
+            phpRegistradoPor: registradoPorRegister,
         },
         success: function (datos) {
            //SUCCESS

@@ -311,8 +311,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label> ¿SIRVE EN OTRAS AREAS?</label>
-                                                <input style="text-transform: uppercase" type="text" id="inputAreasRegister" class="form-control" title="SIRVE EN OTRAS AREAS" placeholder="AREAS DE SERVICIO">
+                                                <label>OTRAS AREAS DONDE SIRVE</label>
+                                                <input style="text-transform: uppercase" type="text" id="inputAreasRegister" class="form-control" title="OTRAS AREAS DONDE SIRVE " placeholder="OTRAS AREAS DONDE SIRVE">
                                             </div>
                                         </div>
 
@@ -330,7 +330,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divEducacion" onclick="validarDatosIglesia()" class="panel">
+                            <div id="divEducacion"  class="panel">
                                 <div class="panel-heading myPanel" id="divEducacionHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color: #FFFFFF">
@@ -342,7 +342,14 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="panel-body">
                                         <div class="col-md-12 form-group">
                                             <div class="col-md-6">
-                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputNivelEducativoRegister" placeholder="NIVEL EDUCATIVO" title="NIVEL EDUCATIVO">
+                                                <select  id="inputNivelEducativoRegister" class="form-control">
+                                                    <option value="">NIVEL EDUCATIVO</option>
+                                                    <option value="MAESTRIA">MAESTRIA</option>
+                                                    <option value="PRIMARIA">PRIMARIA</option>
+                                                    <option value="SECUNDARIA">SECUNDARIA</option>
+                                                    <option value="SIN ESTUDIOS">SIN ESTUDIOS</option>
+                                                    <option value="UNIVERSIDAD">UNIVERSIDAD</option>
+                                                </select>
                                             </div>
 
                                             <div class="col-md-6">
@@ -358,7 +365,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divLaboral" onclick="validarDatosEducacion()" class="panel">
+                            <div id="divLaboral"  class="panel">
                                 <div class="panel-heading myPanel" id="divLaboralHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="color: #FFFFFF">
@@ -370,7 +377,15 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="panel-body">
                                         <div class="col-md-12 form-group">
                                             <div class="col-md-6">
-                                                <input style="text-transform: uppercase" class="form-control" type="text" id="inputEstadLaboralRegister" placeholder="ESTADO LABORAL" title="ESTADO LABORAL">
+                                                <select  id="inputEstadLaboralRegister" class="form-control" title="ESTADO LABORAL">
+                                                    <option value="">ESTADO LABORAL</option>
+                                                    <option value="DESEMPLEADO">DESEMPLEADO</option>
+                                                    <option value="LABORANDO">LABORANDO</option>
+                                                    <option value="ESTUDIANTE">ESTUDIANTE</option>
+                                                    <option value="TEMPORAL">TEMPORAL</option>
+                                                    <option value="AMA DE CASA">AMA DE CASA</option>
+                                                    <option value="INDEPENDIENTE">INDEPENDIENTE</option>
+                                                </select>
                                             </div>
 
                                             <div class="col-md-6">
@@ -395,7 +410,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     </div>
                                 </div>
                             </div>
-                            <div id="divExpediente" onclick="validarDatosLaboral()" class="panel">
+                            <div id="divExpediente"  class="panel">
                                 <div class="panel-heading myPanel" id="divExpedienteHeader">
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" style="color: #FFFFFF">
@@ -472,6 +487,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                                     <option value="">ESTADO</option>
                                                     <option value="1">ACTIVO</option>
                                                     <option value="2">INACTIVO</option>
+                                                    <option value="3">RETIRADO</option>
+                                                    <option value="4">SUSPENDIDO</option>
+                                                    <option value="5">CON PERMISO</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -480,6 +498,11 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                             <div class="col-md-12">
                                                 <label>OBSERVACIONES</label>
                                                 <textarea  style="text-transform: uppercase" class="form-control" id="inputObservacionesRegister" cols="90" rows="5" placeholder="OBSERVACIONES" title="OBSERVACIONES"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" placeholder="REGISTRADO POR" id="registradoPorRegister" style="text-transform: uppercase">
                                             </div>
                                         </div>
                                     </div>

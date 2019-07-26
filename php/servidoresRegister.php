@@ -40,8 +40,14 @@ $fechaBautismoAguas= $_POST["phpFechaBautismoAguas"];
 $fechaCobertura= $_POST["phpFechaCobertura"];
 
 $promocionCorderitos= $_POST["phpPromocionCorderitos"];
+if($promocionCorderitos == ""){
+    $promocionCorderitos = 0;
+}
 $areas= $_POST["phpAreas"];
 $promocionMayordomia= $_POST["phpPromocionMayordomia"];
+if($promocionMayordomia == ""){
+    $promocionMayordomia =0;
+}
 $expedienteMayordomia= $_POST["phpExpedienteMayordomia"];
 $nivelEducativo= $_POST["phpNivelEducativo"];
 $profesion= $_POST["phpProfesion"];
@@ -66,6 +72,7 @@ $equipo= $_POST["phpEquipo"];
 $cargo= $_POST["phpCargo"];
 $estado= $_POST["phpEstado"];
 $observaciones= $_POST["phpObservaciones"];
+$registradoPor= $_POST["phpRegistradoPor"];
 $fechaentrada = date('Y-m-d  h:i:s');
 $estado = 1;
 $confirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from servidores where num_identidad ='".$identidad."'"));
@@ -83,7 +90,7 @@ f_conversion,f_iglesia,bautismoEs,f_reconciliacion,f_bautismoAguas,f_cobertura,p
 nivelEducativo,profesion,habilidades,
 estadoLaboral,empresa,puesto,telEmpresa,horario,
 carnet,vigencia,f_gestion,f_entrega,nombreCarnet,f_inicioMayordomia,observaciones,
-fecha_registro, status) 
+fecha_registro, status,registradoPor) 
 VALUES
 ('".$nombre."','".$identidad."','".$genero."','".$fechaNacimiento."','".$tipoSangre."',
 '".$direccion."','".$referencia."','".$tipoCasa."','".$transporte."','".$tel1."','".$tel2."','".$correo."','".$civil."','".$civil."',".$hijos.",
@@ -92,7 +99,7 @@ VALUES
 '".$estadoLaboral."','".$empresa."','".$puesto."','".$telefonoEmpresa."','".$horario."',
 '".$carnet."','".$fechaVigencia."','".$fechaGestion."','".$fechaEntrega."','".$nombreCarnet."','".$fechaInicioMayordomia."','".$observaciones."',
 '".$fechaentrada."',
-1)");
+1,'".$registradoPor."')");
 
 
 $queryTomarId  = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
