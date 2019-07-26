@@ -192,6 +192,7 @@ function cancelarRegister() {
     document.getElementById('inputEstadoRegister').value="";
     $("#inputEstadoRegister").css("border-color", "#CCCCCC");
     $("#inputObservacionesRegister").val("").css("border-color", "#CCCCCC");
+    $("#registradoPorRegister").val("").css("border-color", "#CCCCCC");
 }
 
 function registrarServidor() {
