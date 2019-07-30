@@ -196,7 +196,7 @@ function cancelarRegister() {
 }
 
 function registrarServidor() {
-    var nombreRegister = $("#inputNombreRegister").val().toUpperCase();
+    var nombreRegister = $("#inputNombreRe8gister").val().toUpperCase();
     var identidadRegister = $("#inputIdentidadRegister").val().toUpperCase();
     var generoRegister = document.getElementById('inputGeneroRegister').value;
     var fechaNacimientoRegister = $("#inputFechaNacimientoRegister").val().toUpperCase();
@@ -528,5 +528,26 @@ if(fechaIglesiaRegister.trim().length ==""){
     });
     return false;
 }
+
+$("#inputIdentidadRegister").on('focusout',function () {
+   var identidad= $("#inputIdentidadRegister").val();
+   var url = 'tomarDatosServidor.php';
+
+    $.ajax({
+        type:'POST',
+        url:url,
+        data: {
+            phpIdentidad: identidadRegister
+
+        },
+        success: function (datos) {
+            //SUCCESS
+
+
+        }
+    });
+    return false;
+
+});
 
 

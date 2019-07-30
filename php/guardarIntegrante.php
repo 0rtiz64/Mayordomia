@@ -64,9 +64,20 @@ if($query_ver >0){
 
 }else{
 
- $ultimoCorrelativo = mysqli_query($enlace,"SELECT max(correlativo +1 ) AS numeroNew FROM integrantes ");
- $datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
- $corrNew= $datoUltimoCorrelativo["numeroNew"];
+    $queryCorrPerdido = mysqli_num_rows(mysqli_query($enlace,"SELECT * from corr WHERE estado = 1 "));
+    if($queryCorrPerdido >0){
+        $queryTomarId = mysqli_query($enlace,"SELECT * from corr WHERE estado = 1 LIMIT 1");
+        $datosTomarId = mysqli_fetch_array($queryTomarId,MYSQLI_ASSOC);
+        $corrNew = $datosTomarId["corrDisponible"];
+        $idCorr = $datosTomarId["idCorr"];
+        $queryUpdate= mysqli_query($enlace,"UPDATE corr SET estado = 2 WHERE idCorr = $idCorr");
+    }else{
+        $ultimoCorrelativo = mysqli_query($enlace,"SELECT max(correlativo +1 ) AS numeroNew FROM integrantes ");
+        $datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
+        $corrNew= $datoUltimoCorrelativo["numeroNew"];
+    }
+
+
 $query = mysqli_query($enlace,"insert into integrantes (promo_cordero,num_identidad,nombre_integrante,fecha_cumple,cel,tel,estado_civil,sexo,trasporte,direccion,areas,apellidoCasada,status,fecha_registro,correlativo,documentosRespuesta,documentosPendientes,bautizado,registradoPor) values 
 	(".$PromCorderitos.",'".$Identidad."','".$NombreMayus."','".$FechaCumpleanos."','".$Tel1."','".$Tel2."','".$EstadoCivil."','".$Genero."','".$Transporte."','".$Direccion."','".$Areas."','".$ApeCasada."','1','".$fechaentrada."',".$corrNew.",'".$RespuestaDocumentos."','".$documentos."','".$bautizado."','".$registrado."')");
 
