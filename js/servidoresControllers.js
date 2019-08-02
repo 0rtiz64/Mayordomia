@@ -196,7 +196,7 @@ function cancelarRegister() {
 }
 
 function registrarServidor() {
-    var nombreRegister = $("#inputNombreRe8gister").val().toUpperCase();
+    var nombreRegister = $("#inputNombreRegister").val().toUpperCase();
     var identidadRegister = $("#inputIdentidadRegister").val().toUpperCase();
     var generoRegister = document.getElementById('inputGeneroRegister').value;
     var fechaNacimientoRegister = $("#inputFechaNacimientoRegister").val().toUpperCase();
@@ -531,18 +531,81 @@ if(fechaIglesiaRegister.trim().length ==""){
 
 $("#inputIdentidadRegister").on('focusout',function () {
    var identidad= $("#inputIdentidadRegister").val();
-   var url = 'tomarDatosServidor.php';
+   var url = 'php/tomarDatosServidor.php';
 
     $.ajax({
         type:'POST',
         url:url,
         data: {
-            phpIdentidad: identidadRegister
+            phpIdentidad: identidad
 
         },
         success: function (datos) {
-            //SUCCESS
+            var data = eval(datos);
+            //SUCCESS INICIO
+           if(data[40] == 1){
+               $("#inputNombreRegister").val(data[0]).css("border-color", "#CCCCCC");
+               document.getElementById('inputGeneroRegister').value=data[1];
+               $("#inputGeneroRegister").css("border-color", "#CCCCCC");
+               $("#inputFechaNacimientoRegister").val(data[2]).css("border-color", "#CCCCCC");
+               $("#inputTipoSangreRegister").val(data[3]).css("border-color", "#CCCCCC");
 
+                           $("#inputDireccionRegister").val(data[4]).css("border-color", "#CCCCCC");
+                           $("#inputReferenciaRegister").val(data[5]).css("border-color", "#CCCCCC");
+                           $("#inputTipoCasaRegister").val(data[6]).css("border-color", "#CCCCCC");
+                           $("#inputTransporteRegister").val(data[7]).css("border-color", "#CCCCCC");
+                           $("#inputTel1Register").val(data[8]).css("border-color", "#CCCCCC");
+                           $("#inputTel2Register").val(data[9]).css("border-color", "#CCCCCC");
+                           $("#inputCorreoRegister").val(data[10]).css("border-color", "#CCCCCC");
+                           document.getElementById('inputCivilRegister').value=data[11];
+                           $("#inputCivilRegister").css("border-color", "#CCCCCC");
+                           $("#inputConyugueRegister").val(data[12]).css("border-color", "#CCCCCC");
+                           $("#inputHijosRegister").val(data[13]).css("border-color", "#CCCCCC");
+
+                                          $("#inputFechaConversionRegister").val(data[14]).css("border-color", "#CCCCCC");
+                                          $("#inputFechaIglesiaRegister").val(data[15]).css("border-color", "#CCCCCC");
+                                          document.getElementById('inputBautismoEsRegister').value=data[16];
+                                          $("#inputBautismoEsRegister").css("border-color", "#CCCCCC");
+                                          $("#inputFechaReconciliacionRegister").val(data[17]).css("border-color", "#CCCCCC");
+                                          $("#inputFechaBautismoAguasRegister").val(data[18]).css("border-color", "#CCCCCC");
+                                          $("#inputFechaCoberturaRegister").val(data[19]).css("border-color", "#CCCCCC");
+                                          document.getElementById('inputPromocionCorderitosRegister').value=data[20];
+                                          $("#inputPromocionCorderitosRegister").css("border-color", "#CCCCCC");
+                                          $("#inputAreasRegister").val(data[21]).css("border-color", "#CCCCCC");
+                                          $("#inputPromocionMayordomiaRegister").val(data[22]).css("border-color", "#CCCCCC");
+                                          $("#inputExpedienteRegister").val(data[23]).css("border-color", "#CCCCCC");
+
+            $("#inputNivelEducativoRegister").val(data[24]).css("border-color", "#CCCCCC");
+            $("#inputProfesionRegister").val(data[25]).css("border-color", "#CCCCCC");
+            $("#inputHabilidadesRegister").val(data[26]).css("border-color", "#CCCCCC");
+
+                             $("#inputEstadLaboralRegister").val(data[27]).css("border-color", "#CCCCCC");
+                             $("#inputEmpresaRegister").val(data[28]).css("border-color", "#CCCCCC");
+                             $("#inputPuestoRegister").val(data[29]).css("border-color", "#CCCCCC");
+                             $("#inputTelEmpresaRegister").val(data[30]).css("border-color", "#CCCCCC");
+                             $("#inputHorarioRegister").val(data[31]).css("border-color", "#CCCCCC");
+
+                                            document.getElementById('inputCarnetRegister').value=data[32];
+                                            $("#inputCarnetRegister").css("border-color", "#CCCCCC");
+                                            $("#inputVigenciaCarnetRegister").val(data[33]).css("border-color", "#CCCCCC");
+                 $("#inputFechaGestionRegister").val(data[34]).css("border-color", "#CCCCCC");
+                 $("#inputFechaEntregaRegister").val(data[35]).css("border-color", "#CCCCCC");
+                 $("#inputNombreCarnetEntregaRegister").val(data[36]).css("border-color", "#CCCCCC");
+                $("#inputInicioMayordomiaRegister").val(data[37]).css("border-color", "#CCCCCC");
+                document.getElementById('inputEquipoRegister').value="";
+                $("#inputEquipoRegister").css("border-color", "#CCCCCC");
+                document.getElementById('inputCargoRegister').value="";
+                $("#inputCargoRegister").css("border-color", "#CCCCCC");
+                document.getElementById('inputEstadoRegister').value="";
+                $("#inputEstadoRegister").css("border-color", "#CCCCCC");
+                $("#inputObservacionesRegister").val(data[38]).css("border-color", "#CCCCCC");
+                $("#registradoPorRegister").val(data[39]).css("border-color", "#CCCCCC");
+                //SUCCESS FINAL
+
+
+           }else{
+               return false;
+           }
 
         }
     });

@@ -200,8 +200,8 @@ function sendDataTag(promocion,nombre,id,corrVisible,corr,tel1,tel2)
                 "^FT659,216^A0I,28,28^FH\\^FD";
 
             var n3 = "^FS\n" +
-                "^BY5,3,88^FT503,92^BCI,,N,N\n" +
-                "^FD>;";
+                "^BY4,3,88^FT503,92^BCI,,N,N\n" +
+                "^FD>:";
 
             var n4 = "^FS\n" +
                 "^FT407,19^A0I,31,31^FH\\^FD";
@@ -227,8 +227,8 @@ function sendDataTag(promocion,nombre,id,corrVisible,corr,tel1,tel2)
             //alert(nombreNuevo);
 
            // selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+corrVisible+p5+corr+p6, printComplete, printerError);
-            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+corr+n4+corrVisible+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
-            console.log(promocion+" "+ nombreNuevo+" "+id+3+" "+corrVisible+" "+corr);
+            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+corr+n4+corrVisible+".R"+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
+            console.log(promocion+" "+ nombreNuevo+" "+id+3+" "+corrVisible+" "+corr+"TEL 2: " +tel2);
             //$('#formularioRegistro')[0].reset();
 		}
 		else

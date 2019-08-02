@@ -53,8 +53,8 @@ var n2="^FS\n" +
 "^FT659,216^A0I,28,28^FH\\^FD";
 
 var n3 = "^FS\n" +
-"^BY5,3,88^FT503,92^BCI,,N,N\n" +
-"^FD>;";
+"^BY4,3,88^FT503,92^BCI,,N,N\n" +
+"^FD>:";
 
 var n4 = "^FS\n" +
 "^FT407,19^A0I,31,31^FH\\^FD";
