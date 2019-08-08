@@ -110,5 +110,20 @@ while ($datos = mysqli_fetch_array($queryPromoActual,MYSQLI_ASSOC)){
 //COMPARAR FICHA CON FOTO FINAL
 */
 
+
+/* VERIFICAS QUE INTEGRANTES DE LA TABLA DE LIDERAZGO ESTAN ACTIVOS COMO PASTOREADORES EN TABLA Y ACTIVOS COMO LIDERAZGO EN TABLA
+$queryTomarPast = mysqli_query($enlace,"SELECT * from pastoreadores WHERE estado =1 ");
+$c = 1;
+while ($datosPast = mysqli_fetch_array($queryTomarPast,MYSQLI_ASSOC)){
+    $id = $datosPast["idIntegrante"];
+    $confirmarEnLid = mysqli_num_rows(mysqli_query($enlace,"SELECT * from liderazgo WHERE idIntegrante= $id "));
+    if($confirmarEnLid>0){
+        $query =mysqli_query($enlace,"SELECT * from liderazgo WHERE idIntegrante= $id ");
+        $datoEncontrado = mysqli_fetch_array($query,MYSQLI_ASSOC);
+        echo $id.'<br>';
+    }
+    $c++;
+}
+*/
 echo "SCRIPT COMENTADO";
 ?>

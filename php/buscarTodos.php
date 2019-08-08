@@ -9,8 +9,14 @@ $namePerson = $_POST['nombrePersonaEnlazar'];
     $queryCorrelativoPromocion = mysqli_query($enlace,"SELECT * from promociones where `status` =1");
     $datosCorrelativoPromocion = mysqli_fetch_array($queryCorrelativoPromocion,MYSQLI_ASSOC);
 $idPromocion = $datosCorrelativoPromocion["idpromocion"];
+$corrlerativoPromocion = $datosCorrelativoPromocion["correlativo"];
 
 
+$queryDatos = mysqli_query($enlace,"SELECT correlativo from integrantes WHERE idintegrante =$namePerson");
+$datosQuery = mysqli_fetch_array($queryDatos,MYSQLI_ASSOC);
+$corrIntegrante = $datosQuery["correlativo"];
+
+if($corrIntegrante > $corrlerativoPromocion){
     $queryConfirm = mysqli_num_rows(mysqli_query($enlace, "SELECT * from detalle_integrantes WHERE id_integrante = $namePerson and id_promocion = $idPromocion"));
 
     if($queryConfirm>0){
@@ -59,6 +65,18 @@ $idPromocion = $datosCorrelativoPromocion["idpromocion"];
 
 
     }
+}else{
+    $datos = array(
+        0 => $namePerson,
+        1 => 0,
+        2 => 0,
+        3=> 0,
+        4 => 0,
+    );
+    echo json_encode($datos);
+}
+
+
 
 
 

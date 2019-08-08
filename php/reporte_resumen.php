@@ -97,21 +97,20 @@ echo '<th colspan="1"> <h1>ESCUELA DE MAYORDOMIA</h1> <span style="font-size: 14
 
 		echo '<tbody>';
 //CUENTA CUANTOS HAY EN CADA CARGO  
-		$query = mysqli_query($enlace,"SELECT DISTINCT cargos.idcargo,cargos.nombre_cargo,COUNT(detalle_integrantes.id_cargo) AS Cantidad FROM detalle_integrantes
-INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
-INNER JOIN promociones ON detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE promociones.idpromocion=$num_promo AND detalle_integrantes.id_cargo <> 10 AND detalle_integrantes.`status`=1
+		$query = mysqli_query($enlace,"SELECT DISTINCT cargos.idcargo,cargos.idcargo,cargos.nombre_cargo,COUNT(liderazgo.idCargo) AS Cantidad FROM liderazgo
+INNER JOIN cargos ON liderazgo.idCargo= cargos.idcargo
+WHERE liderazgo.estado = 1
 GROUP BY cargos.idcargo,cargos.nombre_cargo");
 		$cont = 1;
 			while ($rows = mysqli_fetch_array($query,MYSQLI_ASSOC)) {
 				# code...
                 //CUENTA CUANTOS VINIERON DE CADA CARGO EN ESA FECHA
-				$queryInterno = mysqli_query($enlace,"SELECT IFNULL(COUNT(*),0) Asistentes from detalle_integrantes
-INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
-INNER JOIN marcacionprovicional ON detalle_integrantes.id_integrante= marcacionprovicional.idIntegrante
-INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
-WHERE detalle_integrantes.id_promocion=$num_promo AND detalle_integrantes.id_cargo =  ".$rows['idcargo']."
-AND CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND detalle_integrantes.`status`=1");
+				$queryInterno = mysqli_query($enlace,"SELECT IFNULL(COUNT(*),0) Asistentes from liderazgo
+INNER JOIN integrantes ON liderazgo.idIntegrante = integrantes.idintegrante
+INNER JOIN marcacionprovicional ON liderazgo.idIntegrante= marcacionprovicional.idIntegrante
+INNER JOIN cargos ON liderazgo.idCargo= cargos.idcargo
+WHERE liderazgo.idCargo=  ".$rows['idcargo']."
+AND CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND liderazgo.estado = 1");
 	$rows_asistente = mysqli_fetch_array($queryInterno,MYSQLI_ASSOC);
 
 	//AUSENTES
@@ -129,20 +128,46 @@ AND CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND det
 			}
 
 			//if ($rows["status"]== 1){
-$cantidaAusentes = $cantiadIntegrantes - $canidadAsistentes;
-$cantidadPorcentaje = round(($canidadAsistentes * 100) / $cantiadIntegrantes,2);
+
            /* }else{
                 $cantidaAusentes =0;
                 $cantidadPorcentaje = 0;
             }*/
+
+           $queryAsistenciaPastoreadores = mysqli_query($enlace,"SELECT IFNULL(COUNT(*),0) Asistentes from pastoreadores
+INNER JOIN integrantes ON pastoreadores.idIntegrante= integrantes.idintegrante
+INNER JOIN marcacionprovicional ON pastoreadores.idIntegrante= marcacionprovicional.idIntegrante
+WHERE CAST(marcacionprovicional.fechaMarcacion AS DATE) = '".$num_fecha."' AND pastoreadores.estado = 1");
+           $datosQueryPastoreadores = mysqli_fetch_array($queryAsistenciaPastoreadores,MYSQLI_ASSOC);
+           $asistenciaPastoreadores = $datosQueryPastoreadores["Asistentes"];
+
+           $queryCantidadPastoreadores = mysqli_query($enlace,"SELECT COUNT(*) as CantPast FROM pastoreadores
+where pastoreadores.estado = 1");
+           $datosQueryCantidadPastoreadores = mysqli_fetch_array($queryCantidadPastoreadores,MYSQLI_ASSOC);
+           $cantidadPastoreadores = $datosQueryCantidadPastoreadores["CantPast"];
+$inasistenciaPastoreadores  = $cantidadPastoreadores - $asistenciaPastoreadores;
+$porcetajePastoreadores = round(($asistenciaPastoreadores * 100) /$cantidadPastoreadores,2);
+
+echo '<tr>';
+echo '<td>Pastoreadores</td>';
+echo '<td>'.$asistenciaPastoreadores.'</td>';
+echo '<td>'.$porcetajePastoreadores.'</td>';
+echo '<tr>';
+
+$cantidadAsistenciaTotal = $canidadAsistentes+$asistenciaPastoreadores;
+$cantidadIntegrantesTotal = $cantiadIntegrantes+$cantidadPastoreadores;
+$cantidadInasistenciaTotal = $canidadAsistentes+$inasistenciaPastoreadores;
+$cantidaAusentes = $cantidadIntegrantesTotal - $cantidadInasistenciaTotal;
+$cantidadPorcentaje = round(($cantidadAsistenciaTotal * 100) / $cantidadIntegrantesTotal,2);
+
+
 			echo "<tr>";
 					echo "<td colspan='1' style='background-color:#95a5a6;'> TOTAL / PROMEDIO </td>";
-					echo "<td style='background-color:#f1c40f;'> ".$canidadAsistentes." </td>";
+					echo "<td style='background-color:#f1c40f;'> ".$cantidadAsistenciaTotal." </td>";
 					//echo "<td style='background-color:#f1c40f;'> ".$canidadAsistentes." </td>";
 					//echo "<td style='background-color:#f1c40f;'> ".$cantidaAusentes." </td>";
 					echo "<td style='background-color:#f1c40f;'> ".$cantidadPorcentaje."% </td>";
 			echo "</tr>";
-
 			echo "<tr style='background-color:#95a5a6;'>";
 					echo "<td colspan='3'> <h1>RESUMEN</h1> </td>";
 			echo "</tr>";

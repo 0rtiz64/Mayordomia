@@ -182,7 +182,8 @@ function sendDataEtiqueta(nombre,numEquipo,nombreEquipo,idIntegrante,orden,promo
 
                 var contraPleca = String.fromCharCode(92);
 
-                var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
+                var nombreNuevo1 = nombre.replace("Ñ",contraPleca+"A5");
+                var nombreNuevo = nombreNuevo1.replace("Ñ",contraPleca+"A5");
                 console.log(nombreNuevo);
                 console.log(idIntegrante);
                 var nombreEquipoNuevo = nombreEquipo.replace("Ñ",contraPleca+"A5");

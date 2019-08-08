@@ -200,7 +200,8 @@ console.log("INICIANDO SEND DATA");
 
                         var contraPleca = String.fromCharCode(92);
 
-                        var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
+                        var nombreNuevo1 = nombre.replace("Ñ",contraPleca+"A5");
+                        var nombreNuevo = nombreNuevo1.replace("Ñ",contraPleca+"A5");
                         console.log(nombreNuevo);
 
 
