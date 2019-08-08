@@ -104,6 +104,15 @@ function ReporteLiderazgoDetallado() {
 
 
 
+    if(equipoLiderazgojs.trim().length==""){
+        alertify.error("ERROR, SELECCIONA UN EQUIPO");
+        return false;
+    }else{
+        if(fechaLiderazgojs.trim().length==""){
+            alertify.error("ERROR, SELECCIONA UNA FECHA");
+            return false;
+        }
+    }
 
     $.ajax({
         type:'POST',

@@ -40,7 +40,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
     <!---/DATA TABLES-->
 
 
-
+    <!--ALERTIFY INICIO-->
+    <link rel="stylesheet" href="alertify/css/alertify.css">
+    <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+    <!--ALERTIFY FIN-->
 
     <!-- Feature detection -->
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -134,17 +137,31 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                 <div class="row">
                     <h1 class="h1">REPORTE DETALLADO DE ASISTENCIA LIDERAZGO</h1>
                     <div class="col-md-12">
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-5">
+                                <label>Seleccione Equipo</label>
+                                <select class="form-control" id="EquipoSelectLiderazgo">
+                                    <option value=""> Seleccione Equipo</option>
+                                    <option value="36">0 - Liderazgo</option>
+                                    <option value="9">  Pastoreadores</option>
+                                </select>
+                            </div>
 
-                        <div class="form-group col-md-5">
-                            <label>Seleccione Equipo</label>
-                            <select class="form-control" id="EquipoSelectLiderazgo">
-                                <option value=""> Seleccione Equipo</option>
-                                <option value="36">0 - Liderazgo</option>
-                                <option value="9">  Pastoreadores</option>
-                            </select>
+
+
+                            <div class="col-md-5" >
+                                <label>Fecha</label>
+                                <div class="input-group date ">
+                                    <input placeholder="dd/mm/yyyy" type="date" class="form-control" name="fechaReporte"  id="fechaReporteLiderazgo" required><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="button" class="btn btn-info" value="Generar Reporte" onclick="ReporteLiderazgoDetallado()" style="margin-top: 11%" >
+                            </div>
                         </div>
 
-                        <div id="promo">
+                        <div id="promo" class="collapse">
 
                             <?php
                             include_once 'gold/enlace.php';
@@ -155,27 +172,7 @@ where `status` = 1");
                             ?>
                         </div>
 
-                        <div class="form-group col-md-5" >
-                            <label>Fecha</label>
-                            <div class="input-group date ">
-                                <input placeholder="dd/mm/yyyy" type="date" class="form-control" name="fechaReporte"  id="fechaReporteLiderazgo" required><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-md-2">
-                            <input type="button" class="btn btn-info" value="Generar Reporte" onclick="ReporteLiderazgoDetallado()" style="margin-top: 11%" >
-                        </div>
-
-
-
-
-
-
-                        <div id="tablaReporteEquipo"  >
-
-
-
-                        </div>
+                        <div id="tablaReporteEquipo"></div>
 
                     </div>
 
@@ -191,6 +188,7 @@ where `status` = 1");
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/plugins/waypoints/waypoints.min.js"></script>
 <script src="assets/js/application.js"></script>
+<script src="alertify/alertify.js"></script>
 <script>
 
 

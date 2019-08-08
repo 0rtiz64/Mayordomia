@@ -153,26 +153,9 @@ table td {
                     <h1 class="h1">REPORTE RESUMEN ASISTENCIA LIDERAZGO</h1>
                     <div class="col-md-12">
 
-                        <div class="form-group col-md-5 ">
-                            
-                            <select class="form-control" id="EquipoSelect">
-                                <option value="">NUMERO DE PROMOCION</option>
-                                <?php
-                                require_once 'gold/enlace.php';
 
-                                $querySelect= mysqli_query($enlace, "SELECT idpromocion,desc_promocion from promociones
-WHERE `status`=1 ");
 
-                                while ($fila = mysqli_fetch_array($querySelect,MYSQLI_ASSOC)) {
-
-                                    echo '<option value="'.$fila['idpromocion'].'">'.$fila["desc_promocion"].'</option>';
-                                }
-                                ?>
-                            </select>
-                            <div class="errores1" id="errorPromo"></div>
-                        </div>
-
-                        <div class="form-group col-md-5" >
+                        <div class="form-group col-md-10" >
                             
                             <div class="input-group date ">
                                 <input placeholder="2017-08-08" type="date" class="form-control" name="fechaReporte"  id="fechaReporte" required><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>

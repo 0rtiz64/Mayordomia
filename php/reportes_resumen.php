@@ -129,7 +129,7 @@ $cantidadPorcentaje = round(($cantidadAsistenciaTotal * 100) / $cantidadIntegran
 						
 						<tr >
 							<th > <img src="photos/logo.png" alt="" width="70" height="70"> </th>
-	<th colspan="3" > <h1>ESCUELA DE MAYORDOMIA </h1> <span style="font-size: 14px;"> 03 - REPORTE RESUMEN - PROMOCION '.$nombrePromocion["num_promocion"].'</span> </th>
+	<th colspan="3" > <h1>ESCUELA DE MAYORDOMIA </h1> <span style="font-size: 14px;"> REPORTE RESUMEN - PROMOCION '.$nombrePromocion["num_promocion"].'</span> </th>
 							
 							<th > <img src="photos/logo2.png" alt="" width="70" height="70"> </th>
 						</tr>

@@ -2,7 +2,7 @@
 include '../gold/enlace.php';
 //include 'gold/enlace.php';
 
-$num_promo = $_POST['equipo'];
+
 $num_fecha = $_POST['fecha'];
 
 $dia = substr($num_fecha,8,2);
@@ -66,10 +66,10 @@ $cantiadIntegrantes = 0;
 $canidadAsistentes = 0;
 $cantidaAusentes = 0;
 $cantidadPorcentaje = 0;
-$queryNombrePromocion = mysqli_query($enlace,"SELECT num_promocion from promociones
-WHERE idpromocion = $num_promo ");
+$queryNombrePromocion = mysqli_query($enlace,"SELECT * from promociones
+WHERE `status` =1 ");
 $nombrePromocion = mysqli_fetch_array($queryNombrePromocion,MYSQLI_ASSOC);
-
+$num_promo = $nombrePromocion["idpromocion"];
 echo '<a class="btn btn-danger"  href="php/reportes_resumen.php?id_promos='.$num_promo.'&id_fecs='.$num_fecha.'" target="_blank" style="color:white;"> <span>Exportar A PDF</span> </a>';
 echo '<div class="table-responsive">';
 		echo '<table class="table table-bordered display nowrap" id="exampleReporte" width="100%">';

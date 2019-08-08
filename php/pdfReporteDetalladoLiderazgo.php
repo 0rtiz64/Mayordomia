@@ -70,11 +70,11 @@ $fCompleta = $dia."-".$miMes."-".$aaa;
 //QUERY
 
 $queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante, integrantes.cel,cargos.nombre_cargo from marcacionprovicional 
-INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
-INNER JOIN cargos ON detalle_integrantes.id_cargo = cargos.idcargo
+INNER JOIN liderazgo ON marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+INNER JOIN integrantes ON liderazgo.idIntegrante= integrantes.idintegrante
+INNER JOIN cargos ON liderazgo.idCargo= cargos.idcargo
 where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fecha."' 
-and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva AND detalle_integrantes.`status`=1
+AND liderazgo.estado=1
 ORDER BY integrantes.nombre_integrante
 ");
 
@@ -87,15 +87,15 @@ WHERE promociones.idpromocion =".$promoActiva." ");
 
 
 $queryTotalAsistencia= mysqli_query($enlace,"	SELECT COUNT(marcacionprovicional.idIntegrante)as CANTIDAD from marcacionprovicional 
-	INNER JOIN detalle_integrantes ON marcacionprovicional.idIntegrante = detalle_integrantes.id_integrante
-	INNER JOIN integrantes ON detalle_integrantes.id_integrante = integrantes.idintegrante
+	INNER JOIN liderazgo ON marcacionprovicional.idIntegrante = liderazgo.idIntegrante
+	INNER JOIN integrantes ON liderazgo.idIntegrante = integrantes.idintegrante
 	where CAST(marcacionprovicional.fechaMarcacion AS date) ='".$fecha."' 
-	and detalle_integrantes.id_cargo <> 9 and detalle_integrantes.id_cargo <>10 AND detalle_integrantes.id_promocion=$promoActiva AND detalle_integrantes.`status`=1");
+	 AND liderazgo.estado=1");
 $filaAsistenciaTotal= mysqli_fetch_array($queryTotalAsistencia,MYSQLI_ASSOC);
 
 
-$queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT  COUNT(idetalle_integrantes) as cantidad FROM detalle_integrantes 
-WHERE id_cargo<>9 AND id_cargo<>10 and id_promocion=$promoActiva AND detalle_integrantes.`status`=1");
+$queryTotalIntegrantesEquipo= mysqli_query($enlace,"SELECT  COUNT(idLiderazgo) as cantidad FROM liderazgo 
+WHERE liderazgo.estado=1");
 $filaTotalIntegrantesEquipo= mysqli_fetch_array($queryTotalIntegrantesEquipo,MYSQLI_ASSOC);
 
    /* $queryNombreEquipo= mysqli_query($enlace,"SELECT nombre_equipo, num_equipo from equipos

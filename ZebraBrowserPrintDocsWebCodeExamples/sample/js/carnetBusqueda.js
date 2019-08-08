@@ -216,7 +216,7 @@ function sendDataTag(promocion,nombre,id,corrVisible,corr,tel1,tel2)
                 "^FT669,97^A0I,28,28^FH\\^FD";
 
             var n8 = "^FS\n" +
-                "^PQ2,0,1,Y^XZ\n";
+                "^PQ1,0,1,Y^XZ\n";
             /*FIN NUEVO ZPL*/
 
 
