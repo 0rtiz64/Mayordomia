@@ -150,7 +150,7 @@ WHERE  liderazgo.estado=1");
 
     echo '</div>';
 }elseif ($equipo == 9){
-    $queryReporte = mysqli_query($enlace,"SELECT integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
+    $queryReporte = mysqli_query($enlace,"SELECT integrantes.idintegrante,integrantes.num_identidad,integrantes.nombre_integrante,integrantes.cel  from marcacionprovicional 
 INNER JOIN pastoreadores ON marcacionprovicional.idIntegrante = pastoreadores.idIntegrante
 INNER JOIN integrantes ON marcacionprovicional.idIntegrante = integrantes.idintegrante
 where CAST(marcacionprovicional.fechaMarcacion AS date)='".$fecha."'
@@ -179,7 +179,7 @@ WHERE `status`=1");
     echo '<th >#</th>';
     echo '<th align="center">Identidad</th>';
     echo '<th align="center">Nombre</th>';
-    echo '<th align="center"> Cel</th>';
+    echo '<th align="center"> Equipo</th>';
 
     echo '</tr>';
     echo '</thead>';
@@ -187,12 +187,27 @@ WHERE `status`=1");
     $contador = 1;
 
     while ($fila = mysqli_fetch_array($queryReporte,MYSQLI_ASSOC)) {
+$idIntegrante = $fila["idintegrante"];
+        $validarSiTieneEquipo =mysqli_num_rows( mysqli_query($enlace,"SELECT * from detalle_integrantes 
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
+WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegrante AND detalle_integrantes.id_cargo = 9"));
 
+        if($validarSiTieneEquipo>0){
+            $queryTomarEquipo = mysqli_query($enlace,"SELECT * from detalle_integrantes 
+INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
+INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
+WHERE promociones.`status` = 1 and detalle_integrantes.id_integrante = $idIntegrante AND detalle_integrantes.id_cargo = 9");
+            $datosEquipo = mysqli_fetch_array($queryTomarEquipo,MYSQLI_ASSOC);
+            $equipo= $datosEquipo["num_equipo"].'-'.$datosEquipo["nombre_equipo"];
+        }else{
+            $equipo ="";
+        }
 
         echo "<td align='center'>" . $contador."</td>";
         echo "<td align='center'>" . $fila["num_identidad"] . "</td>";
         echo "<td align='center'>" . utf8_encode($fila["nombre_integrante"]) . "</td>";
-        echo "<td align='center'>" . $fila["cel"] . "</td>";
+        echo "<td align='center'>" . $equipo . "</td>";
 
 
 
