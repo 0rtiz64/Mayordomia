@@ -515,7 +515,8 @@ if(fechaIglesiaRegister.trim().length ==""){
            //SUCCESS
 
             if(datos == 0){
-                alertify.error("IDENTIDAD YA REGISTRADA");
+                alertify.success("REGISTRO ACTUALIZADO");
+                cancelarRegister();
                 return false;
             }else{
                 alertify.success("REGISTRO GUARDADO");
@@ -592,11 +593,11 @@ $("#inputIdentidadRegister").on('focusout',function () {
                  $("#inputFechaEntregaRegister").val(data[35]).css("border-color", "#CCCCCC");
                  $("#inputNombreCarnetEntregaRegister").val(data[36]).css("border-color", "#CCCCCC");
                 $("#inputInicioMayordomiaRegister").val(data[37]).css("border-color", "#CCCCCC");
-                document.getElementById('inputEquipoRegister').value="";
+                document.getElementById('inputEquipoRegister').value=data[41];
                 $("#inputEquipoRegister").css("border-color", "#CCCCCC");
-                document.getElementById('inputCargoRegister').value="";
+                document.getElementById('inputCargoRegister').value=data[43];
                 $("#inputCargoRegister").css("border-color", "#CCCCCC");
-                document.getElementById('inputEstadoRegister').value="";
+                document.getElementById('inputEstadoRegister').value=data[45];
                 $("#inputEstadoRegister").css("border-color", "#CCCCCC");
                 $("#inputObservacionesRegister").val(data[38]).css("border-color", "#CCCCCC");
                 $("#registradoPorRegister").val(data[39]).css("border-color", "#CCCCCC");

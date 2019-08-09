@@ -75,8 +75,21 @@ $observaciones= $_POST["phpObservaciones"];
 $registradoPor= $_POST["phpRegistradoPor"];
 $fechaentrada = date('Y-m-d  h:i:s');
 $estado = 1;
+
+$queryTomarId  = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
+$datosTomarId = mysqli_fetch_array($queryTomarId,MYSQLI_ASSOC);
+$idServidor = $datosTomarId["idServidor"];
 $confirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from servidores where num_identidad ='".$identidad."'"));
 if($confirmar>0){
+    $queryUpdate = mysqli_query($enlace,"UPDATE servidores SET  nombre_integrante= '".$nombre."',sexo ='".$genero."',fecha_cumple='".$fechaNacimiento."',tipoSangre ='".$tipoSangre."', direccion='".$direccion."',
+referencia ='".$referencia."', tipoCasa='".$tipoCasa."',trasporte='".$transporte."',cel='".$tel1."',tel='".$tel2."',correo='".$correo."',estado_civil='".$civil."',conyugue='".$conyugue."', hijos =".$hijos.",
+f_conversion='".$fechaConversion."',f_iglesia='".$fechaIglesia."',bautismoEs='".$bautismoEspirituSanto."',f_reconciliacion='".$fechaReconciliacion."',f_bautismoAguas='".$fechaBautismoAguas."',f_cobertura ='".$fechaCobertura."',
+promo_cordero =".$promocionCorderitos.",areas ='".$areas."',promMayordomia=".$promocionMayordomia.",expedienteMayordomia ='".$expedienteMayordomia."',nivelEducativo='".$nivelEducativo."',profesion ='".$profesion."',
+habilidades='".$habilidades."',estadoLaboral ='".$estadoLaboral."',empresa='".$empresa."',puesto='".$puesto."',telEmpresa='".$telefonoEmpresa."',horario='".$horario."',carnet ='".$carnet."',vigencia='".$fechaVigencia."',
+f_gestion='".$fechaGestion."',f_entrega='".$fechaEntrega."',nombreCarnet='".$nombreCarnet."',f_inicioMayordomia='".$fechaInicioMayordomia."',observaciones='".$observaciones."',registradoPor ='".$registradoPor."'
+WHERE idServidor = $idServidor");
+
+    $updateEquipo = mysqli_query($enlace,"UPDATE serviciodetalle set idServicioEquipo = ".$equipo.", idServicioCargo =".$cargo.", estado =  ".$estado." where idServidor =  ".$idServidor."  ");
     echo 0;
 }else{
 
@@ -93,7 +106,7 @@ carnet,vigencia,f_gestion,f_entrega,nombreCarnet,f_inicioMayordomia,observacione
 fecha_registro, status,registradoPor) 
 VALUES
 ('".$nombre."','".$identidad."','".$genero."','".$fechaNacimiento."','".$tipoSangre."',
-'".$direccion."','".$referencia."','".$tipoCasa."','".$transporte."','".$tel1."','".$tel2."','".$correo."','".$civil."','".$civil."',".$hijos.",
+'".$direccion."','".$referencia."','".$tipoCasa."','".$transporte."','".$tel1."','".$tel2."','".$correo."','".$civil."','".$conyugue."',".$hijos.",
 '".$fechaConversion."','".$fechaIglesia."','".$bautismoEspirituSanto."','".$fechaReconciliacion."','".$fechaBautismoAguas."','".$fechaCobertura."',".$promocionCorderitos.",'".$areas."',".$promocionMayordomia.",'".$expedienteMayordomia."',
 '".$nivelEducativo."','".$profesion."','".$habilidades."',
 '".$estadoLaboral."','".$empresa."','".$puesto."','".$telefonoEmpresa."','".$horario."',
@@ -102,9 +115,7 @@ VALUES
 1,'".$registradoPor."')");
 
 
-$queryTomarId  = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
-$datosTomarId = mysqli_fetch_array($queryTomarId,MYSQLI_ASSOC);
-$idServidor = $datosTomarId["idServidor"];
+
 
 $InsertarEquipo = mysqli_query($enlace,"INSERT INTO serviciodetalle 
 (idServidor,idServicioEquipo,idServicioCargo,fecha,estado)

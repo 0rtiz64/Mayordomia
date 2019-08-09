@@ -154,13 +154,14 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                     <div class="panel-body">
                                         <div class="col-md-12">
                                             <div class="col-md-12 form-group">
-                                                <input style="text-transform: uppercase;" id="inputNombreRegister"  type="text" class="form-control has-error" placeholder="NOMBRE COMPLETO" title="NOMBRE COMPLETO">
+                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputIdentidadRegister" placeholder="IDENTIDAD" title="IDENTIDAD">
                                             </div>
                                         </div>
 
                                         <div class="col-md-12 form-group">
                                             <div class="col-md-6">
-                                                <input style="text-transform: uppercase" type="text" class="form-control" id="inputIdentidadRegister" placeholder="IDENTIDAD" title="IDENTIDAD">
+                                                <input style="text-transform: uppercase;" id="inputNombreRegister"  type="text" class="form-control has-error" placeholder="NOMBRE COMPLETO" title="NOMBRE COMPLETO">
+
                                             </div>
 
                                             <div class="col-md-6">
@@ -207,13 +208,18 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                                         <div class="col-md-12 form-group">
                                             <div class="col-md-6">
-                                                <input style="text-transform: uppercase" type="text" class="form-control" placeholder="TIPO CASA" id="inputTipoCasaRegister" title="TIPO CASA">
+                                                <select  id="inputTipoCasaRegister" class="form-control" title="TIPO CASA">
+                                                    <option value="">TIPO CASA</option>
+                                                    <option value="PROPIA">PROPIA</option>
+                                                    <option value="FAMILIAR">FAMILIAR</option>
+                                                    <option value="ALQUILADA">ALQUILADA</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-6">
                                                 <select  id="inputTransporteRegister" class="form-control" title="¿NECESITA TRANSPORTE?">
                                                     <option value="">¿NECESITA TRANSPORTE?</option>
-                                                    <option value="Si">SI</option>
-                                                    <option value="No">NO</option>
+                                                    <option value="SI">SI</option>
+                                                    <option value="NO">NO</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -234,10 +240,10 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                             <div class="col-md-6">
                                                 <select  id="inputCivilRegister" class="form-control" title="ESTADO CIVIL">
                                                     <option value="">ESTADO CIVIL</option>
-                                                    <option value="Casado">CASAD@</option>
-                                                    <option value="Soltero">SOLTER@</option>
-                                                    <option value="Divorciado">DIVORCIAD@</option>
-                                                    <option value="Viudo">VIUD@</option>
+                                                    <option value="Casado">CASADO</option>
+                                                    <option value="Soltero">SOLTERO</option>
+                                                    <option value="Divorciado">DIVORCIADO</option>
+                                                    <option value="Viudo">VIUDO</option>
                                                     <option value="Union">UNION LIBRE</option>
                                                 </select>
                                             </div>

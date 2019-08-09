@@ -16,6 +16,7 @@ if($confirm>0){
     $query = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
     $datos = mysqli_fetch_array($query,MYSQLI_ASSOC);
 
+    $id= $datos["idServidor"];
     $nombre= $datos["nombre_integrante"];
     $genero= $datos["sexo"];
     $fechaNacimiento= $datos["fecha_cumple"];
@@ -87,6 +88,17 @@ if($confirm>0){
     $registradoPor= $datos["registradoPor"];
 
 
+    $queryEquipo= mysqli_query($enlace,"SELECT servicioequipos.idEquipo,servicioequipos.nombreEquipo,serviciocargos.idCargo,serviciocargos.nombreCargo,serviciodetalle.estado from serviciodetalle 
+INNER JOIN servicioequipos on serviciodetalle.idServicioEquipo = servicioequipos.idEquipo
+INNER JOIN serviciocargos on serviciodetalle.idServicioCargo = serviciocargos.idCargo
+WHERE serviciodetalle.idServidor = $id");
+    $datosEquipo = mysqli_fetch_array($queryEquipo,MYSQLI_ASSOC);
+    $idEquipo = $datosEquipo["idEquipo"];
+    $nombreEquipo= $datosEquipo["nombreEquipo"];
+    $idCargo= $datosEquipo["idCargo"];
+    $nombreCargo= $datosEquipo["nombreCargo"];
+    $estado= $datosEquipo["estado"];
+
     $datos = array(
         0 => $nombre,
         1 => $genero,
@@ -128,7 +140,12 @@ if($confirm>0){
         37 => $fechaInicioMayordomia,
         38 => $observaciones,
         39 => $registradoPor,
-        40 => 1
+        40 => 1,
+        41 => $idEquipo,
+        42 => $nombreEquipo,
+        43 => $idCargo,
+        44 => $nombreCargo,
+        45 => $estado
 
     );
     echo json_encode($datos);
