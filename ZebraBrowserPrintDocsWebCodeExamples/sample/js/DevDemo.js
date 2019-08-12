@@ -202,9 +202,9 @@ function  consultarIdParaCarnet() {
             phpIdentidad:identidad
 
         },
-        success: function(idIntegrante){
+        success: function(datosJson){
 
-            consultarCorrelativoParaCarnet(idIntegrante);
+            consultarCorrelativoParaCarnet(datosJson);
 
 
 
@@ -316,8 +316,11 @@ function sendDataModal(idIntegrante,correlativo)
 
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
 
+            var corr = eval(correlativo);
+            var correlativoPromocional = corr[0];
+
            // selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
-            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativo+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
+            selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativoPromocional+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
             ticketInfo();
             //$('#formularioRegistro')[0].reset();
         }
@@ -354,9 +357,10 @@ function sendData(idIntegrante,correlativo)
             var contraPleca = String.fromCharCode(92);
 
             var nombreNuevo = nombre.replace("Ñ",contraPleca+"A5");
-
+            var corr = eval(correlativo);
+            var correlativoPromocional =corr[0];
 			//selected_printer.send(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6, printComplete, printerError);
-			selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativo+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
+			selected_printer.send(n1+promocion1+n2+nombreNuevo+n3+idIntegrante+n4+correlativoPromocional+n5+tel2+n6+id+n7+tel1+n8, printComplete, printerError);
 			console.log(p1+promocion1+p2+nombreNuevo+p3+id+p4+correlativo+p5+idIntegrante+p6);
             ticketInfo();
             //$('#formularioRegistro')[0].reset();

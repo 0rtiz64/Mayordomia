@@ -26,14 +26,14 @@ while ($datos= mysqli_fetch_array($querySeleccionarCel,MYSQLI_ASSOC)){
 $queryAgregarLiderazgo = mysqli_query($enlace,"SELECT  integrantes.idintegrante,idcargo from detalle_integrantes 
 INNER JOIN integrantes on detalle_integrantes.id_integrante = integrantes.idintegrante
 INNER JOIN cargos on detalle_integrantes.id_cargo = cargos.idcargo
-WHERE id_equipo = 89 AND integrantes.idintegrante NOT IN (SELECT liderazgo.idIntegrante
+WHERE id_equipo = 112 AND integrantes.idintegrante  IN (SELECT liderazgo.idIntegrante
                        FROM liderazgo) GROUP BY integrantes.nombre_integrante ASC");
 $c=1;
 while($datosAgregarLiderazgo = mysqli_fetch_array($queryAgregarLiderazgo,MYSQLI_ASSOC)){
     $idIntegrante = $datosAgregarLiderazgo["idintegrante"];
     $idCargo = $datosAgregarLiderazgo["idcargo"];
     $insertarEnTabla = mysqli_query($enlace,"insert into liderazgo (idIntegrante,estado,idCargo) values 
-	($idIntegrante,1,$idCargo)");
+    $insertarEnTabla = mysqli_query($enlace,"UPDATE liderazgo SET estado = 2");
     $c++;
 
 }
@@ -80,13 +80,16 @@ echo ' QUERY SUCCESSFULL';
 
 /*
 //EQUIPO LIDERAZGO INICIO
-    $queryLiderazgo = mysqli_query($enlace,"SELECT * from liderazgo WHERE estado = 1");
+    $queryLiderazgo = mysqli_query($enlace,"SELECT * FROM detalle_integrantes WHERE id_equipo = 89 and `status` = 1");
     while($datosLiderazgo = mysqli_fetch_array($queryLiderazgo,MYSQLI_ASSOC)){
-        $queryInsert = mysqli_query($enlace,"insert into detalleintegrantes (idIntegrante,estado,idCargo) values 
-	($idIntegrante,1,$idCargo)");
+        $idIntegrante = $datosLiderazgo["id_integrante"];
+        $idCargo= $datosLiderazgo["id_cargo"];
+      echo  $idIntegrante.'-'.$idCargo.'<br>';
+        $queryInsert = mysqli_query($enlace,"insert into detalle_integrantes (id_integrante,STATUS,id_cargo,id_equipo, id_promocion)  values
+	($idIntegrante,1,$idCargo,112,5)");
     }
 //EQUIPO LIDERAZGO FINAL
-*/
+
 
 
 /*
