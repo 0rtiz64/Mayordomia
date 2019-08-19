@@ -623,9 +623,15 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
 
                         break;
 
+                    case 'SM8.3':
+                        # code...
+                        if($focusSubMenu == "SM8.3"){
+                            $accesoMenus .='<li class="active"><a href="gastosGraduacion.php">  Gastos de Graduación</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="gastosGraduacion.php"> Gastos de Graduación</a></li>';
+                        }
 
-
-
+                        break;
 
                     case 'SM8.0':
                         # code...

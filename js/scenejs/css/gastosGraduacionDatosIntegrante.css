@@ -1,0 +1,53 @@
+
+
+
+    .containerSC{
+        background: white;
+        width: 50%;
+        padding: 2em;
+        border-radius: 10px;
+        height: 5%;
+    }
+h1, img, .price{
+    display: inline-block;
+    margin: 0;
+}
+
+.price{
+    float: right;
+    font-size: 1.7em;
+    color: #008BF5;
+}
+img{
+    cursor: pointer;
+    margin-left: 10px;
+    width: 28px;
+}
+
+.infoSC{
+    display: none;
+}
+
+.itemSC{
+    margin: 2em 0;
+    display: grid;
+    grid-template-columns: 75% auto;
+}
+
+a{
+    text-decoration: none;
+    color: #008BF5;
+}
+
+.subpriceSC {
+    text-align: right;
+    font-size: 1.2em;
+}
+
+.descriptionSC p{
+    margin: 0;
+}
+
+.selected{
+    background-color: #BDBFBC;
+}
