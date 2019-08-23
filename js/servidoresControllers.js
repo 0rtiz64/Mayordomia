@@ -205,7 +205,7 @@ function registrarServidor() {
     var direccionRegister = $("#inputDireccionRegister").val().toUpperCase();
     var referenciaRegister = $("#inputReferenciaRegister").val().toUpperCase();
     var tipoCasaRegister = $("#inputTipoCasaRegister").val().toUpperCase();
-    var transporteRegister = $("#inputTransporteRegister").val().toUpperCase();
+    var transporteRegister = $("#inputTransporteRegister").val();
     var tel1Register = $("#inputTel1Register").val().toUpperCase();
     var tel2Register = $("#inputTel2Register").val().toUpperCase();
     var correoRegister = $("#inputCorreoRegister").val().toUpperCase();
@@ -515,13 +515,14 @@ if(fechaIglesiaRegister.trim().length ==""){
            //SUCCESS
 
             if(datos == 0){
+
                 alertify.success("REGISTRO ACTUALIZADO");
                 cancelarRegister();
                 return false;
             }else{
                 alertify.success("REGISTRO GUARDADO");
                 cancelarRegister();
-                console.log("REGISTRADO "+datos+ " FECHA INPUT:" + fechaConvercionRegister);
+                console.log("REGISTRADO "+datos);
                 return false;
             }
 
@@ -544,6 +545,7 @@ $("#inputIdentidadRegister").on('focusout',function () {
         success: function (datos) {
             var data = eval(datos);
             //SUCCESS INICIO
+            console.log(data[40]);
            if(data[40] == 1){
                $("#inputNombreRegister").val(data[0]).css("border-color", "#CCCCCC");
                document.getElementById('inputGeneroRegister').value=data[1];

@@ -28,7 +28,7 @@ $totalGastos = $datosTotalGastos["valor"];
 
 $saldoPendiente = $totalGastos-$totalAbonado;
 
-if($tipoPago == 3){
+if($tipoPago == 2){
     //PAGO TOTAL
 echo $totalGastos;
 

@@ -218,8 +218,8 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                                             <div class="col-md-6">
                                                 <select  id="inputTransporteRegister" class="form-control" title="¿NECESITA TRANSPORTE?">
                                                     <option value="">¿NECESITA TRANSPORTE?</option>
-                                                    <option value="SI">SI</option>
-                                                    <option value="NO">NO</option>
+                                                    <option value="Si">SI</option>
+                                                    <option value="No">NO</option>
                                                 </select>
                                             </div>
                                         </div>

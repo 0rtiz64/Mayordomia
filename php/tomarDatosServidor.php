@@ -67,6 +67,9 @@ if($confirm>0){
     $horario= $datos["horario"];
 
     $carnet= $datos["carnet"];
+    if($carnet ==""){
+        $carnet ="";
+    }
     $fechaVigencia= $datos["vigencia"];
     if($fechaVigencia == "1970-01-01"){
         $fechaVigencia = "";

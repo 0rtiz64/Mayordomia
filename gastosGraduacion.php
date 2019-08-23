@@ -177,13 +177,13 @@ session_start();
                                 <select  id="inputTipoPago" class="form-control" style="border-radius: 10px;">
                                     <option value="">TIPO DE PAGO</option>
                                     <option value="1">ABONO</option>
-                                    <option value="2">REPOSICION</option>
-                                    <option value="3">PAGO TOTAL</option>
+                                    <option value="3">REPOSICION</option>
+                                    <option value="2">PAGO TOTAL</option>
                                     <option value="4">OTROS</option>
                                 </select>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="divValorPago">
                                 <input id="inputValorPago" type="number" min="0" class="form-control" placeholder="VALOR" title="VALOR" style="border-radius: 10px  ">
                             </div>
 
@@ -191,7 +191,7 @@ session_start();
                   </div>
 
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-block" style="background-color: #343A40;color: #ffffff; border-radius: 10px"><i class="fa fa-dollar"></i> REALIZAR PAGO</button>
+                      <button onclick="realizarPago();" type="button" class="btn btn-block" style="background-color: #343A40;color: #ffffff; border-radius: 10px"><i class="fa fa-dollar"></i> REALIZAR PAGO</button>
                   </div>
               </div>
           </div>

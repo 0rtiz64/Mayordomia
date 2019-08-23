@@ -71,10 +71,13 @@ $fechaInicioMayordomia= $_POST["phpFechaInicioMayordomia"];
 $equipo= $_POST["phpEquipo"];
 $cargo= $_POST["phpCargo"];
 $estado= $_POST["phpEstado"];
+if($estado ==""){
+    $estado = 1;
+}
 $observaciones= $_POST["phpObservaciones"];
 $registradoPor= $_POST["phpRegistradoPor"];
 $fechaentrada = date('Y-m-d  h:i:s');
-$estado = 1;
+
 
 $queryTomarId  = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
 $datosTomarId = mysqli_fetch_array($queryTomarId,MYSQLI_ASSOC);
@@ -103,7 +106,7 @@ f_conversion,f_iglesia,bautismoEs,f_reconciliacion,f_bautismoAguas,f_cobertura,p
 nivelEducativo,profesion,habilidades,
 estadoLaboral,empresa,puesto,telEmpresa,horario,
 carnet,vigencia,f_gestion,f_entrega,nombreCarnet,f_inicioMayordomia,observaciones,
-fecha_registro, status,registradoPor) 
+fecha_registro, status,registradoPor,correlativo) 
 VALUES
 ('".$nombre."','".$identidad."','".$genero."','".$fechaNacimiento."','".$tipoSangre."',
 '".$direccion."','".$referencia."','".$tipoCasa."','".$transporte."','".$tel1."','".$tel2."','".$correo."','".$civil."','".$conyugue."',".$hijos.",
@@ -112,18 +115,20 @@ VALUES
 '".$estadoLaboral."','".$empresa."','".$puesto."','".$telefonoEmpresa."','".$horario."',
 '".$carnet."','".$fechaVigencia."','".$fechaGestion."','".$fechaEntrega."','".$nombreCarnet."','".$fechaInicioMayordomia."','".$observaciones."',
 '".$fechaentrada."',
-1,'".$registradoPor."')");
+1,'".$registradoPor."',".$corrNew.")");
 
 
 
-
+    $queryTomarId  = mysqli_query($enlace,"SELECT * from servidores where num_identidad = '".$identidad."'");
+    $datosTomarId = mysqli_fetch_array($queryTomarId,MYSQLI_ASSOC);
+    $idServidor = $datosTomarId["idServidor"];
 $InsertarEquipo = mysqli_query($enlace,"INSERT INTO serviciodetalle 
 (idServidor,idServicioEquipo,idServicioCargo,fecha,estado)
 VALUES 
-(".$idServidor.",".$equipo.",".$cargo.",'".$fechaentrada."',".$estado.")
+(".$idServidor.",".$equipo.",".$cargo.",'".$fechaentrada."',".$estado.");
 ");
 
-echo $corrNew;
+echo "SERVIDOR: ".$idServidor." EQUIPO".$equipo." CARGO".$cargo." FECHA".$fechaentrada." ESTADO".$estado;
 
 
 }
