@@ -118,9 +118,9 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                 <?php
                 include 'menu.php';
-                $permisos = $_SESSION['area'];
-                $focusMenu = "M0";
-                $focusSubMenu = "SM0.2";
+                $permisos = $_SESSION[''];
+                $focusMenu = "";
+                $focusSubMenu = "";
                 menuSubmenu($permisos,$focusMenu,$focusSubMenu);
                 ?>
 

@@ -731,9 +731,9 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                     case 'SM0.2':
                         # code...
                         if($focusSubMenu == "SM0.2"){
-                            $accesoMenus .='<li class="active"><a href="cambiosServidores.php"> Cambios</a></li>';
+                            $accesoMenus .='<li class="active"><a href="php/ExcelGeneralServidores.php"> Excel General</a></li>';
                         }else{
-                            $accesoMenus .='<li ><a href="cambiosServidores.php"> Cambios</a></li>';
+                            $accesoMenus .='<li ><a href="php/ExcelGeneralServidores.php"> Excel General</a></li>';
                         }
 
                         break;
