@@ -17,7 +17,8 @@ if($confirm>0){
     $datos = mysqli_fetch_array($query,MYSQLI_ASSOC);
 
     $id= $datos["idServidor"];
-    $nombre= $datos["nombre_integrante"];
+    $nombre1= $datos["nombre_integrante"];
+    $nombre = utf8_encode($nombre1);
     $genero= $datos["sexo"];
     $fechaNacimiento= $datos["fecha_cumple"];
     $tipoSangre= $datos["tipoSangre"];

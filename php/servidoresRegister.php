@@ -7,7 +7,8 @@
  */
 include '../gold/enlace.php';
 
-$nombre = $_POST["phpNombre"];
+$nombre1 = $_POST["phpNombre"];
+$nombre = utf8_decode($nombre1);
 $identidad= $_POST["phpIdentidad"];
 $genero = $_POST["phpGenero"];
 $fechaNacimiento = $_POST["phpFechaNacimiento"];
