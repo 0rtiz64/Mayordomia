@@ -93,7 +93,72 @@ $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('AS3', 'REGISTRADO POR')
     ->setCellValue('AT3', 'CORRELATIVO');
 
+function obtenerMiFecha($fecha){
 
+    if($fecha == "1970-01-01" || $fecha == "" ){
+        $fCompleta = "";
+    }else{
+
+
+        $dia = substr($fecha,8,2);
+        $mes = substr($fecha,5,2);
+        $aaa = substr($fecha,0,4);
+        $miMes="";
+        switch ($mes){
+            case 01:
+                $miMes = "ENERO";
+                break;
+
+            case 02:
+                $miMes = "FEBRERO";
+                break;
+
+            case 03:
+                $miMes = "MARZO";
+                break;
+
+            case 04:
+                $miMes = "ABRIL";
+                break;
+
+            case 05:
+                $miMes = "MAYO";
+                break;
+
+            case 06:
+                $miMes = "JUNIO";
+                break;
+
+            case 07:
+                $miMes = "JULIO";
+                break;
+
+            case "08":
+                $miMes = "AGOSTO";
+                break;
+
+            case "09":
+                $miMes = "SEPTIEMBRE";
+                break;
+
+            case 10:
+                $miMes = "OCTUBRE";
+                break;
+
+            case 11:
+                $miMes = "NOVIEMBRE";
+                break;
+
+            case 12:
+                $miMes = "DICIEMBRE";
+                break;
+        }
+
+        $fCompleta = $dia . "-" . $miMes . "-" . $aaa;
+    }
+
+    return $fCompleta;
+}
 
 $query = mysqli_query($enlace, "SELECT * from servidores 
 GROUP BY servidores.nombre_integrante ASC");
@@ -112,73 +177,16 @@ WHERE serviciodetalle.idServidor =  $idServidor");
 
     $objPHPExcel->getActiveSheet()->getCell("B$contador")->setValueExplicit($datosFinal["num_identidad"], PHPExcel_Cell_DataType::TYPE_STRING);
 
-    //FECHA INICIO
-    $fecha = $datosFinal["fecha_cumple"];
-
-    $dia = substr($fecha, 8, 2);
-    $mes = substr($fecha, 5, 2);
-    $aaa = substr($fecha, 0, 4);
-
-    switch ($mes) {
-        case 01:
-            $miMes = "ENERO";
-            break;
-
-        case 02:
-            $miMes = "FEBRERO";
-            break;
-
-        case 03:
-            $miMes = "MARZO";
-            break;
-
-        case 04:
-            $miMes = "ABRIL";
-            break;
-
-        case 05:
-            $miMes = "MAYO";
-            break;
-
-        case 06:
-            $miMes = "JUNIO";
-            break;
-
-        case 07:
-            $miMes = "JULIO";
-            break;
-
-        case "08":
-            $miMes = "AGOSTO";
-            break;
-
-        case "09":
-            $miMes = "SEPTIEMBRE";
-            break;
-
-        case 10:
-            $miMes = "OCTUBRE";
-            break;
-
-        case 11:
-            $miMes = "NOVIEMBRE";
-            break;
-
-        case 12:
-            $miMes = "DICIEMBRE";
-            break;
-    }
 
 
-    $fCompleta = $dia . "-" . $miMes . "-" . $aaa;
-    //FECHA FINAL
+
 
 
     $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue("A$contador", $contador2)
         ->setCellValue("C$contador", utf8_encode($datosFinal["nombre_integrante"]))
         ->setCellValue("D$contador", $datosFinal["sexo"])
-        ->setCellValue("E$contador", $fCompleta)
+        ->setCellValue("E$contador", obtenerMiFecha($datosFinal["fecha_cumple"]))
         ->setCellValue("F$contador", $datosFinal["tipoSangre"])
 
         ->setCellValue("G$contador", $datosFinal["direccion"])
@@ -192,11 +200,11 @@ WHERE serviciodetalle.idServidor =  $idServidor");
         ->setCellValue("O$contador", $datosFinal["conyugue"])
         ->setCellValue("P$contador", $datosFinal["hijos"])
 
-        ->setCellValue("Q$contador", $datosFinal["f_conversion"])
-        ->setCellValue("R$contador", $datosFinal["f_iglesia"])
+        ->setCellValue("Q$contador", obtenerMiFecha($datosFinal["f_conversion"]))
+        ->setCellValue("R$contador", obtenerMiFecha($datosFinal["f_iglesia"]))
         ->setCellValue("S$contador", $datosFinal["bautismoEs"])
-        ->setCellValue("T$contador", $datosFinal["f_reconciliacion"])
-        ->setCellValue("V$contador", $datosFinal["f_bautismoAguas"])
+        ->setCellValue("T$contador", obtenerMiFecha($datosFinal["f_reconciliacion"]))
+        ->setCellValue("V$contador", obtenerMiFecha($datosFinal["f_bautismoAguas"]))
         //->setCellValue("U$contador", $datosFinal["f_cobertura"])
         ->setCellValue("W$contador", $datosFinal["promo_cordero"])
         ->setCellValue("X$contador", $datosFinal["areas"])
@@ -214,9 +222,9 @@ WHERE serviciodetalle.idServidor =  $idServidor");
         ->setCellValue("AH$contador", $datosFinal["horario"])
 
         ->setCellValue("AI$contador", $datosFinal["carnet"])
-        ->setCellValue("AJ$contador", $datosFinal["vigencia"])
-        ->setCellValue("AK$contador", $datosFinal["f_gestion"])
-        ->setCellValue("AL$contador", $datosFinal["f_entrega"])
+        ->setCellValue("AJ$contador", obtenerMiFecha($datosFinal["vigencia"]))
+        ->setCellValue("AK$contador",obtenerMiFecha( $datosFinal["f_gestion"]))
+        ->setCellValue("AL$contador", obtenerMiFecha($datosFinal["f_entrega"]))
         ->setCellValue("AM$contador", $datosFinal["nombreCarnet"])
         ->setCellValue("AN$contador", $datosFinal["f_inicioMayordomia"])
         ->setCellValue("AO$contador", $datosEquipo["nombreEquipo"])
@@ -231,6 +239,7 @@ WHERE serviciodetalle.idServidor =  $idServidor");
 
 
 //FIN DATOS
+
 
 
 $objPHPExcel->getActiveSheet()->setTitle('LISTADO GENERAL DE SERVIDORES');
