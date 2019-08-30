@@ -31,6 +31,7 @@ function openModalPago(){
 $('#modalPago').on('hidden.bs.modal', function (e) {
     $("#inputTipoPago").val("");
     $("#inputValorPago").val("");
+
     $("#divValorPago").removeClass('has-error has-success');
     $("#divTipoPago").removeClass('has-error has-success');
     $("#inputValorPago").removeClass('Readonly').removeAttr( "readonly");
@@ -56,9 +57,9 @@ function buscarDatos() {
                 $("#resultados").fadeOut(400).fadeIn(400).html(datos);
                 var talla =  document.getElementById("tallaDetalle").value;
                 $("#togaTallaSelect").val(talla);
+                $("#togaTallaSelectModalPago").val(talla);
 
             }
-
         }
     });
     return false;
@@ -170,6 +171,7 @@ function realizarPago() {
                 });
                 $("#inputValorPago").val("");
                 $("#inputTipoPago").val("");
+
                 $("#inputValorPago").removeClass('Readonly').removeAttr( "readonly");
             }else{
                 $("#resultados").fadeOut(400).fadeIn(400).html(datos);
@@ -181,6 +183,14 @@ function realizarPago() {
                 $('#modalPago').modal('toggle');
             }
 
+            return false;
+        },error: function () {
+            swal({
+                title: "ERROR",
+                text: "¡SIN CONEXION CON EL SERVIDOR!",
+                icon: "warning",
+                dangerMode: true
+            });
             return false;
         }
     });
@@ -201,6 +211,29 @@ function cambioTalla() {
             //SUCCESS
             alertify.success("TALLA ACTUALIZADA");
             console.log(datos);
+            $("#togaTallaSelectModalPago").val(nuevaTalla);
+            return false;
+        }
+    });
+}
+
+function cambioTallaModalPago() {
+    var idIntegrante = $("#idIntegranteInput").val();
+    var nuevaTalla = document.getElementById('togaTallaSelectModalPago').value;
+    var url = 'php/guardarNuevaTalla.php';
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdIntegrante: idIntegrante,
+            phpNuevaTalla: nuevaTalla
+        },
+        success: function(datos){
+            //SUCCESS
+            alertify.success("TALLA ACTUALIZADA");
+            document.getElementById('togaTallaSelect').value= nuevaTalla;
+            console.log(datos);
+
             return false;
         }
     });
@@ -218,7 +251,7 @@ function imprimirRecibo() {
     if(idDetallePago.trim().length==""){
         swal({
             title: "ERROR",
-            text: "¡DEBES COLOCAR UN RECIBO EN COLA!",
+            text: "¡DEBES SELECCIONAR UN RECIBO!",
             icon: "warning",
             dangerMode: true
         });

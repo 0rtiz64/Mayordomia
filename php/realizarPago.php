@@ -10,7 +10,25 @@ $idIntegrante = $_POST["phpIdIntegrante"];
 $tipoPago= $_POST["phpTipoPago"];
 $valorPago= $_POST["phpValor"];
 $fechaentrada = date('Y-m-d  h:i:s');
-$numeroRecibo =0;
+
+
+//CREAR NUMERO DE RECIBO INICIO
+
+
+
+    $queryTomarCorrelativo = mysqli_query($enlace,"SELECT max(numeroRecibo+1 ) AS numeroNew FROM detallepagos
+INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
+where  promociones.`status` = 1");
+    $datosTomarCorrelativo = mysqli_fetch_array($queryTomarCorrelativo,MYSQLI_ASSOC);
+    $numeroRecibo = intval($datosTomarCorrelativo["numeroNew"]);
+
+
+
+
+$ultimoCorrelativo = mysqli_query($enlace,"SELECT max(correlativo +1 ) AS numeroNew FROM integrantes ");
+$datoUltimoCorrelativo = mysqli_fetch_array($ultimoCorrelativo,MYSQLI_ASSOC);
+$corrNew= $datoUltimoCorrelativo["numeroNew"];
+//CREAR NUMERO DE RECIBO FINAL
 
 
 
@@ -98,11 +116,12 @@ where promociones.`status`=1");
                                              </a>
                                              <a title="VER DETALLES" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false"> <img style="margin-top: -1%" src="myfiles/img/downArrow.gif"></a>
                                             
-                                                 <a style="font-size: xx-large;float: right; color: #018BF5; margin-right: 2%;">
+                                                 <a style="font-size: xx-large;float: right; color: #018BF5; margin-right: 7%;">
                                                  L. '.$saldoPendiente.'
-                                             </a>
-                                            
+                                             </a>    
+                                             
                                             <a onclick="cerrarCard();" '.$style.' title="CERRAR"><i class="fa fa-times-circle"></i></a>
+                                             <span class="label label-danger pull-right" style="border-radius: 10px;font-size: xx-small; margin-right: -8%;margin-top: -1%">SALDO PENDIENTE</span>
                                          </h4>
                                      </div>
                                      <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">

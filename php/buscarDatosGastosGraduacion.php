@@ -62,11 +62,12 @@ if($saldoPendiente  ==0){
                                              </a>
                                              <a title="VER DETALLES" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" aria-expanded="false"> <img style="margin-top: -1%" src="myfiles/img/downArrow.gif"></a>
                                             
-                                                 <a style="font-size: xx-large;float: right; color: #018BF5; margin-right: 2%;">
+                                                 <a style="font-size: xx-large;float: right; color: #018BF5; margin-right: 7%;">
                                                  L. '.$saldoPendiente.'
-                                             </a>
-                                            
+                                             </a>    
+                                             
                                             <a onclick="cerrarCard();" '.$style.' title="CERRAR"><i class="fa fa-times-circle"></i></a>
+                                             <span class="label label-danger pull-right" style="border-radius: 10px;font-size: xx-small; margin-right: -8%;margin-top: -1%">SALDO PENDIENTE</span>
                                          </h4>
                                      </div>
                                      <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">

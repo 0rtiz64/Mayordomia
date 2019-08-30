@@ -173,18 +173,31 @@ session_start();
                   <div class="modal-body">
 
                         <div class="row">
-                            <div class="col-md-6" id="divTipoPago">
+                            <div class="col-md-6 form-group" id="divTipoPago">
                                 <select  id="inputTipoPago" class="form-control" style="border-radius: 10px;">
                                     <option value="">TIPO DE PAGO</option>
-                                    <option value="1">ABONO</option>
-                                    <option value="3">REPOSICION</option>
+                                    <option value="1">ABONO GASTOS DE GRADUACION</option>
+                                    <option value="3">EMISION DE DIPLOMA</option>
                                     <option value="2">PAGO TOTAL</option>
                                     <option value="4">OTROS</option>
                                 </select>
                             </div>
 
-                            <div class="col-md-6" id="divValorPago">
+                            <div class="col-md-6 form-group" id="divValorPago">
                                 <input id="inputValorPago" type="number" min="0" class="form-control" placeholder="VALOR" title="VALOR" style="border-radius: 10px  ">
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <div class="input-group" style="border-radius: 10px">
+                                    <select class="form-control" id="togaTallaSelectModalPago" style="color:GrayText;border-top-left-radius:10px;border-bottom-left-radius: 10px">
+                                        <option style="border-radius: 10px" value="">ELIGE TU TALLA</option>
+                                        <option style="border-radius: 10px"  value="S">S</option>
+                                        <option style="border-radius: 10px" value="L">L</option>
+                                        <option style="border-radius: 10px" value="M">M</option>
+                                    </select>
+                                    <span id="inputGuardarNuevaTalla" style="background-color: #343A40; color: white;border-top-right-radius:10px;border-bottom-right-radius: 10px" class="input-group-addon" onclick="cambioTallaModalPago();"><i class="fa fa-save"></i></span>
+
+                                </div>
                             </div>
 
                         </div>
