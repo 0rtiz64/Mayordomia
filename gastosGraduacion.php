@@ -145,12 +145,15 @@ session_start();
                   <div class="row">
                       <h1 class="h1">GASTOS DE GRADUACION</h1>
                       <div class="col-md-12">
-                        <div class="col-md-12 form-group">
+                        <div class="col-md-6">
                             <input type="password" class="form-control" placeholder="LEER TAG" title="LEER TAG" style="border-radius: 10px;" id="tagDatosInput" autofocus>
                             <input type="submit" class="btn btn-success collapse" onclick="buscarDatos(); ">
                         </div>
+                          <div class="col-md-6 ">
+                              <input type="text" class="form-control" placeholder="BUSQUEDA POR NOMBRE" style="border-radius: 10px;text-transform: uppercase" id="inputBusquedaNombreGastosGraduacion">
+                          </div>
 
-                         <div class=" form-group col-md-12 collapse" id="resultados">
+                         <div class="col-md-12 collapse" id="resultados" style="margin-top: 1%">
 
                          </div>
 

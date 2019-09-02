@@ -66,6 +66,43 @@ function buscarDatos() {
 
 }
 
+$("#inputBusquedaNombreGastosGraduacion").on('keyup',function () {
+ var nombre =$("#inputBusquedaNombreGastosGraduacion").val().toUpperCase();
+ var url= 'php/buscarGastosGraduacionPorNombre.php';
+
+ if(nombre.trim().length  ==""){
+     $("#tagDatosInput").val("");
+     $("#resultados").fadeOut(400);
+
+     return false;
+ }
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:'phpNombre='+nombre,
+        success: function(datos){
+            //SUCCESS
+            if(datos == 2){
+                $("#tagDatosInput").val("");
+                swal("TAG INVALIDO", "NO ENCONTRADO O NO PERTENECE A ESTA PROMOCION", "error");
+                $("#resultados").fadeOut(400);
+                return false;
+            }else{
+                $("#tagDatosInput").val("");
+                $("#resultados").fadeIn(400).html(datos);
+                var talla =  document.getElementById("tallaDetalle").value;
+                $("#togaTallaSelect").val(talla);
+                $("#togaTallaSelectModalPago").val(talla);
+
+            }
+        }
+    });
+});
+
+$("#tagDatosInput").on('focusin',function () {
+    $("#inputBusquedaNombreGastosGraduacion").val("");
+});
+
 $("#inputValorPago").on('keyup',function () {
    var idIntegrante = $("#idIntegranteInput").val();
    var valor= $("#inputValorPago").val();
