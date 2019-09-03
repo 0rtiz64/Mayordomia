@@ -72,9 +72,33 @@ if($valorPago > $saldoPendiente){
     $queryPromocion = mysqli_query($enlace,"SELECT * from promociones WHERE `status` = 1");
     $datosPromocion = mysqli_fetch_array($queryPromocion,MYSQLI_ASSOC);
     $idPromocion = $datosPromocion["idpromocion"];
+
+
+    //SALDO ANTERIOR Y SALDO ACTUAL INICIO
+    $queryTotalAbonadoParaInsert = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
+INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
+WHERE idIntegrante=$idIntegrante and promociones.`status`= 1");
+    $datosTotalAbonadoParaInsert= mysqli_fetch_array($queryTotalAbonadoParaInsert,MYSQLI_ASSOC);
+    $totalAbonadoParaInsert = $datosTotalAbonadoParaInsert["totalAbonado"];
+
+    if($totalAbonadoParaInsert ==""){
+        $totalAbonadoParaInsert =0;
+    }
+
+    $queryTotalGastosParaInsert = mysqli_query($enlace,"SELECT * from pagospromocion 
+INNER JOIN promociones on pagospromocion.idPromocion = promociones.idpromocion
+where promociones.`status`=1");
+    $datosTotalGastosParaInsert = mysqli_fetch_array($queryTotalGastosParaInsert,MYSQLI_ASSOC);
+    $totalGastosParaInsert = $datosTotalGastosParaInsert["valor"];
+
+    $saldoPendienteParaInsert = $totalGastosParaInsert-$totalAbonadoParaInsert;
+    $saldoActualParaInsert = $saldoPendienteParaInsert-$valorPago;
+
+    //SALDO ANTERIOR Y SALDO ACTUAL FINAL
+
     $queryInsertarPago = mysqli_query($enlace,"INSERT INTO detallepagos(detallepagos.idIntegrante,detallepagos.idTipoPago,
-detallepagos.valor,detallepagos.numeroRecibo,detallepagos.fechaPago,detallepagos.idPromocion) 
-VALUES ($idIntegrante,$tipoPago,$valorPago,$numeroRecibo,'".$fechaentrada."',$idPromocion);");
+detallepagos.valor,detallepagos.numeroRecibo,detallepagos.fechaPago,detallepagos.idPromocion,saldoAnt,saldoAct) 
+VALUES ($idIntegrante,$tipoPago,$valorPago,$numeroRecibo,'".$fechaentrada."',$idPromocion,$saldoPendienteParaInsert,$saldoActualParaInsert);");
 
 
 //TARJETA INICIO

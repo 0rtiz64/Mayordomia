@@ -279,11 +279,12 @@ function cambioTallaModalPago() {
 function enviarAColaPrint(idDetallePago,fecha) {
     $("#datoReciboAImprimir").html("IMPRIMIR RECIBO - "+fecha);
     $("#idDetallePagoEnCola").val(idDetallePago);
-    console.log(idDetallePago);
+
 }
 
 function imprimirRecibo() {
     var idDetallePago = $("#idDetallePagoEnCola").val();
+    var url = 'php/buscarDatosParaRecibo.php';
 
     if(idDetallePago.trim().length==""){
         swal({
@@ -301,6 +302,39 @@ function imprimirRecibo() {
             dangerMode: true
         });
     }
+
+    //CREAR AJAX PARA CONSULTAR DATOS DEL RECIBO
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdDetallePago: idDetallePago
+
+        },
+        success: function(datos){
+           //ENVIAR A IMPRIMIR;
+            var data = eval(datos);
+            console.log("PROMOCION: "+data[0]+" FECHA: "+data[1]+" NUMERO RECIBO: "+data[2]+" NOMBRE: "+data[3]+" EXPEDIENTE: "+data[4]+" EQUIPO"+data[5]+" VALOR: "+data[6]+" TIPO PAGO: "+data[7]+" SALDO ANTERIOR: "+data[8]+" SALDO ACTUAL: "+data[9]);
+            var promocion = data[0];
+            var fecha = data[1];
+            var numRecibo = data[2];
+            var nombre = data[3];
+            var expediente = data[4];
+            var equipo = data[5];
+            var valor = data[6];
+            var tipo = data[7];
+            var saldoAnterior = data[8];
+            var saldoActual = data[9];
+            var urlenviar = 'php/reciboGastosGraduacion.php?promocion='+promocion+'&fecha='+fecha+'&numRecibo='+numRecibo+'&nombre='+nombre+'&expediente='+expediente+'&equipo='+equipo+'&valor='+valor+'&tipo='+tipo+'&anterior='+saldoAnterior+'&actual='+saldoActual;
+            enviarImprimir(urlenviar);
+            return false;
+        }
+    });
+}
+
+function enviarImprimir(urlRecibida) {
+    var pop = window.open(urlRecibida);
+    pop.print();
 }
 
 

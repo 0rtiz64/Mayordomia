@@ -606,9 +606,9 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                     case 'SM8.1':
                         # code...
                         if($focusSubMenu == "SM8.1"){
-                            $accesoMenus .='<li class="active"><a href="tagsGraduacion.php">  Tags Graduacion</a></li>';
+                            $accesoMenus .='<li class="active"><a href="tagsGraduacion.php">  Tags Graduación</a></li>';
                         }else{
-                            $accesoMenus .='<li ><a href="tagsGraduacion.php"> Tags Graduacion</a></li>';
+                            $accesoMenus .='<li ><a href="tagsGraduacion.php"> Tags Graduación</a></li>';
                         }
 
                         break;
@@ -629,6 +629,16 @@ for ($ff=0; $ff < count($miarray) ; $ff++) {
                             $accesoMenus .='<li class="active"><a href="gastosGraduacion.php">  Gastos de Graduación</a></li>';
                         }else{
                             $accesoMenus .='<li ><a href="gastosGraduacion.php"> Gastos de Graduación</a></li>';
+                        }
+
+                        break;
+
+                    case 'SM8.4':
+                        # code...
+                        if($focusSubMenu == "SM8.4"){
+                            $accesoMenus .='<li class="active"><a href="cierreGastos.php"> Cierre Gastos Graduación</a></li>';
+                        }else{
+                            $accesoMenus .='<li ><a href="cierreGastos.php">Cierre Gastos Graduación</a></li>';
                         }
 
                         break;
