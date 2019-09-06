@@ -171,6 +171,8 @@ function realizarPago() {
     var idIntegrante = $("#idIntegranteInput").val();
     var tipoPago = $("#inputTipoPago").val();
     var valor = $("#inputValorPago").val();
+    var nombreServidor = $("#nombreServidor").val();
+    var equipoServicio = $("#equipoServicio").val();
     var url = 'php/realizarPago.php';
     if(tipoPago.trim().length==""){
         $("#divTipoPago").addClass('has-error');
@@ -195,7 +197,9 @@ function realizarPago() {
         data:{
             phpIdIntegrante: idIntegrante,
             phpValor: valor,
-            phpTipoPago: tipoPago
+            phpTipoPago: tipoPago,
+            phpNombreServidor: nombreServidor,
+            phpEquipoServicio: equipoServicio
         },
         success: function(datos){
             //SUCCESS
@@ -218,6 +222,8 @@ function realizarPago() {
                 $("#inputValorPago").val("");
                 $("#inputValorPago").removeClass('Readonly').removeAttr( "readonly");
                 $('#modalPago').modal('toggle');
+
+                imprimirEnPago();
             }
 
             return false;
@@ -228,6 +234,58 @@ function realizarPago() {
                 icon: "warning",
                 dangerMode: true
             });
+            return false;
+        }
+    });
+}
+
+function imprimirEnPago() {
+    var idPago = $("#idDetalleReciboPago").val();
+    var url = 'php/buscarDatosParaRecibo.php';
+
+    if(idPago.trim().length==""){
+        swal({
+            title: "ERROR",
+            text: "¡DEBES SELECCIONAR UN RECIBO!",
+            icon: "warning",
+            dangerMode: true
+        });
+        return false;
+    }else{
+        swal({
+            title: "IMPRIMIENDO",
+            text: "¡TRABAJANDO EN IMPRESION!",
+            icon: "success",
+            dangerMode: true
+        });
+    }
+
+    //CREAR AJAX PARA CONSULTAR DATOS DEL RECIBO
+    $.ajax({
+        type:'POST',
+        url:url,
+        data:{
+            phpIdDetallePago: idPago
+
+        },
+        success: function(datos){
+            //ENVIAR A IMPRIMIR;
+            var data = eval(datos);
+            console.log("PROMOCION: "+data[0]+" FECHA: "+data[1]+" NUMERO RECIBO: "+data[2]+" NOMBRE: "+data[3]+" EXPEDIENTE: "+data[4]+" EQUIPO"+data[5]+" VALOR: "+data[6]+" TIPO PAGO: "+data[7]+" SALDO ANTERIOR: "+data[8]+" SALDO ACTUAL: "+data[9]);
+            var promocion = data[0];
+            var fecha = data[1];
+            var numRecibo = data[2];
+            var nombre = data[3];
+            var expediente = data[4];
+            var equipo = data[5];
+            var valor = data[6];
+            var tipo = data[7];
+            var saldoAnterior = data[8];
+            var saldoActual = data[9];
+            var nombreServidor = data[10];
+            var equipoServicio = data[11];
+            var urlenviar = 'php/reciboGastosGraduacion.php?promocion='+promocion+'&fecha='+fecha+'&numRecibo='+numRecibo+'&nombre='+nombre+'&expediente='+expediente+'&equipo='+equipo+'&valor='+valor+'&tipo='+tipo+'&anterior='+saldoAnterior+'&actual='+saldoActual+'&nombreServidor='+nombreServidor+'&equipoServicio='+equipoServicio;
+            enviarImprimir(urlenviar);
             return false;
         }
     });
@@ -325,7 +383,9 @@ function imprimirRecibo() {
             var tipo = data[7];
             var saldoAnterior = data[8];
             var saldoActual = data[9];
-            var urlenviar = 'php/reciboGastosGraduacion.php?promocion='+promocion+'&fecha='+fecha+'&numRecibo='+numRecibo+'&nombre='+nombre+'&expediente='+expediente+'&equipo='+equipo+'&valor='+valor+'&tipo='+tipo+'&anterior='+saldoAnterior+'&actual='+saldoActual;
+            var nombreServidor = data[10];
+            var equipoServicio = data[11];
+            var urlenviar = 'php/reciboGastosGraduacion.php?promocion='+promocion+'&fecha='+fecha+'&numRecibo='+numRecibo+'&nombre='+nombre+'&expediente='+expediente+'&equipo='+equipo+'&valor='+valor+'&tipo='+tipo+'&anterior='+saldoAnterior+'&actual='+saldoActual+'&nombreServidor='+nombreServidor+'&equipoServicio='+equipoServicio;
             enviarImprimir(urlenviar);
             return false;
         }
@@ -337,4 +397,51 @@ function enviarImprimir(urlRecibida) {
     pop.print();
 }
 
+function habilitarAnularButton() {
+    $(".fakeInput").hide();
+    $(".anularInput").fadeIn(300);
+}
+
+function anularReciboOpenModal(idDetalleRecibo) {
+    $("#idDetallePagoAutorizarAnulacion").val(idDetalleRecibo);
+    $('#modalPasswordAnular').modal({
+        show:300,
+        backdrop:'static'
+    });//FIN ABRIR MODAL
+
+}
+
+function autorizarAnulacion() {
+    var idDetalle = $("#idDetallePagoAutorizarAnulacion").val();
+    var input = $("#contraseñaAAutorizar").val();
+    var url = 'php/anularPago.php';
+    if(input == "99870707"){
+       var idIntegrante = $("#idIntegranteInput").val();
+        $.ajax({
+            type:'POST',
+            url:url,
+            data:{
+                phpIdDetallePago: idDetalle,
+                phpIdIntegrante: idIntegrante
+
+            },
+            success: function(datos){
+                //SUCCESS
+                    $("#tagDatosInput").val("");
+                    $("#resultados").fadeOut(400).fadeIn(400).html(datos);
+                    var talla =  document.getElementById("tallaDetalle").value;
+                    $("#togaTallaSelect").val(talla);
+                    $("#togaTallaSelectModalPago").val(talla);
+                $('#modalPasswordAnular').modal('toggle');
+                $("#contraseñaAAutorizar").val("");
+            }
+        });
+
+    }else{
+        $("#contraseñaAAutorizar").val("");
+        swal("CONTRASEÑA INVALIDA", "NO ES POSIBLE ANULAR EL RECIBO", "error");
+        return false;
+    }
+
+}
 

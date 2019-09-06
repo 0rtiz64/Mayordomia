@@ -18,6 +18,8 @@
 			$email1 =  str_replace("'","",$email);
 			//$pass = "1708199200**..";
 			$pass = $_POST['password'];
+			$nombreServidor = $_POST['nombreServidor'];
+			$equipoGG = $_POST['equipoGG'];
 			//$pass1 =  str_replace("'","",$pass);
 			$pass1 = encriptar($pass);
 $sql="SELECT idAccesos,nombre,permisos FROM accesos WHERE idAccesos=".$email." AND contra='".$pass1."' AND estado=1";
@@ -41,6 +43,8 @@ $sql="SELECT idAccesos,nombre,permisos FROM accesos WHERE idAccesos=".$email." A
 						$_SESSION['num_acceso']=$num_acceso;
 						$_SESSION['nombre'] = $nombre;
 						$_SESSION['area'] = $area;
+						$_SESSION['nombreServidor'] = $nombreServidor;
+						$_SESSION['equipoGG'] = $equipoGG;
 						$ubicacion = Ubicar($area);
 						echo $ubicacion;
 						//echo " Nombre de usuario: ".$nombre." Y contraseña es :".$nombre;

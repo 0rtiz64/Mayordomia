@@ -108,6 +108,8 @@ session_start();
                   <li class="dropdown settings">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                           <?php  echo $_SESSION['nombre']; ?><i class="fa fa-angle-down"></i>
+                          <input type="hidden" id="nombreServidor" value=" <?php echo  $_SESSION["nombreServidor"]?>">
+                          <input type="hidden" id="equipoServicio" value=" <?php echo  $_SESSION["equipoGG"]?>">
                       </a>
                       <ul class="dropdown-menu animated fadeInDown">
                           <li>
@@ -143,7 +145,7 @@ session_start();
           <section class="main-content-wrapper">
               <section id="main-content">
                   <div class="row">
-                      <h1 class="h1">GASTOS DE GRADUACION</h1>
+                      <h1 class="h1">GASTOS DE GRADUACION  </h1>
                       <div class="col-md-12">
                         <div class="col-md-6">
                             <input type="password" class="form-control" placeholder="LEER TAG" title="LEER TAG" style="border-radius: 10px;" id="tagDatosInput" autofocus>
@@ -179,10 +181,15 @@ session_start();
                             <div class="col-md-6 form-group" id="divTipoPago">
                                 <select  id="inputTipoPago" class="form-control" style="border-radius: 10px;">
                                     <option value="">TIPO DE PAGO</option>
-                                    <option value="1">ABONO GASTOS DE GRADUACION</option>
-                                    <option value="3">EMISION DE DIPLOMA</option>
-                                    <option value="2">PAGO TOTAL</option>
-                                    <option value="4">OTROS</option>
+                                    <?php
+                                    include 'gold/enlace.php';
+                                    $queryTipoPagos  = mysqli_query($enlace,"SELECT * from tipopago WHERE estado =1");
+                                    while ($datosTipoPago = mysqli_fetch_array($queryTipoPagos,MYSQLI_ASSOC)){
+                                        echo '<option value="'.$datosTipoPago["idTipoPago"].'">'.$datosTipoPago["nombre"].'</option>';
+                                    }
+                                    ?>
+
+
                                 </select>
                             </div>
 
@@ -213,6 +220,27 @@ session_start();
           </div>
       </div>
       <!--MODAL PAGO FINAL-->
+
+      <!--MODAL CONTRASEÑA INICIO-->
+      <div class="modal fade" id="modalPasswordAnular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+              <div class="modal-content ">
+                  <div class="modal-header" style="background-color: #ffffff " align="center">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 style="color:gray ">ACCION BLOQUEADA</h4>
+                  </div>
+                  <div class="modal-body">
+                      <input type="password"class="form-control" id="contraseñaAAutorizar" placeholder="INGRESA CONTRASEÑA" style="border-radius: 10px">
+                      <input type="hidden" id="idDetallePagoAutorizarAnulacion">
+                  </div>
+
+                  <div class="modal-footer">
+                      <button onclick="autorizarAnulacion()" type="button" class="btn btn-block" style="background-color: #343A40;color: #ffffff; border-radius: 10px"><i class="fa fa-lock"></i> AUTORIZAR</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--MODAL CONTRASEÑA FINAL-->
 
   </section>
   <!--Global JS-->

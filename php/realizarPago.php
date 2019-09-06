@@ -9,7 +9,11 @@ include '../gold/enlace.php';
 $idIntegrante = $_POST["phpIdIntegrante"];
 $tipoPago= $_POST["phpTipoPago"];
 $valorPago= $_POST["phpValor"];
+$nombreServidor= $_POST["phpNombreServidor"];
+$equipoServicio= $_POST["phpEquipoServicio"];
 $fechaentrada = date('Y-m-d  h:i:s');
+
+
 
 
 //CREAR NUMERO DE RECIBO INICIO
@@ -77,7 +81,7 @@ if($valorPago > $saldoPendiente){
     //SALDO ANTERIOR Y SALDO ACTUAL INICIO
     $queryTotalAbonadoParaInsert = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
-WHERE idIntegrante=$idIntegrante and promociones.`status`= 1");
+WHERE idIntegrante=$idIntegrante and promociones.`status`= 1 and detallepagos.anulado =0");
     $datosTotalAbonadoParaInsert= mysqli_fetch_array($queryTotalAbonadoParaInsert,MYSQLI_ASSOC);
     $totalAbonadoParaInsert = $datosTotalAbonadoParaInsert["totalAbonado"];
 
@@ -97,9 +101,15 @@ where promociones.`status`=1");
     //SALDO ANTERIOR Y SALDO ACTUAL FINAL
 
     $queryInsertarPago = mysqli_query($enlace,"INSERT INTO detallepagos(detallepagos.idIntegrante,detallepagos.idTipoPago,
-detallepagos.valor,detallepagos.numeroRecibo,detallepagos.fechaPago,detallepagos.idPromocion,saldoAnt,saldoAct) 
-VALUES ($idIntegrante,$tipoPago,$valorPago,$numeroRecibo,'".$fechaentrada."',$idPromocion,$saldoPendienteParaInsert,$saldoActualParaInsert);");
+detallepagos.valor,detallepagos.numeroRecibo,detallepagos.fechaPago,detallepagos.idPromocion,saldoAnt,saldoAct,anulado,nombreServidor,equipoServicio) 
+VALUES ($idIntegrante,$tipoPago,$valorPago,$numeroRecibo,'".$fechaentrada."',$idPromocion,$saldoPendienteParaInsert,$saldoActualParaInsert,0,'".$nombreServidor."',$equipoServicio);");
 
+
+    //TOMAR ID DEL PAGO REALIZADO INICIO
+    $queryTomarIdRecibo = mysqli_query($enlace,"SELECT * from detallepagos where fechaPago = '".$fechaentrada."'");
+    $datoTomarIdRecibo = mysqli_fetch_array($queryTomarIdRecibo,MYSQLI_ASSOC);
+    $idRecibo = $datoTomarIdRecibo["idDetallePagos"];
+    //TOMAR ID DEL PAGO REALIZADO FINAL
 
 //TARJETA INICIO
     $queryDatosGenerales  = mysqli_query($enlace,"SELECT * from integrantes where idintegrante  = $idIntegrante");
@@ -109,7 +119,7 @@ VALUES ($idIntegrante,$tipoPago,$valorPago,$numeroRecibo,'".$fechaentrada."',$id
 
     $queryTotalAbonado = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
-WHERE idIntegrante=$idIntegrante and promociones.`status`= 1");
+WHERE idIntegrante=$idIntegrante and promociones.`status`= 1 and detallepagos.anulado =0");
     $datosTotalAbonado= mysqli_fetch_array($queryTotalAbonado,MYSQLI_ASSOC);
     $totalAbonado = $datosTotalAbonado["totalAbonado"];
 
@@ -149,13 +159,14 @@ where promociones.`status`=1");
                                          </h4>
                                      </div>
                                      <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <span id="anularReciboOpcion" onclick="habilitarAnularButton()" class=" label pull-left" style="background-color: darkgray;color: whitesmoke;border-radius: 10px;font-size:x-small; margin-top: 1%;margin-left: 1.5%;">ANULAR UN RECIBO</span>
                                          <div class="panel-body">
                                            <div id="abonos">
                                            ';
 
     $confirmarAbonos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
-WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1"));
+WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0"));
     $contadorAbonos = 1;
     if($confirmarAbonos>0){
         //SI TIENE ABONOS INICIO
@@ -164,7 +175,7 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1"));
 SELECT CAST(detallepagos.fechaPago AS DATE) as fecha,detallepagos.valor,tipopago.nombre,idDetallePagos from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
 INNER JOIN tipopago on detallepagos.idTipoPago = tipopago.idTipoPago
-WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1");
+WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0");
         while ($datosAbonosListar = mysqli_fetch_array($queryTomarDatosAbonos,MYSQLI_ASSOC)){
 
             //TIPO PAGO INICIO
@@ -235,6 +246,8 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1");
          
                                               <div class="itemSC">
                                                 <div class="descriptionSC">
+                                                    <i class="collapse anularInput"><i style="color:red " class="fa fa-minus-circle " title="ANULAR RECIBO" onclick="anularReciboOpenModal('.$idDetallePago.')"></i></i>
+                                                    <i class="fakeInput"><i style="color:white" class="fa fa-minus-circle " title="ANULAR RECIBO" onclick="anularRecibo('.$idDetallePago.')"></i></i>
                                                     <a style="font-size:medium;color: #018BF5" onclick="enviarAColaPrint('.$idDetallePago.',\''.$fCompleta.'\')">'.$tipoPago.' '.$contadorAbonos.'</a>
                                                     <p style="font-size: large"> '.$fCompleta.'</p>
                                                 </div>
@@ -282,6 +295,7 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1");
                                                    <h2 id="printIcon"><i class="fa fa-print"></i></h2>
                                                    <p id="datoReciboAImprimir">IMPRIMIR RECIBO</p>
                                                    <input type="hidden" id="idDetallePagoEnCola">
+                                                   <input type="hidden" id="idDetalleReciboPago" value="'.$idRecibo.'">
                                                   
                                                </div>
                                                <!--BOTONES FINAL-->

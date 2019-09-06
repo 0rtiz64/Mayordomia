@@ -26,6 +26,12 @@
     <link href='css/itallic.css' rel='stylesheet' type='text/css'>
     <link href='css/opensans.css' rel='stylesheet' type='text/css'>
 
+    <!--ALERTIFY INICIO-->
+    <link rel="stylesheet" href="alertify/css/alertify.css">
+    <link rel="stylesheet" href="alertify/css/themes/bootstrap.css">
+    <!--ALERTIFY FIN-->
+
+
 
     <!-- Feature detection -->
     <script src="assets/js/modernizr-2.6.2.min.js"></script>
@@ -92,7 +98,27 @@
                                     <i class="fa fa-lock"></i>
                                     <div id='errorContra' class='errores1'></div>
                                 </div>
-                                
+                            </div>
+                            <div class="form-group collapse" id="divServidorGG">
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" placeholder="NOMBRE DE SERVIDOR" id="servidorGG" style="text-transform: uppercase">
+                                </div>
+                            </div>
+
+                            <div class="form-group collapse" id="divEquipoGG">
+                                <div class="col-md-12" >
+                                    <select  id="equipoGG" class="form-control">
+                                        <option value="">EQUIPO</option>
+                                        <?php
+                                        include 'gold/enlace.php';
+                                        $queryEquipos = mysqli_query($enlace,"SELECT * from servicioequipos
+where idEquipo != 7");
+                                        while ($datosEquipos = mysqli_fetch_array($queryEquipos,MYSQLI_ASSOC)){
+                                            echo'<option value="'.$datosEquipos["idEquipo"].'">'.$datosEquipos["nombreEquipo"].'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                <div class="col-md-12">
@@ -117,6 +143,7 @@
     <script src="assets/plugins/waypoints/waypoints.min.js"></script>
     <script src="assets/plugins/nanoScroller/jquery.nanoscroller.min.js"></script>
     <script src="assets/js/application.js"></script>
+    <script src="alertify/alertify.min.js"></script>
            <script>
 
             $(document).ready(function(){
@@ -126,6 +153,9 @@
         // Do something         
                                 var email = document.getElementById("promo").value;
             var password = $('#password').val();
+            var nombreGG1 = $("#servidorGG").val();
+            var nombreGG = nombreGG1.toUpperCase();
+            var equipoGG = document.getElementById('equipoGG').value;
 
             if(email.trim().length == ""){
             $('#errorUser').html('Selecciona el usuario.').slideDown(500);
@@ -138,13 +168,23 @@
                     return false;
             }else{
                 $('#errorContra').html('').slideUp(300);
+                if(email == 21 && nombreGG.trim().length =="" ){
+                    alertify.error("NOMBRE SERVIDOR VACIO");
+                    return false;
+                }else{
+                    if (email == 21 && equipoGG.trim().length ==""){
+                        alertify.error("EQUIPO SERVICIO VACIO");
+
+                        return false;
+                    }// FIN EQUIPO SERVICIO
+                }// FIN NOMBRE SERVIDOR
             }
         }
 
             $.ajax({
                 url:'php/ingreso.php',
                 type:'POST',
-                data:'email='+email+'&password='+password+"&boton=ingresar"
+                data:'email='+email+'&password='+password+'&nombreServidor='+nombreGG+'&equipoGG='+equipoGG+"&boton=ingresar"
             }).done(function(resp){
                 if(resp=='0'){
                     $('#password').val("");
@@ -184,12 +224,30 @@
                 });//FIN DE DOCUMENT
 
 
-        
+            //USUARIO GG INICIO
+            $("#promo").on('change',function () {
+                var select = document.getElementById('promo').value;
+                if(select == 21) {
+                    //MOSTRAS INPUTS
+                    $("#divServidorGG").show(200);
+                    $("#divEquipoGG").show(200);
+                }else{
+                    $("#divServidorGG").hide(200);
+                    $("#divEquipoGG").hide(200);
+                }
+            });
+            //USUARIO GG FINAL
+
+
+
 
         function confirmar(){
 
             var email = document.getElementById("promo").value;
             var password = $('#password').val();
+            var nombreGG1= $("#servidorGG").val();
+            var nombreGG= nombreGG1.toUpperCase();
+            var equipoGG = document.getElementById('equipoGG').value;
 
             if(email.trim().length == ""){
             $('#errorUser').html('Selecciona el usuario.').slideDown(500);
@@ -202,13 +260,23 @@
                     return false;
             }else{
                 $('#errorContra').html('').slideUp(300);
-            }
-        }
+                if(email == 21 && nombreGG.trim().length =="" ){
+                    alertify.error("NOMBRE SERVIDOR VACIO");
+                    return false;
+                }else{
+                    if (email == 21 && equipoGG.trim().length ==""){
+                        alertify.error("EQUIPO SERVICIO VACIO");
+
+                        return false;
+                    }// FIN EQUIPO SERVICIO
+                }// FIN NOMBRE SERVIDOR
+            } //FIN PASSWORD
+        }//  FIN EMAIL
 
             $.ajax({
                 url:'php/ingreso.php',
                 type:'POST',
-                data:'email='+email+'&password='+password+"&boton=ingresar"
+                data:'email='+email+'&password='+password+'&nombreServidor='+nombreGG+'&equipoGG='+equipoGG+"&boton=ingresar"
             }).done(function(resp){
                 if(resp=='0'){
                     $('#password').val("");

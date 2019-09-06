@@ -32,7 +32,7 @@ where promociones.`status` =1 and detalle_integrantes.id_integrante = $idIntegra
 
       $queryTotalAbonado = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
-WHERE idIntegrante=$idIntegrante and promociones.`status`= 1");
+WHERE idIntegrante=$idIntegrante and promociones.`status`= 1 and detallepagos.anulado =0");
       $datosTotalAbonado= mysqli_fetch_array($queryTotalAbonado,MYSQLI_ASSOC);
       $totalAbonado = $datosTotalAbonado["totalAbonado"];
 
@@ -73,13 +73,14 @@ where promociones.`status`=1");
                                          </h4>
                                      </div>
                                      <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                      <span id="anularReciboOpcion" onclick="habilitarAnularButton()" class=" label pull-left" style="background-color: darkgray;color: whitesmoke;border-radius: 10px;font-size:x-small; margin-top: 1%;margin-left: 1.5%;">ANULAR UN RECIBO</span>
                                          <div class="panel-body">
                                            <div id="abonos">
                                            ';
 
       $confirmarAbonos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
-WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1"));
+WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0"));
       $contadorAbonos = 1;
       if($confirmarAbonos>0){
           //SI TIENE ABONOS INICIO
@@ -88,7 +89,7 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1"));
 SELECT CAST(detallepagos.fechaPago AS DATE) as fecha,detallepagos.valor,tipopago.nombre,idDetallePagos from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
 INNER JOIN tipopago on detallepagos.idTipoPago = tipopago.idTipoPago
-WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1");
+WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0");
           while ($datosAbonosListar = mysqli_fetch_array($queryTomarDatosAbonos,MYSQLI_ASSOC)){
 
               //TIPO PAGO INICIO
@@ -160,6 +161,8 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1");
                                         
                                               <div class="itemSC" >
                                                 <div class="descriptionSC" >
+                                                <i class="collapse anularInput"><i style="color:red " class="fa fa-minus-circle " title="ANULAR RECIBO" onclick="anularReciboOpenModal('.$idDetallePago.')"></i></i>
+                                                    <i class="fakeInput"><i style="color:white" class="fa fa-minus-circle " title="ANULAR RECIBO" onclick="anularRecibo('.$idDetallePago.')"></i></i>
                                                     <a style="font-size:medium;color: #018BF5" onclick="enviarAColaPrint('.$idDetallePago.',\''.$fCompleta.'\')">'.$tipoPago.' '.$contadorAbonos.'</a>
                                                     <p style="font-size: large"> '.$fCompleta.'</p>
                                                 </div>

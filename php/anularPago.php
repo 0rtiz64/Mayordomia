@@ -1,57 +1,48 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: David Ortiz
- * Date: 16/8/2019
- * Time: 8:35 AM
- */
 include '../gold/enlace.php';
-
+$idDetallePago = $_POST["phpIdDetallePago"];
 $idIntegrante = $_POST["phpIdIntegrante"];
 
-$confirmar = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detalle_integrantes
-INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
-WHERE detalle_integrantes.id_integrante = '.$idIntegrante.' and promociones.`status` = 1 and detalle_integrantes.`status`= 1 and detalle_integrantes.id_cargo = 10"));
+$updateRecibo = mysqli_query($enlace,"UPDATE detallepagos SET anulado = 1 WHERE idDetallePagos =$idDetallePago");
 
-if($confirmar>0){
-    //SI ENLAZADO INICIO
+//SI ENLAZADO INICIO
 
-    $queryDatosGenerales  = mysqli_query($enlace,"SELECT * from integrantes where idintegrante  = $idIntegrante");
-    $datosGenerales = mysqli_fetch_array($queryDatosGenerales,MYSQLI_ASSOC);
-    $nombre = $datosGenerales["nombre_integrante"];
+$queryDatosGenerales  = mysqli_query($enlace,"SELECT * from integrantes where idintegrante  = $idIntegrante");
+$datosGenerales = mysqli_fetch_array($queryDatosGenerales,MYSQLI_ASSOC);
+$nombre = $datosGenerales["nombre_integrante"];
 
-    $queryTallaToga = mysqli_query($enlace,"SELECT detalle_integrantes.tallaToga,equipos.num_equipo,equipos.nombre_equipo from detalle_integrantes 
+$queryTallaToga = mysqli_query($enlace,"SELECT detalle_integrantes.tallaToga,equipos.num_equipo,equipos.nombre_equipo from detalle_integrantes 
 INNER JOIN promociones on detalle_integrantes.id_promocion = promociones.idpromocion
 INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 where promociones.`status` =1 and detalle_integrantes.id_integrante = $idIntegrante");
-    $datosTallaToga = mysqli_fetch_array($queryTallaToga,MYSQLI_ASSOC);
-    $tallaToga = $datosTallaToga["tallaToga"];
-    $numEquipo= $datosTallaToga["num_equipo"];
-    $nombreEquipo= $datosTallaToga["nombre_equipo"];
+$datosTallaToga = mysqli_fetch_array($queryTallaToga,MYSQLI_ASSOC);
+$tallaToga = $datosTallaToga["tallaToga"];
+$numEquipo= $datosTallaToga["num_equipo"];
+$nombreEquipo= $datosTallaToga["nombre_equipo"];
 
-    $queryTotalAbonado = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
+$queryTotalAbonado = mysqli_query($enlace,"SELECT SUM(valor) as totalAbonado FROM detallepagos 
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
 WHERE idIntegrante=$idIntegrante and promociones.`status`= 1 and detallepagos.anulado =0");
-    $datosTotalAbonado= mysqli_fetch_array($queryTotalAbonado,MYSQLI_ASSOC);
-    $totalAbonado = $datosTotalAbonado["totalAbonado"];
+$datosTotalAbonado= mysqli_fetch_array($queryTotalAbonado,MYSQLI_ASSOC);
+$totalAbonado = $datosTotalAbonado["totalAbonado"];
 
-    if($totalAbonado ==""){
-        $totalAbonado =0;
-    }
+if($totalAbonado ==""){
+    $totalAbonado =0;
+}
 
-    $queryTotalGastos = mysqli_query($enlace,"SELECT * from pagospromocion 
+$queryTotalGastos = mysqli_query($enlace,"SELECT * from pagospromocion 
 INNER JOIN promociones on pagospromocion.idPromocion = promociones.idpromocion
 where promociones.`status`=1");
-    $datosTotalGastos = mysqli_fetch_array($queryTotalGastos,MYSQLI_ASSOC);
-    $totalGastos = $datosTotalGastos["valor"];
+$datosTotalGastos = mysqli_fetch_array($queryTotalGastos,MYSQLI_ASSOC);
+$totalGastos = $datosTotalGastos["valor"];
 
-    $saldoPendiente = $totalGastos-$totalAbonado;
+$saldoPendiente = $totalGastos-$totalAbonado;
 if($saldoPendiente  ==0){
     $style ='style="color: red;float: right;margin-right: -7%;"';
 }else{
     $style ='style="color: red;float: right;margin-right: -10%;"';
 }
-    $tarjeta = '
+$tarjeta = '
     <div class="panel-group accordion" id="accordion">
                                  <div class="panel panel-default" style=" border-radius: 10px;">
                                      <div class="panel-heading">
@@ -77,85 +68,85 @@ if($saldoPendiente  ==0){
                                           
                                            ';
 
-                                        $confirmarAbonos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detallepagos
+$confirmarAbonos = mysqli_num_rows(mysqli_query($enlace,"SELECT * from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
 WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0"));
-                                        $contadorAbonos = 1;
-                                        if($confirmarAbonos>0){
-                                            //SI TIENE ABONOS INICIO
+$contadorAbonos = 1;
+if($confirmarAbonos>0){
+    //SI TIENE ABONOS INICIO
 
-                                            $queryTomarDatosAbonos = mysqli_query($enlace,"
+    $queryTomarDatosAbonos = mysqli_query($enlace,"
 SELECT CAST(detallepagos.fechaPago AS DATE) as fecha,detallepagos.valor,tipopago.nombre,idDetallePagos from detallepagos
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
 INNER JOIN tipopago on detallepagos.idTipoPago = tipopago.idTipoPago
 WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and detallepagos.anulado =0");
-                                            while ($datosAbonosListar = mysqli_fetch_array($queryTomarDatosAbonos,MYSQLI_ASSOC)){
+    while ($datosAbonosListar = mysqli_fetch_array($queryTomarDatosAbonos,MYSQLI_ASSOC)){
 
-                                                //TIPO PAGO INICIO
-                                                $tipoPago= $datosAbonosListar["nombre"];
-                                                $idDetallePago= $datosAbonosListar["idDetallePagos"];
-                                                //TIPO PAGO FINAL
+        //TIPO PAGO INICIO
+        $tipoPago= $datosAbonosListar["nombre"];
+        $idDetallePago= $datosAbonosListar["idDetallePagos"];
+        //TIPO PAGO FINAL
 
-                                                //CONVERTIR FECHA INICIO
-                                                $fecha =  $datosAbonosListar["fecha"];
-                                                $dia = substr($fecha,8,2);
-                                                $mes = substr($fecha,5,2);
-                                                $aaa = substr($fecha,0,4);
+        //CONVERTIR FECHA INICIO
+        $fecha =  $datosAbonosListar["fecha"];
+        $dia = substr($fecha,8,2);
+        $mes = substr($fecha,5,2);
+        $aaa = substr($fecha,0,4);
 
-                                                switch ($mes){
-                                                    case 01:
-                                                        $miMes = "ENERO";
-                                                        break;
+        switch ($mes){
+            case 01:
+                $miMes = "ENERO";
+                break;
 
-                                                    case 02:
-                                                        $miMes = "FEBRERO";
-                                                        break;
+            case 02:
+                $miMes = "FEBRERO";
+                break;
 
-                                                    case 03:
-                                                        $miMes = "MARZO";
-                                                        break;
+            case 03:
+                $miMes = "MARZO";
+                break;
 
-                                                    case 04:
-                                                        $miMes = "ABRIL";
-                                                        break;
+            case 04:
+                $miMes = "ABRIL";
+                break;
 
-                                                    case 05:
-                                                        $miMes = "MAYO";
-                                                        break;
+            case 05:
+                $miMes = "MAYO";
+                break;
 
-                                                    case 06:
-                                                        $miMes = "JUNIO";
-                                                        break;
+            case 06:
+                $miMes = "JUNIO";
+                break;
 
-                                                    case 07:
-                                                        $miMes = "JULIO";
-                                                        break;
+            case 07:
+                $miMes = "JULIO";
+                break;
 
-                                                    case "08":
-                                                        $miMes = "AGOSTO";
-                                                        break;
+            case "08":
+                $miMes = "AGOSTO";
+                break;
 
-                                                    case "09":
-                                                        $miMes = "SEPTIEMBRE";
-                                                        break;
+            case "09":
+                $miMes = "SEPTIEMBRE";
+                break;
 
-                                                    case 10:
-                                                        $miMes = "OCTUBRE";
-                                                        break;
+            case 10:
+                $miMes = "OCTUBRE";
+                break;
 
-                                                    case 11:
-                                                        $miMes = "NOVIEMBRE";
-                                                        break;
+            case 11:
+                $miMes = "NOVIEMBRE";
+                break;
 
-                                                    case 12:
-                                                        $miMes = "DICIEMBRE";
-                                                        break;
-                                                }
+            case 12:
+                $miMes = "DICIEMBRE";
+                break;
+        }
 
 
-                                                $fCompleta = $dia."-".$miMes."-".$aaa;
-                                                //CONVERTIR FECHA FINAL
-                                                $tarjeta.='
+        $fCompleta = $dia."-".$miMes."-".$aaa;
+        //CONVERTIR FECHA FINAL
+        $tarjeta.='
 
                                         
                                               <div class="itemSC" >
@@ -168,19 +159,19 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and
                                                 <p class="subpriceSC" style="font-size: large">L.'.$datosAbonosListar["valor"].'</p>
                                                </div>
                                                 ';
-                                                $contadorAbonos++;
-                                            }
-                                            //SI TIENE ABONOS FINAL
-                                        }else{
+        $contadorAbonos++;
+    }
+    //SI TIENE ABONOS FINAL
+}else{
 
-                                            //NO TIENE ABONOS INICIO
-                                            $tarjeta.='
+    //NO TIENE ABONOS INICIO
+    $tarjeta.='
                                             <h4 style="color: red;">SIN ABONOS POR EL MOMENTO</h4>
                                             ';
-                                            //NO TIENE ABONOS FINAL
+    //NO TIENE ABONOS FINAL
 
-                                        }
-                                        $tarjeta.='
+}
+$tarjeta.='
                                        
     
 
@@ -258,11 +249,6 @@ WHERE detallepagos.idIntegrante = $idIntegrante and promociones.`status` = 1 and
 
 
 
-    echo  $tarjeta;
-    //SI ENLAZADO FINAL
-}else{
-    //NO ENLAZADO INICIO
-    echo 2;
-    //NO ENLAZADO FINAL
-}
+echo  $tarjeta;
+//SI ENLAZADO FINAL
 ?>

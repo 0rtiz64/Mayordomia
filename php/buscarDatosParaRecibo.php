@@ -5,13 +5,14 @@ $idDetallePago = $_POST["phpIdDetallePago"];
 $query = mysqli_query($enlace,"SELECT promociones.desc_promocion as promocion, CAST(detallepagos.fechaPago AS DATE) as fecha,
 detallepagos.numeroRecibo as numRecibo,integrantes.nombre_integrante as nombre,integrantes.correlativo as expediente,
 equipos.num_equipo as numEquipo,equipos.nombre_equipo as nombEquipo,detallepagos.valor,tipopago.nombre as tipopago,
-detallepagos.saldoAnt as saldoAnterior, detallepagos.saldoAct as saldoActual
+detallepagos.saldoAnt as saldoAnterior, detallepagos.saldoAct as saldoActual,detallepagos.nombreServidor,servicioequipos.nombreEquipo
  from detallepagos
 INNER JOIN tipopago on detallepagos.idTipoPago = tipopago.idTipoPago
 INNER JOIN integrantes on detallepagos.idIntegrante = integrantes.idintegrante
 INNER JOIN detalle_integrantes on detallepagos.idIntegrante = detalle_integrantes.id_integrante
 INNER JOIN equipos on detalle_integrantes.id_equipo = equipos.id_equipo
 INNER JOIN promociones on detallepagos.idPromocion = promociones.idpromocion
+INNER JOIN servicioequipos on detallepagos.equipoServicio = servicioequipos.idEquipo
 WHERE detallepagos.idDetallePagos = $idDetallePago");
 $datos = mysqli_fetch_array($query,MYSQLI_ASSOC);
 $equipo = $datos["numEquipo"].'-'.$datos["nombEquipo"];
@@ -87,7 +88,9 @@ $datos = array(
     6 => $datos["valor"],
     7 => $datos["tipopago"],
     8 => $datos["saldoAnterior"],
-    9=> $datos["saldoActual"]
+    9=> $datos["saldoActual"],
+    10=> $datos["nombreServidor"],
+    11=> $datos["nombreEquipo"]
 
 );
 echo json_encode($datos);

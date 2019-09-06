@@ -163,6 +163,35 @@
                 }
                 break;
 
+            case 'M8':
+                # code...
+                switch ($miarraySubmenu[0]) {
+                    case 'SM8.1':
+                        # code...
+                        $direccion = "tagsGraduacion.php";
+                        break;
+
+                    case 'SM8.2':
+                        # code...
+                        $direccion = "contadorGraduacion.php";
+                        break;
+
+                    case 'SM8.3':
+                        # code...
+                        $direccion = "gastosGraduacion.php";
+                        break;
+
+                    case 'SM8.4':
+                        # code...
+                            $direccion = "cierreGastos.php";
+                        break;
+
+
+
+                }
+                break;
+
+
             case 'M0':
                 # code...
                 switch ($miarraySubmenu[0]) {

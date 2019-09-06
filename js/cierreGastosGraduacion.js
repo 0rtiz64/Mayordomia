@@ -40,3 +40,10 @@ function cierreHoy() {
         }
     });
 }
+
+function imprimirReporte() {
+    var fecha = $("#fechaImprimirReciboReporteGastosGraduacion").val();
+    var urlImprimir = 'php/reciboReporteGastosGraduacion.php?fecha='+fecha;
+    var pop = window.open(urlImprimir);
+    pop.print();
+}

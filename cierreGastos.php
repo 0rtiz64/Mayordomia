@@ -127,7 +127,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
         <section class="main-content-wrapper">
             <section id="main-content">
                 <div class="row">
-                    <h1 class="h1">CIERRE GASTOS GRADUACION</h1>
+                    <h1 class="h1">REPORTE GASTOS GRADUACION</h1>
                     <div class="col-md-12">
                         <div class="col-md-12">
                             <div class="" style="border-radius: 10px">
@@ -136,7 +136,7 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
 
                             </div>
 
-                            <div class="col-md-12" id="resultadoCierreGastosGraduacion">
+                            <div class="col-md-12" id="resultadoCierreGastosGraduacion" style="margin-top: 2%;">
 
                             </div>
 
