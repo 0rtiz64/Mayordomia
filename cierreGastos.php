@@ -130,8 +130,16 @@ if (isset($_SESSION['ingreso']) && $_SESSION['ingreso']=='YES')
                     <h1 class="h1">REPORTE GASTOS GRADUACION</h1>
                     <div class="col-md-12">
                         <div class="col-md-12">
-                            <div class="" style="border-radius: 10px">
+                            <div class="col-md-6" style="border-radius: 10px">
+                                <label>FECHA INICIO</label>
                                 <input id="inputFechaCierre" type="date" class="form-control" title="SELECCIONA FECHA" style="border-radius: 10px">
+                                <!--span onclick="cierreHoy()" style="background-color: #343A40; color: white;border-top-right-radius:10px;border-bottom-right-radius: 10px" class="input-group-addon" ><strong>HOY</strong></span-->
+
+                            </div>
+
+                            <div class="col-md-6" style="border-radius: 10px">
+                                <label>FECHA FINAL</label>
+                                <input id="inputFechaCierre2" type="date" class="form-control" title="SELECCIONA FECHA" style="border-radius: 10px">
                                 <!--span onclick="cierreHoy()" style="background-color: #343A40; color: white;border-top-right-radius:10px;border-bottom-right-radius: 10px" class="input-group-addon" ><strong>HOY</strong></span-->
 
                             </div>
